@@ -12,9 +12,10 @@ interface Message {
 
 interface AIChatProps {
   onBusinessTypeDetected: (businessType: string) => void;
+  disabled?: boolean;
 }
 
-export function AIChat({ onBusinessTypeDetected }: AIChatProps) {
+export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps) {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -122,7 +123,8 @@ export function AIChat({ onBusinessTypeDetected }: AIChatProps) {
               <button
                 key={business.id}
                 onClick={() => handleSuggestionClick(`I run a ${business.name.toLowerCase()}`)}
-                className="px-4 py-2 bg-white/10 text-white rounded-full text-sm hover:bg-white/20 transition-colors"
+                disabled={disabled || isLoading}
+                className="px-4 py-2 bg-white/10 text-white rounded-full text-sm hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {business.icon} {business.name}
               </button>
@@ -169,11 +171,11 @@ export function AIChat({ onBusinessTypeDetected }: AIChatProps) {
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Tell me about your business..."
           className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-purple-200 rounded-lg border border-white/20 focus:outline-none focus:border-white/40"
-          disabled={isLoading}
+          disabled={disabled || isLoading}
         />
         <button
           type="submit"
-          disabled={isLoading || !inputValue.trim()}
+          disabled={disabled || isLoading || !inputValue.trim()}
           className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Send
