@@ -101,7 +101,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       }
 
       const aiResponse = data.response
-      if (!aiResponse || aiResponse.length < 10) {
+      
+      if (!aiResponse || aiResponse.length < 5) {
         throw new Error('Empty or invalid AI response')
       }
 

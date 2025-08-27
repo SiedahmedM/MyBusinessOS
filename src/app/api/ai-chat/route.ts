@@ -6,15 +6,21 @@ const openai = process.env.OPENAI_API_KEY && process.env.OPENAI_API_KEY !== 'pla
   : null
 
 export async function POST(request: NextRequest) {
+  console.log('🚀 AI Chat API called')
+  
   if (!openai) {
+    console.log('❌ OpenAI not configured')
     return NextResponse.json(
       { error: 'OpenAI API key not configured' },
       { status: 500 }
     )
   }
 
+  let body: any
+  
   try {
-    const body = await request.json()
+    body = await request.json()
+    console.log('📨 Request body:', JSON.stringify(body, null, 2))
     const { action, message, businessType, userMessage, conversationHistory = [] } = body
 
     if (action === 'detectBusinessType') {
@@ -121,9 +127,11 @@ RESPONSE (speak directly to them):`
       
       // Only use fallback if AI response is truly empty or very short
       if (!aiResponse || aiResponse.length < 20) {
+        console.log('⚠️ AI response too short, using fallback')
         throw new Error('AI response too short, using fallback')
       }
       
+      console.log('✅ Returning AI response:', aiResponse.substring(0, 100) + '...')
       return NextResponse.json({ response: aiResponse })
     }
 
@@ -131,9 +139,10 @@ RESPONSE (speak directly to them):`
 
   } catch (error) {
     console.error('OpenAI API error:', error)
+    console.error('Request body:', body)
     
     // Enhanced fallback based on user's actual message
-    if (body.action === 'generateResponse') {
+    if (body?.action === 'generateResponse') {
       const fallbackResponse = generateIntelligentFallback(body.userMessage, body.businessType)
       return NextResponse.json({ response: fallbackResponse })
     }
