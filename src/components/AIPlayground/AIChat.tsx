@@ -1,6 +1,6 @@
 'use client'
 import { useState, useCallback } from 'react'
-import { generateBusinessResponse, detectBusinessType, businessTypes } from '@/lib/openai'
+import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
 
 interface Message {
@@ -53,30 +53,82 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       addMessage(message, 'user')
       setInputValue('')
 
-      // Detect business type
-      const businessType = await detectBusinessType(message)
-      console.log('AIChat: Detected business type:', businessType);
-      
-      if (businessType && businessType !== detectedBusinessType) {
-        setDetectedBusinessType(businessType)
-        onBusinessTypeDetected(businessType)
+      // Get conversation history for context
+      const conversationHistory = messages.map(msg => ({
+        type: msg.type,
+        content: msg.content
+      }))
+
+      // Detect business type first
+      let currentBusinessType = detectedBusinessType
+      if (!currentBusinessType || currentBusinessType === 'other') {
+        try {
+          const businessType = await detectBusinessType(message)
+          console.log('AIChat: Detected business type:', businessType);
+          
+          if (businessType && businessType !== detectedBusinessType) {
+            setDetectedBusinessType(businessType)
+            onBusinessTypeDetected(businessType)
+            currentBusinessType = businessType
+          }
+        } catch (error) {
+          console.warn('Business type detection failed, continuing with conversation')
+        }
       }
 
-      // Generate AI response
-      const aiResponse = await generateBusinessResponse(businessType, message)
+      // Generate AI response with conversation context
+      const response = await fetch('/api/ai-chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          action: 'generateResponse',
+          businessType: currentBusinessType || 'other',
+          userMessage: message,
+          conversationHistory
+        })
+      })
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+
+      const data = await response.json()
+
+      if (data.error) {
+        throw new Error(data.error)
+      }
+
+      const aiResponse = data.response
+      if (!aiResponse || aiResponse.length < 10) {
+        throw new Error('Empty or invalid AI response')
+      }
+
       addMessage(aiResponse, 'ai')
-      
       logger.info('AI chat message sent successfully')
       
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to send message'
       logger.error('AI chat error', { error: errorMessage })
+      
+      // More contextual error handling
+      let fallbackMessage = "I apologize, but I'm having trouble connecting right now. "
+      
+      if (message.toLowerCase().includes('cost') || message.toLowerCase().includes('price')) {
+        fallbackMessage += "My custom solutions typically range from $8,000-15,000 but usually pay for themselves within 2-3 months. Would you like to discuss your specific needs?"
+      } else if (message.toLowerCase().includes('build') || message.toLowerCase().includes('create')) {
+        fallbackMessage += "I specialize in building custom business automation software that saves time and increases revenue. What challenges are you facing in your business?"
+      } else {
+        fallbackMessage += "I'd love to help you build custom software for your business. What industry are you in?"
+      }
+      
+      addMessage(fallbackMessage, 'ai')
       setError(errorMessage)
-      addMessage('Sorry, I encountered an error. Please try again!', 'ai')
     } finally {
       setIsLoading(false)
     }
-  }, [detectedBusinessType, onBusinessTypeDetected])
+  }, [detectedBusinessType, onBusinessTypeDetected, messages])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -87,12 +139,20 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     setInputValue(suggestion)
   }
 
-  if (error) {
+  if (error && messages.length <= 2) {
     return (
       <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-        <p className="text-red-600">Error: {error}</p>
+        <p className="text-red-600">Connection Error: {error}</p>
         <button 
-          onClick={() => setError(null)}
+          onClick={() => {
+            setError(null)
+            setMessages([{
+              id: '1',
+              type: 'ai',
+              content: "Hi! I'm here to help you build custom software for your business. What type of business do you run?",
+              timestamp: new Date()
+            }])
+          }}
           className="mt-2 text-sm text-red-700 underline"
         >
           Try again
@@ -114,12 +174,12 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
         </div>
       </div>
 
-      {/* Industry Suggestion Pills */}
+      {/* Industry Suggestion Pills - Only show initially */}
       {messages.length <= 1 && (
         <div className="mb-6">
           <p className="text-purple-200 text-sm mb-3">Quick start:</p>
           <div className="flex flex-wrap gap-2">
-            {businessTypes.map((business) => (
+            {businessTypes.slice(0, 6).map((business) => (
               <button
                 key={business.id}
                 onClick={() => handleSuggestionClick(`I run a ${business.name.toLowerCase()}`)}
@@ -137,13 +197,13 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       <div className="flex-1 overflow-y-auto space-y-4 mb-6">
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
-            <div className={`max-w-xs lg:max-w-md px-4 py-2 rounded-lg ${
+            <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
               message.type === 'user' 
                 ? 'bg-white text-gray-900' 
                 : 'bg-white/10 text-white'
             }`}>
-              <p className="text-sm">{message.content}</p>
-              <span className="text-xs opacity-70">
+              <p className="text-sm leading-relaxed">{message.content}</p>
+              <span className="text-xs opacity-70 mt-1 block">
                 {message.timestamp.toLocaleTimeString()}
               </span>
             </div>
@@ -153,10 +213,10 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
         {/* Loading indicator */}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-white/10 text-white px-4 py-2 rounded-lg">
+            <div className="bg-white/10 text-white px-4 py-3 rounded-lg">
               <div className="flex items-center space-x-2">
                 <div className="animate-spin h-4 w-4 border-2 border-purple-600 border-t-transparent rounded-full"></div>
-                <span className="text-sm">Thinking...</span>
+                <span className="text-sm">Analyzing your business needs...</span>
               </div>
             </div>
           </div>
@@ -169,8 +229,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Tell me about your business..."
-          className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-purple-200 rounded-lg border border-white/20 focus:outline-none focus:border-white/40"
+          placeholder="Tell me about your business needs..."
+          className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-purple-200 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
           disabled={disabled || isLoading}
         />
         <button
@@ -178,9 +238,16 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
           disabled={disabled || isLoading || !inputValue.trim()}
           className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          Send
+          {isLoading ? '...' : 'Send'}
         </button>
       </form>
+      
+      {/* Connection status */}
+      {error && (
+        <p className="text-xs text-purple-300 mt-2 opacity-75">
+          Note: Running in offline mode due to connection issue
+        </p>
+      )}
     </div>
   )
 }

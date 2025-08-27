@@ -15,36 +15,42 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json()
-    const { action, message, businessType, userMessage } = body
+    const { action, message, businessType, userMessage, conversationHistory = [] } = body
 
     if (action === 'detectBusinessType') {
-      const prompt = `Based on this business description, classify it into one of these categories: dental, auto, restaurant, medical, ecommerce, rental, realestate, fitness, legal, accounting, consulting, retail, or other.
+      const prompt = `You are a business classification expert. Based on the business description below, classify it into ONE of these categories:
+
+Available categories:
+- dental: dentist offices, oral health, teeth cleaning, orthodontics
+- auto: car repair, mechanic shops, automotive services, oil changes
+- restaurant: food service, dining, cafes, bars, catering
+- medical: doctor offices, clinics, healthcare, hospitals, therapy
+- ecommerce: online stores, digital marketplaces, online retail
+- rental: car rentals, equipment rentals, vacation rentals
+- realestate: real estate agencies, property management, home sales
+- fitness: gyms, personal training, wellness centers, yoga studios
+- legal: law firms, attorneys, legal services, paralegal
+- accounting: bookkeeping, tax services, financial planning, CPA
+- consulting: business consulting, advisory services, strategy
+- retail: physical stores, brick-and-mortar shops, boutiques
+- other: any business that doesn't fit the above categories
 
 Business description: "${message}"
 
-Available categories:
-- dental: dental practices, dentist offices, oral health services
-- auto: auto repair shops, car services, mechanic shops, automotive services
-- restaurant: restaurants, food services, dining establishments, cafes, bars
-- medical: medical practices, doctor offices, clinics, healthcare services, hospitals
-- ecommerce: online stores, e-commerce platforms, digital marketplaces, online retail
-- rental: car rentals, equipment rentals, property rentals, vacation rentals
-- realestate: real estate agencies, property management, real estate services
-- fitness: gyms, fitness centers, personal training, wellness centers
-- legal: law firms, legal services, attorneys, legal consultants
-- accounting: accounting firms, bookkeeping services, tax services, financial services
-- consulting: business consulting, management consulting, advisory services
-- retail: physical stores, retail shops, brick-and-mortar businesses
-- other: any business that doesn't fit the above categories
+Rules:
+- Respond with ONLY the category name (one word)
+- If you're unsure, use "other"
+- Look for key industry terms and context clues
+- Consider the main business activity described
 
-Respond with only the category name. If unclear, use "other".`
+Classification:`
 
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           {
             role: 'system',
-            content: 'You are a business classification assistant. Respond with only one word: the exact category name.'
+            content: 'You are a business classification expert. Respond with only one word: the exact category name.'
           },
           {
             role: 'user',
@@ -57,7 +63,7 @@ Respond with only the category name. If unclear, use "other".`
 
       const businessType = response.choices[0]?.message?.content?.trim().toLowerCase()
       
-      // Map to our existing business types or return the detected type
+      // Validate the response
       const validTypes = ['dental', 'auto', 'restaurant', 'medical', 'ecommerce', 'rental', 'realestate', 'fitness', 'legal', 'accounting', 'consulting', 'retail', 'other']
       const detectedType = validTypes.includes(businessType || '') ? businessType : 'other'
       
@@ -67,39 +73,56 @@ Respond with only the category name. If unclear, use "other".`
       
       const businessInfo = getBusinessInfo(businessType)
       
-      const prompt = `You are a confident software developer who specializes in building custom business automation software. A potential client just described their ${businessInfo.name.toLowerCase()} business.
+      // Build conversation context
+      const conversationContext = conversationHistory
+        .map((msg: any) => `${msg.type}: ${msg.content}`)
+        .join('\n')
 
-User message: "${userMessage}"
-Business type: ${businessInfo.name}
-Your solution is called: ${businessInfo.title}
+      const prompt = `You are an expert software developer who builds custom business automation solutions. You're having a conversation with a potential client who runs a ${businessInfo.name.toLowerCase()}.
 
-Key features you've built for this industry:
-${businessInfo.features.map(f => `${f.icon} ${f.title}: ${f.description}`).join('\n')}
+CONVERSATION HISTORY:
+${conversationContext}
 
-Respond conversationally as if you're speaking directly to this business owner. Be enthusiastic but professional. Mention:
-1. That you've built similar software for this industry
-2. Specific benefits (ROI, time savings, or revenue increases)
-3. Ask if they'd like to see how it works or learn more
+USER'S LATEST MESSAGE: "${userMessage}"
 
-Keep response to 1-2 sentences. Be confident and results-focused.`
+YOUR SOLUTION: ${businessInfo.title}
+KEY FEATURES YOU'VE BUILT:
+${businessInfo.features.map(f => `• ${f.title}: ${f.description}`).join('\n')}
+
+INSTRUCTIONS:
+- Respond naturally and conversationally as if you're speaking directly to this business owner
+- Be enthusiastic but professional about your work
+- Answer their specific question while showcasing relevant capabilities
+- If they ask about cost, mention that your solutions typically cost $8,000-15,000 but save 10x that in the first year
+- If they ask what you can build, mention specific features relevant to their industry
+- Keep responses to 1-2 sentences and focused on their question
+- Be confident about your abilities and past successes
+- Always end with a question or call-to-action to keep the conversation going
+
+RESPONSE (speak directly to them):`
 
       const response = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [
           {
             role: 'system',
-            content: 'You are an experienced software developer who builds custom business automation solutions. Be enthusiastic, confident, and focus on results and ROI.'
+            content: 'You are a confident, experienced software developer who builds custom business automation solutions. Be conversational, enthusiastic, and results-focused. Keep responses concise but engaging.'
           },
           {
             role: 'user',
             content: prompt
           }
         ],
-        max_tokens: 150,
+        max_tokens: 200,
         temperature: 0.7
       })
 
       const aiResponse = response.choices[0]?.message?.content?.trim()
+      
+      // Only use fallback if AI response is truly empty or very short
+      if (!aiResponse || aiResponse.length < 20) {
+        throw new Error('AI response too short, using fallback')
+      }
       
       return NextResponse.json({ response: aiResponse })
     }
@@ -108,11 +131,41 @@ Keep response to 1-2 sentences. Be confident and results-focused.`
 
   } catch (error) {
     console.error('OpenAI API error:', error)
+    
+    // Enhanced fallback based on user's actual message
+    if (body.action === 'generateResponse') {
+      const fallbackResponse = generateIntelligentFallback(body.userMessage, body.businessType)
+      return NextResponse.json({ response: fallbackResponse })
+    }
+    
     return NextResponse.json(
       { error: 'Failed to process AI request' },
       { status: 500 }
     )
   }
+}
+
+function generateIntelligentFallback(userMessage: string, businessType: string): string {
+  const message = userMessage.toLowerCase()
+  const businessInfo = getBusinessInfo(businessType)
+  
+  // Cost-related questions
+  if (message.includes('cost') || message.includes('price') || message.includes('expensive') || message.includes('afford')) {
+    return `Great question! My ${businessInfo.title} solutions typically range from $8,000-15,000, but my clients usually see that investment returned within 2-3 months through increased efficiency and revenue. For ${businessInfo.name.toLowerCase()} businesses, the average ROI is 450% in the first year. Would you like me to show you exactly how it works?`
+  }
+  
+  // What can you build questions
+  if (message.includes('what') && (message.includes('build') || message.includes('do') || message.includes('create'))) {
+    return `For ${businessInfo.name.toLowerCase()} businesses, I build comprehensive solutions like ${businessInfo.title} that include ${businessInfo.features.slice(0, 3).map(f => f.title.toLowerCase()).join(', ')}, and much more. Each system is custom-built for your specific needs. Want to see a live demo of how it works?`
+  }
+  
+  // General capability questions
+  if (message.includes('help') || message.includes('can you') || message.includes('able to')) {
+    return `Absolutely! I specialize in ${businessInfo.name.toLowerCase()} automation. My ${businessInfo.title} system handles everything from ${businessInfo.features[0].title.toLowerCase()} to ${businessInfo.features[1].title.toLowerCase()}, typically saving business owners 15-25 hours per week. Ready to see how it works for your business?`
+  }
+  
+  // Default intelligent response
+  return `Perfect! For ${businessInfo.name.toLowerCase()} businesses like yours, I've built ${businessInfo.title} systems that typically increase revenue by 25-45% while saving 15+ hours per week. The key features include ${businessInfo.features.slice(0, 2).map(f => f.title).join(' and ')}. Would you like to see a live demo of how it works?`
 }
 
 function getBusinessInfo(businessType: string) {
