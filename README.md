@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MyBusinessOS - Enterprise Software at Freelancer Prices
 
-## Getting Started
+A professional business automation consultancy website showcasing custom software solutions for Orange County businesses. Built with Next.js 14, TypeScript, and modern web technologies.
 
-First, run the development server:
+## 🚀 Features
+
+### Core Functionality
+- **Hero Section** with real-time typing animations and particle effects
+- **Tech Showcase** with interactive code display and syntax highlighting  
+- **ROI Calculator** with three calculation modes (Time Savings, Revenue Growth, Cost Reduction)
+- **AI Playground** with iPhone simulator and web app generator
+- **Case Studies** featuring real Orange County business success stories
+- **Contact Form** with Supabase integration and email notifications
+
+### Technical Features
+- **Next.js 14** with App Router and TypeScript
+- **Tailwind CSS** for responsive design
+- **Framer Motion** for smooth animations
+- **Supabase** for database and real-time features
+- **OpenAI API** integration for AI-powered features
+- **Comprehensive testing** with Jest and React Testing Library
+- **Progressive Web App** capabilities
+- **SEO optimized** with proper meta tags and schema markup
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 with TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Database**: Supabase
+- **AI**: OpenAI GPT-4
+- **Testing**: Jest, React Testing Library
+- **Deployment**: Vercel
+
+## 📦 Installation
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Set up environment variables**
+   Configure your `.env.local` file:
+   ```bash
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+   OPENAI_API_KEY=your_openai_api_key
+   NEXT_PUBLIC_SITE_URL=http://localhost:3000
+   ```
+
+3. **Set up Supabase database**
+   - Create a new Supabase project
+   - Run the SQL schema in `supabase-schema.sql`
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open [http://localhost:3000](http://localhost:3000)** in your browser
+
+## 🧪 Testing
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm test              # Run tests
+npm run lint          # Check code quality
+npm run type-check    # TypeScript validation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Deploy to Vercel:
+```bash
+npx vercel
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Set these environment variables in Vercel:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` 
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `OPENAI_API_KEY`
+- `NEXT_PUBLIC_SITE_URL`
 
-## Learn More
+## 📞 Support
 
-To learn more about Next.js, take a look at the following resources:
+- Email: hello@mybusinessos.com
+- Phone: (714) 555-0123
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Built for Orange County businesses by MyBusinessOS
