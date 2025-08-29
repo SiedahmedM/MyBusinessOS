@@ -20,15 +20,21 @@ import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
 import { logger } from '@/lib/logger'
 
-// Memoized tab content components with error boundaries
+// Memoized tab content components with error boundaries and mobile-first layouts
 const SolutionsTab = memo(function SolutionsTab() {
   return (
     <TabErrorBoundary tabName="Solutions">
-      <div id="solutions" className="space-y-16">
-        <SoftwareTypeGrid />
-        <QuickROICalculator />
-        <AIPlayground />
-        <TechShowcase />
+      <div id="solutions" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
+        <SoftwareTypeGrid className="mobile-section" />
+        <div className="mobile-section bg-neutral-50 rounded-2xl">
+          <QuickROICalculator />
+        </div>
+        <div className="mobile-section">
+          <AIPlayground />
+        </div>
+        <div className="mobile-section bg-gradient-to-br from-accent-50 to-accent-100/50 rounded-2xl">
+          <TechShowcase />
+        </div>
       </div>
     </TabErrorBoundary>
   )
@@ -37,8 +43,10 @@ const SolutionsTab = memo(function SolutionsTab() {
 const PortfolioTab = memo(function PortfolioTab() {
   return (
     <TabErrorBoundary tabName="Portfolio">
-      <div id="portfolio" className="space-y-16">
-        <CaseStudies />
+      <div id="portfolio" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="mobile-section">
+          <CaseStudies />
+        </div>
       </div>
     </TabErrorBoundary>
   )
@@ -47,8 +55,10 @@ const PortfolioTab = memo(function PortfolioTab() {
 const ProcessTab = memo(function ProcessTab() {
   return (
     <TabErrorBoundary tabName="Process">
-      <div id="process" className="space-y-16">
-        <ProcessTimeline />
+      <div id="process" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="mobile-section">
+          <ProcessTimeline />
+        </div>
       </div>
     </TabErrorBoundary>
   )
@@ -57,9 +67,13 @@ const ProcessTab = memo(function ProcessTab() {
 const PricingTab = memo(function PricingTab() {
   return (
     <TabErrorBoundary tabName="Pricing">
-      <div id="pricing" className="space-y-16">
-        <InteractivePricingCalculator />
-        <ROICalculator />
+      <div id="pricing" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="mobile-section">
+          <InteractivePricingCalculator />
+        </div>
+        <div className="mobile-section bg-neutral-50 rounded-2xl">
+          <ROICalculator />
+        </div>
       </div>
     </TabErrorBoundary>
   )
@@ -85,23 +99,34 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen">
+      <div className="min-h-screen bg-white">
+        {/* Mobile-optimized navigation */}
         <TabNavigation 
           activeTab={activeTab} 
           onTabChange={navigateToTab}
+          className="mobile-touch"
         />
         
-        {/* Hero Section - Always visible */}
+        {/* Hero Section - Mobile-first with better spacing */}
         <Hero onTabChange={navigateToTab} />
         
-        <main className="scroll-smooth">
-          {activeTab === 'solutions' && <SolutionsTab />}
-          {activeTab === 'portfolio' && <PortfolioTab />}
-          {activeTab === 'process' && <ProcessTab />}
-          {activeTab === 'pricing' && <PricingTab />}
+        {/* Main content with mobile-first containers */}
+        <main className="scroll-smooth relative">
+          {/* Tab content sections */}
+          <div className="mobile-section">
+            {activeTab === 'solutions' && <SolutionsTab />}
+            {activeTab === 'portfolio' && <PortfolioTab />}
+            {activeTab === 'process' && <ProcessTab />}
+            {activeTab === 'pricing' && <PricingTab />}
+          </div>
 
-          <ContactForm />
-          <FloatingCTA />
+          {/* Contact section with mobile-first layout */}
+          <div className="mobile-container mobile-section bg-gradient-to-br from-neutral-50 to-neutral-100/50">
+            <ContactForm />
+          </div>
+          
+          {/* Mobile-optimized floating CTA */}
+          <FloatingCTA className="mobile-touch" />
         </main>
       </div>
     </ErrorBoundary>
