@@ -34,7 +34,7 @@ function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
       { icon: '◆', title: 'Mobile Shopping', description: 'Optimized mobile commerce' },
       { icon: '◆', title: 'Payment Processing', description: 'Secure mobile payments' },
       { icon: '◆', title: 'Order Tracking', description: 'Real-time delivery updates' },
-      { icon: '⭐', title: 'Reviews & Ratings', description: 'Customer feedback system' }
+      { icon: '◆', title: 'Reviews & Ratings', description: 'Customer feedback system' }
     ],
     'mobile-app': [
       { icon: '◆', title: 'Native Performance', description: 'Lightning-fast user experience' },
@@ -123,37 +123,11 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
     }
   }, [softwareType, isBuilding, buildAppSequence])
 
-  const getGradientColor = (type: string) => {
-    switch (type) {
-      case 'business-management':
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-      case 'agency-to-saas':
-        return 'linear-gradient(135deg, #10b981, #059669)'
-      case 'ecommerce':
-        return 'linear-gradient(135deg, #f59e0b, #d97706)'
-      case 'mobile-app':
-        return 'linear-gradient(135deg, #8b5cf6, #a855f7)'
-      case 'analytics-dashboard':
-        return 'linear-gradient(135deg, #3b82f6, #1d4ed8)'
-      case 'ai-automation':
-        return 'linear-gradient(135deg, #ef4444, #dc2626)'
-      // Backward compatibility
-      case 'dental':
-        return 'linear-gradient(135deg, #10b981, #059669)'
-      case 'auto':
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-      case 'restaurant':
-        return 'linear-gradient(135deg, #f59e0b, #d97706)'
-      case 'construction':
-        return 'linear-gradient(135deg, #dc2626, #b91c1c)'
-      default:
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-    }
-  }
+  const getGradientColor = () => 'linear-gradient(135deg, #000000, #1a1a1a, #facc15)'
 
   if (error) {
     return (
-      <div className="relative mx-auto w-[375px] h-[812px]">
+      <div className="relative mx-auto w-full max-w-[260px] h-[540px] sm:max-w-[375px] sm:h-[812px]">
         <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center h-full flex flex-col justify-center">
           <div className="text-4xl mb-4">◆</div>
           <p className="text-red-600 mb-4">Error: {error}</p>
@@ -182,7 +156,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
   return (
     <div className="relative mx-auto" style={{ perspective: '1000px' }}>
       {/* iPhone Frame - Responsive sizing */}
-      <div className="relative w-[300px] h-[650px] sm:w-[375px] sm:h-[812px] bg-black rounded-[32px] sm:rounded-[40px] p-1.5 sm:p-2 shadow-2xl mx-auto">
+      <div className="relative w-full max-w-[260px] h-[540px] sm:max-w-[375px] sm:h-[812px] bg-black rounded-[32px] sm:rounded-[40px] p-1.5 sm:p-2 shadow-2xl mx-auto">
         {/* Notch - Responsive sizing */}
         <div className="absolute top-3 sm:top-5 left-1/2 transform -translate-x-1/2 w-[120px] sm:w-[140px] h-[24px] sm:h-[30px] bg-black rounded-full z-20" />
         
@@ -203,7 +177,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           <div 
             className="px-3 sm:px-6 py-4 sm:py-8 text-center text-white relative z-5"
             style={{
-              background: getGradientColor(softwareType)
+              background: getGradientColor()
             }}
           >
             <h1 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{appTitle}</h1>

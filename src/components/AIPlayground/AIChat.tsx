@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
 
@@ -29,6 +29,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   const [error, setError] = useState<string | null>(null)
   const [detectedBusinessType, setDetectedBusinessType] = useState<string | null>(null)
   const [isAIEnabled, setIsAIEnabled] = useState(true)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
 
   // Check AI availability on component mount
   useEffect(() => {
@@ -49,6 +50,10 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     checkAIAvailability()
   }, [])
 
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isLoading])
+
   const addMessage = (content: string, type: 'user' | 'ai') => {
     const newMessage: Message = {
       id: Date.now().toString(),
@@ -66,15 +71,14 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     try {
       setIsLoading(true)
       setError(null)
-      
+
       logger.info('Sending AI chat message', { message })
 
-      // Add user message
-      addMessage(message, 'user')
+      // Add user message and build updated conversation history
+      const newMessage = addMessage(message, 'user')
       setInputValue('')
 
-      // Get conversation history for context
-      const conversationHistory = messages.map(msg => ({
+      const conversationHistory = [...messages, newMessage].map(msg => ({
         type: msg.type,
         content: msg.content
       }))
@@ -203,11 +207,11 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   }
 
   return (
-    <div className="flex flex-col h-[600px]">
+    <div className="flex flex-col h-full min-h-[500px] sm:min-h-[600px]">
       {!isAIEnabled && (
         <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm">
           <div className="flex items-center text-amber-800">
-            <span className="mr-2">ℹ️</span>
+            <span className="mr-2">◆</span>
             <span>AI features are currently in demo mode with enhanced responses.</span>
           </div>
         </div>
@@ -248,8 +252,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
-              message.type === 'user' 
-                ? 'bg-white text-neutral-900' 
+              message.type === 'user'
+                ? 'bg-white text-neutral-900'
                 : 'bg-white/10 text-white'
             }`}>
               <p className="text-sm leading-relaxed">{message.content}</p>
@@ -271,6 +275,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}

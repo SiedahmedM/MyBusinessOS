@@ -104,7 +104,7 @@ export const businessTypes: BusinessType[] = [
     title: 'LegalMax',
     features: [
       { icon: '◆', title: 'Case Management', description: 'Comprehensive case tracking' },
-      { icon: '⏰', title: 'Time Tracking', description: 'Automated billable hours' },
+      { icon: '◆', title: 'Time Tracking', description: 'Automated billable hours' },
       { icon: '◆', title: 'Document Portal', description: 'Secure client file sharing' },
       { icon: '◆', title: 'Billing System', description: 'Automated invoicing and payments' },
     ],
@@ -128,7 +128,7 @@ export const businessTypes: BusinessType[] = [
     title: 'ConsultMax',
     features: [
       { icon: '◆', title: 'Project Management', description: 'Client project tracking' },
-      { icon: '⏰', title: 'Time Tracking', description: 'Billable hours automation' },
+      { icon: '◆', title: 'Time Tracking', description: 'Billable hours automation' },
       { icon: '◆', title: 'ROI Calculator', description: 'Client value demonstration' },
       { icon: '◆', title: 'Client Portal', description: 'Progress reporting dashboard' },
     ],
