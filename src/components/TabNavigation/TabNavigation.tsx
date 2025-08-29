@@ -59,8 +59,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
   }
 
   return (
-    <nav className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300 ${
-      isScrolled ? 'shadow-lg bg-white/98' : 'shadow-sm'
+    <nav className={`sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-neutral-200/80 transition-all duration-300 ${
+      isScrolled ? 'shadow-xl shadow-neutral-900/5 bg-white/95' : 'shadow-sm'
     } ${className}`}>
       {/* Desktop Navigation */}
       <div className="hidden md:block max-w-6xl mx-auto">

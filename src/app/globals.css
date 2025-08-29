@@ -5,10 +5,11 @@
 @tailwind utilities;
 
 :root {
-  --hero-gradient: linear-gradient(135deg, #1e40af 0%, #334155 50%, #64748b 100%);
+  /* More professional gradient */
+  --hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   --primary-gradient: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
-  --accent-gradient: linear-gradient(135deg, #ea7c1f 0%, #db6515 100%);
-  --neutral-gradient: linear-gradient(135deg, #f4f6f8 0%, #e8ecf0 100%);
+  --accent-gradient: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
+  --neutral-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
 * {
@@ -77,10 +78,11 @@ body {
   }
 }
 
+/* Refined fade-in animation */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -105,7 +107,11 @@ body {
 }
 
 .animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-on-scroll {
+  animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-cursor {
@@ -201,29 +207,51 @@ body {
 
 /* Section spacing */
 .section-padding {
-  padding: 6rem 1rem;
+  padding: 5rem 1.5rem; /* More generous padding */
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .section-padding {
-    padding: 4rem 1rem;
+    padding: 8rem 2rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .section-padding {
+    padding: 3rem 1rem;
+  }
+}
+
+/* Better paragraph spacing */
+.prose p + p {
+  margin-top: 1.5em; /* Optimal paragraph spacing */
+}
+
+/* Improved card spacing */
+.card-grid {
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    gap: 3rem;
   }
 }
 
 /* Typography hierarchy */
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-size: clamp(2.5rem, 7vw, 4rem); /* Slightly more restrained */
   font-weight: 700;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em; /* Tighter letter spacing for elegance */
 }
 
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem, 6vw, 2.5rem);
+  font-size: clamp(1.75rem, 5vw, 2.25rem); /* More conservative sizing */
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
 
@@ -257,15 +285,27 @@ body {
 
 /* Standardized button classes */
 .btn-primary {
-  @apply px-8 py-4 bg-accent-500 text-white font-semibold rounded-lg;
-  @apply hover:bg-accent-600 focus:bg-accent-600 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
-  @apply transition-all duration-200 ease-in-out;
-  @apply shadow-lg hover:shadow-xl;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.025em;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
   transform: translateY(0);
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.4);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.4), 0 0 0 3px rgba(15, 98, 254, 0.1);
 }
 
 .btn-secondary {
@@ -303,14 +343,14 @@ body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Card hover effects */
+/* Refined hover effects */
 .card-hover {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-10px) scale(1.05);
-  box-shadow: 0 20px 40px rgba(30, 64, 175, 0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
 /* Loading states */
@@ -410,6 +450,20 @@ body {
   display: none;
 }
 
+/* Better mobile typography */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.2;
+  }
+}
+
+/* Improved touch targets */
+button, .btn {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 /* Improved accessibility and contrast */
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -422,10 +476,10 @@ body {
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .btn-primary {
-    @apply border-2 border-white;
+    border: 2px solid white;
   }
   
   .btn-secondary {
-    @apply border-4 border-primary-700;
+    border: 4px solid #1e40af;
   }
 }

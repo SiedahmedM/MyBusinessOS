@@ -2,6 +2,7 @@
 import { useState, useCallback } from 'react'
 import { softwareTypes } from '@/types/tabs'
 import type { SoftwareType } from '@/types/tabs'
+import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { logger } from '@/lib/logger'
 
 interface SoftwareTypeGridProps {
@@ -46,8 +47,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin h-8 w-8 border-2 border-purple-600 border-t-transparent rounded-full mr-3"></div>
-        <span>Loading software types...</span>
+        <LoadingSpinner message="Loading software types..." size="lg" />
       </div>
     )
   }
@@ -66,12 +66,12 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
         </div>
 
         {/* Software Type Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 card-grid">
           {softwareTypes.map((type) => (
             <div
               key={type.id}
               onClick={() => handleTypeClick(type)}
-              className={`group cursor-pointer bg-white rounded-xl p-6 border transition-all duration-300 hover:shadow-lg ${
+              className={`card-hover group cursor-pointer bg-white rounded-xl p-6 border transition-all duration-300 hover:shadow-lg ${
                 selectedType === type.id 
                   ? 'border-accent-500 bg-accent-50/50' 
                   : 'border-neutral-200 hover:border-accent-200'
