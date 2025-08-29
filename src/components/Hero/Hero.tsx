@@ -59,7 +59,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         </div>
         
         {/* Mobile-Optimized Main Heading */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight font-display">
+        <h1 className="tech-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight">
           <span className="block">Custom Software That</span>
           <span className="block text-accent-300 mt-2">Transforms Business</span>
         </h1>

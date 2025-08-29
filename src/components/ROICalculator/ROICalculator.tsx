@@ -16,13 +16,13 @@ export function ROICalculator() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <span className="text-2xl">📊</span>
+                <span className="text-2xl">◆</span>
               </div>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
               Calculate Your ROI
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
               See exactly how much MyBusinessOS solutions will save your business. 
               These calculations are based on real results from my clients.
             </p>
@@ -39,12 +39,12 @@ export function ROICalculator() {
 
           {/* Call to Action */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-6">
+            <p className="text-neutral-600 mb-6">
               Ready to see these results in your business?
             </p>
-            <button 
+            <button
               onClick={() => document.getElementById('ai-playground')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg btn-hover focus-outline"
+              className="btn-primary"
             >
               Get Your Custom Quote
             </button>

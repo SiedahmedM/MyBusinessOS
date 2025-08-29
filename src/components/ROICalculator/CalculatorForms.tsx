@@ -56,14 +56,14 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Hours per day on manual tasks
               </label>
               <input
                 type="number"
                 value={hoursPerDay}
                 onChange={(e) => setHoursPerDay(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 3"
                 min="0.5"
                 max="12"
@@ -72,14 +72,14 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Your hourly rate/value ($)
               </label>
               <input
                 type="number"
                 value={hourlyValue}
                 onChange={(e) => setHourlyValue(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 75"
                 min="25"
                 max="500"
@@ -87,14 +87,14 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Team members affected
               </label>
               <input
                 type="number"
                 value={teamMembers}
                 onChange={(e) => setTeamMembers(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 2"
                 min="1"
                 max="50"
@@ -102,7 +102,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             {showResults && results && (
-              <div className="results-animate-in bg-gradient-to-br from-green-500 to-emerald-600 text-white p-6 rounded-lg">
+              <div className="results-animate-in bg-gradient-to-br from-primary-700 to-primary-500 text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-4">Your Time Freedom</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
@@ -127,28 +127,28 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Current monthly revenue ($)
               </label>
               <input
                 type="number"
                 value={currentRevenue}
                 onChange={(e) => setCurrentRevenue(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 50,000"
                 min="1000"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Expected growth from automation (%)
               </label>
               <input
                 type="number"
                 value={growthPercentage}
                 onChange={(e) => setGrowthPercentage(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 25"
                 min="5"
                 max="100"
@@ -156,7 +156,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             {showResults && results && (
-              <div className="results-animate-in bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-6 rounded-lg">
+              <div className="results-animate-in bg-gradient-to-br from-primary-700 to-primary-500 text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-4">Revenue Explosion</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">
@@ -181,35 +181,35 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Monthly software subscriptions ($)
               </label>
               <input
                 type="number"
                 value={softwareSubscriptions}
                 onChange={(e) => setSoftwareSubscriptions(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 500"
                 min="50"
               />
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Monthly cost of errors/inefficiencies ($)
               </label>
               <input
                 type="number"
                 value={errorCosts}
                 onChange={(e) => setErrorCosts(Number(e.target.value))}
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-neutral-200 rounded-lg focus:border-accent-500 focus:ring-4 focus:ring-accent-500/10 transition-all duration-200"
                 placeholder="e.g., 2,000"
                 min="100"
               />
             </div>
             
             {showResults && results && (
-              <div className="results-animate-in bg-gradient-to-br from-purple-500 to-violet-600 text-white p-6 rounded-lg">
+              <div className="results-animate-in bg-gradient-to-br from-primary-700 to-primary-500 text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-4">Cost Elimination</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="text-center">

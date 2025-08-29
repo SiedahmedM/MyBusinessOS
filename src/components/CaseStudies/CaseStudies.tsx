@@ -195,7 +195,7 @@ export function CaseStudies() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin h-8 w-8 border-2 border-purple-600 border-t-transparent rounded-full mr-3"></div>
+        <div className="animate-spin h-8 w-8 border-2 border-accent-600 border-t-transparent rounded-full mr-3"></div>
         <span>Loading case studies...</span>
       </div>
     )
@@ -204,14 +204,14 @@ export function CaseStudies() {
   logger.info('CaseStudies: Rendering component', { studiesCount: filteredStudies.length, selectedCategory })
 
   return (
-    <section id="case-studies" className="section-padding bg-gray-900">
+    <section id="case-studies" className="section-padding bg-neutral-900">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="section-title text-white mb-6">
             Real Businesses, Real Results
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-8">
             See how I've helped businesses transform their operations 
             with custom software solutions. These are real clients with real results.
           </p>
@@ -230,8 +230,8 @@ export function CaseStudies() {
                 onClick={() => handleCategoryChange(category.id)}
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
                   selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
+                    ? 'bg-primary-gradient text-white shadow-lg'
+                    : 'bg-white/10 text-neutral-300 hover:bg-white/20'
                 }`}
               >
                 {category.label} ({category.count})
@@ -243,14 +243,14 @@ export function CaseStudies() {
         {/* Featured Case Study */}
         {filteredStudies.length > 0 && (
           <div className="mb-16">
-            <div className="bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+            <div className="bg-primary-gradient rounded-2xl p-8 text-white">
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <div className="inline-block bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-4">
                     ⭐ Featured Success Story
                   </div>
                   <h3 className="text-3xl font-bold mb-4">{filteredStudies[0].business}</h3>
-                  <p className="text-xl text-blue-100 mb-6 leading-relaxed">
+                  <p className="text-xl text-neutral-200 mb-6 leading-relaxed">
                     "{filteredStudies[0].quote}"
                   </p>
                   <div className="flex items-center mb-6">
@@ -259,14 +259,14 @@ export function CaseStudies() {
                     </div>
                     <div>
                       <p className="font-semibold">{filteredStudies[0].author}</p>
-                      <p className="text-blue-200">{filteredStudies[0].position}</p>
+                      <p className="text-neutral-300">{filteredStudies[0].position}</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                     {filteredStudies[0].metrics.slice(0, 2).map((metric, index) => (
                       <div key={index} className="text-center">
                         <div className="text-3xl font-bold">{metric.value}</div>
-                        <div className="text-blue-200 text-sm">{metric.label}</div>
+                        <div className="text-neutral-300 text-sm">{metric.label}</div>
                       </div>
                     ))}
                   </div>
@@ -277,7 +277,7 @@ export function CaseStudies() {
                     <div className="space-y-2 text-sm">
                       {filteredStudies[0].features.slice(0, 4).map((feature, index) => (
                         <div key={index} className="flex items-center">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                          <div className="w-2 h-2 bg-accent-400 rounded-full mr-2"></div>
                           {feature}
                         </div>
                       ))}
@@ -300,12 +300,12 @@ export function CaseStudies() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-neutral-300 mb-8">
             Ready to join these successful businesses?
           </p>
           <button 
             onClick={() => document.getElementById('ai-playground')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg btn-hover focus-outline mr-4"
+            className="px-8 py-4 btn-primary mr-4"
           >
             Start Your Success Story
           </button>
