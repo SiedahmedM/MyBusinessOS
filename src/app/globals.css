@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,10 +6,10 @@
 
 :root {
   /* More professional gradient */
-  --hero-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-  --primary-gradient: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
-  --accent-gradient: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
-  --neutral-gradient: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  --hero-gradient: linear-gradient(135deg, #000000 0%, #111111 50%, #1a1a1a 100%);
+  --primary-gradient: linear-gradient(135deg, #000000 0%, #111111 100%);
+  --accent-gradient: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+  --neutral-gradient: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
 }
 
 * {
@@ -25,7 +25,8 @@ html {
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   line-height: 1.6;
-  color: #1e293b;
+  color: #0a0a0a;
+  background: #ffffff;
   overflow-x: hidden;
 }
 
@@ -51,10 +52,10 @@ body {
 
 @keyframes glow {
   0% { 
-    box-shadow: 0 0 20px rgba(30, 64, 175, 0.3); 
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.3); 
   }
   100% { 
-    box-shadow: 0 0 40px rgba(30, 64, 175, 0.6); 
+    box-shadow: 0 0 40px rgba(250, 204, 21, 0.6); 
   }
 }
 
@@ -159,26 +160,26 @@ body {
 
 /* Code syntax highlighting */
 .code-editor {
-  background: #1a202c;
-  color: #e2e8f0;
+  background: #000000;
+  color: #f5f5f5;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 .code-line-number {
-  color: #4a5568;
+  color: #737373;
   user-select: none;
 }
 
 .code-keyword {
-  color: #63b3ed;
+  color: #facc15;
 }
 
 .code-string {
-  color: #68d391;
+  color: #eab308;
 }
 
 .code-comment {
-  color: #a0aec0;
+  color: #a3a3a3;
   font-style: italic;
 }
 
@@ -193,16 +194,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #facc15;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #eab308;
 }
 
 /* Section spacing */
@@ -283,10 +284,15 @@ body {
   line-height: 1.6;
 }
 
+.tech-heading {
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: -0.02em;
+}
+
 /* Standardized button classes */
 .btn-primary {
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
   border: none;
   border-radius: 0.5rem;
   color: white;
@@ -300,12 +306,12 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.4);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
 }
 
 .btn-primary:focus {
   outline: none;
-  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.4), 0 0 0 3px rgba(15, 98, 254, 0.1);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4), 0 0 0 3px rgba(250, 204, 21, 0.1);
 }
 
 .btn-secondary {
@@ -355,7 +361,7 @@ body {
 
 /* Loading states */
 .loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s infinite;
 }
@@ -371,7 +377,7 @@ body {
 
 /* Focus styles for accessibility */
 .focus-outline:focus {
-  outline: 2px solid #ea7c1f;
+  outline: 2px solid #facc15;
   outline-offset: 2px;
 }
 
@@ -384,7 +390,7 @@ body {
 
 /* ROI Calculator specific styles */
 .bg-roi-gradient {
-  background: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
 }
 
 .glass-effect {
@@ -402,7 +408,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(250, 204, 21, 0.1), transparent);
   animation: shimmer 3s linear infinite;
   pointer-events: none;
 }
@@ -480,7 +486,7 @@ button, .btn {
   }
   
   .btn-secondary {
-    border: 4px solid #1e40af;
+    border: 4px solid #eab308;
   }
 }
 
@@ -612,7 +618,7 @@ button, .btn {
 }
 
 .mobile-btn-primary {
-  background: linear-gradient(135deg, #0f62fe 0%, #0043ce 100%);
+  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
   color: white;
   border: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -620,17 +626,17 @@ button, .btn {
 
 .mobile-btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 98, 254, 0.3);
+  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
 }
 
 .mobile-btn-secondary {
   background: transparent;
-  color: #0f62fe;
-  border: 1px solid #0f62fe;
+  color: #facc15;
+  border: 1px solid #facc15;
 }
 
 .mobile-btn-secondary:hover {
-  background: rgba(15, 98, 254, 0.05);
+  background: rgba(250, 204, 21, 0.05);
 }
 
 /* Mobile-First Grid System */
@@ -660,7 +666,7 @@ button, .btn {
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e5e5e5;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -673,7 +679,7 @@ button, .btn {
 .mobile-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  border-color: #0f62fe;
+  border-color: #facc15;
 }
 
 /* Mobile Navigation Improvements */
@@ -697,7 +703,7 @@ button, .btn {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
-  color: #4b5563;
+  color: #525252;
   transition: all 0.2s ease;
   min-height: 44px;
   display: flex;
@@ -713,17 +719,17 @@ button, .btn {
 }
 
 .mobile-nav-item.active {
-  background: #0f62fe;
+  background: #facc15;
   color: white;
 }
 
 .mobile-nav-item:hover {
-  background: rgba(15, 98, 254, 0.1);
-  color: #0f62fe;
+  background: rgba(250, 204, 21, 0.1);
+  color: #facc15;
 }
 
 .mobile-nav-item.active:hover {
-  background: #0043ce;
+  background: #eab308;
   color: white;
 }
 
@@ -741,7 +747,7 @@ button, .btn {
 .mobile-input {
   padding: 0.875rem 1rem;
   font-size: 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #d4d4d4;
   border-radius: 0.5rem;
   min-height: 44px;
   width: 100%;
@@ -750,8 +756,8 @@ button, .btn {
 
 .mobile-input:focus {
   outline: none;
-  border-color: #0f62fe;
-  box-shadow: 0 0 0 3px rgba(15, 98, 254, 0.1);
+  border-color: #facc15;
+  box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.1);
 }
 
 /* Mobile Animation Optimizations */
@@ -781,7 +787,7 @@ button, .btn {
   
   /* Better focus indicators */
   button:focus, .btn:focus {
-    outline: 2px solid #0f62fe;
+    outline: 2px solid #facc15;
     outline-offset: 2px;
   }
 }
@@ -824,19 +830,19 @@ button, .btn {
 /* Mobile Dark Mode Support */
 @media (prefers-color-scheme: dark) and (max-width: 768px) {
   .mobile-card {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+    background: #111111;
+    border-color: #262626;
+    color: #f5f5f5;
   }
-  
+
   .mobile-input {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+    background: #111111;
+    border-color: #262626;
+    color: #f5f5f5;
   }
-  
+
   .mobile-nav-item {
-    color: #d1d5db;
+    color: #d4d4d4;
   }
 }
 
@@ -876,7 +882,7 @@ button, .btn {
 /* Software type grid - full width on mobile */
 .software-grid-mobile {
   padding: 3rem 1rem;
-  background: #f8fafc;
+  background: #ffffff;
 }
 
 .software-grid-mobile .grid-container {
@@ -918,7 +924,7 @@ button, .btn {
 @media (min-width: 640px) {
   .card-full-mobile {
     border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e5e5e5;
     margin: 0 1rem;
     padding: 2rem;
   }
@@ -933,7 +939,7 @@ button, .btn {
 
 /* Full-width testimonials on mobile */
 .testimonial-full-mobile {
-  background: #1f2937;
+  background: #111111;
   color: white;
   padding: 2rem 1.5rem;
   margin: 0;
@@ -941,7 +947,7 @@ button, .btn {
 }
 
 .testimonial-full-mobile + .testimonial-full-mobile {
-  border-top: 1px solid #374151;
+  border-top: 1px solid #262626;
 }
 
 @media (min-width: 768px) {
@@ -959,7 +965,7 @@ button, .btn {
 
 /* ROI Calculator - full width on mobile */
 .roi-calculator-mobile {
-  background: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 3rem 0;
   margin: 0;
   width: 100%;
@@ -980,7 +986,7 @@ button, .btn {
 
 /* Contact form - edge to edge on mobile */
 .contact-form-mobile {
-  background: #f9fafb;
+  background: #ffffff;
   padding: 3rem 1.5rem;
   margin: 0;
   width: 100%;
@@ -1004,7 +1010,7 @@ button, .btn {
 
 /* AI Playground - immersive mobile layout */
 .ai-playground-mobile {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 3rem 0;
   margin: 0;
   min-height: 100vh;
@@ -1063,13 +1069,13 @@ button, .btn {
 }
 
 .nav-tab-mobile.active {
-  background: #3b82f6;
-  color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  background: #facc15;
+  color: black;
+  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.3);
 }
 
 .nav-tab-mobile.inactive {
-  color: #6b7280;
+  color: #737373;
   background: transparent;
 }
 
@@ -1091,7 +1097,7 @@ button, .btn {
 .section-header-mobile p {
   font-size: 1.125rem;
   line-height: 1.6;
-  color: rgba(107, 114, 128, 0.9);
+  color: rgba(115, 115, 115, 0.9);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -1125,11 +1131,11 @@ button, .btn {
 }
 
 .process-step-mobile {
-  background: #f9fafb;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 2rem 1.5rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e5e5e5;
 }
 
 @media (min-width: 768px) {
@@ -1142,7 +1148,7 @@ button, .btn {
 
 /* Pricing calculator - immersive mobile */
 .pricing-calculator-mobile {
-  background: #f8fafc;
+  background: #ffffff;
   padding: 3rem 0;
   margin: 0;
   width: 100%;
@@ -1157,13 +1163,13 @@ button, .btn {
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid #e5e5e5;
   transition: all 0.2s ease;
 }
 
 .pricing-option-mobile.selected {
-  border-color: #3b82f6;
-  background: #eff6ff;
+  border-color: #facc15;
+  background: #fef9c3;
 }
 
 @media (min-width: 768px) {
@@ -1176,7 +1182,7 @@ button, .btn {
 
 /* Tech showcase - dark immersive mobile */
 .tech-showcase-mobile {
-  background: #111827;
+  background: #111111;
   color: white;
   padding: 3rem 0;
   margin: 0;
@@ -1220,7 +1226,7 @@ button, .btn {
 
 /* Case studies - full immersion */
 .case-studies-mobile {
-  background: #0f172a;
+  background: #000000;
   color: white;
   padding: 3rem 0;
   margin: 0;
@@ -1228,7 +1234,7 @@ button, .btn {
 }
 
 .featured-case-mobile {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 2rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0;
@@ -1332,8 +1338,8 @@ button, .btn {
 
 /* Mobile-first button layouts */
 .mobile-cta-section {
-  background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
-  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
+  padding: 2rem 1.5rem;
   text-align: center;
   width: 100%;
   margin: 0;
@@ -1408,13 +1414,13 @@ button, .btn {
 .stats-mobile-item .number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #111111;
   display: block;
 }
 
 .stats-mobile-item .label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #737373;
   margin-top: 0.25rem;
 }
 

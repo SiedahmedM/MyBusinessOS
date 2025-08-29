@@ -73,7 +73,7 @@ function AnimatedCounter({
   }, [isVisible, target, duration])
 
   return (
-    <div ref={ref} className="text-3xl md:text-4xl font-bold text-gray-900">
+    <div ref={ref} className="text-3xl md:text-4xl font-bold text-neutral-900">
       {prefix}{count}{suffix}
     </div>
   )
@@ -94,7 +94,7 @@ export function CounterStats() {
             prefix={stat.prefix}
             suffix={stat.suffix}
           />
-          <div className="text-gray-600 text-sm mt-2 font-medium">
+          <div className="text-neutral-600 text-sm mt-2 font-medium">
             {stat.label}
           </div>
         </div>

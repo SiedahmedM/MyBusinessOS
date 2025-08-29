@@ -152,13 +152,13 @@ export function QuickROICalculator() {
   const selectedSoftware = softwareTypeROI[inputs.softwareType as keyof typeof softwareTypeROI]
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-purple-50 py-16">
+    <section className="bg-neutral-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Quick ROI Calculator
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-neutral-600">
             See your potential return on investment in 30 seconds
           </p>
         </div>
@@ -167,37 +167,37 @@ export function QuickROICalculator() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Input Form */}
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Tell us about your business</h3>
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">Tell us about your business</h3>
               
               {/* Software Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Software Type
                 </label>
                 <select
                   value={inputs.softwareType}
                   onChange={(e) => updateInput('softwareType', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                 >
                   {Object.entries(softwareTypeROI).map(([key, software]) => (
                     <option key={key} value={key}>{software.name}</option>
                   ))}
                 </select>
-                <p className="text-sm text-gray-500 mt-1">{selectedSoftware.description}</p>
+                <p className="text-sm text-neutral-500 mt-1">{selectedSoftware.description}</p>
               </div>
 
               {/* Monthly Revenue */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Monthly Revenue
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
                   <input
                     type="number"
                     value={inputs.monthlyRevenue}
                     onChange={(e) => updateInput('monthlyRevenue', parseInt(e.target.value) || 0)}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full pl-8 pr-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                     placeholder="50000"
                     min="1000"
                     max="10000000"
@@ -208,41 +208,41 @@ export function QuickROICalculator() {
 
               {/* Hours Spent Manually */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Hours per week on manual tasks
                 </label>
                 <input
                   type="number"
                   value={inputs.hoursSpentManually}
                   onChange={(e) => updateInput('hoursSpentManually', parseInt(e.target.value) || 0)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="20"
                   min="1"
                   max="80"
                 />
-                <p className="text-sm text-gray-500 mt-1">Time spent on tasks that could be automated</p>
+                <p className="text-sm text-neutral-500 mt-1">Time spent on tasks that could be automated</p>
               </div>
 
               {/* Team Size */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Team Size
                 </label>
                 <input
                   type="number"
                   value={inputs.teamSize}
                   onChange={(e) => updateInput('teamSize', parseInt(e.target.value) || 1)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="5"
                   min="1"
                   max="100"
                 />
-                <p className="text-sm text-gray-500 mt-1">Number of employees who would use the software</p>
+                <p className="text-sm text-neutral-500 mt-1">Number of employees who would use the software</p>
               </div>
             </div>
 
             {/* Results */}
-            <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-br from-primary-700 to-primary-500 rounded-xl p-8 text-white">
               <h3 className="text-xl font-semibold mb-6">Your ROI Projection</h3>
               
               {result && (
@@ -256,13 +256,13 @@ export function QuickROICalculator() {
                   {/* Annual Savings */}
                   <div>
                     <div className="text-sm opacity-80">Annual Benefits</div>
-                    <div className="text-3xl font-bold text-green-300">{result.yearlySavings}</div>
+                    <div className="text-3xl font-bold text-accent-300">{result.yearlySavings}</div>
                   </div>
 
                   {/* ROI */}
                   <div>
                     <div className="text-sm opacity-80">Return on Investment</div>
-                    <div className="text-4xl font-bold text-yellow-300">{result.roi}</div>
+                    <div className="text-4xl font-bold text-accent-300">{result.roi}</div>
                   </div>
 
                   {/* Payback Period */}
@@ -279,7 +279,7 @@ export function QuickROICalculator() {
 
                   {/* CTA */}
                   <div className="pt-4 border-t border-white/20">
-                    <button className="w-full bg-white text-purple-600 font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button className="w-full btn-primary">
                       Get Your Custom Quote
                     </button>
                     <p className="text-xs text-center mt-2 opacity-80">
@@ -292,9 +292,9 @@ export function QuickROICalculator() {
           </div>
 
           {/* Guarantee */}
-          <div className="mt-8 text-center bg-green-50 rounded-lg p-6">
-            <div className="text-green-800 font-semibold mb-2">✅ 30-Day Success Guarantee</div>
-            <p className="text-green-700 text-sm">
+          <div className="mt-8 text-center bg-neutral-100 rounded-lg p-6">
+            <div className="text-accent-700 font-semibold mb-2">◆ 30-Day Success Guarantee</div>
+            <p className="text-accent-600 text-sm">
               If you don't see measurable results within 30 days, we'll refund your investment completely.
             </p>
           </div>

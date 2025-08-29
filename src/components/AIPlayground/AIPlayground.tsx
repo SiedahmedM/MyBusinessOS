@@ -59,7 +59,7 @@ export function AIPlayground() {
         <div className="content-wrapper">
           <div className="mobile-content-padding">
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
-              <div className="text-4xl mb-4">❌</div>
+              <div className="text-4xl mb-4">◆</div>
               <p className="text-red-600 mb-4">Error: {error}</p>
               <button 
                 onClick={() => {
@@ -90,7 +90,7 @@ export function AIPlayground() {
               : 'Your Mobile App is Ready!'
             }
           </h2>
-          <p className="text-purple-200">
+          <p className="text-neutral-200">
             {viewState === 'chat'
               ? 'Chat with our AI to describe your business. It will understand your needs and build you a mobile app demo in real-time.'
               : isBuilding
@@ -146,12 +146,12 @@ export function AIPlayground() {
         {viewState === 'complete' && (
           <div className="mobile-cta-section mt-8">
             <div className="mobile-content-padding">
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-accent-400 mb-4">
                 Impressed? This is just the beginning.
               </h3>
-              <p className="text-purple-100 mb-6 text-sm leading-relaxed">
-                What you just saw was built in real-time using the same process I use for all my clients. 
-                Your actual solution will include advanced features like user authentication, 
+              <p className="text-neutral-100 mb-6 text-sm leading-relaxed">
+                What you just saw was built in real-time using the same process I use for all my clients.
+                Your actual solution will include advanced features like user authentication,
                 payment processing, analytics, and custom integrations.
               </p>
               <div className="mobile-cta-buttons">
@@ -161,9 +161,9 @@ export function AIPlayground() {
                 >
                   Try Another Demo
                 </button>
-                <button 
+                <button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full bg-white text-purple-600 font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="w-full btn-primary"
                 >
                   Get Started Today
                 </button>
