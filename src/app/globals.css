@@ -390,7 +390,7 @@ body {
 
 /* ROI Calculator specific styles */
 .bg-roi-gradient {
-  background: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
 }
 
 .glass-effect {
@@ -408,7 +408,7 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(30, 64, 175, 0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(250, 204, 21, 0.1), transparent);
   animation: shimmer 3s linear infinite;
   pointer-events: none;
 }
@@ -486,7 +486,7 @@ button, .btn {
   }
   
   .btn-secondary {
-    border: 4px solid #1e40af;
+    border: 4px solid #eab308;
   }
 }
 
@@ -965,7 +965,7 @@ button, .btn {
 
 /* ROI Calculator - full width on mobile */
 .roi-calculator-mobile {
-  background: linear-gradient(135deg, #1e40af 0%, #1d3a9f 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 3rem 0;
   margin: 0;
   width: 100%;
@@ -1338,8 +1338,8 @@ button, .btn {
 
 /* Mobile-first button layouts */
 .mobile-cta-section {
-  background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%);
-  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
+  padding: 2rem 1.5rem;
   text-align: center;
   width: 100%;
   margin: 0;

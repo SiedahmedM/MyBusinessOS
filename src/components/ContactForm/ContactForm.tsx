@@ -125,7 +125,7 @@ export function ContactForm() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
                     errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="John Smith"
@@ -144,7 +144,7 @@ export function ContactForm() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
+                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
                     errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="john@yourbusiness.com"
@@ -164,7 +164,7 @@ export function ContactForm() {
                 id="businessType"
                 value={formData.businessType}
                 onChange={(e) => handleInputChange('businessType', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
                   errors.businessType ? 'border-red-500' : 'border-gray-300'
                 }`}
               >
@@ -193,7 +193,7 @@ export function ContactForm() {
                 rows={5}
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-colors resize-none ${
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors resize-none ${
                   errors.message ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="I run a [type] business and need help with [specific challenge]. We currently handle [process] manually and it's taking [time/causing issues]..."
@@ -211,7 +211,7 @@ export function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold rounded-lg btn-hover focus-outline disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-4 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">
@@ -237,11 +237,11 @@ export function ContactForm() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center justify-center">
-              <span className="text-purple-600 mr-2">◆</span>
+              <span className="text-accent-600 mr-2">◆</span>
               <span className="font-semibold">(714) 555-0123</span>
             </div>
             <div className="flex items-center justify-center">
-              <span className="text-purple-600 mr-2">◆</span>
+              <span className="text-accent-600 mr-2">◆</span>
               <span className="font-semibold">hello@mybusinessos.com</span>
             </div>
           </div>

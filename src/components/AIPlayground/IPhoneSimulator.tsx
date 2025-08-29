@@ -242,7 +242,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-3 sm:p-4 mb-2 sm:mb-3 shadow-sm border-2 border-transparent hover:border-blue-200 transition-all duration-300 animate-slideIn"
+                className="bg-white rounded-lg p-3 sm:p-4 mb-2 sm:mb-3 shadow-sm border-2 border-transparent hover:border-accent-200 transition-all duration-300 animate-slideIn"
                 style={{
                   animationDelay: `${index * 0.1}s`,
                   animationFillMode: 'both'

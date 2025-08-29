@@ -42,9 +42,9 @@ export function ROICalculator() {
             <p className="text-gray-600 mb-6">
               Ready to see these results in your business?
             </p>
-            <button 
+            <button
               onClick={() => document.getElementById('ai-playground')?.scrollIntoView({ behavior: 'smooth' })}
-              className="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg btn-hover focus-outline"
+              className="btn-primary"
             >
               Get Your Custom Quote
             </button>

@@ -31,15 +31,15 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
         
-        {/* ROI Calculator - Full width blue section */}
+        {/* Visual Project Showcase - Replaces Portfolio tab content */}
+        <VisualProjectShowcase />
+
+        {/* ROI Calculator - Full width section */}
         <div className="roi-calculator-mobile">
           <div className="calculator-content">
             <QuickROICalculator />
           </div>
         </div>
-        
-        {/* Visual Project Showcase - Replaces Portfolio tab content */}
-        <VisualProjectShowcase />
         
         {/* AI Playground - Immersive purple section */}
         <div className="ai-playground-mobile">

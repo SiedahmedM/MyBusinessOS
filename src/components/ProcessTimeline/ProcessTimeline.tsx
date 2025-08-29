@@ -104,7 +104,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin h-8 w-8 border-2 border-purple-600 border-t-transparent rounded-full mr-3"></div>
+        <div className="animate-spin h-8 w-8 border-2 border-accent-600 border-t-transparent rounded-full mr-3"></div>
         <span>Loading process steps...</span>
       </div>
     )
@@ -129,7 +129,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         {/* Process Steps Timeline */}
         <div className="relative mb-16">
           {/* Connection Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 transform -translate-y-1/2 z-0"></div>
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-accent-500 transform -translate-y-1/2 z-0"></div>
           
           {/* Steps */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
@@ -144,8 +144,8 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 {/* Step Circle */}
                 <div className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mb-4 transition-all duration-300 ${
                   selectedStep === step.number
-                    ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-lg'
-                    : 'bg-white border-4 border-gray-200 text-gray-400 group-hover:border-purple-300'
+                    ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white shadow-lg'
+                    : 'bg-white border-4 border-gray-200 text-gray-400 group-hover:border-accent-300'
                 }`}>
                   {step.number}
                 </div>
@@ -153,7 +153,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 {/* Step Info */}
                 <div className="text-center">
                   <h3 className={`text-lg font-bold mb-2 transition-colors ${
-                    selectedStep === step.number ? 'text-purple-600' : 'text-gray-700'
+                    selectedStep === step.number ? 'text-accent-600' : 'text-gray-700'
                   }`}>
                     {step.title}
                   </h3>
@@ -168,7 +168,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         </div>
 
         {/* Selected Step Details */}
-        <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl p-8">
+        <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-8">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Activities */}
             <div>
@@ -178,7 +178,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
               <div className="space-y-4">
                 {selectedStepData.activities.map((activity, index) => (
                   <div key={index} className="flex items-start">
-                    <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                    <div className="w-6 h-6 bg-accent-500 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
                       <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
@@ -198,14 +198,14 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 <div className="flex items-start">
                   <div className="text-4xl mr-4">{selectedStepData.icon}</div>
                   <div>
-                    <div className="text-lg font-semibold text-purple-600 mb-2">
+                    <div className="text-lg font-semibold text-accent-600 mb-2">
                       Key Deliverable
                     </div>
                     <p className="text-gray-700 text-lg leading-relaxed">
                       {selectedStepData.deliverable}
                     </p>
-                    <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-                      <span className="w-2 h-2 bg-green-400 rounded-full mr-2"></span>
+                    <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent-100 text-accent-800">
+                      <span className="w-2 h-2 bg-accent-400 rounded-full mr-2"></span>
                       Duration: {selectedStepData.duration}
                     </div>
                   </div>
@@ -275,7 +275,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 <ul className="space-y-2">
                   {category.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start text-sm">
-                      <div className="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
+                      <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
                       <span className="text-gray-600">{feature}</span>
                     </li>
                   ))}
@@ -286,7 +286,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         </div>
 
         {/* Success Guarantee */}
-        <div className="mt-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white">
+        <div className="mt-16 bg-primary-gradient rounded-2xl p-8 text-center text-white">
           <div className="text-4xl mb-4">◆</div>
           <h3 className="text-2xl font-bold mb-4">30-Day Success Guarantee</h3>
           <p className="text-lg mb-6 max-w-3xl mx-auto">

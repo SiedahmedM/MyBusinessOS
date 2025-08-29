@@ -152,7 +152,7 @@ export function QuickROICalculator() {
   const selectedSoftware = softwareTypeROI[inputs.softwareType as keyof typeof softwareTypeROI]
 
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-purple-50 py-16">
+    <section className="bg-neutral-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -177,7 +177,7 @@ export function QuickROICalculator() {
                 <select
                   value={inputs.softwareType}
                   onChange={(e) => updateInput('softwareType', e.target.value)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                 >
                   {Object.entries(softwareTypeROI).map(([key, software]) => (
                     <option key={key} value={key}>{software.name}</option>
@@ -197,7 +197,7 @@ export function QuickROICalculator() {
                     type="number"
                     value={inputs.monthlyRevenue}
                     onChange={(e) => updateInput('monthlyRevenue', parseInt(e.target.value) || 0)}
-                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                     placeholder="50000"
                     min="1000"
                     max="10000000"
@@ -215,7 +215,7 @@ export function QuickROICalculator() {
                   type="number"
                   value={inputs.hoursSpentManually}
                   onChange={(e) => updateInput('hoursSpentManually', parseInt(e.target.value) || 0)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="20"
                   min="1"
                   max="80"
@@ -232,7 +232,7 @@ export function QuickROICalculator() {
                   type="number"
                   value={inputs.teamSize}
                   onChange={(e) => updateInput('teamSize', parseInt(e.target.value) || 1)}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="5"
                   min="1"
                   max="100"
@@ -242,7 +242,7 @@ export function QuickROICalculator() {
             </div>
 
             {/* Results */}
-            <div className="bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl p-8 text-white">
+            <div className="bg-gradient-to-br from-primary-700 to-primary-500 rounded-xl p-8 text-white">
               <h3 className="text-xl font-semibold mb-6">Your ROI Projection</h3>
               
               {result && (
@@ -256,13 +256,13 @@ export function QuickROICalculator() {
                   {/* Annual Savings */}
                   <div>
                     <div className="text-sm opacity-80">Annual Benefits</div>
-                    <div className="text-3xl font-bold text-green-300">{result.yearlySavings}</div>
+                    <div className="text-3xl font-bold text-accent-300">{result.yearlySavings}</div>
                   </div>
 
                   {/* ROI */}
                   <div>
                     <div className="text-sm opacity-80">Return on Investment</div>
-                    <div className="text-4xl font-bold text-yellow-300">{result.roi}</div>
+                    <div className="text-4xl font-bold text-accent-300">{result.roi}</div>
                   </div>
 
                   {/* Payback Period */}
@@ -279,7 +279,7 @@ export function QuickROICalculator() {
 
                   {/* CTA */}
                   <div className="pt-4 border-t border-white/20">
-                    <button className="w-full bg-white text-purple-600 font-bold py-3 rounded-lg hover:bg-gray-100 transition-colors">
+                    <button className="w-full btn-primary">
                       Get Your Custom Quote
                     </button>
                     <p className="text-xs text-center mt-2 opacity-80">
@@ -292,9 +292,9 @@ export function QuickROICalculator() {
           </div>
 
           {/* Guarantee */}
-          <div className="mt-8 text-center bg-green-50 rounded-lg p-6">
-            <div className="text-green-800 font-semibold mb-2">◆ 30-Day Success Guarantee</div>
-            <p className="text-green-700 text-sm">
+          <div className="mt-8 text-center bg-neutral-100 rounded-lg p-6">
+            <div className="text-accent-700 font-semibold mb-2">◆ 30-Day Success Guarantee</div>
+            <p className="text-accent-600 text-sm">
               If you don't see measurable results within 30 days, we'll refund your investment completely.
             </p>
           </div>
