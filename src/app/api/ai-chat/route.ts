@@ -68,16 +68,19 @@ Available categories:
 - mobile-app: iOS/Android apps, native mobile applications, mobile-first solutions
 - analytics-dashboard: data visualization, reporting systems, business intelligence, metrics dashboards
 - ai-automation: AI tools, process automation, workflow automation, document processing, chatbots
-- other: any software that doesn't fit the above categories
 
 User description: "${message}"
 
 Rules:
 - Respond with ONLY the category name (hyphenated, lowercase)
 - Focus on the SOFTWARE TYPE being requested, not the industry
-- Look for keywords like "app", "dashboard", "automation", "SaaS", "platform"
-- If someone mentions turning their business into a SaaS, use "agency-to-saas"
-- If unclear about software type, use "other"
+- If someone mentions a dental practice, auto shop, restaurant, medical practice, legal firm, consulting business, etc., think about what TYPE of software they need (usually business-management)
+- If someone mentions turning their business into a SaaS or creating client dashboards, use "agency-to-saas"
+- If they mention online stores, selling products, shopping carts, use "ecommerce"
+- If they specifically want mobile apps or mention iOS/Android, use "mobile-app"
+- If they want dashboards, reporting, analytics, use "analytics-dashboard"
+- If they want automation, AI tools, chatbots, use "ai-automation"
+- If unclear about software type, use "business-management" as default
 
 Classification:`
 
@@ -100,8 +103,8 @@ Classification:`
       const softwareType = response.choices[0]?.message?.content?.trim().toLowerCase()
       
       // Validate the response
-      const validTypes = ['business-management', 'agency-to-saas', 'ecommerce', 'mobile-app', 'analytics-dashboard', 'ai-automation', 'other']
-      const detectedType = validTypes.includes(softwareType || '') ? softwareType : 'other'
+      const validTypes = ['business-management', 'agency-to-saas', 'ecommerce', 'mobile-app', 'analytics-dashboard', 'ai-automation']
+      const detectedType = validTypes.includes(softwareType || '') ? softwareType : 'business-management'
       
       logger.info('AI Chat API: Software type detected', { requestId, detectedType })
       return NextResponse.json({ softwareType: detectedType, requestId })
@@ -196,33 +199,33 @@ RESPONSE (speak directly to them):`
   }
 }
 
-// Enhanced local business type detection
+// Enhanced local software type detection  
 function detectSoftwareTypeLocally(message: string): string {
   const msg = message.toLowerCase()
   
   const typeMapping = [
     {
-      keywords: ['saas', 'subscription', 'recurring', 'platform', 'dashboard', 'client portal', 'tenant'],
+      keywords: ['saas', 'subscription', 'recurring', 'platform', 'client portal', 'tenant', 'agency', 'marketing agency', 'turning business into saas'],
       type: 'agency-to-saas'
     },
     {
-      keywords: ['shop', 'store', 'ecommerce', 'e-commerce', 'sell', 'product', 'cart', 'checkout'],
+      keywords: ['shop', 'store', 'ecommerce', 'e-commerce', 'sell', 'product', 'cart', 'checkout', 'online store', 'retail'],
       type: 'ecommerce'
     },
     {
-      keywords: ['mobile', 'app', 'ios', 'android', 'phone', 'smartphone', 'native'],
+      keywords: ['mobile app', 'ios app', 'android app', 'smartphone app', 'native app', 'mobile application', 'fitness app'],
       type: 'mobile-app'
     },
     {
-      keywords: ['analytics', 'dashboard', 'reporting', 'metrics', 'data', 'insights', 'charts'],
+      keywords: ['analytics dashboard', 'reporting dashboard', 'metrics dashboard', 'data visualization', 'business intelligence', 'charts', 'reports'],
       type: 'analytics-dashboard'
     },
     {
-      keywords: ['automation', 'ai', 'automate', 'workflow', 'process', 'eliminate', 'chatbot'],
+      keywords: ['automation', 'ai tool', 'automate', 'workflow automation', 'process automation', 'chatbot', 'ai chatbot'],
       type: 'ai-automation'
     },
     {
-      keywords: ['crm', 'business', 'management', 'operations', 'customer', 'inventory', 'schedule'],
+      keywords: ['crm', 'business management', 'operations', 'customer management', 'inventory', 'schedule', 'dental practice', 'auto shop', 'restaurant', 'medical practice', 'legal firm', 'consulting'],
       type: 'business-management'
     }
   ]

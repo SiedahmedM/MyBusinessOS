@@ -17,10 +17,33 @@ export function AIPlayground() {
     viewState 
   });
 
-  const handleSoftwareTypeDetected = useCallback((softwareType: string) => {
+  const handleSoftwareTypeDetected = useCallback((businessType: string) => {
     try {
-      console.log('AIPlayground: Software type detected:', softwareType);
-      logger.info('AIPlayground: Software type detected', { softwareType })
+      console.log('AIPlayground: Business type detected:', businessType);
+      
+      // Map business types to software types
+      const businessToSoftwareMap: Record<string, string> = {
+        'dental': 'business-management',
+        'auto': 'business-management',
+        'restaurant': 'business-management', // Could also be 'ecommerce' if they want online ordering
+        'medical': 'business-management',
+        'ecommerce': 'ecommerce',
+        'rental': 'business-management',
+        'realestate': 'business-management',
+        'fitness': 'mobile-app', // Fitness apps are often mobile-first
+        'legal': 'business-management',
+        'accounting': 'analytics-dashboard', // Accounting firms often need dashboards
+        'consulting': 'business-management',
+        'retail': 'ecommerce',
+        'agency': 'agency-to-saas',
+        'marketing': 'agency-to-saas',
+        'other': 'business-management'
+      };
+      
+      const softwareType = businessToSoftwareMap[businessType] || 'business-management';
+      
+      console.log('AIPlayground: Mapped to software type:', softwareType);
+      logger.info('AIPlayground: Mapped to software type', { businessType, softwareType })
       setCurrentSoftwareType(softwareType)
       setViewState('building') // Go straight to building mobile app
       setIsBuilding(true)
