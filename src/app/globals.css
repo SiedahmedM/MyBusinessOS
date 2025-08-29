@@ -1773,3 +1773,61 @@ html {
     padding: 1.5rem;
   }
 }
+/* Starfield effect for deep black sections */
+.bg-roi-gradient,
+.roi-calculator-mobile,
+.ai-playground-mobile,
+.featured-case-mobile,
+.mobile-cta-section {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-roi-gradient::before,
+.roi-calculator-mobile::before,
+.ai-playground-mobile::before,
+.featured-case-mobile::before,
+.mobile-cta-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8), transparent) 0 0/200px 200px,
+    radial-gradient(1px 1px at 80px 120px, rgba(255,255,255,0.6), transparent) 0 0/200px 200px,
+    radial-gradient(1.5px 1.5px at 160px 60px, rgba(255,255,255,0.4), transparent) 0 0/200px 200px;
+  animation: star-twinkle 6s ease-in-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.bg-roi-gradient::after,
+.roi-calculator-mobile::after,
+.ai-playground-mobile::after,
+.featured-case-mobile::after,
+.mobile-cta-section::after {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: -200px;
+  width: 2px;
+  height: 2px;
+  background: transparent;
+  box-shadow: 0 0 8px 2px rgba(255,255,255,0.8);
+  transform: rotate(45deg);
+  animation: shooting-star 8s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+@keyframes shooting-star {
+  0% { transform: translate(0,0) rotate(45deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(1000px, 600px) rotate(45deg); opacity: 0; }
+}
+
