@@ -56,10 +56,10 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
     <section className={`software-grid-mobile ${className}`}>
       {/* Header */}
       <div className="section-header-mobile">
-        <h2 className="text-gray-900">
+        <h2 className="text-neutral-900">
           What Can I Build For You?
         </h2>
-        <p className="text-gray-600">
+        <p className="text-neutral-600">
           Choose your software type below to see examples and ROI estimates
         </p>
       </div>
@@ -71,9 +71,9 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
             key={type.id}
             onClick={() => handleTypeClick(type)}
             className={`card-full-mobile group cursor-pointer transition-all duration-300 hover:shadow-lg ${
-              selectedType === type.id 
-                ? 'border-blue-500 bg-blue-50/50 shadow-lg' 
-                : 'hover:border-blue-200 hover:bg-blue-50/20'
+              selectedType === type.id
+                ? 'border-accent-500 bg-accent-50/50 shadow-lg'
+                : 'hover:border-accent-200 hover:bg-accent-50/20'
             }`}
             role="button"
             tabIndex={0}
@@ -88,11 +88,11 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className={`text-lg font-semibold mb-2 transition-colors ${
-                    selectedType === type.id ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
+                    selectedType === type.id ? 'text-accent-700' : 'text-neutral-900 group-hover:text-accent-600'
                   }`}>
                     {type.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-neutral-600 text-sm leading-relaxed">
                     {type.description}
                   </p>
                 </div>
@@ -101,19 +101,19 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
               {/* Key Features - Mobile optimized list */}
               <div className="space-y-2">
                 {type.examples.slice(0, 3).map((example, index) => (
-                  <div key={index} className="flex items-center text-sm text-gray-600">
-                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                  <div key={index} className="flex items-center text-sm text-neutral-600">
+                    <div className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 flex-shrink-0"></div>
                     <span>{example}</span>
                   </div>
                 ))}
               </div>
 
               {/* ROI Summary */}
-              <div className="pt-3 border-t border-gray-100">
-                <div className="text-xs font-semibold text-blue-600 mb-1">
+              <div className="pt-3 border-t border-neutral-100">
+                <div className="text-xs font-semibold text-accent-600 mb-1">
                   ROI ESTIMATE
                 </div>
-                <div className="text-sm font-medium text-gray-700">
+                <div className="text-sm font-medium text-neutral-700">
                   {type.roiExample}
                 </div>
               </div>
@@ -123,17 +123,17 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
       </div>
 
       {/* Call to Action - Full width on mobile */}
-      <div className="mobile-cta-section mt-8">
+      <div className="mobile-cta-section mt-4">
         <div className="mobile-content-padding">
-          <h3 className="text-xl font-bold text-white mb-3">
+          <h3 className="text-xl font-bold text-accent-400 mb-3">
             Don't See Your Exact Needs?
           </h3>
-          <p className="text-blue-100 mb-6 text-sm leading-relaxed">
+          <p className="text-neutral-100 mb-4 text-sm leading-relaxed">
             I build custom solutions for unique requirements. If you can describe it, I can build it.
           </p>
           <div className="mobile-cta-buttons">
-            <button 
-              className="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors"
+            <button
+              className="w-full btn-primary"
               aria-label="Schedule a consultation to discuss your custom project"
             >
               Discuss Your Custom Project

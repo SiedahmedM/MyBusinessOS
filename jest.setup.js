@@ -76,16 +76,16 @@ jest.mock('sonner', () => ({
 // Mock OpenAI
 jest.mock('@/lib/openai', () => ({
   businessTypes: [
-    { id: 'dental', name: 'Dental Practice', icon: '🦷', title: 'SmartDental Pro', features: [] },
-    { id: 'auto', name: 'Auto Shop', icon: '🔧', title: 'AutoPro Manager', features: [] },
+    { id: 'dental', name: 'Dental Practice', icon: '◆', title: 'SmartDental Pro', features: [] },
+    { id: 'auto', name: 'Auto Shop', icon: '◆', title: 'AutoPro Manager', features: [] },
   ],
   getBusinessByType: jest.fn(() => ({
     id: 'dental',
     name: 'Dental Practice',
-    icon: '🦷',
+    icon: '◆',
     title: 'SmartDental Pro',
     features: [
-      { icon: '📅', title: 'Smart Scheduling', description: 'AI-powered appointment booking' }
+      { icon: '◆', title: 'Smart Scheduling', description: 'AI-powered appointment booking' }
     ]
   })),
   detectBusinessType: jest.fn(() => Promise.resolve('dental')),

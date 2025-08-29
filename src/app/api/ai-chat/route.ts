@@ -336,130 +336,130 @@ function getBusinessInfo(businessType: string) {
       name: 'Dental Practice',
       title: 'SmartDental Pro',
       features: [
-        { icon: '📅', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
-        { icon: '👥', title: 'Patient Portal', description: 'Online registration and forms' },
-        { icon: '💳', title: 'Insurance Claims', description: 'Automated claim processing' },
-        { icon: '📊', title: 'Treatment Plans', description: 'Visual treatment planning' },
+        { icon: '◆', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
+        { icon: '◆', title: 'Patient Portal', description: 'Online registration and forms' },
+        { icon: '◆', title: 'Insurance Claims', description: 'Automated claim processing' },
+        { icon: '◆', title: 'Treatment Plans', description: 'Visual treatment planning' },
       ]
     },
     auto: {
       name: 'Automotive Service',
       title: 'AutoPro Manager',
       features: [
-        { icon: '🚗', title: 'Vehicle Tracking', description: 'Complete repair history' },
-        { icon: '📱', title: 'Customer Updates', description: 'SMS progress notifications' },
-        { icon: '📋', title: 'Digital Inspections', description: 'Photo-based vehicle checks' },
-        { icon: '💰', title: 'Instant Quotes', description: 'AI-powered pricing' },
+        { icon: '◆', title: 'Vehicle Tracking', description: 'Complete repair history' },
+        { icon: '◆', title: 'Customer Updates', description: 'SMS progress notifications' },
+        { icon: '◆', title: 'Digital Inspections', description: 'Photo-based vehicle checks' },
+        { icon: '◆', title: 'Instant Quotes', description: 'AI-powered pricing' },
       ]
     },
     restaurant: {
       name: 'Restaurant',
       title: 'RestaurantOS',
       features: [
-        { icon: '📱', title: 'Online Ordering', description: 'Custom mobile ordering app' },
-        { icon: '🍳', title: 'Kitchen Display', description: 'Real-time order management' },
-        { icon: '🪑', title: 'Table Management', description: 'Smart reservation system' },
-        { icon: '📈', title: 'Sales Analytics', description: 'Real-time performance metrics' },
+        { icon: '◆', title: 'Online Ordering', description: 'Custom mobile ordering app' },
+        { icon: '◆', title: 'Kitchen Display', description: 'Real-time order management' },
+        { icon: '◆', title: 'Table Management', description: 'Smart reservation system' },
+        { icon: '◆', title: 'Sales Analytics', description: 'Real-time performance metrics' },
       ]
     },
     medical: {
       name: 'Medical Practice',
       title: 'MediCore System',
       features: [
-        { icon: '📋', title: 'Electronic Records', description: 'HIPAA-compliant patient data' },
-        { icon: '💊', title: 'Prescription Manager', description: 'Digital prescription system' },
-        { icon: '🩺', title: 'Telehealth Portal', description: 'Virtual consultation platform' },
-        { icon: '🏥', title: 'Lab Integration', description: 'Automated lab result processing' },
+        { icon: '◆', title: 'Electronic Records', description: 'HIPAA-compliant patient data' },
+        { icon: '◆', title: 'Prescription Manager', description: 'Digital prescription system' },
+        { icon: '◆', title: 'Telehealth Portal', description: 'Virtual consultation platform' },
+        { icon: '◆', title: 'Lab Integration', description: 'Automated lab result processing' },
       ]
     },
     ecommerce: {
       name: 'E-commerce Business',
       title: 'CommerceMax',
       features: [
-        { icon: '🛒', title: 'Smart Cart', description: 'AI-powered shopping experience' },
-        { icon: '📦', title: 'Inventory Sync', description: 'Real-time stock management' },
-        { icon: '💳', title: 'Payment Gateway', description: 'Secure multi-payment processing' },
-        { icon: '📊', title: 'Sales Analytics', description: 'Advanced conversion tracking' },
+        { icon: '◆', title: 'Smart Cart', description: 'AI-powered shopping experience' },
+        { icon: '◆', title: 'Inventory Sync', description: 'Real-time stock management' },
+        { icon: '◆', title: 'Payment Gateway', description: 'Secure multi-payment processing' },
+        { icon: '◆', title: 'Sales Analytics', description: 'Advanced conversion tracking' },
       ]
     },
     rental: {
       name: 'Rental Business',
       title: 'RentalHub Pro',
       features: [
-        { icon: '📅', title: 'Booking System', description: 'Smart availability management' },
-        { icon: '🚗', title: 'Asset Tracking', description: 'Real-time location monitoring' },
-        { icon: '💳', title: 'Payment Processing', description: 'Automated billing and deposits' },
-        { icon: '📱', title: 'Mobile Check-in', description: 'Contactless pickup/return' },
+        { icon: '◆', title: 'Booking System', description: 'Smart availability management' },
+        { icon: '◆', title: 'Asset Tracking', description: 'Real-time location monitoring' },
+        { icon: '◆', title: 'Payment Processing', description: 'Automated billing and deposits' },
+        { icon: '◆', title: 'Mobile Check-in', description: 'Contactless pickup/return' },
       ]
     },
     realestate: {
       name: 'Real Estate',
       title: 'PropertyPro',
       features: [
-        { icon: '🏠', title: 'Listing Manager', description: 'Multi-platform property sync' },
-        { icon: '👥', title: 'CRM System', description: 'Advanced client relationship tools' },
-        { icon: '📱', title: 'Virtual Tours', description: '360° property showcases' },
-        { icon: '📊', title: 'Market Analytics', description: 'AI-powered market insights' },
+        { icon: '◆', title: 'Listing Manager', description: 'Multi-platform property sync' },
+        { icon: '◆', title: 'CRM System', description: 'Advanced client relationship tools' },
+        { icon: '◆', title: 'Virtual Tours', description: '360° property showcases' },
+        { icon: '◆', title: 'Market Analytics', description: 'AI-powered market insights' },
       ]
     },
     fitness: {
       name: 'Fitness Business',
       title: 'FitnessPro',
       features: [
-        { icon: '💪', title: 'Workout Tracking', description: 'Personalized fitness programs' },
-        { icon: '📅', title: 'Class Scheduling', description: 'Smart booking and waitlists' },
-        { icon: '💳', title: 'Membership Portal', description: 'Automated billing and renewals' },
-        { icon: '📱', title: 'Mobile App', description: 'Custom branded fitness app' },
+        { icon: '◆', title: 'Workout Tracking', description: 'Personalized fitness programs' },
+        { icon: '◆', title: 'Class Scheduling', description: 'Smart booking and waitlists' },
+        { icon: '◆', title: 'Membership Portal', description: 'Automated billing and renewals' },
+        { icon: '◆', title: 'Mobile App', description: 'Custom branded fitness app' },
       ]
     },
     legal: {
       name: 'Legal Practice',
       title: 'LegalMax',
       features: [
-        { icon: '📋', title: 'Case Management', description: 'Comprehensive case tracking' },
-        { icon: '⏰', title: 'Time Tracking', description: 'Automated billable hours' },
-        { icon: '📄', title: 'Document Portal', description: 'Secure client file sharing' },
-        { icon: '💳', title: 'Billing System', description: 'Automated invoicing and payments' },
+        { icon: '◆', title: 'Case Management', description: 'Comprehensive case tracking' },
+        { icon: '◆', title: 'Time Tracking', description: 'Automated billable hours' },
+        { icon: '◆', title: 'Document Portal', description: 'Secure client file sharing' },
+        { icon: '◆', title: 'Billing System', description: 'Automated invoicing and payments' },
       ]
     },
     accounting: {
       name: 'Accounting Firm',
       title: 'AccountPro',
       features: [
-        { icon: '📊', title: 'Financial Dashboard', description: 'Real-time client financials' },
-        { icon: '📄', title: 'Tax Prep Tools', description: 'Automated tax calculations' },
-        { icon: '👥', title: 'Client Portal', description: 'Secure document exchange' },
-        { icon: '📱', title: 'Mobile Receipts', description: 'AI-powered expense tracking' },
+        { icon: '◆', title: 'Financial Dashboard', description: 'Real-time client financials' },
+        { icon: '◆', title: 'Tax Prep Tools', description: 'Automated tax calculations' },
+        { icon: '◆', title: 'Client Portal', description: 'Secure document exchange' },
+        { icon: '◆', title: 'Mobile Receipts', description: 'AI-powered expense tracking' },
       ]
     },
     consulting: {
       name: 'Consulting Business',
       title: 'ConsultMax',
       features: [
-        { icon: '👥', title: 'Project Management', description: 'Client project tracking' },
-        { icon: '⏰', title: 'Time Tracking', description: 'Billable hours automation' },
-        { icon: '📊', title: 'ROI Calculator', description: 'Client value demonstration' },
-        { icon: '📱', title: 'Client Portal', description: 'Progress reporting dashboard' },
+        { icon: '◆', title: 'Project Management', description: 'Client project tracking' },
+        { icon: '◆', title: 'Time Tracking', description: 'Billable hours automation' },
+        { icon: '◆', title: 'ROI Calculator', description: 'Client value demonstration' },
+        { icon: '◆', title: 'Client Portal', description: 'Progress reporting dashboard' },
       ]
     },
     retail: {
       name: 'Retail Store',
       title: 'RetailPro',
       features: [
-        { icon: '📦', title: 'Inventory Management', description: 'Smart stock level tracking' },
-        { icon: '💳', title: 'POS Integration', description: 'Unified sales processing' },
-        { icon: '👥', title: 'Customer Loyalty', description: 'Rewards and retention system' },
-        { icon: '📊', title: 'Sales Analytics', description: 'Performance insights dashboard' },
+        { icon: '◆', title: 'Inventory Management', description: 'Smart stock level tracking' },
+        { icon: '◆', title: 'POS Integration', description: 'Unified sales processing' },
+        { icon: '◆', title: 'Customer Loyalty', description: 'Rewards and retention system' },
+        { icon: '◆', title: 'Sales Analytics', description: 'Performance insights dashboard' },
       ]
     },
     other: {
       name: 'Business',
       title: 'BusinessPro',
       features: [
-        { icon: '👥', title: 'Customer Management', description: 'Comprehensive CRM system' },
-        { icon: '📊', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
-        { icon: '💳', title: 'Payment Processing', description: 'Secure transaction handling' },
-        { icon: '📱', title: 'Mobile Solution', description: 'Custom mobile application' },
+        { icon: '◆', title: 'Customer Management', description: 'Comprehensive CRM system' },
+        { icon: '◆', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
+        { icon: '◆', title: 'Payment Processing', description: 'Secure transaction handling' },
+        { icon: '◆', title: 'Mobile Solution', description: 'Custom mobile application' },
       ]
     }
   }
@@ -474,10 +474,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'BusinessHub Pro',
       roiExample: 'Save 20+ hours/week, increase revenue 40%',
       features: [
-        { icon: '👥', title: 'Customer Management', description: 'Complete CRM on mobile' },
-        { icon: '📊', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
-        { icon: '📅', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
-        { icon: '💰', title: 'Sales Tracking', description: 'Revenue and performance data' }
+        { icon: '◆', title: 'Customer Management', description: 'Complete CRM on mobile' },
+        { icon: '◆', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
+        { icon: '◆', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
+        { icon: '◆', title: 'Sales Tracking', description: 'Revenue and performance data' }
       ]
     },
     'agency-to-saas': {
@@ -485,10 +485,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'AgencyScale Platform',
       roiExample: 'Scale to $50K/month recurring revenue',
       features: [
-        { icon: '📈', title: 'Client Dashboard', description: 'Self-service client portal' },
-        { icon: '🔄', title: 'Automated Reports', description: 'Generate reports automatically' },
-        { icon: '💳', title: 'Subscription Billing', description: 'Recurring revenue management' },
-        { icon: '👥', title: 'Multi-tenant Access', description: 'Secure client separation' }
+        { icon: '◆', title: 'Client Dashboard', description: 'Self-service client portal' },
+        { icon: '◆', title: 'Automated Reports', description: 'Generate reports automatically' },
+        { icon: '◆', title: 'Subscription Billing', description: 'Recurring revenue management' },
+        { icon: '◆', title: 'Multi-tenant Access', description: 'Secure client separation' }
       ]
     },
     'ecommerce': {
@@ -496,10 +496,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'CommerceMax Pro',
       roiExample: 'Outperform Shopify by 60% conversion',
       features: [
-        { icon: '🛒', title: 'Smart Shopping Cart', description: 'AI-powered shopping experience' },
-        { icon: '💳', title: 'Payment Processing', description: 'Multiple payment gateways' },
-        { icon: '📦', title: 'Inventory Sync', description: 'Real-time stock management' },
-        { icon: '📊', title: 'Customer Analytics', description: 'Advanced conversion tracking' }
+        { icon: '◆', title: 'Smart Shopping Cart', description: 'AI-powered shopping experience' },
+        { icon: '◆', title: 'Payment Processing', description: 'Multiple payment gateways' },
+        { icon: '◆', title: 'Inventory Sync', description: 'Real-time stock management' },
+        { icon: '◆', title: 'Customer Analytics', description: 'Advanced conversion tracking' }
       ]
     },
     'mobile-app': {
@@ -507,10 +507,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'Native Mobile App',
       roiExample: 'Reach 80% more customers on mobile',
       features: [
-        { icon: '📱', title: 'Native Performance', description: 'Lightning-fast user experience' },
-        { icon: '🔄', title: 'Offline Sync', description: 'Works without internet connection' },
-        { icon: '🔔', title: 'Push Notifications', description: 'Re-engage users automatically' },
-        { icon: '🏪', title: 'App Store Ready', description: 'Optimized for app stores' }
+        { icon: '◆', title: 'Native Performance', description: 'Lightning-fast user experience' },
+        { icon: '◆', title: 'Offline Sync', description: 'Works without internet connection' },
+        { icon: '◆', title: 'Push Notifications', description: 'Re-engage users automatically' },
+        { icon: '◆', title: 'App Store Ready', description: 'Optimized for app stores' }
       ]
     },
     'analytics-dashboard': {
@@ -518,10 +518,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'DataInsights Pro',
       roiExample: 'Make decisions 10x faster with data',
       features: [
-        { icon: '📊', title: 'Real-time Metrics', description: 'Live business data updates' },
-        { icon: '📈', title: 'Custom Reports', description: 'Build reports for your needs' },
-        { icon: '📉', title: 'Data Visualization', description: 'Beautiful charts and graphs' },
-        { icon: '🚨', title: 'Automated Alerts', description: 'Get notified of important changes' }
+        { icon: '◆', title: 'Real-time Metrics', description: 'Live business data updates' },
+        { icon: '◆', title: 'Custom Reports', description: 'Build reports for your needs' },
+        { icon: '◆', title: 'Data Visualization', description: 'Beautiful charts and graphs' },
+        { icon: '◆', title: 'Automated Alerts', description: 'Get notified of important changes' }
       ]
     },
     'ai-automation': {
@@ -529,10 +529,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'AutomationMax AI',
       roiExample: 'Automate 80% of manual work',
       features: [
-        { icon: '🤖', title: 'Document Processing', description: 'AI-powered document analysis' },
-        { icon: '📧', title: 'Email Automation', description: 'Smart email workflows' },
-        { icon: '⌨️', title: 'Data Entry', description: 'Eliminate repetitive typing' },
-        { icon: '💬', title: 'Customer Support', description: 'AI chatbots and responses' }
+        { icon: '◆', title: 'Document Processing', description: 'AI-powered document analysis' },
+        { icon: '◆', title: 'Email Automation', description: 'Smart email workflows' },
+        { icon: '◆', title: 'Data Entry', description: 'Eliminate repetitive typing' },
+        { icon: '◆', title: 'Customer Support', description: 'AI chatbots and responses' }
       ]
     },
     'other': {
@@ -540,10 +540,10 @@ function getSoftwareInfo(softwareType: string) {
       title: 'BusinessPro',
       roiExample: 'Streamline operations and boost efficiency',
       features: [
-        { icon: '👥', title: 'Customer Management', description: 'Comprehensive CRM system' },
-        { icon: '📊', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
-        { icon: '💳', title: 'Payment Processing', description: 'Secure transaction handling' },
-        { icon: '📱', title: 'Mobile Solution', description: 'Custom mobile application' }
+        { icon: '◆', title: 'Customer Management', description: 'Comprehensive CRM system' },
+        { icon: '◆', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
+        { icon: '◆', title: 'Payment Processing', description: 'Secure transaction handling' },
+        { icon: '◆', title: 'Mobile Solution', description: 'Custom mobile application' }
       ]
     }
   }

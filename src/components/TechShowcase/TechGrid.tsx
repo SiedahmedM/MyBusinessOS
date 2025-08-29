@@ -7,12 +7,12 @@ interface TechItem {
 }
 
 const techItems: TechItem[] = [
-  { icon: '⚛️', name: 'React', description: 'Used by Netflix & Facebook' },
-  { icon: '▲', name: 'Next.js', description: 'Powers TikTok & Uber' },
-  { icon: '🔷', name: 'TypeScript', description: 'Microsoft\'s language' },
-  { icon: '🟢', name: 'Supabase', description: 'Real-time database' },
-  { icon: '🎨', name: 'Tailwind', description: 'Modern CSS framework' },
-  { icon: '◼️', name: 'Vercel', description: 'Deploy in seconds' }
+  { icon: '◆', name: 'React', description: 'Used by Netflix & Facebook' },
+  { icon: '◆', name: 'Next.js', description: 'Powers TikTok & Uber' },
+  { icon: '◆', name: 'TypeScript', description: 'Microsoft\'s language' },
+  { icon: '◆', name: 'Supabase', description: 'Real-time database' },
+  { icon: '◆', name: 'Tailwind', description: 'Modern CSS framework' },
+  { icon: '◆', name: 'Vercel', description: 'Deploy in seconds' }
 ]
 
 export function TechGrid() {
@@ -23,7 +23,7 @@ export function TechGrid() {
       {techItems.map((tech, index) => (
         <div
           key={tech.name}
-          className="bg-gray-800 rounded-xl p-6 text-center card-hover cursor-pointer group"
+          className="bg-neutral-800 rounded-xl p-6 text-center card-hover cursor-pointer group"
           style={{
             animationDelay: `${index * 0.1}s`
           }}
@@ -34,7 +34,7 @@ export function TechGrid() {
           <h3 className="text-white text-xl font-bold mb-2">
             {tech.name}
           </h3>
-          <p className="text-gray-400 text-sm">
+          <p className="text-neutral-400 text-sm">
             {tech.description}
           </p>
         </div>

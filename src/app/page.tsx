@@ -31,17 +31,17 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
         
-        {/* ROI Calculator - Full width blue section */}
+        {/* Visual Project Showcase - Replaces Portfolio tab content */}
+        <VisualProjectShowcase />
+
+        {/* ROI Calculator - Full width section */}
         <div className="roi-calculator-mobile">
           <div className="calculator-content">
             <QuickROICalculator />
           </div>
         </div>
         
-        {/* Visual Project Showcase - Replaces Portfolio tab content */}
-        <VisualProjectShowcase />
-        
-        {/* AI Playground - Immersive purple section */}
+        {/* AI Playground - Immersive dark section */}
         <div className="ai-playground-mobile">
           <div className="content-wrapper">
             <AIPlayground />
@@ -83,7 +83,7 @@ const PricingTab = memo(function PricingTab() {
           </div>
         </div>
         
-        {/* ROI Calculator - Blue gradient section */}
+        {/* ROI Calculator - Dark gradient section */}
         <div className="roi-calculator-mobile">
           <div className="calculator-content">
             <ROICalculator />

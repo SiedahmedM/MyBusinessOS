@@ -13,9 +13,9 @@ interface TabSystemProps {
 }
 
 const tabs: Tab[] = [
-  { id: 'time', label: 'Time Savings', icon: '⏰' },
-  { id: 'revenue', label: 'Revenue Growth', icon: '📈' },
-  { id: 'cost', label: 'Cost Reduction', icon: '💰' }
+  { id: 'time', label: 'Time Savings', icon: '◆' },
+  { id: 'revenue', label: 'Revenue Growth', icon: '◆' },
+  { id: 'cost', label: 'Cost Reduction', icon: '◆' }
 ]
 
 export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
@@ -36,11 +36,11 @@ export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
 
   return (
     <div className="relative mb-8" ref={tabsRef}>
-      <div className="flex bg-gray-100 rounded-xl p-1 relative">
+      <div className="flex bg-neutral-100 rounded-xl p-1 relative">
         {/* Sliding indicator */}
         <div 
           ref={indicatorRef}
-          className="absolute top-1 bottom-1 bg-purple-600 rounded-lg transition-all duration-300 ease-out shadow-lg"
+          className="absolute top-1 bottom-1 bg-accent-600 rounded-lg transition-all duration-300 ease-out shadow-lg"
           style={{ width: `${100 / tabs.length}%` }}
         />
         
@@ -54,7 +54,7 @@ export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
             className={`relative flex-1 py-3 px-6 text-sm font-semibold rounded-lg transition-all duration-200 z-10 ${
               activeTab === tab.id
                 ? 'text-white'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-neutral-600 hover:text-neutral-900'
             }`}
           >
             <span className="mr-2">{tab.icon}</span>

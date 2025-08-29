@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
 
@@ -29,6 +29,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   const [error, setError] = useState<string | null>(null)
   const [detectedBusinessType, setDetectedBusinessType] = useState<string | null>(null)
   const [isAIEnabled, setIsAIEnabled] = useState(true)
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const hasMounted = useRef(false)
 
   // Check AI availability on component mount
   useEffect(() => {
@@ -49,6 +51,14 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     checkAIAvailability()
   }, [])
 
+  useEffect(() => {
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      return
+    }
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isLoading])
+
   const addMessage = (content: string, type: 'user' | 'ai') => {
     const newMessage: Message = {
       id: Date.now().toString(),
@@ -66,15 +76,14 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     try {
       setIsLoading(true)
       setError(null)
-      
+
       logger.info('Sending AI chat message', { message })
 
-      // Add user message
-      addMessage(message, 'user')
+      // Add user message and build updated conversation history
+      const newMessage = addMessage(message, 'user')
       setInputValue('')
 
-      // Get conversation history for context
-      const conversationHistory = messages.map(msg => ({
+      const conversationHistory = [...messages, newMessage].map(msg => ({
         type: msg.type,
         content: msg.content
       }))
@@ -203,11 +212,11 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   }
 
   return (
-    <div className="flex flex-col h-[600px]">
+    <div className="flex flex-col h-full min-h-[500px] sm:min-h-[600px]">
       {!isAIEnabled && (
         <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm">
           <div className="flex items-center text-amber-800">
-            <span className="mr-2">ℹ️</span>
+            <span className="mr-2">◆</span>
             <span>AI features are currently in demo mode with enhanced responses.</span>
           </div>
         </div>
@@ -216,7 +225,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       {/* AI Avatar & Header */}
       <div className="flex items-center mb-6">
         <div className="w-20 h-20 bg-accent-gradient rounded-full flex items-center justify-center text-3xl mr-4">
-          🧠
+          ◆
         </div>
         <div>
           <h3 className="text-2xl font-bold text-white">AI Solution Builder</h3>
@@ -227,7 +236,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       {/* Industry Suggestion Pills - Only show initially */}
       {messages.length <= 1 && (
         <div className="mb-6">
-          <p className="text-purple-200 text-sm mb-3">Quick start:</p>
+          <p className="text-accent-300 text-sm mb-3">Quick start:</p>
           <div className="flex flex-wrap gap-2">
             {businessTypes.slice(0, 6).map((business) => (
               <button
@@ -248,8 +257,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
         {messages.map((message) => (
           <div key={message.id} className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`}>
             <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-lg ${
-              message.type === 'user' 
-                ? 'bg-white text-gray-900' 
+              message.type === 'user'
+                ? 'bg-white text-neutral-900'
                 : 'bg-white/10 text-white'
             }`}>
               <p className="text-sm leading-relaxed">{message.content}</p>
@@ -265,12 +274,13 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
           <div className="flex justify-start">
             <div className="bg-white/10 text-white px-4 py-3 rounded-lg">
               <div className="flex items-center space-x-2">
-                <div className="animate-spin h-4 w-4 border-2 border-purple-600 border-t-transparent rounded-full"></div>
+                <div className="animate-spin h-4 w-4 border-2 border-accent-600 border-t-transparent rounded-full"></div>
                 <span className="text-sm">Analyzing your business needs...</span>
               </div>
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}
@@ -280,13 +290,13 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Tell me about your business needs..."
-          className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-purple-200 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
+          className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-neutral-300 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
           disabled={disabled || isLoading}
         />
         <button
           type="submit"
           disabled={disabled || isLoading || !inputValue.trim()}
-          className="px-6 py-3 bg-white text-purple-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-6 py-3 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? '...' : 'Send'}
         </button>
@@ -294,7 +304,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       
       {/* Connection status */}
       {error && (
-        <p className="text-xs text-purple-300 mt-2 opacity-75">
+        <p className="text-xs text-accent-300 mt-2 opacity-75">
           Note: Running in offline mode due to connection issue
         </p>
       )}
