@@ -204,14 +204,14 @@ export function CaseStudies() {
   logger.info('CaseStudies: Rendering component', { studiesCount: filteredStudies.length, selectedCategory })
 
   return (
-    <section id="case-studies" className="section-padding bg-gray-900">
+    <section id="case-studies" className="section-padding bg-neutral-900">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="section-title text-white mb-6">
             Real Businesses, Real Results
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-8">
             See how I've helped businesses transform their operations 
             with custom software solutions. These are real clients with real results.
           </p>
@@ -247,7 +247,7 @@ export function CaseStudies() {
               <div className="grid lg:grid-cols-2 gap-8 items-center">
                 <div>
                   <div className="inline-block bg-white/20 rounded-full px-4 py-2 text-sm font-medium mb-4">
-                    ⭐ Featured Success Story
+                    ◆ Featured Success Story
                   </div>
                   <h3 className="text-3xl font-bold mb-4">{filteredStudies[0].business}</h3>
                   <p className="text-xl text-neutral-200 mb-6 leading-relaxed">
@@ -300,7 +300,7 @@ export function CaseStudies() {
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-neutral-300 mb-8">
             Ready to join these successful businesses?
           </p>
           <button 

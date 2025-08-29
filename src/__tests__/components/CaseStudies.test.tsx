@@ -101,7 +101,7 @@ describe('CaseStudies Component', () => {
   test('displays featured success story section', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText('⭐ Featured Success Story')).toBeInTheDocument()
+    expect(screen.getByText('◆ Featured Success Story')).toBeInTheDocument()
     expect(screen.getByText('System Features')).toBeInTheDocument()
   })
 
@@ -136,7 +136,7 @@ describe('CaseStudies Component', () => {
     
     // Test that component loads case studies and renders main content
     expect(screen.getByText('Real Businesses, Real Results')).toBeInTheDocument()
-    expect(screen.getByText('⭐ Featured Success Story')).toBeInTheDocument()
+    expect(screen.getByText('◆ Featured Success Story')).toBeInTheDocument()
     expect(screen.getByText('System Features')).toBeInTheDocument()
   })
 })

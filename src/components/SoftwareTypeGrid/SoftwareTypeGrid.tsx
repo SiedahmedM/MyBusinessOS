@@ -56,10 +56,10 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
     <section className={`software-grid-mobile ${className}`}>
       {/* Header */}
       <div className="section-header-mobile">
-        <h2 className="text-gray-900">
+        <h2 className="text-neutral-900">
           What Can I Build For You?
         </h2>
-        <p className="text-gray-600">
+        <p className="text-neutral-600">
           Choose your software type below to see examples and ROI estimates
         </p>
       </div>
@@ -92,7 +92,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
                   }`}>
                     {type.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
+                  <p className="text-neutral-600 text-sm leading-relaxed">
                     {type.description}
                   </p>
                 </div>
@@ -113,7 +113,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
                 <div className="text-xs font-semibold text-accent-600 mb-1">
                   ROI ESTIMATE
                 </div>
-                <div className="text-sm font-medium text-gray-700">
+                <div className="text-sm font-medium text-neutral-700">
                   {type.roiExample}
                 </div>
               </div>

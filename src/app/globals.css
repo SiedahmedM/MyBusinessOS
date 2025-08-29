@@ -160,26 +160,26 @@ body {
 
 /* Code syntax highlighting */
 .code-editor {
-  background: #1a202c;
-  color: #e2e8f0;
+  background: #000000;
+  color: #f5f5f5;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
 }
 
 .code-line-number {
-  color: #4a5568;
+  color: #737373;
   user-select: none;
 }
 
 .code-keyword {
-  color: #63b3ed;
+  color: #facc15;
 }
 
 .code-string {
-  color: #68d391;
+  color: #eab308;
 }
 
 .code-comment {
-  color: #a0aec0;
+  color: #a3a3a3;
   font-style: italic;
 }
 
@@ -194,16 +194,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #111111;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #facc15;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #eab308;
 }
 
 /* Section spacing */
@@ -361,7 +361,7 @@ body {
 
 /* Loading states */
 .loading-skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
   background-size: 200% 100%;
   animation: loading-skeleton 1.5s infinite;
 }
@@ -666,7 +666,7 @@ button, .btn {
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e5e5e5;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -703,7 +703,7 @@ button, .btn {
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
-  color: #4b5563;
+  color: #525252;
   transition: all 0.2s ease;
   min-height: 44px;
   display: flex;
@@ -747,7 +747,7 @@ button, .btn {
 .mobile-input {
   padding: 0.875rem 1rem;
   font-size: 1rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid #d4d4d4;
   border-radius: 0.5rem;
   min-height: 44px;
   width: 100%;
@@ -830,19 +830,19 @@ button, .btn {
 /* Mobile Dark Mode Support */
 @media (prefers-color-scheme: dark) and (max-width: 768px) {
   .mobile-card {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+    background: #111111;
+    border-color: #262626;
+    color: #f5f5f5;
   }
-  
+
   .mobile-input {
-    background: #1f2937;
-    border-color: #374151;
-    color: #f9fafb;
+    background: #111111;
+    border-color: #262626;
+    color: #f5f5f5;
   }
-  
+
   .mobile-nav-item {
-    color: #d1d5db;
+    color: #d4d4d4;
   }
 }
 
@@ -882,7 +882,7 @@ button, .btn {
 /* Software type grid - full width on mobile */
 .software-grid-mobile {
   padding: 3rem 1rem;
-  background: #f8fafc;
+  background: #ffffff;
 }
 
 .software-grid-mobile .grid-container {
@@ -924,7 +924,7 @@ button, .btn {
 @media (min-width: 640px) {
   .card-full-mobile {
     border-radius: 0.75rem;
-    border: 1px solid #e5e7eb;
+    border: 1px solid #e5e5e5;
     margin: 0 1rem;
     padding: 2rem;
   }
@@ -939,7 +939,7 @@ button, .btn {
 
 /* Full-width testimonials on mobile */
 .testimonial-full-mobile {
-  background: #1f2937;
+  background: #111111;
   color: white;
   padding: 2rem 1.5rem;
   margin: 0;
@@ -947,7 +947,7 @@ button, .btn {
 }
 
 .testimonial-full-mobile + .testimonial-full-mobile {
-  border-top: 1px solid #374151;
+  border-top: 1px solid #262626;
 }
 
 @media (min-width: 768px) {
@@ -986,7 +986,7 @@ button, .btn {
 
 /* Contact form - edge to edge on mobile */
 .contact-form-mobile {
-  background: #f9fafb;
+  background: #ffffff;
   padding: 3rem 1.5rem;
   margin: 0;
   width: 100%;
@@ -1010,7 +1010,7 @@ button, .btn {
 
 /* AI Playground - immersive mobile layout */
 .ai-playground-mobile {
-  background: linear-gradient(135deg, #5b21b6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 3rem 0;
   margin: 0;
   min-height: 100vh;
@@ -1069,13 +1069,13 @@ button, .btn {
 }
 
 .nav-tab-mobile.active {
-  background: #3b82f6;
-  color: white;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  background: #facc15;
+  color: black;
+  box-shadow: 0 2px 8px rgba(250, 204, 21, 0.3);
 }
 
 .nav-tab-mobile.inactive {
-  color: #6b7280;
+  color: #737373;
   background: transparent;
 }
 
@@ -1097,7 +1097,7 @@ button, .btn {
 .section-header-mobile p {
   font-size: 1.125rem;
   line-height: 1.6;
-  color: rgba(107, 114, 128, 0.9);
+  color: rgba(115, 115, 115, 0.9);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -1131,11 +1131,11 @@ button, .btn {
 }
 
 .process-step-mobile {
-  background: #f9fafb;
+  background: #ffffff;
   border-radius: 1rem;
   padding: 2rem 1.5rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e5e5e5;
 }
 
 @media (min-width: 768px) {
@@ -1148,7 +1148,7 @@ button, .btn {
 
 /* Pricing calculator - immersive mobile */
 .pricing-calculator-mobile {
-  background: #f8fafc;
+  background: #ffffff;
   padding: 3rem 0;
   margin: 0;
   width: 100%;
@@ -1163,13 +1163,13 @@ button, .btn {
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  border: 2px solid #e5e7eb;
+  border: 2px solid #e5e5e5;
   transition: all 0.2s ease;
 }
 
 .pricing-option-mobile.selected {
-  border-color: #3b82f6;
-  background: #eff6ff;
+  border-color: #facc15;
+  background: #fef9c3;
 }
 
 @media (min-width: 768px) {
@@ -1182,7 +1182,7 @@ button, .btn {
 
 /* Tech showcase - dark immersive mobile */
 .tech-showcase-mobile {
-  background: #111827;
+  background: #111111;
   color: white;
   padding: 3rem 0;
   margin: 0;
@@ -1226,7 +1226,7 @@ button, .btn {
 
 /* Case studies - full immersion */
 .case-studies-mobile {
-  background: #0f172a;
+  background: #000000;
   color: white;
   padding: 3rem 0;
   margin: 0;
@@ -1234,7 +1234,7 @@ button, .btn {
 }
 
 .featured-case-mobile {
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #000000 0%, #111111 100%);
   padding: 2rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0;
@@ -1414,13 +1414,13 @@ button, .btn {
 .stats-mobile-item .number {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #111111;
   display: block;
 }
 
 .stats-mobile-item .label {
   font-size: 0.75rem;
-  color: #6b7280;
+  color: #737373;
   margin-top: 0.25rem;
 }
 

@@ -120,7 +120,7 @@ export function VisualProjectShowcase() {
 
   if (error) {
     return (
-      <section className="py-16 bg-gray-900">
+      <section className="py-16 bg-neutral-900">
         <div className="mobile-content-padding">
           <div className="bg-red-50 border border-red-200 rounded-lg p-4">
             <p className="text-red-600">Error: {error}</p>
@@ -137,14 +137,14 @@ export function VisualProjectShowcase() {
   }
 
   return (
-    <section className="py-16 bg-gray-900 project-showcase">
+    <section className="py-16 bg-neutral-900 project-showcase">
       <div className="mobile-content-padding">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Project Showcase
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
             Real projects that transformed businesses. Each solution custom-built to solve specific challenges.
           </p>
         </div>
@@ -173,7 +173,7 @@ export function VisualProjectShowcase() {
                 <div className="flex flex-col lg:flex-row lg:items-center">
                   {/* Project Image/Preview */}
                   <div className="relative lg:w-1/2">
-                    <div className="aspect-video lg:aspect-square bg-gray-800 flex items-center justify-center relative overflow-hidden">
+                    <div className="aspect-video lg:aspect-square bg-neutral-800 flex items-center justify-center relative overflow-hidden">
                       {!imageLoadErrors.has(project.id) ? (
                         <img
                           src={project.image}
@@ -195,7 +195,7 @@ export function VisualProjectShowcase() {
                       
                       {/* Hover overlay */}
                       <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                        <div className="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold pointer-events-none">
+                        <div className="bg-white text-neutral-900 px-6 py-2 rounded-full font-semibold pointer-events-none">
                           {selectedProject === project.id ? 'Hide Details' : 'View Details'}
                         </div>
                       </div>
@@ -214,7 +214,7 @@ export function VisualProjectShowcase() {
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-300 mb-4 leading-relaxed">
+                    <p className="text-neutral-300 mb-4 leading-relaxed">
                       {project.description}
                     </p>
                     
@@ -229,7 +229,7 @@ export function VisualProjectShowcase() {
                       {project.technologies.map((tech, techIndex) => (
                         <span 
                           key={techIndex}
-                          className="px-3 py-1 bg-white/10 text-gray-400 rounded-full text-xs"
+                          className="px-3 py-1 bg-white/10 text-neutral-400 rounded-full text-xs"
                         >
                           {tech}
                         </span>
@@ -244,13 +244,13 @@ export function VisualProjectShowcase() {
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
                         <h4 className="text-white font-semibold mb-3">Challenge</h4>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-neutral-300 text-sm leading-relaxed">
                           {project.challenge}
                         </p>
                       </div>
                       <div>
                         <h4 className="text-white font-semibold mb-3">Solution</h4>
-                        <p className="text-gray-300 text-sm leading-relaxed">
+                        <p className="text-neutral-300 text-sm leading-relaxed">
                           {project.solution}
                         </p>
                       </div>

@@ -169,10 +169,10 @@ export function InteractivePricingCalculator() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-bold text-neutral-900 mb-6">
             Interactive Pricing Calculator
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             Get an instant estimate for your custom software project. 
             Adjust the options below to see how pricing changes.
           </p>
@@ -183,7 +183,7 @@ export function InteractivePricingCalculator() {
           <div className="space-y-8">
             {/* Software Type */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
+              <label className="block text-lg font-semibold text-neutral-900 mb-4">
                 What type of software do you need?
               </label>
               <div className="grid gap-3">
@@ -198,7 +198,7 @@ export function InteractivePricingCalculator() {
                     }`}
                   >
                     <div className="font-medium">{type.name}</div>
-                    <div className="text-sm text-gray-500">Starting at ${type.basePrice.toLocaleString()}</div>
+                    <div className="text-sm text-neutral-500">Starting at ${type.basePrice.toLocaleString()}</div>
                   </button>
                 ))}
               </div>
@@ -206,7 +206,7 @@ export function InteractivePricingCalculator() {
 
             {/* Complexity */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
+              <label className="block text-lg font-semibold text-neutral-900 mb-4">
                 Complexity Level
               </label>
               <div className="grid gap-3">
@@ -221,7 +221,7 @@ export function InteractivePricingCalculator() {
                     }`}
                   >
                     <div className="font-medium">{complexity.label}</div>
-                    <div className="text-sm text-gray-500">{complexity.description}</div>
+                    <div className="text-sm text-neutral-500">{complexity.description}</div>
                   </button>
                 ))}
               </div>
@@ -229,7 +229,7 @@ export function InteractivePricingCalculator() {
 
             {/* Timeline */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
+              <label className="block text-lg font-semibold text-neutral-900 mb-4">
                 Timeline Preference
               </label>
               <div className="grid gap-3">
@@ -244,7 +244,7 @@ export function InteractivePricingCalculator() {
                     }`}
                   >
                     <div className="font-medium">{timeline.label}</div>
-                    <div className="text-sm text-gray-500">{timeline.description}</div>
+                    <div className="text-sm text-neutral-500">{timeline.description}</div>
                   </button>
                 ))}
               </div>
@@ -252,7 +252,7 @@ export function InteractivePricingCalculator() {
 
             {/* Additional Features */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
+              <label className="block text-lg font-semibold text-neutral-900 mb-4">
                 Additional Features
               </label>
               <div className="grid gap-2">
@@ -268,7 +268,7 @@ export function InteractivePricingCalculator() {
                   >
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{feature.name}</span>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-neutral-500">
                         {feature.price === 0 ? 'Included' : `+$${feature.price.toLocaleString()}`}
                       </span>
                     </div>
@@ -279,7 +279,7 @@ export function InteractivePricingCalculator() {
 
             {/* Support */}
             <div>
-              <label className="block text-lg font-semibold text-gray-900 mb-4">
+              <label className="block text-lg font-semibold text-neutral-900 mb-4">
                 Support Package
               </label>
               <div className="grid gap-3">
@@ -294,7 +294,7 @@ export function InteractivePricingCalculator() {
                     }`}
                   >
                     <div className="font-medium">{support.label}</div>
-                    <div className="text-sm text-gray-500">{support.description}</div>
+                    <div className="text-sm text-neutral-500">{support.description}</div>
                     {support.price > 0 && (
                       <div className="text-sm font-medium text-accent-600">+${support.price.toLocaleString()}</div>
                     )}
@@ -308,7 +308,7 @@ export function InteractivePricingCalculator() {
           <div className="lg:sticky lg:top-8">
             {pricingResult && (
               <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">Your Project Estimate</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">Your Project Estimate</h3>
                 
                 <div className="space-y-6">
                   {/* Total Price */}
@@ -317,7 +317,7 @@ export function InteractivePricingCalculator() {
                     <div className="text-4xl font-bold text-accent-600 mb-2">
                       ${pricingResult.totalPrice.toLocaleString()}
                     </div>
-                    <div className="text-sm text-gray-500">{pricingResult.timeline}</div>
+                    <div className="text-sm text-neutral-500">{pricingResult.timeline}</div>
                   </div>
 
                   {/* ROI Information */}

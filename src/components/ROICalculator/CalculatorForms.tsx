@@ -56,7 +56,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Hours per day on manual tasks
               </label>
               <input
@@ -72,7 +72,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Your hourly rate/value ($)
               </label>
               <input
@@ -87,7 +87,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Team members affected
               </label>
               <input
@@ -127,7 +127,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Current monthly revenue ($)
               </label>
               <input
@@ -141,7 +141,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Expected growth from automation (%)
               </label>
               <input
@@ -181,7 +181,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
         return (
           <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Monthly software subscriptions ($)
               </label>
               <input
@@ -195,7 +195,7 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-neutral-700 mb-2">
                 Monthly cost of errors/inefficiencies ($)
               </label>
               <input

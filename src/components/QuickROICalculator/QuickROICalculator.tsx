@@ -155,10 +155,10 @@ export function QuickROICalculator() {
     <section className="bg-neutral-50 py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Quick ROI Calculator
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-neutral-600">
             See your potential return on investment in 30 seconds
           </p>
         </div>
@@ -167,11 +167,11 @@ export function QuickROICalculator() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Input Form */}
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">Tell us about your business</h3>
+              <h3 className="text-xl font-semibold text-neutral-900 mb-4">Tell us about your business</h3>
               
               {/* Software Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Software Type
                 </label>
                 <select
@@ -183,16 +183,16 @@ export function QuickROICalculator() {
                     <option key={key} value={key}>{software.name}</option>
                   ))}
                 </select>
-                <p className="text-sm text-gray-500 mt-1">{selectedSoftware.description}</p>
+                <p className="text-sm text-neutral-500 mt-1">{selectedSoftware.description}</p>
               </div>
 
               {/* Monthly Revenue */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Monthly Revenue
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">$</span>
+                  <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-neutral-500">$</span>
                   <input
                     type="number"
                     value={inputs.monthlyRevenue}
@@ -208,7 +208,7 @@ export function QuickROICalculator() {
 
               {/* Hours Spent Manually */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Hours per week on manual tasks
                 </label>
                 <input
@@ -220,12 +220,12 @@ export function QuickROICalculator() {
                   min="1"
                   max="80"
                 />
-                <p className="text-sm text-gray-500 mt-1">Time spent on tasks that could be automated</p>
+                <p className="text-sm text-neutral-500 mt-1">Time spent on tasks that could be automated</p>
               </div>
 
               {/* Team Size */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-neutral-700 mb-2">
                   Team Size
                 </label>
                 <input
@@ -237,7 +237,7 @@ export function QuickROICalculator() {
                   min="1"
                   max="100"
                 />
-                <p className="text-sm text-gray-500 mt-1">Number of employees who would use the software</p>
+                <p className="text-sm text-neutral-500 mt-1">Number of employees who would use the software</p>
               </div>
             </div>
 

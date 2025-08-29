@@ -83,7 +83,7 @@ const PricingTab = memo(function PricingTab() {
           </div>
         </div>
         
-        {/* ROI Calculator - Blue gradient section */}
+        {/* ROI Calculator - Dark gradient section */}
         <div className="roi-calculator-mobile">
           <div className="calculator-content">
             <ROICalculator />

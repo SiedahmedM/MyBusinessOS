@@ -117,10 +117,10 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl font-bold text-neutral-900 mb-6">
             How We Work Together
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
             A proven 4-step process that delivers results every time. 
             From idea to live software in weeks, not months.
           </p>
@@ -157,7 +157,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                   }`}>
                     {step.title}
                   </h3>
-                  <p className="text-sm text-gray-500 font-medium">
+                  <p className="text-sm text-neutral-500 font-medium">
                     {step.duration}
                   </p>
                   <div className="text-2xl mt-2">{step.icon}</div>
@@ -172,7 +172,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
           <div className="grid md:grid-cols-2 gap-8">
             {/* Activities */}
             <div>
-              <h4 className="text-2xl font-bold text-gray-900 mb-6">
+              <h4 className="text-2xl font-bold text-neutral-900 mb-6">
                 What Happens During {selectedStepData.title}
               </h4>
               <div className="space-y-4">
@@ -183,7 +183,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-gray-700 leading-relaxed">{activity}</p>
+                    <p className="text-neutral-700 leading-relaxed">{activity}</p>
                   </div>
                 ))}
               </div>
@@ -191,7 +191,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
             
             {/* Deliverable */}
             <div>
-              <h4 className="text-2xl font-bold text-gray-900 mb-6">
+              <h4 className="text-2xl font-bold text-neutral-900 mb-6">
                 What You Get
               </h4>
               <div className="bg-white rounded-xl p-6 shadow-lg">
@@ -201,7 +201,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                     <div className="text-lg font-semibold text-accent-600 mb-2">
                       Key Deliverable
                     </div>
-                    <p className="text-gray-700 text-lg leading-relaxed">
+                    <p className="text-neutral-700 text-lg leading-relaxed">
                       {selectedStepData.deliverable}
                     </p>
                     <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent-100 text-accent-800">
@@ -218,10 +218,10 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         {/* What's Included Section */}
         <div className="mt-16">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-bold text-neutral-900 mb-4">
               What's Included in Every Project
             </h3>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-neutral-600">
               Everything you need for a successful software launch
             </p>
           </div>
@@ -271,7 +271,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
             ].map((category, index) => (
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="text-3xl mb-4">{category.icon}</div>
-                <h4 className="text-lg font-bold text-gray-900 mb-4">{category.title}</h4>
+                <h4 className="text-lg font-bold text-neutral-900 mb-4">{category.title}</h4>
                 <ul className="space-y-2">
                   {category.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start text-sm">

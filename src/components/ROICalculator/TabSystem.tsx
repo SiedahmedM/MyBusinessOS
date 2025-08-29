@@ -36,7 +36,7 @@ export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
 
   return (
     <div className="relative mb-8" ref={tabsRef}>
-      <div className="flex bg-gray-100 rounded-xl p-1 relative">
+      <div className="flex bg-neutral-100 rounded-xl p-1 relative">
         {/* Sliding indicator */}
         <div 
           ref={indicatorRef}
@@ -54,7 +54,7 @@ export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
             className={`relative flex-1 py-3 px-6 text-sm font-semibold rounded-lg transition-all duration-200 z-10 ${
               activeTab === tab.id
                 ? 'text-white'
-                : 'text-gray-600 hover:text-gray-900'
+                : 'text-neutral-600 hover:text-neutral-900'
             }`}
           >
             <span className="mr-2">{tab.icon}</span>

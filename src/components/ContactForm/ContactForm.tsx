@@ -98,14 +98,14 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="section-padding bg-gray-50">
+    <section id="contact" className="section-padding bg-neutral-50">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="section-title text-gray-900 mb-6">
+          <h2 className="section-title text-neutral-900 mb-6">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
             Tell me about your business and I'll create a custom software solution 
             that drives growth and saves you time.
           </p>
@@ -117,7 +117,7 @@ export function ContactForm() {
             {/* Name & Email Row */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
                   Your Name *
                 </label>
                 <input
@@ -136,7 +136,7 @@ export function ContactForm() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
                   Email Address *
                 </label>
                 <input
@@ -157,7 +157,7 @@ export function ContactForm() {
 
             {/* Business Type */}
             <div>
-              <label htmlFor="businessType" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="businessType" className="block text-sm font-medium text-neutral-700 mb-2">
                 Business Type *
               </label>
               <select
@@ -185,7 +185,7 @@ export function ContactForm() {
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
                 Tell me about your business and what you need *
               </label>
               <textarea
@@ -201,7 +201,7 @@ export function ContactForm() {
               {errors.message && (
                 <p className="mt-1 text-sm text-red-600">{errors.message}</p>
               )}
-              <p className="mt-2 text-sm text-gray-500">
+              <p className="mt-2 text-sm text-neutral-500">
                 The more details you provide, the better I can help you.
               </p>
             </div>
@@ -223,7 +223,7 @@ export function ContactForm() {
                 )}
               </button>
               
-              <p className="mt-4 text-sm text-gray-500">
+              <p className="mt-4 text-sm text-neutral-500">
                 I typically respond within 2-4 hours during business hours.
               </p>
             </div>
@@ -232,7 +232,7 @@ export function ContactForm() {
 
         {/* Contact Info */}
         <div className="text-center mt-12">
-          <p className="text-gray-600 mb-4">
+          <p className="text-neutral-600 mb-4">
             Prefer to call? I'm always happy to chat about your project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

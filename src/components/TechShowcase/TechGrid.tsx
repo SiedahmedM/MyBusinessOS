@@ -23,7 +23,7 @@ export function TechGrid() {
       {techItems.map((tech, index) => (
         <div
           key={tech.name}
-          className="bg-gray-800 rounded-xl p-6 text-center card-hover cursor-pointer group"
+          className="bg-neutral-800 rounded-xl p-6 text-center card-hover cursor-pointer group"
           style={{
             animationDelay: `${index * 0.1}s`
           }}
@@ -34,7 +34,7 @@ export function TechGrid() {
           <h3 className="text-white text-xl font-bold mb-2">
             {tech.name}
           </h3>
-          <p className="text-gray-400 text-sm">
+          <p className="text-neutral-400 text-sm">
             {tech.description}
           </p>
         </div>

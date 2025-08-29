@@ -123,37 +123,11 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
     }
   }, [softwareType, isBuilding, buildAppSequence])
 
-  const getGradientColor = (type: string) => {
-    switch (type) {
-      case 'business-management':
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-      case 'agency-to-saas':
-        return 'linear-gradient(135deg, #10b981, #059669)'
-      case 'ecommerce':
-        return 'linear-gradient(135deg, #f59e0b, #d97706)'
-      case 'mobile-app':
-        return 'linear-gradient(135deg, #8b5cf6, #a855f7)'
-      case 'analytics-dashboard':
-        return 'linear-gradient(135deg, #3b82f6, #1d4ed8)'
-      case 'ai-automation':
-        return 'linear-gradient(135deg, #ef4444, #dc2626)'
-      // Backward compatibility
-      case 'dental':
-        return 'linear-gradient(135deg, #10b981, #059669)'
-      case 'auto':
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-      case 'restaurant':
-        return 'linear-gradient(135deg, #f59e0b, #d97706)'
-      case 'construction':
-        return 'linear-gradient(135deg, #dc2626, #b91c1c)'
-      default:
-        return 'linear-gradient(135deg, #667eea, #764ba2)'
-    }
-  }
+  const getGradientColor = () => 'linear-gradient(135deg, #000000, #1a1a1a, #facc15)'
 
   if (error) {
     return (
-      <div className="relative mx-auto w-[375px] h-[812px]">
+      <div className="relative mx-auto w-full max-w-[260px] h-[540px] sm:max-w-[375px] sm:h-[812px]">
         <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center h-full flex flex-col justify-center">
           <div className="text-4xl mb-4">◆</div>
           <p className="text-red-600 mb-4">Error: {error}</p>
@@ -169,7 +143,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           {onBackToSelector && (
             <button 
               onClick={onBackToSelector}
-              className="mt-2 text-gray-600 text-sm underline"
+              className="mt-2 text-neutral-600 text-sm underline"
             >
               ← Back to selection
             </button>
@@ -182,12 +156,12 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
   return (
     <div className="relative mx-auto" style={{ perspective: '1000px' }}>
       {/* iPhone Frame - Responsive sizing */}
-      <div className="relative w-[300px] h-[650px] sm:w-[375px] sm:h-[812px] bg-black rounded-[32px] sm:rounded-[40px] p-1.5 sm:p-2 shadow-2xl mx-auto">
+      <div className="relative w-full max-w-[260px] h-[540px] sm:max-w-[375px] sm:h-[812px] bg-black rounded-[32px] sm:rounded-[40px] p-1.5 sm:p-2 shadow-2xl mx-auto">
         {/* Notch - Responsive sizing */}
         <div className="absolute top-3 sm:top-5 left-1/2 transform -translate-x-1/2 w-[120px] sm:w-[140px] h-[24px] sm:h-[30px] bg-black rounded-full z-20" />
         
         {/* Screen - Responsive sizing */}
-        <div className="w-full h-full bg-gray-900 rounded-[28px] sm:rounded-[35px] overflow-hidden relative">
+        <div className="w-full h-full bg-neutral-900 rounded-[28px] sm:rounded-[35px] overflow-hidden relative">
           {/* Status Bar - Responsive padding and text */}
           <div className="flex justify-between items-center px-3 sm:px-6 pt-3 sm:pt-4 pb-1 sm:pb-2 text-white text-xs sm:text-sm font-semibold bg-black relative z-10">
             <span>9:41</span>
@@ -203,7 +177,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           <div 
             className="px-3 sm:px-6 py-4 sm:py-8 text-center text-white relative z-5"
             style={{
-              background: getGradientColor(softwareType)
+              background: getGradientColor()
             }}
           >
             <h1 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-2">{appTitle}</h1>
@@ -230,7 +204,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           </div>
           
           {/* App Body - Responsive padding */}
-          <div className="flex-1 bg-gray-50 px-2 sm:px-4 py-2 sm:py-4 overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
+          <div className="flex-1 bg-neutral-50 px-2 sm:px-4 py-2 sm:py-4 overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
             {features.length === 0 && !isBuilding && (
               <div className="text-center py-12 sm:py-20 text-gray-500">
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4" aria-hidden="true">◆</div>
@@ -251,8 +225,8 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
                 aria-label={`Feature: ${feature.title}`}
               >
                 <div className="text-xl sm:text-2xl mb-1 sm:mb-2" aria-hidden="true">{feature.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-1 text-sm sm:text-base">{feature.title}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="font-bold text-neutral-900 mb-1 text-sm sm:text-base">{feature.title}</h3>
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">{feature.description}</p>
               </div>
             ))}
             
@@ -260,9 +234,9 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
             {isBuilding && features.length < 4 && (
               <div className="bg-white rounded-lg p-4 mb-3 shadow-sm opacity-50" aria-hidden="true">
                 <div className="animate-pulse">
-                  <div className="w-8 h-8 bg-gray-300 rounded mb-2" />
-                  <div className="h-4 bg-gray-300 rounded mb-2" />
-                  <div className="h-3 bg-gray-200 rounded w-3/4" />
+                  <div className="w-8 h-8 bg-neutral-300 rounded mb-2" />
+                  <div className="h-4 bg-neutral-300 rounded mb-2" />
+                  <div className="h-3 bg-neutral-200 rounded w-3/4" />
                 </div>
               </div>
             )}
@@ -272,7 +246,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
               <div className="text-center mt-6">
                 <button
                   onClick={onBackToSelector}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-lg text-sm transition-colors"
+                  className="bg-neutral-200 hover:bg-neutral-300 text-neutral-700 px-6 py-2 rounded-lg text-sm transition-colors"
                 >
                   ← Build Different App
                 </button>
