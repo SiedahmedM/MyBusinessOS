@@ -137,7 +137,7 @@ export function VisualProjectShowcase() {
   }
 
   return (
-    <section className="py-16 bg-neutral-900 project-showcase">
+    <section className="py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--white section-fade-bottom section-fade-bottom--white">
       <div className="mobile-content-padding">
         {/* Header */}
         <div className="text-center mb-12">

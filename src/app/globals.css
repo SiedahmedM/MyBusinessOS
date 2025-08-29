@@ -1488,3 +1488,215 @@ html {
     overflow-x: hidden;
   }
 }
+
+/* =====================================
+   Smooth Section Transitions
+   ===================================== */
+
+/* Base section with smooth transition capability */
+.section-smooth {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gradient overlays for smooth transitions */
+.section-fade-bottom {
+  position: relative;
+}
+
+.section-fade-bottom::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to bottom, transparent 0%, currentColor 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.section-fade-bottom--white::after {
+  background: linear-gradient(to bottom, transparent 0%, #ffffff 100%);
+}
+
+.section-fade-bottom--black::after {
+  background: linear-gradient(to bottom, transparent 0%, #000000 100%);
+}
+
+.section-fade-bottom--neutral::after {
+  background: linear-gradient(to bottom, transparent 0%, #f5f5f5 100%);
+}
+
+/* Fade from top */
+.section-fade-top {
+  position: relative;
+}
+
+.section-fade-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(to top, transparent 0%, currentColor 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.section-fade-top--white::before {
+  background: linear-gradient(to top, transparent 0%, #ffffff 100%);
+}
+
+.section-fade-top--black::before {
+  background: linear-gradient(to top, transparent 0%, #000000 100%);
+}
+
+/* Smooth transition from dark to light */
+.transition-dark-to-light {
+  position: relative;
+  background: linear-gradient(to bottom, #000000 0%, #1a1a1a 30%, #ffffff 100%);
+  padding: 8rem 0;
+  margin: -4rem 0;
+  z-index: 5;
+}
+
+/* Smooth transition from light to dark */
+.transition-light-to-dark {
+  position: relative;
+  background: linear-gradient(to bottom, #ffffff 0%, #f5f5f5 30%, #000000 100%);
+  padding: 8rem 0;
+  margin: -4rem 0;
+  z-index: 5;
+}
+
+/* Section overlap for seamless flow */
+.section-overlap {
+  margin-top: -6rem;
+  padding-top: 8rem;
+  position: relative;
+  z-index: 20;
+}
+
+.section-overlap-lg {
+  margin-top: -12rem;
+  padding-top: 14rem;
+}
+
+.section-overlap-xl {
+  margin-top: -16rem;
+  padding-top: 18rem;
+}
+
+/* Blended section entry */
+.section-blend-entry {
+  background: linear-gradient(to bottom, transparent 0%, var(--bg-color, #ffffff) 100px);
+  padding-top: 100px;
+  margin-top: -100px;
+  position: relative;
+  z-index: 15;
+}
+
+/* Smooth reveal animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), 
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered children animations */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.stagger-children.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-children.revealed > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-children.revealed > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-children.revealed > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-children.revealed > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-children.revealed > *:nth-child(5) { transition-delay: 0.5s; }
+.stagger-children.revealed > *:nth-child(6) { transition-delay: 0.6s; }
+
+/* Smooth gradient mesh backgrounds */
+.gradient-mesh-light {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(250, 204, 21, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.05) 0%, transparent 50%),
+    linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+}
+
+.gradient-mesh-dark {
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(250, 204, 21, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.03) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+}
+
+/* =====================================
+   Responsive Section Transitions
+   ===================================== */
+
+/* Mobile optimizations - smaller gradients for better mobile UX */
+@media (max-width: 768px) {
+  .section-fade-bottom::after,
+  .section-fade-top::before {
+    height: 80px; /* Smaller gradients on mobile */
+  }
+  
+  .section-overlap {
+    margin-top: -3rem; /* Less overlap on mobile */
+    padding-top: 5rem;
+  }
+  
+  .section-overlap-lg {
+    margin-top: -6rem;
+    padding-top: 8rem;
+  }
+  
+  .section-overlap-xl {
+    margin-top: -8rem;
+    padding-top: 10rem;
+  }
+  
+  .transition-dark-to-light,
+  .transition-light-to-dark {
+    padding: 4rem 0; /* Less padding on mobile */
+    margin: -2rem 0;
+  }
+}
+
+/* Tablet adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-fade-bottom::after,
+  .section-fade-top::before {
+    height: 120px; /* Medium gradients on tablet */
+  }
+}
+
+/* Very small mobile devices */
+@media (max-width: 480px) {
+  .section-fade-bottom::after,
+  .section-fade-top::before {
+    height: 60px; /* Even smaller on very small screens */
+  }
+  
+  .section-overlap {
+    margin-top: -2rem;
+    padding-top: 4rem;
+  }
+}

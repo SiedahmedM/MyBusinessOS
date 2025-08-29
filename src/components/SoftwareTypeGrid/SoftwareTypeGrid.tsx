@@ -53,7 +53,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   }
 
   return (
-    <section className={`software-grid-mobile ${className}`}>
+    <section className={`software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black ${className}`}>
       {/* Header */}
       <div className="section-header-mobile">
         <h2 className="text-neutral-900">

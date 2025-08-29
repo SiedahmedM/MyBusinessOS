@@ -78,7 +78,7 @@ export function AIPlayground() {
 
   if (error) {
     return (
-      <section id="ai-playground" className="ai-playground-mobile">
+      <section id="ai-playground" className="ai-playground-mobile section-fade-top section-fade-top--white">
         <div className="content-wrapper">
           <div className="mobile-content-padding">
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
@@ -101,7 +101,7 @@ export function AIPlayground() {
   }
 
   return (
-    <section id="ai-playground" className="ai-playground-mobile">
+    <section id="ai-playground" className="ai-playground-mobile section-fade-top section-fade-top--white">
       <div className="content-wrapper">
         {/* Header */}
         <div className="section-header-mobile">

@@ -9,7 +9,7 @@ export function ROICalculator() {
   console.log('ROICalculator: Rendering with activeTab:', activeTab);
 
   return (
-    <section id="roi-calculator" className="section-padding bg-roi-gradient">
+    <section id="roi-calculator" className="section-padding bg-roi-gradient section-fade-top section-fade-top--black section-fade-bottom section-fade-bottom--black">
       <div className="max-w-6xl mx-auto">
         <div className="glass-effect rounded-2xl p-8 lg:p-12">
           {/* Header */}
