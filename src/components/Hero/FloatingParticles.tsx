@@ -18,13 +18,13 @@ export function FloatingParticles() {
     const generateParticles = () => {
       const newParticles: Particle[] = []
       
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i < 30; i++) {
         newParticles.push({
           id: i,
           x: Math.random() * 100, // Percentage
           y: Math.random() * 100, // Percentage
-          delay: Math.random() * 5, // 0-5 second delay
-          duration: 6 + Math.random() * 4, // 6-10 second duration
+          delay: Math.random() * 8, // 0-8 second delay  
+          duration: 12 + Math.random() * 6, // 12-18 second duration (slower)
         })
       }
       
@@ -40,7 +40,7 @@ export function FloatingParticles() {
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute w-1 h-1 bg-white/30 rounded-full animate-float"
+          className="absolute w-1 h-1 bg-white/15 rounded-full animate-float"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,

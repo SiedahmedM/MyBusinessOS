@@ -53,15 +53,15 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   }
 
   return (
-    <section className={`py-20 bg-gray-50 ${className}`}>
+    <section className={`py-20 bg-neutral-50 ${className}`}>
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="section-title text-neutral-900 mb-6">
             What Can I Build For You?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Choose your software type below to see examples, ROI estimates, and real case studies
+          <p className="body-lg text-neutral-600 max-w-3xl mx-auto">
+            Choose your software type below to see examples and ROI estimates
           </p>
         </div>
 
@@ -71,79 +71,70 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
             <div
               key={type.id}
               onClick={() => handleTypeClick(type)}
-              className={`group cursor-pointer bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 ${
+              className={`group cursor-pointer bg-white rounded-xl p-6 border transition-all duration-300 hover:shadow-lg ${
                 selectedType === type.id 
-                  ? 'border-purple-500 ring-4 ring-purple-200' 
-                  : 'border-transparent hover:border-purple-200'
+                  ? 'border-accent-500 bg-accent-50/50' 
+                  : 'border-neutral-200 hover:border-accent-200'
               }`}
+              role="button"
+              tabIndex={0}
+              aria-label={`Select ${type.title} software type`}
             >
-              {/* Icon */}
-              <div className="text-6xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                {type.icon}
+              {/* Icon and Title */}
+              <div className="flex items-start space-x-4 mb-4">
+                <div className="text-3xl flex-shrink-0">
+                  {type.icon}
+                </div>
+                <div>
+                  <h3 className={`heading-md mb-2 transition-colors ${
+                    selectedType === type.id ? 'text-accent-700' : 'text-neutral-900 group-hover:text-accent-600'
+                  }`}>
+                    {type.title}
+                  </h3>
+                  <p className="body-md text-neutral-600 leading-relaxed">
+                    {type.description}
+                  </p>
+                </div>
               </div>
 
-              {/* Title */}
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-600 transition-colors">
-                {type.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-600 mb-6 leading-relaxed">
-                {type.description}
-              </p>
-
-              {/* Examples */}
-              <div className="mb-6">
-                <div className="text-sm font-semibold text-gray-500 mb-3">INCLUDES:</div>
-                <div className="flex flex-wrap gap-2">
-                  {type.examples.map((example, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 bg-purple-50 text-purple-700 text-sm rounded-full font-medium"
-                    >
+              {/* Key Features */}
+              <div className="mb-4">
+                <ul className="space-y-1">
+                  {type.examples.slice(0, 3).map((example, index) => (
+                    <li key={index} className="text-sm text-neutral-600 flex items-center">
+                      <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-2 flex-shrink-0"></span>
                       {example}
-                    </span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
 
-              {/* ROI Example */}
-              <div className="border-t pt-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="text-sm font-semibold text-green-600 mb-1">
-                      TYPICAL ROI
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      {type.roiExample}
-                    </div>
-                  </div>
-                  
-                  {/* Case Study Badge */}
-                  {type.caseStudy && (
-                    <div className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full font-medium">
-                      Case Study →
-                    </div>
-                  )}
+              {/* ROI Summary */}
+              <div className="pt-4 border-t border-neutral-100">
+                <div className="text-xs font-semibold text-accent-600 mb-1">
+                  ROI ESTIMATE
+                </div>
+                <div className="text-sm text-neutral-700">
+                  {type.roiExample}
                 </div>
               </div>
-
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
             </div>
           ))}
         </div>
 
         {/* Call to Action */}
         <div className="text-center mt-16">
-          <div className="bg-white rounded-2xl p-8 shadow-lg max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+          <div className="bg-white rounded-xl p-8 border border-neutral-200 max-w-2xl mx-auto">
+            <h3 className="heading-lg text-neutral-900 mb-4">
               Don't See Your Exact Needs?
             </h3>
-            <p className="text-gray-600 mb-6">
-              I build custom solutions for unique requirements. From enterprise systems to innovative startups - if you can describe it, I can build it.
+            <p className="body-md text-neutral-600 mb-6">
+              I build custom solutions for unique requirements. If you can describe it, I can build it.
             </p>
-            <button className="px-8 py-4 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-700 transition-colors">
+            <button 
+              className="btn-primary"
+              aria-label="Schedule a consultation to discuss your custom project"
+            >
               Discuss Your Custom Project
             </button>
           </div>

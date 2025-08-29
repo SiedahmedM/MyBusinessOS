@@ -45,50 +45,45 @@ export function Hero({ onGetStartedClick, onViewPortfolioClick, onTabChange }: H
       
       {/* Content */}
       <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Enhanced Badge */}
-        <div className="inline-flex items-center px-6 py-2 rounded-full glass-hero-stats mb-8">
-          <span className="text-gray-900 font-medium">
-            Expert Developer • Orange County • Any Software Imaginable
+        {/* Professional Badge */}
+        <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+          <span className="text-neutral-100 font-medium">
+            Expert Developer • Orange County, CA
           </span>
         </div>
         
-        {/* Updated Main Heading */}
+        {/* Simplified Main Heading */}
         <h1 className="hero-title text-white mb-8">
-          I Build Any Software
+          Custom Software That
           <br />
-          <span className="text-yellow-300">You Can Imagine</span>
+          <span className="text-accent-300">Transforms Business</span>
         </h1>
         
-        {/* Enhanced Description */}
-        <div className="space-y-4 mb-8">
-          <p className="text-xl md:text-2xl text-purple-100 max-w-4xl mx-auto leading-relaxed">
-            From simple websites to complex SaaS platforms - 
-            <strong className="text-white"> if you can describe it, I can build it</strong>
-          </p>
-          <p className="text-lg text-purple-200 max-w-3xl mx-auto">
-            Enterprise-level solutions at freelancing prices
-          </p>
-          <p className="text-lg text-purple-200 max-w-3xl mx-auto">
-            Turn your business idea into reality in weeks, not years
+        {/* Condensed Description */}
+        <div className="mb-12">
+          <p className="body-lg text-neutral-100 max-w-4xl mx-auto leading-relaxed">
+            From simple websites to complex SaaS platforms—turn your idea into reality in weeks, not years.
           </p>
         </div>
         
         {/* Typing Animation */}
         <TypingAnimation />
         
-        {/* Updated CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        {/* Streamlined CTA Buttons */}
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
           <button
             onClick={handleGetStartedClick}
-            className="px-8 py-4 bg-white text-purple-600 font-bold rounded-lg btn-hover focus-outline"
+            className="btn-primary"
+            aria-label="Book a free consultation to discuss your project"
           >
-            See What I Can Build →
+            Book Free Consultation
           </button>
           <button
             onClick={handleViewPortfolioClick}
-            className="px-8 py-4 glass-hero-stats text-gray-900 font-bold rounded-lg btn-hover focus-outline"
+            className="btn-text"
+            aria-label="View portfolio of completed projects"
           >
-            View My Portfolio
+            View Portfolio
           </button>
         </div>
         

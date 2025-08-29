@@ -59,8 +59,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
   }
 
   return (
-    <nav className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b transition-all duration-300 ${
-      isScrolled ? 'shadow-lg' : 'shadow-sm'
+    <nav className={`sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-neutral-200 transition-all duration-300 ${
+      isScrolled ? 'shadow-lg bg-white/98' : 'shadow-sm'
     } ${className}`}>
       {/* Desktop Navigation */}
       <div className="hidden md:block max-w-6xl mx-auto">
@@ -69,24 +69,26 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`flex-1 px-6 py-4 text-left transition-all duration-300 relative group ${
+              className={`flex-1 px-4 py-4 text-left transition-all duration-300 relative group ${
                 activeTab === tab.id
-                  ? 'bg-purple-50 border-b-2 border-purple-600'
-                  : 'hover:bg-gray-50'
+                  ? 'bg-primary-50 border-b-2 border-primary-500'
+                  : 'hover:bg-neutral-50'
               }`}
+              aria-label={`Switch to ${tab.title} tab`}
             >
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl" role="img" aria-hidden="true">
+              <div className="flex items-center justify-center space-x-3">
+                <span className="text-xl" role="img" aria-hidden="true">
                   {tab.icon}
                 </span>
-                <div>
+                <div className="text-center">
                   <div className={`font-semibold transition-colors ${
-                    activeTab === tab.id ? 'text-purple-600' : 'text-gray-900 group-hover:text-purple-600'
+                    activeTab === tab.id ? 'text-primary-600' : 'text-neutral-700 group-hover:text-primary-600'
                   }`}>
                     {tab.title}
                   </div>
-                  <div className={`text-sm transition-colors ${
-                    activeTab === tab.id ? 'text-purple-500' : 'text-gray-500'
+                  {/* Show description on hover only */}
+                  <div className={`text-xs transition-all duration-300 opacity-0 group-hover:opacity-100 ${
+                    activeTab === tab.id ? 'text-primary-500' : 'text-neutral-500'
                   }`}>
                     {tab.description}
                   </div>
@@ -95,7 +97,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
               
               {/* Active indicator */}
               {activeTab === tab.id && (
-                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600" />
+                <div className="absolute inset-x-0 bottom-0 h-0.5 bg-accent-gradient" />
               )}
             </button>
           ))}
@@ -104,19 +106,20 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
 
       {/* Mobile Navigation */}
       <div className="md:hidden">
-        <div className="flex overflow-x-auto scrollbar-hide px-4 py-2">
+        <div className="flex overflow-x-auto scrollbar-hide px-2 py-3 gap-2">
           {primaryTabs.map((tab) => (
             <button
               key={tab.id}
               onClick={() => handleTabClick(tab.id)}
-              className={`flex-shrink-0 px-4 py-3 mr-2 rounded-lg transition-all duration-300 ${
+              className={`flex-shrink-0 px-3 py-2 rounded-lg transition-all duration-300 ${
                 activeTab === tab.id
-                  ? 'bg-purple-600 text-white shadow-lg'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  ? 'bg-primary-500 text-white shadow-lg'
+                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
               }`}
+              aria-label={`Switch to ${tab.title} tab`}
             >
               <div className="flex items-center space-x-2 whitespace-nowrap">
-                <span className="text-lg" role="img" aria-hidden="true">
+                <span className="text-base" role="img" aria-hidden="true">
                   {tab.icon}
                 </span>
                 <span className="font-medium text-sm">
