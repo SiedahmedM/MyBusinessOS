@@ -1,5 +1,5 @@
 'use client'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
 
@@ -28,6 +28,26 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [detectedBusinessType, setDetectedBusinessType] = useState<string | null>(null)
+  const [isAIEnabled, setIsAIEnabled] = useState(true)
+
+  // Check AI availability on component mount
+  useEffect(() => {
+    const checkAIAvailability = async () => {
+      try {
+        const response = await fetch('/api/ai-chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'healthCheck' })
+        })
+        const data = await response.json()
+        setIsAIEnabled(data.aiEnabled || false)
+      } catch {
+        setIsAIEnabled(false)
+      }
+    }
+    
+    checkAIAvailability()
+  }, [])
 
   const addMessage = (content: string, type: 'user' | 'ai') => {
     const newMessage: Message = {
@@ -91,7 +111,14 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       })
 
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`)
+        // Handle different HTTP status codes
+        if (response.status === 429) {
+          throw new Error('Too many requests. Please wait a moment and try again.')
+        } else if (response.status >= 500) {
+          throw new Error('Service temporarily unavailable. Please try again.')
+        } else {
+          throw new Error(`Request failed with status ${response.status}`)
+        }
       }
 
       const data = await response.json()
@@ -103,7 +130,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       const aiResponse = data.response
       
       if (!aiResponse || aiResponse.length < 5) {
-        throw new Error('Empty or invalid AI response')
+        throw new Error('Received empty response')
       }
 
       addMessage(aiResponse, 'ai')
@@ -113,19 +140,32 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       const errorMessage = error instanceof Error ? error.message : 'Failed to send message'
       logger.error('AI chat error', { error: errorMessage })
       
-      // More contextual error handling
-      let fallbackMessage = "I apologize, but I'm having trouble connecting right now. "
+      // More sophisticated fallback based on error type
+      let fallbackMessage = "I apologize for the technical difficulty. "
       
-      if (message.toLowerCase().includes('cost') || message.toLowerCase().includes('price')) {
-        fallbackMessage += "My custom solutions typically range from $8,000-15,000 but usually pay for themselves within 2-3 months. Would you like to discuss your specific needs?"
-      } else if (message.toLowerCase().includes('build') || message.toLowerCase().includes('create')) {
-        fallbackMessage += "I specialize in building custom business automation software that saves time and increases revenue. What challenges are you facing in your business?"
+      if (errorMessage.includes('rate limit') || errorMessage.includes('429')) {
+        fallbackMessage += "I'm getting a lot of requests right now. Let me still help you - "
+      } else if (errorMessage.includes('network') || errorMessage.includes('fetch')) {
+        fallbackMessage += "There seems to be a connection issue, but I can still assist - "
       } else {
-        fallbackMessage += "I'd love to help you build custom software for your business. What industry are you in?"
+        fallbackMessage += "Let me help you anyway - "
+      }
+      
+      // Add contextual help based on message content
+      if (message.toLowerCase().includes('cost') || message.toLowerCase().includes('price')) {
+        fallbackMessage += "My solutions typically range from $15,000-45,000 and usually pay for themselves within 2-3 months. Would you like to discuss your specific project?"
+      } else if (message.toLowerCase().includes('build') || message.toLowerCase().includes('create')) {
+        fallbackMessage += "I specialize in building custom business software that saves time and increases revenue. What challenges are you facing?"
+      } else {
+        fallbackMessage += "I'd be happy to discuss how I can build custom software for your business. What challenges are you trying to solve?"
       }
       
       addMessage(fallbackMessage, 'ai')
-      setError(errorMessage)
+      
+      // Don't set error state for rate limit scenarios
+      if (!errorMessage.includes('rate limit')) {
+        setError(`Connection issue: ${errorMessage}`)
+      }
     } finally {
       setIsLoading(false)
     }
@@ -164,14 +204,23 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
 
   return (
     <div className="flex flex-col h-[600px]">
+      {!isAIEnabled && (
+        <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm">
+          <div className="flex items-center text-amber-800">
+            <span className="mr-2">ℹ️</span>
+            <span>AI features are currently in demo mode with enhanced responses.</span>
+          </div>
+        </div>
+      )}
+      
       {/* AI Avatar & Header */}
       <div className="flex items-center mb-6">
-        <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-blue-500 rounded-full flex items-center justify-center text-3xl mr-4">
+        <div className="w-20 h-20 bg-accent-gradient rounded-full flex items-center justify-center text-3xl mr-4">
           🧠
         </div>
         <div>
           <h3 className="text-2xl font-bold text-white">AI Solution Builder</h3>
-          <p className="text-purple-200">Tell me about your business and I'll build your custom app</p>
+          <p className="text-neutral-200">Tell me about your business and I'll build your custom app</p>
         </div>
       </div>
 

@@ -13,6 +13,35 @@ export function validateEnvironment() {
   }
 }
 
+export function validateAIConfiguration(): boolean {
+  const apiKey = process.env.OPENAI_API_KEY
+  
+  if (!apiKey) {
+    console.warn('OpenAI API key not found in environment variables')
+    return false
+  }
+  
+  if (apiKey === 'placeholder-openai-key') {
+    console.warn('OpenAI API key is still set to placeholder value')
+    return false
+  }
+  
+  if (apiKey.length < 20) {
+    console.warn('OpenAI API key appears to be invalid (too short)')
+    return false
+  }
+  
+  return true
+}
+
+export function getEnvConfig() {
+  return {
+    openaiApiKey: process.env.OPENAI_API_KEY,
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    supabaseAnonKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+  }
+}
+
 export function isDevelopment(): boolean {
   return process.env.NODE_ENV === 'development'
 }
