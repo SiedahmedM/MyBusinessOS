@@ -293,7 +293,7 @@ export function QuickROICalculator() {
 
           {/* Guarantee */}
           <div className="mt-8 text-center bg-green-50 rounded-lg p-6">
-            <div className="text-green-800 font-semibold mb-2">✅ 30-Day Success Guarantee</div>
+            <div className="text-green-800 font-semibold mb-2">◆ 30-Day Success Guarantee</div>
             <p className="text-green-700 text-sm">
               If you don't see measurable results within 30 days, we'll refund your investment completely.
             </p>

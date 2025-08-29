@@ -16,7 +16,7 @@ const processSteps: ProcessStep[] = [
     number: 1,
     title: 'Discovery & Design',
     duration: '3-5 days',
-    icon: '🔍',
+    icon: '◆',
     activities: [
       'Requirements gathering session',
       'Technical architecture planning', 
@@ -29,7 +29,7 @@ const processSteps: ProcessStep[] = [
     number: 2,
     title: 'Development & Testing', 
     duration: '2-8 weeks',
-    icon: '⚡',
+    icon: '◆',
     activities: [
       'Agile development sprints',
       'Weekly progress demos',
@@ -42,7 +42,7 @@ const processSteps: ProcessStep[] = [
     number: 3,
     title: 'Launch & Training',
     duration: '1 week',
-    icon: '🚀',
+    icon: '◆',
     activities: [
       'Production deployment',
       'Team training sessions',
@@ -55,7 +55,7 @@ const processSteps: ProcessStep[] = [
     number: 4,
     title: 'Support & Growth',
     duration: 'Ongoing',
-    icon: '📈',
+    icon: '◆',
     activities: [
       '30-day success guarantee',
       'Performance monitoring',
@@ -230,7 +230,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
             {[
               {
                 title: 'Planning & Design',
-                icon: '🎨',
+                icon: '◆',
                 features: [
                   'Unlimited revisions on design',
                   'Technical architecture document',
@@ -240,7 +240,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
               },
               {
                 title: 'Development',
-                icon: '⚙️',
+                icon: '◆',
                 features: [
                   'Clean, maintainable code',
                   'Automated testing suite',
@@ -250,7 +250,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
               },
               {
                 title: 'Deployment',
-                icon: '🌐',
+                icon: '◆',
                 features: [
                   'Production environment setup',
                   'SSL certificates & security',
@@ -260,7 +260,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
               },
               {
                 title: 'Support',
-                icon: '🛠️',
+                icon: '◆',
                 features: [
                   '30-day success guarantee',
                   '6 months of updates included',
@@ -287,7 +287,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
 
         {/* Success Guarantee */}
         <div className="mt-16 bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-center text-white">
-          <div className="text-4xl mb-4">✅</div>
+          <div className="text-4xl mb-4">◆</div>
           <h3 className="text-2xl font-bold mb-4">30-Day Success Guarantee</h3>
           <p className="text-lg mb-6 max-w-3xl mx-auto">
             I'm so confident in my process and results that I offer a 30-day success guarantee. 
@@ -295,15 +295,15 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center">
-              <span className="text-2xl mr-2">🎯</span>
+              <span className="text-2xl mr-2">◆</span>
               <span>Results-driven approach</span>
             </div>
             <div className="flex items-center">
-              <span className="text-2xl mr-2">⚡</span>
+              <span className="text-2xl mr-2">◆</span>
               <span>Fast delivery guaranteed</span>
             </div>
             <div className="flex items-center">
-              <span className="text-2xl mr-2">🛡️</span>
+              <span className="text-2xl mr-2">◆</span>
               <span>Quality assurance included</span>
             </div>
           </div>

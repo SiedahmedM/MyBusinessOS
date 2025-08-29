@@ -10,7 +10,7 @@ interface ErrorDisplayProps {
 export const ErrorDisplay = memo(function ErrorDisplay({ error, onRetry, className = '' }: ErrorDisplayProps) {
   return (
     <div className={`bg-red-50 border border-red-200 rounded-lg p-4 text-center ${className}`}>
-      <div className="text-4xl mb-4">❌</div>
+      <div className="text-4xl mb-4">◆</div>
       <p className="text-red-600 mb-4">Error: {error}</p>
       {onRetry && (
         <button 

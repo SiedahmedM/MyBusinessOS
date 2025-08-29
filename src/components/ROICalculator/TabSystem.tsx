@@ -14,8 +14,8 @@ interface TabSystemProps {
 
 const tabs: Tab[] = [
   { id: 'time', label: 'Time Savings', icon: '⏰' },
-  { id: 'revenue', label: 'Revenue Growth', icon: '📈' },
-  { id: 'cost', label: 'Cost Reduction', icon: '💰' }
+  { id: 'revenue', label: 'Revenue Growth', icon: '◆' },
+  { id: 'cost', label: 'Cost Reduction', icon: '◆' }
 ]
 
 export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {

@@ -16,7 +16,7 @@ export function ROICalculator() {
           <div className="text-center mb-12">
             <div className="flex items-center justify-center mb-4">
               <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <span className="text-2xl">📊</span>
+                <span className="text-2xl">◆</span>
               </div>
             </div>
             <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">

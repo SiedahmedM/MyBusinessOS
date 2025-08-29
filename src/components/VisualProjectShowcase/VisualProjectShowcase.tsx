@@ -73,11 +73,11 @@ const projectShowcases: ProjectShowcase[] = [
 ]
 
 const categoryIcons = {
-  'Business Management': '🏢',
-  'E-commerce': '🛒',
-  'Project Management': '📊',
-  'Mobile App': '📱',
-  'SaaS Platform': '💼'
+  'Business Management': '◆',
+  'E-commerce': '◆',
+  'Project Management': '◆',
+  'Mobile App': '◆',
+  'SaaS Platform': '◆'
 }
 
 export function VisualProjectShowcase() {
@@ -186,7 +186,7 @@ export function VisualProjectShowcase() {
                         /* Fallback design when image fails */
                         <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 flex flex-col items-center justify-center text-white p-8">
                           <div className="text-4xl mb-4">
-                            {categoryIcons[project.category as keyof typeof categoryIcons] || '💼'}
+                            {categoryIcons[project.category as keyof typeof categoryIcons] || '◆'}
                           </div>
                           <div className="text-xl font-bold text-center">{project.title}</div>
                           <div className="text-sm text-blue-200 mt-2 text-center">{project.category}</div>

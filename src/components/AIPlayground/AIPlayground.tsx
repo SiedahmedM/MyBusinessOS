@@ -59,7 +59,7 @@ export function AIPlayground() {
         <div className="content-wrapper">
           <div className="mobile-content-padding">
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
-              <div className="text-4xl mb-4">❌</div>
+              <div className="text-4xl mb-4">◆</div>
               <p className="text-red-600 mb-4">Error: {error}</p>
               <button 
                 onClick={() => {

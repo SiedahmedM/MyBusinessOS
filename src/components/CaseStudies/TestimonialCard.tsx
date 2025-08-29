@@ -20,7 +20,7 @@ export function TestimonialCard({ study }: TestimonialCardProps) {
           <p className="text-gray-400 mb-2">{study.industry}</p>
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
-              <span key={i} className="text-yellow-400 text-lg">★</span>
+              <span key={i} className="text-yellow-400 text-lg">◆</span>
             ))}
             <span className="text-gray-400 ml-2 text-sm">5.0 stars</span>
           </div>
@@ -64,7 +64,7 @@ export function TestimonialCard({ study }: TestimonialCardProps) {
           {study.features.map((feature, index) => (
             <div key={index} className="flex items-center text-sm">
               <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center mr-3">
-                <span className="text-white text-xs">✓</span>
+                <span className="text-white text-xs">◆</span>
               </div>
               <span className="text-gray-300">{feature}</span>
             </div>

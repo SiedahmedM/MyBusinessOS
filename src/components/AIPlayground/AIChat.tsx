@@ -216,7 +216,7 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       {/* AI Avatar & Header */}
       <div className="flex items-center mb-6">
         <div className="w-20 h-20 bg-accent-gradient rounded-full flex items-center justify-center text-3xl mr-4">
-          🧠
+          ◆
         </div>
         <div>
           <h3 className="text-2xl font-bold text-white">AI Solution Builder</h3>

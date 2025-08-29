@@ -237,11 +237,11 @@ export function ContactForm() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center justify-center">
-              <span className="text-purple-600 mr-2">📞</span>
+              <span className="text-purple-600 mr-2">◆</span>
               <span className="font-semibold">(714) 555-0123</span>
             </div>
             <div className="flex items-center justify-center">
-              <span className="text-purple-600 mr-2">📧</span>
+              <span className="text-purple-600 mr-2">◆</span>
               <span className="font-semibold">hello@mybusinessos.com</span>
             </div>
           </div>
