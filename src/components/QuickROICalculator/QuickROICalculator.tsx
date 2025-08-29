@@ -177,7 +177,7 @@ export function QuickROICalculator() {
                 <select
                   value={inputs.softwareType}
                   onChange={(e) => updateInput('softwareType', e.target.value)}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                 >
                   {Object.entries(softwareTypeROI).map(([key, software]) => (
                     <option key={key} value={key}>{software.name}</option>
@@ -197,7 +197,7 @@ export function QuickROICalculator() {
                     type="number"
                     value={inputs.monthlyRevenue}
                     onChange={(e) => updateInput('monthlyRevenue', parseInt(e.target.value) || 0)}
-                    className="w-full pl-8 pr-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                    className="w-full pl-8 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                     placeholder="50000"
                     min="1000"
                     max="10000000"
@@ -215,7 +215,7 @@ export function QuickROICalculator() {
                   type="number"
                   value={inputs.hoursSpentManually}
                   onChange={(e) => updateInput('hoursSpentManually', parseInt(e.target.value) || 0)}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="20"
                   min="1"
                   max="80"
@@ -232,7 +232,7 @@ export function QuickROICalculator() {
                   type="number"
                   value={inputs.teamSize}
                   onChange={(e) => updateInput('teamSize', parseInt(e.target.value) || 1)}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent"
                   placeholder="5"
                   min="1"
                   max="100"

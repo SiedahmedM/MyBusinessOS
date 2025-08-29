@@ -231,7 +231,7 @@ export function CaseStudies() {
                 className={`px-6 py-3 rounded-full font-medium transition-all duration-200 ${
                   selectedCategory === category.id
                     ? 'bg-primary-gradient text-white shadow-lg'
-                    : 'bg-white/10 text-neutral-300 hover:bg-white/20'
+                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
                 }`}
               >
                 {category.label} ({category.count})

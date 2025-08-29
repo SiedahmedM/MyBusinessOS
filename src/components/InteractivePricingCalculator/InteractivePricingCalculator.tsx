@@ -194,7 +194,7 @@ export function InteractivePricingCalculator() {
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.softwareType === type.id
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-200 hover:border-accent-300'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{type.name}</div>
@@ -217,7 +217,7 @@ export function InteractivePricingCalculator() {
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.complexity === key
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-200 hover:border-accent-300'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{complexity.label}</div>
@@ -240,7 +240,7 @@ export function InteractivePricingCalculator() {
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.timeline === key
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-200 hover:border-accent-300'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{timeline.label}</div>
@@ -263,7 +263,7 @@ export function InteractivePricingCalculator() {
                     className={`p-3 rounded-lg border text-left transition-all ${
                       calculatorState.features.includes(feature.id)
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-200 hover:border-accent-300'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="flex justify-between items-center">
@@ -290,7 +290,7 @@ export function InteractivePricingCalculator() {
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.support === key
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-200 hover:border-accent-300'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{support.label}</div>
@@ -313,7 +313,7 @@ export function InteractivePricingCalculator() {
                 <div className="space-y-6">
                   {/* Total Price */}
                 <div className="text-center bg-neutral-50 rounded-lg p-6">
-                    <div className="text-sm text-neutral-600 mb-2">Total Investment</div>
+                    <div className="text-sm text-gray-600 mb-2">Total Investment</div>
                     <div className="text-4xl font-bold text-accent-600 mb-2">
                       ${pricingResult.totalPrice.toLocaleString()}
                     </div>
@@ -343,7 +343,7 @@ export function InteractivePricingCalculator() {
                   </div>
 
                   {/* Guarantee */}
-                  <div className="text-center text-sm text-neutral-600 bg-neutral-100 rounded-lg p-4">
+                  <div className="text-center text-sm text-gray-600 bg-neutral-100 rounded-lg p-4">
                     <div className="font-medium text-accent-700 mb-1">30-Day Success Guarantee</div>
                     <div>Your satisfaction is guaranteed or your money back</div>
                   </div>

@@ -145,7 +145,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 <div className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mb-4 transition-all duration-300 ${
                   selectedStep === step.number
                     ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white shadow-lg'
-                    : 'bg-white border-4 border-neutral-200 text-neutral-400 group-hover:border-accent-300'
+                    : 'bg-white border-4 border-gray-200 text-gray-400 group-hover:border-accent-300'
                 }`}>
                   {step.number}
                 </div>
@@ -153,7 +153,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 {/* Step Info */}
                 <div className="text-center">
                   <h3 className={`text-lg font-bold mb-2 transition-colors ${
-                    selectedStep === step.number ? 'text-accent-600' : 'text-neutral-700'
+                    selectedStep === step.number ? 'text-accent-600' : 'text-gray-700'
                   }`}>
                     {step.title}
                   </h3>
@@ -276,7 +276,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                   {category.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start text-sm">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
-                      <span className="text-neutral-600">{feature}</span>
+                      <span className="text-gray-600">{feature}</span>
                     </li>
                   ))}
                 </ul>

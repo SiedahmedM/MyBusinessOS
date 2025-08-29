@@ -88,7 +88,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
                 </div>
                 <div className="min-w-0 flex-1">
                   <h3 className={`text-lg font-semibold mb-2 transition-colors ${
-                    selectedType === type.id ? 'text-accent-700' : 'text-neutral-900 group-hover:text-accent-600'
+                    selectedType === type.id ? 'text-accent-700' : 'text-gray-900 group-hover:text-accent-600'
                   }`}>
                     {type.title}
                   </h3>
@@ -101,7 +101,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
               {/* Key Features - Mobile optimized list */}
               <div className="space-y-2">
                 {type.examples.slice(0, 3).map((example, index) => (
-                  <div key={index} className="flex items-center text-sm text-neutral-600">
+                  <div key={index} className="flex items-center text-sm text-gray-600">
                     <div className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 flex-shrink-0"></div>
                     <span>{example}</span>
                   </div>
@@ -109,7 +109,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
               </div>
 
               {/* ROI Summary */}
-              <div className="pt-3 border-t border-neutral-100">
+              <div className="pt-3 border-t border-gray-100">
                 <div className="text-xs font-semibold text-accent-600 mb-1">
                   ROI ESTIMATE
                 </div>

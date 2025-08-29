@@ -34,7 +34,7 @@ function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
       { icon: '◆', title: 'Mobile Shopping', description: 'Optimized mobile commerce' },
       { icon: '◆', title: 'Payment Processing', description: 'Secure mobile payments' },
       { icon: '◆', title: 'Order Tracking', description: 'Real-time delivery updates' },
-      { icon: '◆', title: 'Reviews & Ratings', description: 'Customer feedback system' }
+      { icon: '⭐', title: 'Reviews & Ratings', description: 'Customer feedback system' }
     ],
     'mobile-app': [
       { icon: '◆', title: 'Native Performance', description: 'Lightning-fast user experience' },
@@ -206,7 +206,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           {/* App Body - Responsive padding */}
           <div className="flex-1 bg-neutral-50 px-2 sm:px-4 py-2 sm:py-4 overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
             {features.length === 0 && !isBuilding && (
-              <div className="text-center py-12 sm:py-20 text-neutral-500">
+              <div className="text-center py-12 sm:py-20 text-gray-500">
                 <div className="text-3xl sm:text-4xl mb-3 sm:mb-4" aria-hidden="true">◆</div>
                 <div className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Ready to Build</div>
                 <div className="text-xs sm:text-sm">Tell the AI what you need →</div>

@@ -126,7 +126,7 @@ export function ContactForm() {
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                    errors.name ? 'border-red-500' : 'border-neutral-300'
+                    errors.name ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="John Smith"
                 />
@@ -145,7 +145,7 @@ export function ContactForm() {
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
                   className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                    errors.email ? 'border-red-500' : 'border-neutral-300'
+                    errors.email ? 'border-red-500' : 'border-gray-300'
                   }`}
                   placeholder="john@yourbusiness.com"
                 />
@@ -165,7 +165,7 @@ export function ContactForm() {
                 value={formData.businessType}
                 onChange={(e) => handleInputChange('businessType', e.target.value)}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                  errors.businessType ? 'border-red-500' : 'border-neutral-300'
+                  errors.businessType ? 'border-red-500' : 'border-gray-300'
                 }`}
               >
                 <option value="">Select your business type</option>
@@ -194,7 +194,7 @@ export function ContactForm() {
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
                 className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors resize-none ${
-                  errors.message ? 'border-red-500' : 'border-neutral-300'
+                  errors.message ? 'border-red-500' : 'border-gray-300'
                 }`}
                 placeholder="I run a [type] business and need help with [specific challenge]. We currently handle [process] manually and it's taking [time/causing issues]..."
               />

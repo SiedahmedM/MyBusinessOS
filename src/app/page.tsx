@@ -41,7 +41,7 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
           </div>
         </div>
         
-        {/* AI Playground - Immersive dark section */}
+        {/* AI Playground - Immersive purple section */}
         <div className="ai-playground-mobile">
           <div className="content-wrapper">
             <AIPlayground />
