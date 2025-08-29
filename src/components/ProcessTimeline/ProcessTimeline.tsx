@@ -126,13 +126,13 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
           </p>
         </div>
 
-        {/* Process Steps Timeline */}
-        <div className="relative mb-16">
+        {/* Desktop Process Steps Timeline */}
+        <div className="hidden md:block relative mb-16">
           {/* Connection Line */}
-          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-accent-500 transform -translate-y-1/2 z-0"></div>
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-accent-500 transform -translate-y-1/2 z-0"></div>
           
           {/* Steps */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+          <div className="grid grid-cols-4 gap-8 relative z-10">
             {processSteps.map((step) => (
               <div 
                 key={step.number}
@@ -167,8 +167,107 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
           </div>
         </div>
 
-        {/* Selected Step Details */}
-        <div className="bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-8">
+        {/* Mobile Process Steps - Accordion Style */}
+        <div className="md:hidden space-y-4 mb-16">
+          {processSteps.map((step) => (
+            <div key={step.number} className="bg-white rounded-xl shadow-lg overflow-hidden">
+              {/* Step Header - Always Visible */}
+              <div 
+                onClick={() => handleStepClick(step.number)}
+                className={`cursor-pointer p-6 transition-all duration-300 ${
+                  selectedStep === step.number 
+                    ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white' 
+                    : 'bg-white hover:bg-gray-50'
+                }`}
+              >
+                <div className="flex items-center">
+                  {/* Step Circle */}
+                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0 ${
+                    selectedStep === step.number
+                      ? 'bg-white/20 text-white'
+                      : 'bg-gray-100 text-gray-600'
+                  }`}>
+                    {step.number}
+                  </div>
+                  
+                  {/* Step Info */}
+                  <div className="flex-1">
+                    <h3 className={`text-lg font-bold mb-1 ${
+                      selectedStep === step.number ? 'text-white' : 'text-gray-900'
+                    }`}>
+                      {step.title}
+                    </h3>
+                    <p className={`text-sm font-medium ${
+                      selectedStep === step.number ? 'text-white/90' : 'text-gray-500'
+                    }`}>
+                      {step.duration}
+                    </p>
+                  </div>
+                  
+                  {/* Expand Icon */}
+                  <div className={`text-2xl transition-transform duration-300 ${
+                    selectedStep === step.number ? 'rotate-180' : ''
+                  }`}>
+                    {selectedStep === step.number ? '▼' : '▶'}
+                  </div>
+                </div>
+              </div>
+
+              {/* Step Details - Collapsible */}
+              <div className={`transition-all duration-300 overflow-hidden ${
+                selectedStep === step.number ? 'max-h-screen' : 'max-h-0'
+              }`}>
+                <div className="p-6 bg-gradient-to-br from-neutral-50 to-neutral-100 space-y-6">
+                  {/* Activities */}
+                  <div>
+                    <h4 className="text-lg font-bold text-neutral-900 mb-4">
+                      What Happens During {step.title}
+                    </h4>
+                    <div className="space-y-3">
+                      {step.activities.map((activity, index) => (
+                        <div key={index} className="flex items-start">
+                          <div className="w-5 h-5 bg-accent-500 rounded-full flex items-center justify-center mr-3 mt-0.5 flex-shrink-0">
+                            <svg className="w-2.5 h-2.5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                          <p className="text-neutral-700 text-sm leading-relaxed">{activity}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Deliverable */}
+                  <div>
+                    <h4 className="text-lg font-bold text-neutral-900 mb-4">
+                      What You Get
+                    </h4>
+                    <div className="bg-white rounded-lg p-4 shadow-sm">
+                      <div className="flex items-start">
+                        <div className="text-2xl mr-3 flex-shrink-0">{step.icon}</div>
+                        <div className="flex-1">
+                          <div className="text-sm font-semibold text-accent-600 mb-2">
+                            Key Deliverable
+                          </div>
+                          <p className="text-neutral-700 text-sm leading-relaxed mb-3">
+                            {step.deliverable}
+                          </p>
+                          <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-800">
+                            <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-1.5"></span>
+                            Duration: {step.duration}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Selected Step Details */}
+        <div className="hidden md:block bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-8 mb-16">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Activities */}
             <div>
