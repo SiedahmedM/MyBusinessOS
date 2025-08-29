@@ -13,9 +13,9 @@ interface TabSystemProps {
 }
 
 const tabs: Tab[] = [
-  { id: 'time', label: 'Time Savings', icon: '⏰' },
-  { id: 'revenue', label: 'Revenue Growth', icon: '📈' },
-  { id: 'cost', label: 'Cost Reduction', icon: '💰' }
+  { id: 'time', label: 'Time Savings', icon: '◆' },
+  { id: 'revenue', label: 'Revenue Growth', icon: '◆' },
+  { id: 'cost', label: 'Cost Reduction', icon: '◆' }
 ]
 
 export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
@@ -40,7 +40,7 @@ export function TabSystem({ activeTab, onTabChange }: TabSystemProps) {
         {/* Sliding indicator */}
         <div 
           ref={indicatorRef}
-          className="absolute top-1 bottom-1 bg-purple-600 rounded-lg transition-all duration-300 ease-out shadow-lg"
+          className="absolute top-1 bottom-1 bg-accent-600 rounded-lg transition-all duration-300 ease-out shadow-lg"
           style={{ width: `${100 / tabs.length}%` }}
         />
         

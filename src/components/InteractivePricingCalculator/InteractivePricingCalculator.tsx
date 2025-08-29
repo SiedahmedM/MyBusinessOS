@@ -158,14 +158,14 @@ export function InteractivePricingCalculator() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center p-8">
-        <div className="animate-spin h-8 w-8 border-2 border-purple-600 border-t-transparent rounded-full mr-3"></div>
+        <div className="animate-spin h-8 w-8 border-2 border-accent-600 border-t-transparent rounded-full mr-3"></div>
         <span>Loading pricing calculator...</span>
       </div>
     )
   }
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-neutral-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -193,8 +193,8 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ softwareType: type.id })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.softwareType === type.id
-                        ? 'border-purple-500 bg-purple-50'
-                        : 'border-gray-200 hover:border-purple-300'
+                        ? 'border-accent-500 bg-accent-50'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{type.name}</div>
@@ -216,8 +216,8 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ complexity: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.complexity === key
-                        ? 'border-purple-500 bg-purple-50'
-                        : 'border-gray-200 hover:border-purple-300'
+                        ? 'border-accent-500 bg-accent-50'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{complexity.label}</div>
@@ -239,8 +239,8 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ timeline: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.timeline === key
-                        ? 'border-purple-500 bg-purple-50'
-                        : 'border-gray-200 hover:border-purple-300'
+                        ? 'border-accent-500 bg-accent-50'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{timeline.label}</div>
@@ -262,8 +262,8 @@ export function InteractivePricingCalculator() {
                     onClick={() => toggleFeature(feature.id)}
                     className={`p-3 rounded-lg border text-left transition-all ${
                       calculatorState.features.includes(feature.id)
-                        ? 'border-purple-500 bg-purple-50'
-                        : 'border-gray-200 hover:border-purple-300'
+                        ? 'border-accent-500 bg-accent-50'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="flex justify-between items-center">
@@ -289,14 +289,14 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ support: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.support === key
-                        ? 'border-purple-500 bg-purple-50'
-                        : 'border-gray-200 hover:border-purple-300'
+                        ? 'border-accent-500 bg-accent-50'
+                        : 'border-gray-200 hover:border-accent-300'
                     }`}
                   >
                     <div className="font-medium">{support.label}</div>
                     <div className="text-sm text-gray-500">{support.description}</div>
                     {support.price > 0 && (
-                      <div className="text-sm font-medium text-purple-600">+${support.price.toLocaleString()}</div>
+                      <div className="text-sm font-medium text-accent-600">+${support.price.toLocaleString()}</div>
                     )}
                   </button>
                 ))}
@@ -312,9 +312,9 @@ export function InteractivePricingCalculator() {
                 
                 <div className="space-y-6">
                   {/* Total Price */}
-                  <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg p-6">
+                <div className="text-center bg-neutral-50 rounded-lg p-6">
                     <div className="text-sm text-gray-600 mb-2">Total Investment</div>
-                    <div className="text-4xl font-bold text-purple-600 mb-2">
+                    <div className="text-4xl font-bold text-accent-600 mb-2">
                       ${pricingResult.totalPrice.toLocaleString()}
                     </div>
                     <div className="text-sm text-gray-500">{pricingResult.timeline}</div>
@@ -324,7 +324,7 @@ export function InteractivePricingCalculator() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-3 border-b">
                       <span className="font-medium">Expected ROI</span>
-                      <span className="text-green-600 font-bold">{pricingResult.roi}</span>
+                      <span className="text-accent-600 font-bold">{pricingResult.roi}</span>
                     </div>
                     <div className="flex justify-between items-center py-3 border-b">
                       <span className="font-medium">Payback Period</span>
@@ -334,17 +334,17 @@ export function InteractivePricingCalculator() {
 
                   {/* Call to Action */}
                   <div className="space-y-3">
-                    <button className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-lg hover:shadow-lg transition-all">
+                    <button className="w-full btn-primary">
                       Get Your Free Consultation
                     </button>
-                    <button className="w-full px-6 py-3 border-2 border-purple-600 text-purple-600 font-medium rounded-lg hover:bg-purple-50 transition-all">
+                    <button className="w-full px-6 py-3 border-2 border-accent-600 text-accent-600 font-medium rounded-lg hover:bg-accent-50 transition-all">
                       Download Detailed Quote (PDF)
                     </button>
                   </div>
 
                   {/* Guarantee */}
-                  <div className="text-center text-sm text-gray-600 bg-green-50 rounded-lg p-4">
-                    <div className="font-medium text-green-800 mb-1">30-Day Success Guarantee</div>
+                  <div className="text-center text-sm text-gray-600 bg-neutral-100 rounded-lg p-4">
+                    <div className="font-medium text-accent-700 mb-1">30-Day Success Guarantee</div>
                     <div>Your satisfaction is guaranteed or your money back</div>
                   </div>
                 </div>

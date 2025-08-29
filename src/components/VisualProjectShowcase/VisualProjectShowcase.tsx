@@ -73,11 +73,11 @@ const projectShowcases: ProjectShowcase[] = [
 ]
 
 const categoryIcons = {
-  'Business Management': '🏢',
-  'E-commerce': '🛒',
-  'Project Management': '📊',
-  'Mobile App': '📱',
-  'SaaS Platform': '💼'
+  'Business Management': '◆',
+  'E-commerce': '◆',
+  'Project Management': '◆',
+  'Mobile App': '◆',
+  'SaaS Platform': '◆'
 }
 
 export function VisualProjectShowcase() {
@@ -175,7 +175,7 @@ export function VisualProjectShowcase() {
                   <div className="relative lg:w-1/2">
                     <div className="aspect-video lg:aspect-square bg-gray-800 flex items-center justify-center relative overflow-hidden">
                       {!imageLoadErrors.has(project.id) ? (
-                        <img 
+                        <img
                           src={project.image}
                           alt={`${project.title} project screenshot`}
                           className="w-full h-full object-cover"
@@ -184,12 +184,12 @@ export function VisualProjectShowcase() {
                         />
                       ) : (
                         /* Fallback design when image fails */
-                        <div className="w-full h-full bg-gradient-to-br from-blue-600 to-purple-600 flex flex-col items-center justify-center text-white p-8">
+                        <div className="w-full h-full bg-gradient-to-br from-primary-700 to-primary-500 flex flex-col items-center justify-center text-white p-8">
                           <div className="text-4xl mb-4">
-                            {categoryIcons[project.category as keyof typeof categoryIcons] || '💼'}
+                            {categoryIcons[project.category as keyof typeof categoryIcons] || '◆'}
                           </div>
                           <div className="text-xl font-bold text-center">{project.title}</div>
-                          <div className="text-sm text-blue-200 mt-2 text-center">{project.category}</div>
+                          <div className="text-sm text-accent-200 mt-2 text-center">{project.category}</div>
                         </div>
                       )}
                       
@@ -205,7 +205,7 @@ export function VisualProjectShowcase() {
                   {/* Project Info */}
                   <div className="p-6 lg:w-1/2 lg:p-8">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-medium">
+                      <span className="px-2 py-1 bg-accent-500/20 text-accent-300 rounded-full text-xs font-medium">
                         {project.category}
                       </span>
                     </div>
@@ -219,9 +219,9 @@ export function VisualProjectShowcase() {
                     </p>
                     
                     {/* Results */}
-                    <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3 mb-4">
-                      <div className="text-green-400 font-semibold text-sm mb-1">Results Achieved:</div>
-                      <div className="text-green-300 text-sm">{project.results}</div>
+                    <div className="bg-accent-500/10 border border-accent-500/20 rounded-lg p-3 mb-4">
+                      <div className="text-accent-400 font-semibold text-sm mb-1">Results Achieved:</div>
+                      <div className="text-accent-300 text-sm">{project.results}</div>
                     </div>
                     
                     {/* Tech Stack */}
@@ -264,24 +264,24 @@ export function VisualProjectShowcase() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 max-w-4xl mx-auto">
+          <div className="bg-primary-gradient rounded-2xl p-8 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-white mb-4">
               Ready to See Your Project Here?
             </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-neutral-200 mb-6 max-w-2xl mx-auto leading-relaxed">
               Every project is custom-built to solve your specific challenges and deliver measurable results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <button 
+              <button
                 onClick={() => handleScrollToSection('ai-playground')}
-                className="bg-white text-blue-600 font-bold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+                className="btn-secondary w-full sm:w-auto"
                 aria-label="Start your project with AI chat"
               >
                 Start Your Project
               </button>
-              <button 
+              <button
                 onClick={() => handleScrollToSection('contact')}
-                className="border-2 border-white text-white font-bold py-3 px-6 rounded-lg hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+                className="w-full sm:w-auto btn-primary"
                 aria-label="Get a free quote for your project"
               >
                 Get Free Quote

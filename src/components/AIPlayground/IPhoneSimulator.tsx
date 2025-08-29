@@ -19,40 +19,40 @@ interface IPhoneSimulatorProps {
 function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
   const featureMap: Record<string, AppFeature[]> = {
     'business-management': [
-      { icon: '👥', title: 'Customer Management', description: 'Complete CRM on mobile' },
-      { icon: '📊', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
-      { icon: '📅', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
-      { icon: '💰', title: 'Sales Tracking', description: 'Revenue and performance data' }
+      { icon: '◆', title: 'Customer Management', description: 'Complete CRM on mobile' },
+      { icon: '◆', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
+      { icon: '◆', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
+      { icon: '◆', title: 'Sales Tracking', description: 'Revenue and performance data' }
     ],
     'agency-to-saas': [
-      { icon: '📈', title: 'Client Dashboard', description: 'Self-service client portal' },
-      { icon: '🔄', title: 'Automated Reports', description: 'Generate reports automatically' },
-      { icon: '💳', title: 'Subscription Billing', description: 'Recurring revenue management' },
-      { icon: '👥', title: 'Multi-tenant Access', description: 'Secure client separation' }
+      { icon: '◆', title: 'Client Dashboard', description: 'Self-service client portal' },
+      { icon: '◆', title: 'Automated Reports', description: 'Generate reports automatically' },
+      { icon: '◆', title: 'Subscription Billing', description: 'Recurring revenue management' },
+      { icon: '◆', title: 'Multi-tenant Access', description: 'Secure client separation' }
     ],
     'ecommerce': [
-      { icon: '🛒', title: 'Mobile Shopping', description: 'Optimized mobile commerce' },
-      { icon: '💳', title: 'Payment Processing', description: 'Secure mobile payments' },
-      { icon: '📦', title: 'Order Tracking', description: 'Real-time delivery updates' },
+      { icon: '◆', title: 'Mobile Shopping', description: 'Optimized mobile commerce' },
+      { icon: '◆', title: 'Payment Processing', description: 'Secure mobile payments' },
+      { icon: '◆', title: 'Order Tracking', description: 'Real-time delivery updates' },
       { icon: '⭐', title: 'Reviews & Ratings', description: 'Customer feedback system' }
     ],
     'mobile-app': [
-      { icon: '📱', title: 'Native Performance', description: 'Lightning-fast user experience' },
-      { icon: '🔄', title: 'Offline Sync', description: 'Works without internet' },
-      { icon: '🔔', title: 'Push Notifications', description: 'Re-engage users automatically' },
-      { icon: '🎨', title: 'Custom UI/UX', description: 'Branded mobile experience' }
+      { icon: '◆', title: 'Native Performance', description: 'Lightning-fast user experience' },
+      { icon: '◆', title: 'Offline Sync', description: 'Works without internet' },
+      { icon: '◆', title: 'Push Notifications', description: 'Re-engage users automatically' },
+      { icon: '◆', title: 'Custom UI/UX', description: 'Branded mobile experience' }
     ],
     'analytics-dashboard': [
-      { icon: '📊', title: 'Mobile Analytics', description: 'Data insights on-the-go' },
-      { icon: '📈', title: 'Real-time Charts', description: 'Live performance metrics' },
-      { icon: '🚨', title: 'Alert System', description: 'Instant mobile notifications' },
-      { icon: '📋', title: 'Custom Reports', description: 'Generate reports anywhere' }
+      { icon: '◆', title: 'Mobile Analytics', description: 'Data insights on-the-go' },
+      { icon: '◆', title: 'Real-time Charts', description: 'Live performance metrics' },
+      { icon: '◆', title: 'Alert System', description: 'Instant mobile notifications' },
+      { icon: '◆', title: 'Custom Reports', description: 'Generate reports anywhere' }
     ],
     'ai-automation': [
-      { icon: '🤖', title: 'AI Assistant', description: 'Smart mobile automation' },
-      { icon: '📸', title: 'Document Scanner', description: 'AI-powered document processing' },
-      { icon: '🗣️', title: 'Voice Commands', description: 'Hands-free operation' },
-      { icon: '⚡', title: 'Auto Workflows', description: 'Intelligent task automation' }
+      { icon: '◆', title: 'AI Assistant', description: 'Smart mobile automation' },
+      { icon: '◆', title: 'Document Scanner', description: 'AI-powered document processing' },
+      { icon: '◆', title: 'Voice Commands', description: 'Hands-free operation' },
+      { icon: '◆', title: 'Auto Workflows', description: 'Intelligent task automation' }
     ]
   }
 
@@ -155,7 +155,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
     return (
       <div className="relative mx-auto w-[375px] h-[812px]">
         <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center h-full flex flex-col justify-center">
-          <div className="text-4xl mb-4">❌</div>
+          <div className="text-4xl mb-4">◆</div>
           <p className="text-red-600 mb-4">Error: {error}</p>
           <button 
             onClick={() => {
@@ -193,8 +193,8 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
             <span>9:41</span>
             <div className="flex items-center space-x-1">
               <span>●●●●●</span>
-              <span>📶</span>
-              <span>🔋</span>
+              <span>◆</span>
+              <span>◆</span>
               <span className="hidden sm:inline">100%</span>
             </div>
           </div>
@@ -233,7 +233,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
           <div className="flex-1 bg-gray-50 px-2 sm:px-4 py-2 sm:py-4 overflow-y-auto" style={{ height: 'calc(100% - 140px)' }}>
             {features.length === 0 && !isBuilding && (
               <div className="text-center py-12 sm:py-20 text-gray-500">
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4" aria-hidden="true">⚡</div>
+                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4" aria-hidden="true">◆</div>
                 <div className="text-base sm:text-lg font-semibold mb-1 sm:mb-2">Ready to Build</div>
                 <div className="text-xs sm:text-sm">Tell the AI what you need →</div>
               </div>
@@ -242,7 +242,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-3 sm:p-4 mb-2 sm:mb-3 shadow-sm border-2 border-transparent hover:border-blue-200 transition-all duration-300 animate-slideIn"
+                className="bg-white rounded-lg p-3 sm:p-4 mb-2 sm:mb-3 shadow-sm border-2 border-transparent hover:border-accent-200 transition-all duration-300 animate-slideIn"
                 style={{
                   animationDelay: `${index * 0.1}s`,
                   animationFillMode: 'both'

@@ -58,9 +58,9 @@ export function CodeDisplay() {
       {/* Mac window controls */}
       <div className="flex items-center px-4 py-3 bg-gray-800">
         <div className="flex space-x-2">
-          <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-          <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-neutral-400 rounded-full"></div>
+          <div className="w-3 h-3 bg-accent-500 rounded-full"></div>
+          <div className="w-3 h-3 bg-neutral-600 rounded-full"></div>
         </div>
         <div className="ml-4 text-gray-400 text-sm font-mono">
           AdamsMufflerShop.tsx

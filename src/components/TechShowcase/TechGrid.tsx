@@ -7,11 +7,11 @@ interface TechItem {
 }
 
 const techItems: TechItem[] = [
-  { icon: '⚛️', name: 'React', description: 'Used by Netflix & Facebook' },
+  { icon: '◆', name: 'React', description: 'Used by Netflix & Facebook' },
   { icon: '▲', name: 'Next.js', description: 'Powers TikTok & Uber' },
-  { icon: '🔷', name: 'TypeScript', description: 'Microsoft\'s language' },
-  { icon: '🟢', name: 'Supabase', description: 'Real-time database' },
-  { icon: '🎨', name: 'Tailwind', description: 'Modern CSS framework' },
+  { icon: '◆', name: 'TypeScript', description: 'Microsoft\'s language' },
+  { icon: '◆', name: 'Supabase', description: 'Real-time database' },
+  { icon: '◆', name: 'Tailwind', description: 'Modern CSS framework' },
   { icon: '◼️', name: 'Vercel', description: 'Deploy in seconds' }
 ]
 
