@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
 import { logger } from '@/lib/logger'
+import { Logo } from '@/components/common/Logo'
 
 interface TabNavigationProps {
   activeTab: Tab['id']
@@ -64,6 +65,14 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
     } border-b border-neutral-200/80 ${className}`}>
       {/* Mobile Navigation - Redesigned */}
       <div className="md:hidden mobile-container">
+        {/* Mobile Logo Header */}
+        <div className="flex items-center justify-between py-3 px-4 border-b border-neutral-200/60">
+          <Logo variant="header" size="sm" />
+          <div className="text-xs text-neutral-500 font-medium">
+            CustomSoftwarePro.com
+          </div>
+        </div>
+        
         <div className="py-2">
           {/* Horizontal scrollable tabs */}
           <div className="flex overflow-x-auto scrollbar-hide gap-1 px-1">
@@ -106,7 +115,14 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
 
       {/* Desktop Navigation - Enhanced */}
       <div className="hidden md:block max-w-6xl mx-auto px-4">
-        <div className="flex">
+        <div className="flex items-center">
+          {/* Desktop Logo */}
+          <div className="flex items-center pr-8 border-r border-neutral-200/60 mr-6">
+            <Logo variant="header" size="md" className="logo-container" />
+          </div>
+          
+          {/* Navigation Tabs */}
+          <div className="flex flex-1">
           {primaryTabs.map((tab) => (
             <button
               key={tab.id}
@@ -154,6 +170,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
               </div>
             </button>
           ))}
+          </div>
         </div>
       </div>
     </nav>

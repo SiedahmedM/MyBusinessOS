@@ -15,6 +15,7 @@ import { QuickROICalculator } from '@/components/QuickROICalculator/QuickROICalc
 import { VisualProjectShowcase } from '@/components/VisualProjectShowcase/VisualProjectShowcase'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
+import { Footer } from '@/components/common/Footer'
 import { useHashRouter } from '@/hooks/useHashRouter'
 import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
@@ -139,6 +140,9 @@ export default function Home() {
           {/* Mobile-optimized floating CTA */}
           <FloatingCTA className="mobile-touch" />
         </main>
+        
+        {/* Footer */}
+        <Footer />
       </div>
     </ErrorBoundary>
   )

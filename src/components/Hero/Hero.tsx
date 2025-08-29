@@ -2,6 +2,7 @@
 import { TypingAnimation } from './TypingAnimation'
 import { CounterStats } from './CounterStats'
 import { FloatingParticles } from './FloatingParticles'
+import { LogoGrid, Logo } from '@/components/common/Logo'
 import { scrollToSection } from '@/lib/utils'
 
 interface HeroProps {
@@ -98,6 +99,30 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         {/* Stats - Simplified on mobile */}
         <div className="mt-8 sm:mt-12">
           <CounterStats />
+        </div>
+        
+        {/* Branded Showcase - Positioned elegantly */}
+        <div className="mt-12 sm:mt-16">
+          <LogoGrid className="max-w-2xl mx-auto">
+            <div className="logo-showcase">
+              <div className="flex-shrink-0">
+                <Logo variant="hero" size="lg" />
+              </div>
+              <div className="text-left">
+                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                  CustomSoftwarePro
+                </h3>
+                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+                  Transforming businesses through custom software development. 
+                  From concept to deployment in weeks, not months.
+                </p>
+                <div className="flex items-center mt-3 text-xs sm:text-sm text-accent-600 font-medium">
+                  <div className="w-2 h-2 bg-accent-400 rounded-full mr-2"></div>
+                  Enterprise-grade solutions at freelancer prices
+                </div>
+              </div>
+            </div>
+          </LogoGrid>
         </div>
       </div>
     </section>
