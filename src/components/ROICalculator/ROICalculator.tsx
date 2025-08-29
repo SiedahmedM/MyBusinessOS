@@ -23,7 +23,7 @@ export function ROICalculator() {
               Calculate Your ROI
             </h2>
             <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
-              See exactly how much MyBusinessOS solutions will save your business. 
+              See exactly how much CustomSoftwarePro solutions will save your business. 
               These calculations are based on real results from my clients.
             </p>
           </div>

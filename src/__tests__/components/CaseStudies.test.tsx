@@ -30,7 +30,7 @@ describe('CaseStudies Component', () => {
   test('shows customer testimonial quotes', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText(/MyBusinessOS transformed how we operate/)).toBeInTheDocument()
+    expect(screen.getByText(/CustomSoftwarePro transformed how we operate/)).toBeInTheDocument()
     expect(screen.getByText(/The online ordering system alone doubled our takeout business/)).toBeInTheDocument()
     expect(screen.getByText(/We went from chaos to complete control/)).toBeInTheDocument()
   })

@@ -1,7 +1,7 @@
 {
-  "name": "mybusinessos-website",
+  "name": "customsoftwarepro-website",
   "version": "1.0.0",
-  "description": "MyBusinessOS - Enterprise software solutions at freelancer prices for Orange County businesses",
+  "description": "CustomSoftwarePro - Enterprise software solutions at freelancer prices for Orange County businesses",
   "private": true,
   "scripts": {
     "dev": "next dev",
