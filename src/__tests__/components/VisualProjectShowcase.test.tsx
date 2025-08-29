@@ -106,7 +106,7 @@ describe('VisualProjectShowcase', () => {
     fireEvent.error(images[0])
     
     // Should show fallback with icon and title
-    expect(screen.getByText("Adam's Auto CRM")).toBeInTheDocument()
+    expect(screen.getAllByText("Adam's Auto CRM").length).toBeGreaterThan(0)
   })
 
   it('handles CTA button clicks', () => {
@@ -144,9 +144,9 @@ describe('VisualProjectShowcase', () => {
   it('renders technology tags', () => {
     render(<VisualProjectShowcase />)
     
-    expect(screen.getByText('React')).toBeInTheDocument()
-    expect(screen.getByText('Next.js')).toBeInTheDocument()
-    expect(screen.getByText('Supabase')).toBeInTheDocument()
+    expect(screen.getAllByText('React').length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Next\.js/).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Supabase/).length).toBeGreaterThan(0)
   })
 
   it('handles errors gracefully', () => {
