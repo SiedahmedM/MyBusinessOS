@@ -30,6 +30,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   const [detectedBusinessType, setDetectedBusinessType] = useState<string | null>(null)
   const [isAIEnabled, setIsAIEnabled] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const hasMounted = useRef(false)
+  const hasUserInteracted = useRef(false)
 
   // Check AI availability on component mount
   useEffect(() => {
@@ -50,8 +52,17 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
     checkAIAvailability()
   }, [])
 
+  // Only scroll to messages when user has actually interacted with the chat
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    if (!hasMounted.current) {
+      hasMounted.current = true
+      return
+    }
+    
+    // Only scroll if user has interacted with the chat (sent a message or clicked suggestions)
+    if (hasUserInteracted.current) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    }
   }, [messages, isLoading])
 
   const addMessage = (content: string, type: 'user' | 'ai') => {
@@ -67,6 +78,9 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
 
   const sendMessage = useCallback(async (message: string) => {
     if (!message.trim()) return
+
+    // Mark that user has interacted with the chat
+    hasUserInteracted.current = true
 
     try {
       setIsLoading(true)
@@ -181,6 +195,8 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   }
 
   const handleSuggestionClick = (suggestion: string) => {
+    // Mark that user has interacted with the chat
+    hasUserInteracted.current = true
     setInputValue(suggestion)
   }
 
