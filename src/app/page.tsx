@@ -20,19 +20,30 @@ import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
 import { logger } from '@/lib/logger'
 
-// Memoized tab content components with error boundaries and mobile-first layouts
+// Memoized tab content components with full-bleed mobile-first layouts
 const SolutionsTab = memo(function SolutionsTab() {
   return (
     <TabErrorBoundary tabName="Solutions">
-      <div id="solutions" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
-        <SoftwareTypeGrid className="mobile-section" />
-        <div className="mobile-section bg-neutral-50 rounded-2xl">
-          <QuickROICalculator />
+      <div id="solutions" className="mobile-section-spacing">
+        {/* Software Type Grid - Full width with background */}
+        <SoftwareTypeGrid />
+        
+        {/* ROI Calculator - Full width blue section */}
+        <div className="roi-calculator-mobile">
+          <div className="calculator-content">
+            <QuickROICalculator />
+          </div>
         </div>
-        <div className="mobile-section">
-          <AIPlayground />
+        
+        {/* AI Playground - Immersive purple section */}
+        <div className="ai-playground-mobile">
+          <div className="content-wrapper">
+            <AIPlayground />
+          </div>
         </div>
-        <div className="mobile-section bg-gradient-to-br from-accent-50 to-accent-100/50 rounded-2xl">
+        
+        {/* Tech Showcase - Dark full-width section */}
+        <div className="tech-showcase-mobile">
           <TechShowcase />
         </div>
       </div>
@@ -43,8 +54,9 @@ const SolutionsTab = memo(function SolutionsTab() {
 const PortfolioTab = memo(function PortfolioTab() {
   return (
     <TabErrorBoundary tabName="Portfolio">
-      <div id="portfolio" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
-        <div className="mobile-section">
+      <div id="portfolio" className="mobile-section-spacing">
+        {/* Case Studies - Dark immersive section */}
+        <div className="case-studies-mobile">
           <CaseStudies />
         </div>
       </div>
@@ -55,9 +67,12 @@ const PortfolioTab = memo(function PortfolioTab() {
 const ProcessTab = memo(function ProcessTab() {
   return (
     <TabErrorBoundary tabName="Process">
-      <div id="process" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
-        <div className="mobile-section">
-          <ProcessTimeline />
+      <div id="process" className="mobile-section-spacing">
+        {/* Process Timeline - Clean white section */}
+        <div className="process-timeline-mobile">
+          <div className="timeline-container">
+            <ProcessTimeline />
+          </div>
         </div>
       </div>
     </TabErrorBoundary>
@@ -67,12 +82,19 @@ const ProcessTab = memo(function ProcessTab() {
 const PricingTab = memo(function PricingTab() {
   return (
     <TabErrorBoundary tabName="Pricing">
-      <div id="pricing" className="mobile-container mobile-section space-y-8 sm:space-y-12 lg:space-y-16">
-        <div className="mobile-section">
-          <InteractivePricingCalculator />
+      <div id="pricing" className="mobile-section-spacing">
+        {/* Interactive Pricing Calculator - Light section */}
+        <div className="pricing-calculator-mobile">
+          <div className="calculator-wrapper">
+            <InteractivePricingCalculator />
+          </div>
         </div>
-        <div className="mobile-section bg-neutral-50 rounded-2xl">
-          <ROICalculator />
+        
+        {/* ROI Calculator - Blue gradient section */}
+        <div className="roi-calculator-mobile">
+          <div className="calculator-content">
+            <ROICalculator />
+          </div>
         </div>
       </div>
     </TabErrorBoundary>
@@ -99,30 +121,30 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-white">
-        {/* Mobile-optimized navigation */}
+      <div className="min-h-screen bg-white mobile-full-width">
+        {/* Mobile-optimized navigation - Full width */}
         <TabNavigation 
           activeTab={activeTab} 
           onTabChange={navigateToTab}
-          className="mobile-touch"
+          className="nav-mobile-full mobile-touch"
         />
         
-        {/* Hero Section - Mobile-first with better spacing */}
+        {/* Hero Section - Full bleed mobile */}
         <Hero onTabChange={navigateToTab} />
         
-        {/* Main content with mobile-first containers */}
-        <main className="scroll-smooth relative">
-          {/* Tab content sections */}
-          <div className="mobile-section">
-            {activeTab === 'solutions' && <SolutionsTab />}
-            {activeTab === 'portfolio' && <PortfolioTab />}
-            {activeTab === 'process' && <ProcessTab />}
-            {activeTab === 'pricing' && <PricingTab />}
-          </div>
+        {/* Main content with full-bleed sections */}
+        <main className="scroll-smooth">
+          {/* Tab content sections - No containers */}
+          {activeTab === 'solutions' && <SolutionsTab />}
+          {activeTab === 'portfolio' && <PortfolioTab />}
+          {activeTab === 'process' && <ProcessTab />}
+          {activeTab === 'pricing' && <PricingTab />}
 
-          {/* Contact section with mobile-first layout */}
-          <div className="mobile-container mobile-section bg-gradient-to-br from-neutral-50 to-neutral-100/50">
-            <ContactForm />
+          {/* Contact section - Full width with background */}
+          <div className="contact-form-mobile">
+            <div className="form-container">
+              <ContactForm />
+            </div>
           </div>
           
           {/* Mobile-optimized floating CTA */}

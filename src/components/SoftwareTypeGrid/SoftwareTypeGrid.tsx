@@ -53,86 +53,87 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   }
 
   return (
-    <section className={`py-20 bg-neutral-50 ${className}`}>
-      <div className="max-w-6xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="section-title text-neutral-900 mb-6">
-            What Can I Build For You?
-          </h2>
-          <p className="body-lg text-neutral-600 max-w-3xl mx-auto">
-            Choose your software type below to see examples and ROI estimates
-          </p>
-        </div>
+    <section className={`software-grid-mobile ${className}`}>
+      {/* Header */}
+      <div className="section-header-mobile">
+        <h2 className="text-gray-900">
+          What Can I Build For You?
+        </h2>
+        <p className="text-gray-600">
+          Choose your software type below to see examples and ROI estimates
+        </p>
+      </div>
 
-        {/* Software Type Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 card-grid">
-          {softwareTypes.map((type) => (
-            <div
-              key={type.id}
-              onClick={() => handleTypeClick(type)}
-              className={`card-hover group cursor-pointer bg-white rounded-xl p-6 border transition-all duration-300 hover:shadow-lg ${
-                selectedType === type.id 
-                  ? 'border-accent-500 bg-accent-50/50' 
-                  : 'border-neutral-200 hover:border-accent-200'
-              }`}
-              role="button"
-              tabIndex={0}
-              aria-label={`Select ${type.title} software type`}
-            >
+      {/* Software Type Grid - Mobile Full Width */}
+      <div className="mobile-native-grid">
+        {softwareTypes.map((type) => (
+          <div
+            key={type.id}
+            onClick={() => handleTypeClick(type)}
+            className={`card-full-mobile group cursor-pointer transition-all duration-300 hover:shadow-lg ${
+              selectedType === type.id 
+                ? 'border-blue-500 bg-blue-50/50 shadow-lg' 
+                : 'hover:border-blue-200 hover:bg-blue-50/20'
+            }`}
+            role="button"
+            tabIndex={0}
+            aria-label={`Select ${type.title} software type`}
+          >
+            {/* Mobile-optimized card content */}
+            <div className="space-y-4">
               {/* Icon and Title */}
-              <div className="flex items-start space-x-4 mb-4">
-                <div className="text-3xl flex-shrink-0">
+              <div className="flex items-start space-x-3">
+                <div className="text-3xl flex-shrink-0 mt-1">
                   {type.icon}
                 </div>
-                <div>
-                  <h3 className={`heading-md mb-2 transition-colors ${
-                    selectedType === type.id ? 'text-accent-700' : 'text-neutral-900 group-hover:text-accent-600'
+                <div className="min-w-0 flex-1">
+                  <h3 className={`text-lg font-semibold mb-2 transition-colors ${
+                    selectedType === type.id ? 'text-blue-700' : 'text-gray-900 group-hover:text-blue-600'
                   }`}>
                     {type.title}
                   </h3>
-                  <p className="body-md text-neutral-600 leading-relaxed">
+                  <p className="text-gray-600 text-sm leading-relaxed">
                     {type.description}
                   </p>
                 </div>
               </div>
 
-              {/* Key Features */}
-              <div className="mb-4">
-                <ul className="space-y-1">
-                  {type.examples.slice(0, 3).map((example, index) => (
-                    <li key={index} className="text-sm text-neutral-600 flex items-center">
-                      <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-2 flex-shrink-0"></span>
-                      {example}
-                    </li>
-                  ))}
-                </ul>
+              {/* Key Features - Mobile optimized list */}
+              <div className="space-y-2">
+                {type.examples.slice(0, 3).map((example, index) => (
+                  <div key={index} className="flex items-center text-sm text-gray-600">
+                    <div className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-3 flex-shrink-0"></div>
+                    <span>{example}</span>
+                  </div>
+                ))}
               </div>
 
               {/* ROI Summary */}
-              <div className="pt-4 border-t border-neutral-100">
-                <div className="text-xs font-semibold text-accent-600 mb-1">
+              <div className="pt-3 border-t border-gray-100">
+                <div className="text-xs font-semibold text-blue-600 mb-1">
                   ROI ESTIMATE
                 </div>
-                <div className="text-sm text-neutral-700">
+                <div className="text-sm font-medium text-gray-700">
                   {type.roiExample}
                 </div>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-white rounded-xl p-8 border border-neutral-200 max-w-2xl mx-auto">
-            <h3 className="heading-lg text-neutral-900 mb-4">
-              Don't See Your Exact Needs?
-            </h3>
-            <p className="body-md text-neutral-600 mb-6">
-              I build custom solutions for unique requirements. If you can describe it, I can build it.
-            </p>
+      {/* Call to Action - Full width on mobile */}
+      <div className="mobile-cta-section mt-8">
+        <div className="mobile-content-padding">
+          <h3 className="text-xl font-bold text-white mb-3">
+            Don't See Your Exact Needs?
+          </h3>
+          <p className="text-blue-100 mb-6 text-sm leading-relaxed">
+            I build custom solutions for unique requirements. If you can describe it, I can build it.
+          </p>
+          <div className="mobile-cta-buttons">
             <button 
-              className="btn-primary"
+              className="w-full bg-white text-blue-600 font-semibold py-3 px-6 rounded-lg hover:bg-blue-50 transition-colors"
               aria-label="Schedule a consultation to discuss your custom project"
             >
               Discuss Your Custom Project
