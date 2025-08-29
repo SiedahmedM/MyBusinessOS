@@ -6,13 +6,13 @@ import { Hero } from '@/components/Hero/Hero'
 import { TechShowcase } from '@/components/TechShowcase/TechShowcase'
 import { ROICalculator } from '@/components/ROICalculator/ROICalculator'
 import { AIPlayground } from '@/components/AIPlayground/AIPlayground'
-import { CaseStudies } from '@/components/CaseStudies/CaseStudies'
 import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
 import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
 import { QuickROICalculator } from '@/components/QuickROICalculator/QuickROICalculator'
+import { VisualProjectShowcase } from '@/components/VisualProjectShowcase/VisualProjectShowcase'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
 import { useHashRouter } from '@/hooks/useHashRouter'
@@ -21,10 +21,13 @@ import type { Tab } from '@/types/tabs'
 import { logger } from '@/lib/logger'
 
 // Memoized tab content components with full-bleed mobile-first layouts
-const SolutionsTab = memo(function SolutionsTab() {
+const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?: (tabId: Tab['id']) => void }) {
   return (
     <TabErrorBoundary tabName="Solutions">
       <div id="solutions" className="mobile-section-spacing">
+        {/* Hero Section - Only on Solutions tab */}
+        <Hero onTabChange={onTabChange} />
+        
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
         
@@ -35,6 +38,9 @@ const SolutionsTab = memo(function SolutionsTab() {
           </div>
         </div>
         
+        {/* Visual Project Showcase - Replaces Portfolio tab content */}
+        <VisualProjectShowcase />
+        
         {/* AI Playground - Immersive purple section */}
         <div className="ai-playground-mobile">
           <div className="content-wrapper">
@@ -42,22 +48,9 @@ const SolutionsTab = memo(function SolutionsTab() {
           </div>
         </div>
         
-        {/* Tech Showcase - Dark full-width section */}
+        {/* Tech Showcase - Simplified, no code display */}
         <div className="tech-showcase-mobile">
           <TechShowcase />
-        </div>
-      </div>
-    </TabErrorBoundary>
-  )
-})
-
-const PortfolioTab = memo(function PortfolioTab() {
-  return (
-    <TabErrorBoundary tabName="Portfolio">
-      <div id="portfolio" className="mobile-section-spacing">
-        {/* Case Studies - Dark immersive section */}
-        <div className="case-studies-mobile">
-          <CaseStudies />
         </div>
       </div>
     </TabErrorBoundary>
@@ -129,14 +122,10 @@ export default function Home() {
           className="nav-mobile-full mobile-touch"
         />
         
-        {/* Hero Section - Full bleed mobile */}
-        <Hero onTabChange={navigateToTab} />
-        
         {/* Main content with full-bleed sections */}
         <main className="scroll-smooth">
-          {/* Tab content sections - No containers */}
-          {activeTab === 'solutions' && <SolutionsTab />}
-          {activeTab === 'portfolio' && <PortfolioTab />}
+          {/* Tab content sections - 3-tab system */}
+          {activeTab === 'solutions' && <SolutionsTab onTabChange={navigateToTab} />}
           {activeTab === 'process' && <ProcessTab />}
           {activeTab === 'pricing' && <PricingTab />}
 

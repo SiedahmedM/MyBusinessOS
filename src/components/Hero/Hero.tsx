@@ -6,11 +6,10 @@ import { scrollToSection } from '@/lib/utils'
 
 interface HeroProps {
   onGetStartedClick?: () => void
-  onViewPortfolioClick?: () => void
-  onTabChange?: (tabId: 'solutions' | 'portfolio' | 'process' | 'pricing') => void
+  onTabChange?: (tabId: 'solutions' | 'process' | 'pricing') => void
 }
 
-export function Hero({ onGetStartedClick, onViewPortfolioClick, onTabChange }: HeroProps) {
+export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
   console.log('Hero: Rendering component');
 
   const handleGetStartedClick = () => {
@@ -24,14 +23,20 @@ export function Hero({ onGetStartedClick, onViewPortfolioClick, onTabChange }: H
     }
   };
 
-  const handleViewPortfolioClick = () => {
-    console.log('Hero: View portfolio clicked');
-    if (onViewPortfolioClick) {
-      onViewPortfolioClick();
-    } else if (onTabChange) {
-      onTabChange('portfolio');
-    } else {
-      scrollToSection('portfolio');
+  const handleViewProjectsClick = () => {
+    console.log('Hero: View projects clicked');
+    // Scroll to the project showcase section within solutions
+    const element = document.getElementById('solutions')
+    if (element) {
+      // Scroll to the project showcase section
+      setTimeout(() => {
+        const showcase = document.querySelector('.project-showcase')
+        if (showcase) {
+          showcase.scrollIntoView({ behavior: 'smooth' })
+        } else {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
     }
   };
 
@@ -82,11 +87,11 @@ export function Hero({ onGetStartedClick, onViewPortfolioClick, onTabChange }: H
             Book Free Consultation
           </button>
           <button
-            onClick={handleViewPortfolioClick}
+            onClick={handleViewProjectsClick}
             className="btn-text w-full sm:w-auto text-base sm:text-lg"
-            aria-label="View portfolio of completed projects"
+            aria-label="View examples of completed projects"
           >
-            View Portfolio
+            View Examples
           </button>
         </div>
         

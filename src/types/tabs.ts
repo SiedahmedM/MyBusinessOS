@@ -1,5 +1,5 @@
 export interface Tab {
-  id: 'solutions' | 'portfolio' | 'process' | 'pricing'
+  id: 'solutions' | 'process' | 'pricing'
   title: string
   description: string
   icon: string
@@ -84,8 +84,7 @@ export interface ROIExample {
 }
 
 export const primaryTabs: Tab[] = [
-  { id: 'solutions', title: 'Solutions', description: 'What I can build for you', icon: '🚀', href: '#solutions' },
-  { id: 'portfolio', title: 'Portfolio', description: 'Real projects & results', icon: '📈', href: '#portfolio' },
+  { id: 'solutions', title: 'Solutions', description: 'What I build & examples', icon: '🚀', href: '#solutions' },
   { id: 'process', title: 'Process', description: 'How we work together', icon: '⚙️', href: '#process' },
   { id: 'pricing', title: 'Pricing', description: 'Investment & ROI', icon: '💰', href: '#pricing' }
 ]
