@@ -4,8 +4,8 @@ import { CaseStudies } from '@/components/CaseStudies/CaseStudies'
 describe('CaseStudies Component', () => {
   test('renders section heading', () => {
     render(<CaseStudies />)
-    expect(screen.getByText('Success Stories')).toBeInTheDocument()
-    expect(screen.getByText(/Real businesses, real results/)).toBeInTheDocument()
+    expect(screen.getByText('Real Businesses, Real Results')).toBeInTheDocument()
+    expect(screen.getByText(/See how I've helped businesses transform their operations/)).toBeInTheDocument()
   })
 
   test('renders all case study cards', () => {
@@ -17,50 +17,55 @@ describe('CaseStudies Component', () => {
     expect(screen.getByText("Premier Construction Co.")).toBeInTheDocument()
   })
 
-  test('displays business locations', () => {
+  test('displays case studies data structure', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText('Orange County, CA')).toBeInTheDocument()
-    expect(screen.getByText('Costa Mesa, CA')).toBeInTheDocument()
-    expect(screen.getByText('Irvine, CA')).toBeInTheDocument()
+    // The component loads case studies data and renders them
+    // Let's verify the main business names are present (from featured section and cards)
+    expect(screen.getAllByText("Adam's Muffler Shop").length).toBeGreaterThan(0)
+    expect(screen.getAllByText("Bella's Italian Kitchen").length).toBeGreaterThan(0) 
+    expect(screen.getAllByText("Premier Construction Co.").length).toBeGreaterThan(0)
   })
 
-  test('shows challenge descriptions', () => {
+  test('shows customer testimonial quotes', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText(/Struggled with manual appointment scheduling/)).toBeInTheDocument()
-    expect(screen.getByText(/Lost orders due to phone-only ordering/)).toBeInTheDocument()
-    expect(screen.getByText(/Inefficient project management/)).toBeInTheDocument()
+    expect(screen.getByText(/MyBusinessOS transformed how we operate/)).toBeInTheDocument()
+    expect(screen.getByText(/The online ordering system alone doubled our takeout business/)).toBeInTheDocument()
+    expect(screen.getByText(/We went from chaos to complete control/)).toBeInTheDocument()
   })
 
-  test('displays solution descriptions', () => {
+  test('displays customer author information', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText(/Built custom CRM with automated scheduling/)).toBeInTheDocument()
-    expect(screen.getByText(/Developed online ordering platform/)).toBeInTheDocument()
-    expect(screen.getByText(/Created project management dashboard/)).toBeInTheDocument()
+    expect(screen.getByText('Adam Rodriguez')).toBeInTheDocument()
+    expect(screen.getByText('Isabella Martinez')).toBeInTheDocument()
+    expect(screen.getByText('Michael Chen')).toBeInTheDocument()
+    expect(screen.getByText("Owner, Adam's Muffler Shop")).toBeInTheDocument()
+    expect(screen.getByText("Owner, Bella's Italian Kitchen")).toBeInTheDocument()
+    expect(screen.getByText('CEO, Premier Construction Co.')).toBeInTheDocument()
   })
 
-  test('shows quantifiable results', () => {
+  test('shows quantifiable results in featured section', () => {
     render(<CaseStudies />)
     
-    // Check for percentage improvements
-    expect(screen.getByText('40%')).toBeInTheDocument() // Customer satisfaction
-    expect(screen.getByText('60%')).toBeInTheDocument() // Revenue increase
-    expect(screen.getByText('45%')).toBeInTheDocument() // Time savings
+    // Check for metrics that are visible in the featured section
+    expect(screen.getByText('$50,750')).toBeInTheDocument() // Monthly Revenue value
+    expect(screen.getByText('4.8/5 stars')).toBeInTheDocument() // Customer Satisfaction value
     
-    // Check for time savings
-    expect(screen.getByText('15 hrs/week')).toBeInTheDocument()
-    expect(screen.getByText('25 hrs/week')).toBeInTheDocument()
-    expect(screen.getByText('20 hrs/week')).toBeInTheDocument()
+    // Check for metric labels (using getAllByText since they appear multiple times)
+    expect(screen.getAllByText('Monthly Revenue').length).toBeGreaterThan(0) // Label
+    expect(screen.getAllByText('Customer Satisfaction').length).toBeGreaterThan(0) // Label
   })
 
-  test('displays business type badges', () => {
+  test('displays category filter buttons', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText('Auto Shop')).toBeInTheDocument()
-    expect(screen.getByText('Restaurant')).toBeInTheDocument()
-    expect(screen.getByText('Construction')).toBeInTheDocument()
+    expect(screen.getByText('All Projects (6)')).toBeInTheDocument()
+    expect(screen.getByText('Business Systems (3)')).toBeInTheDocument()
+    expect(screen.getByText('Agency → SaaS (1)')).toBeInTheDocument()
+    expect(screen.getByText('E-commerce (1)')).toBeInTheDocument()
+    expect(screen.getByText('Mobile Apps (1)')).toBeInTheDocument()
   })
 
   test('handles card hover interactions', () => {
@@ -75,38 +80,63 @@ describe('CaseStudies Component', () => {
     }
   })
 
-  test('displays solution features correctly', () => {
+  test('displays system features in featured section', () => {
     render(<CaseStudies />)
     
-    // Auto shop features
-    expect(screen.getByText('SMS notifications')).toBeInTheDocument()
-    expect(screen.getByText('Inventory tracking')).toBeInTheDocument()
-    expect(screen.getByText('Customer portal')).toBeInTheDocument()
-    
-    // Restaurant features
-    expect(screen.getByText('Real-time menu updates')).toBeInTheDocument()
-    expect(screen.getByText('Payment processing')).toBeInTheDocument()
-    expect(screen.getByText('Delivery tracking')).toBeInTheDocument()
-    
-    // Construction features
-    expect(screen.getByText('Resource allocation')).toBeInTheDocument()
-    expect(screen.getByText('Timeline tracking')).toBeInTheDocument()
-    expect(screen.getByText('Client communication')).toBeInTheDocument()
+    // Features from the featured section (first 4 features of first case study are shown)
+    expect(screen.getByText('Real-time repair tracking with photos')).toBeInTheDocument()
+    expect(screen.getByText('Automated SMS customer updates')).toBeInTheDocument()
+    expect(screen.getByText('Digital inspection reports')).toBeInTheDocument()
+    expect(screen.getByText('Parts inventory management')).toBeInTheDocument()
   })
 
   test('shows proper result metrics formatting', () => {
     render(<CaseStudies />)
     
-    // Check that percentages and time savings are properly formatted
-    const results = screen.getAllByText(/\d+%|\d+ hrs\/week/)
+    // Check that metrics are properly formatted
+    const results = screen.getAllByText(/\+\d+%|\$[\d,]+|\d+\.\d+\/5/)
     expect(results.length).toBeGreaterThan(0)
   })
 
-  test('displays business descriptions', () => {
+  test('displays featured success story section', () => {
     render(<CaseStudies />)
     
-    expect(screen.getByText(/Family-owned auto repair shop/)).toBeInTheDocument()
-    expect(screen.getByText(/Authentic Italian restaurant/)).toBeInTheDocument()
-    expect(screen.getByText(/Full-service construction company/)).toBeInTheDocument()
+    expect(screen.getByText('⭐ Featured Success Story')).toBeInTheDocument()
+    expect(screen.getByText('System Features')).toBeInTheDocument()
+  })
+
+  test('displays call to action buttons', () => {
+    render(<CaseStudies />)
+    
+    expect(screen.getByText('Ready to join these successful businesses?')).toBeInTheDocument()
+    expect(screen.getByText('Start Your Success Story')).toBeInTheDocument()
+    expect(screen.getByText('Get Your Free Consultation')).toBeInTheDocument()
+  })
+
+  test('filters case studies by category', () => {
+    render(<CaseStudies />)
+    
+    // Initially should show all case studies
+    expect(screen.getByText("Adam's Muffler Shop")).toBeInTheDocument()
+    expect(screen.getByText("Bella's Italian Kitchen")).toBeInTheDocument()
+    expect(screen.getByText("Premier Construction Co.")).toBeInTheDocument()
+    
+    // Click on Business Systems filter
+    const businessSystemsButton = screen.getByText('Business Systems (3)')
+    fireEvent.click(businessSystemsButton)
+    
+    // Should still show the business management companies
+    expect(screen.getByText("Adam's Muffler Shop")).toBeInTheDocument()
+    expect(screen.getByText("Bella's Italian Kitchen")).toBeInTheDocument()
+    expect(screen.getByText("Premier Construction Co.")).toBeInTheDocument()
+  })
+
+  test('component renders without errors', () => {
+    render(<CaseStudies />)
+    
+    // Test that component loads case studies and renders main content
+    expect(screen.getByText('Real Businesses, Real Results')).toBeInTheDocument()
+    expect(screen.getByText('⭐ Featured Success Story')).toBeInTheDocument()
+    expect(screen.getByText('System Features')).toBeInTheDocument()
   })
 })

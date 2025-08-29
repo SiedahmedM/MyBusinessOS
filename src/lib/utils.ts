@@ -32,13 +32,13 @@ export function calculateTimeSavings(hoursPerWeek: number, hourlyRate: number) {
 }
 
 export function calculateRevenueGrowth(currentRevenue: number, growthPercentage: number) {
-  const monthlyIncrease = (currentRevenue * growthPercentage / 100);
-  const newRevenue = currentRevenue + monthlyIncrease;
-  const yearlyIncrease = monthlyIncrease * 12;
+  const additionalRevenue = (currentRevenue * growthPercentage / 100);
+  const newRevenue = currentRevenue + additionalRevenue;
+  const yearlyIncrease = additionalRevenue * 12;
   const fiveYearValue = yearlyIncrease * 5;
   
   return {
-    monthlyIncrease,
+    additionalRevenue,
     newRevenue,
     yearlyIncrease,
     fiveYearValue
@@ -46,13 +46,13 @@ export function calculateRevenueGrowth(currentRevenue: number, growthPercentage:
 }
 
 export function calculateCostReduction(currentCost: number, reductionPercentage: number) {
-  const monthlySavings = currentCost * reductionPercentage / 100;
-  const newCost = currentCost - monthlySavings;
-  const yearlySavings = monthlySavings * 12;
-  const breakEvenMonths = Math.ceil(10000 / monthlySavings);
+  const savings = currentCost * reductionPercentage / 100;
+  const newCost = currentCost - savings;
+  const yearlySavings = savings * 12;
+  const breakEvenMonths = Math.ceil(10000 / savings);
   
   return {
-    monthlySavings,
+    savings,
     newCost,
     yearlySavings,
     breakEvenMonths

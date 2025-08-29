@@ -2,45 +2,27 @@
 import { useState, useCallback } from 'react'
 import { IPhoneSimulator } from './IPhoneSimulator'
 import { AIChat } from './AIChat'
-import { AppTypeSelector } from './AppTypeSelector'
-import { WebAppDemo } from './WebAppDemo'
 import { logger } from '@/lib/logger'
 
-type AppType = 'mobile' | 'web'
-type ViewState = 'chat' | 'selector' | 'building' | 'complete'
+type ViewState = 'chat' | 'building' | 'complete'
 
 export function AIPlayground() {
-  const [currentBusinessType, setCurrentBusinessType] = useState('dental')
-  const [selectedAppType, setSelectedAppType] = useState<AppType | null>(null)
+  const [currentSoftwareType, setCurrentSoftwareType] = useState('business-management')
   const [viewState, setViewState] = useState<ViewState>('chat')
   const [isBuilding, setIsBuilding] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
   console.log('AIPlayground: Rendering', { 
-    currentBusinessType, 
-    selectedAppType, 
+    currentSoftwareType, 
     viewState 
   });
 
-  const handleBusinessTypeDetected = useCallback((businessType: string) => {
+  const handleSoftwareTypeDetected = useCallback((softwareType: string) => {
     try {
-      console.log('AIPlayground: Business type detected:', businessType);
-      logger.info('AIPlayground: Business type detected', { businessType })
-      setCurrentBusinessType(businessType)
-      setViewState('selector') // Move to app type selection after business type detected
-      setError(null)
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to set business type'
-      logger.error('AIPlayground: Business type detection failed', { error: errorMessage })
-      setError(errorMessage)
-    }
-  }, [])
-
-  const handleAppTypeSelected = useCallback((type: AppType) => {
-    try {
-      logger.info('AIPlayground: App type selected', { appType: type })
-      setSelectedAppType(type)
-      setViewState('building')
+      console.log('AIPlayground: Software type detected:', softwareType);
+      logger.info('AIPlayground: Software type detected', { softwareType })
+      setCurrentSoftwareType(softwareType)
+      setViewState('building') // Go straight to building mobile app
       setIsBuilding(true)
       setError(null)
       
@@ -48,25 +30,25 @@ export function AIPlayground() {
       setTimeout(() => {
         setIsBuilding(false)
         setViewState('complete')
-      }, 6000) // Adjust timing based on build duration
+      }, 6000)
       
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to select app type'
-      logger.error('AIPlayground: App type selection failed', { error: errorMessage })
+      const errorMessage = error instanceof Error ? error.message : 'Failed to set software type'
+      logger.error('AIPlayground: Software type detection failed', { error: errorMessage })
       setError(errorMessage)
     }
   }, [])
 
-  const handleBackToSelector = useCallback(() => {
+
+  const handleBackToChat = useCallback(() => {
     try {
-      logger.info('AIPlayground: Returning to selector')
-      setSelectedAppType(null)
+      logger.info('AIPlayground: Returning to chat')
       setViewState('chat')
       setIsBuilding(false)
       setError(null)
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to return to selector'
-      logger.error('AIPlayground: Back to selector failed', { error: errorMessage })
+      const errorMessage = error instanceof Error ? error.message : 'Failed to return to chat'
+      logger.error('AIPlayground: Back to chat failed', { error: errorMessage })
       setError(errorMessage)
     }
   }, [])
@@ -101,21 +83,17 @@ export function AIPlayground() {
           <h2 className="section-title text-white mb-6">
             {viewState === 'chat' 
               ? 'Tell Our AI About Your Business'
-              : viewState === 'selector' 
-              ? 'Choose Your Solution Type'
-              : selectedAppType === 'mobile'
+              : isBuilding
               ? 'Building Your Mobile App'
-              : 'Creating Your Web Application'
+              : 'Your Mobile App is Ready!'
             }
           </h2>
           <p className="text-xl text-purple-200 max-w-3xl mx-auto">
             {viewState === 'chat'
-              ? 'Chat with our AI to describe your business. It will understand your needs and prepare the perfect custom solution.'
-              : viewState === 'selector'
-              ? 'Great! Now choose whether you need a mobile app or web application. Watch as it builds your custom solution in real-time.'
+              ? 'Chat with our AI to describe your business. It will understand your needs and build you a mobile app demo in real-time.'
               : isBuilding
-              ? 'Your custom solution is being built with enterprise-grade features tailored to your business needs.'
-              : 'Your solution is ready! This demonstrates the quality and speed of our development process.'
+              ? 'Your custom mobile app is being built with enterprise-grade features tailored to your business needs.'
+              : 'Your mobile app is ready! This demonstrates the quality and speed of our development process.'
             }
           </p>
         </div>
@@ -125,49 +103,36 @@ export function AIPlayground() {
           <div className="max-w-2xl mx-auto">
             <div className="glass-dark rounded-2xl p-6 lg:p-8">
               <AIChat 
-                onBusinessTypeDetected={handleBusinessTypeDetected}
+                onBusinessTypeDetected={handleSoftwareTypeDetected}
                 disabled={false}
               />
             </div>
           </div>
         )}
 
-        {/* App Type Selector */}
-        <AppTypeSelector 
-          onTypeSelected={handleAppTypeSelected}
-          isVisible={viewState === 'selector'}
-        />
-
-        {/* Two Column Layout - Mobile App Demo */}
-        {selectedAppType === 'mobile' && (
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            {/* Left: iPhone Simulator */}
-            <div className="flex justify-center">
-              <IPhoneSimulator 
-                businessType={currentBusinessType}
-                isBuilding={isBuilding}
-                onBackToSelector={handleBackToSelector}
-              />
+        {/* Mobile App Demo - Responsive Layout */}
+        {(viewState === 'building' || viewState === 'complete') && (
+          <div className="flex flex-col xl:grid xl:grid-cols-2 gap-8 xl:gap-12 xl:items-start">
+            {/* iPhone Simulator - Full width on mobile, left column on desktop */}
+            <div className="flex justify-center order-1 xl:order-none">
+              <div className="w-full max-w-sm sm:max-w-none">
+                <IPhoneSimulator 
+                  softwareType={currentSoftwareType}
+                  isBuilding={isBuilding}
+                  onBackToSelector={handleBackToChat}
+                />
+              </div>
             </div>
 
-            {/* Right: AI Chat Interface */}
-            <div className="glass-dark rounded-2xl p-6 lg:p-8">
-              <AIChat 
-                onBusinessTypeDetected={handleBusinessTypeDetected}
-                disabled={isBuilding}
-              />
+            {/* AI Chat Interface - Responsive sizing */}
+            <div className="glass-dark rounded-2xl p-4 sm:p-6 lg:p-8 order-2 xl:order-none">
+              <div className="max-h-[400px] sm:max-h-[500px] xl:max-h-none overflow-hidden">
+                <AIChat 
+                  onBusinessTypeDetected={handleSoftwareTypeDetected}
+                  disabled={isBuilding}
+                />
+              </div>
             </div>
-          </div>
-        )}
-
-        {/* Web App Demo */}
-        {selectedAppType === 'web' && (
-          <div className="max-w-2xl mx-auto">
-            <WebAppDemo 
-              businessType={currentBusinessType}
-              isBuilding={isBuilding}
-              onBackToSelector={handleBackToSelector}
-            />
           </div>
         )}
 
@@ -185,7 +150,7 @@ export function AIPlayground() {
               </p>
               <div className="grid md:grid-cols-2 gap-4 max-w-lg mx-auto">
                 <button 
-                  onClick={handleBackToSelector}
+                  onClick={handleBackToChat}
                   className="px-6 py-3 bg-white/20 text-white font-semibold rounded-lg hover:bg-white/30 transition-colors"
                 >
                   Try Another Demo

@@ -4,23 +4,23 @@ import { Hero } from '@/components/Hero/Hero'
 describe('Hero Component', () => {
   test('renders hero heading', () => {
     render(<Hero />)
-    expect(screen.getByText(/I Build Software That/)).toBeInTheDocument()
-    expect(screen.getByText(/Transforms Businesses/)).toBeInTheDocument()
+    expect(screen.getByText(/I Build Any Software/)).toBeInTheDocument()
+    expect(screen.getByText(/You Can Imagine/)).toBeInTheDocument()
   })
 
   test('renders expert developer badge', () => {
     render(<Hero />)
-    expect(screen.getByText('Expert Developer • Orange County')).toBeInTheDocument()
+    expect(screen.getByText('Expert Developer • Orange County • Any Software Imaginable')).toBeInTheDocument()
   })
 
   test('renders action buttons', () => {
     render(<Hero />)
     
-    const workButton = screen.getByText(/See My Work In Action/)
-    expect(workButton).toBeInTheDocument()
+    const seeWhatButton = screen.getByText(/See What I Can Build/)
+    expect(seeWhatButton).toBeInTheDocument()
     
-    const storiesButton = screen.getByText(/View Success Stories/)
-    expect(storiesButton).toBeInTheDocument()
+    const portfolioButton = screen.getByText(/View My Portfolio/)
+    expect(portfolioButton).toBeInTheDocument()
   })
 
   test('typing animation is present', () => {
