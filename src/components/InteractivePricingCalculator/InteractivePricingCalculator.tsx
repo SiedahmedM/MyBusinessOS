@@ -194,9 +194,7 @@ export function InteractivePricingCalculator() {
           <div className="space-y-8">
             {/* Software Type */}
             <div>
-              <label className={`block text-lg font-semibold mb-4 ${
-                true ? 'text-white' : 'text-neutral-900'
-              }`}>
+              <label className="block text-lg font-semibold mb-4 text-white">
                 What type of software do you need?
               </label>
               <div className="grid gap-3">
@@ -206,16 +204,14 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ softwareType: type.id })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.softwareType === type.id
-                        ? 'border-accent-500 bg-accent-50'
-                        : 'border-neutral-600 bg-neutral-800 hover:border-accent-300 text-white'
+                        ? 'border-accent-500 bg-accent-500/20 text-accent-300'
+                        : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
                     <div className={`font-medium ${
-                       calculatorState.softwareType !== type.id ? 'text-white' : ''
+                      calculatorState.softwareType === type.id ? 'text-accent-300' : 'text-white'
                     }`}>{type.name}</div>
-                    <div className={`text-sm ${
-                      true ? 'text-neutral-300' : 'text-neutral-500'
-                    }`}>Starting at ${type.basePrice.toLocaleString()}</div>
+                    <div className="text-sm text-neutral-400">Starting at ${type.basePrice.toLocaleString()}</div>
                   </button>
                 ))}
               </div>
@@ -223,7 +219,7 @@ export function InteractivePricingCalculator() {
 
             {/* Complexity */}
             <div>
-              <label className="block text-lg font-semibold text-neutral-900 mb-4">
+              <label className="block text-lg font-semibold text-white mb-4">
                 Complexity Level
               </label>
               <div className="grid gap-3">
@@ -233,12 +229,12 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ complexity: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.complexity === key
-                        ? 'border-accent-500 bg-accent-50'
-                        : 'border-gray-200 hover:border-accent-300'
+                        ? 'border-accent-500 bg-accent-500/20 text-accent-300'
+                        : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
                     <div className="font-medium">{complexity.label}</div>
-                    <div className="text-sm text-neutral-500">{complexity.description}</div>
+                    <div className="text-sm text-neutral-400">{complexity.description}</div>
                   </button>
                 ))}
               </div>
@@ -246,7 +242,7 @@ export function InteractivePricingCalculator() {
 
             {/* Timeline */}
             <div>
-              <label className="block text-lg font-semibold text-neutral-900 mb-4">
+              <label className="block text-lg font-semibold text-white mb-4">
                 Timeline Preference
               </label>
               <div className="grid gap-3">
@@ -256,12 +252,12 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ timeline: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.timeline === key
-                        ? 'border-accent-500 bg-accent-50'
-                        : 'border-gray-200 hover:border-accent-300'
+                        ? 'border-accent-500 bg-accent-500/20 text-accent-300'
+                        : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
                     <div className="font-medium">{timeline.label}</div>
-                    <div className="text-sm text-neutral-500">{timeline.description}</div>
+                    <div className="text-sm text-neutral-400">{timeline.description}</div>
                   </button>
                 ))}
               </div>
@@ -269,7 +265,7 @@ export function InteractivePricingCalculator() {
 
             {/* Additional Features */}
             <div>
-              <label className="block text-lg font-semibold text-neutral-900 mb-4">
+              <label className="block text-lg font-semibold text-white mb-4">
                 Additional Features
               </label>
               <div className="grid gap-2">
@@ -279,13 +275,13 @@ export function InteractivePricingCalculator() {
                     onClick={() => toggleFeature(feature.id)}
                     className={`p-3 rounded-lg border text-left transition-all ${
                       calculatorState.features.includes(feature.id)
-                        ? 'border-accent-500 bg-accent-50'
-                        : 'border-gray-200 hover:border-accent-300'
+                        ? 'border-accent-500 bg-accent-500/20 text-accent-300'
+                        : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
                     <div className="flex justify-between items-center">
                       <span className="font-medium">{feature.name}</span>
-                      <span className="text-sm text-neutral-500">
+                      <span className="text-sm text-neutral-400">
                         {feature.price === 0 ? 'Included' : `+$${feature.price.toLocaleString()}`}
                       </span>
                     </div>
@@ -296,7 +292,7 @@ export function InteractivePricingCalculator() {
 
             {/* Support */}
             <div>
-              <label className="block text-lg font-semibold text-neutral-900 mb-4">
+              <label className="block text-lg font-semibold text-white mb-4">
                 Support Package
               </label>
               <div className="grid gap-3">
@@ -306,12 +302,12 @@ export function InteractivePricingCalculator() {
                     onClick={() => updateCalculatorState({ support: key as any })}
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.support === key
-                        ? 'border-accent-500 bg-accent-50'
-                        : 'border-gray-200 hover:border-accent-300'
+                        ? 'border-accent-500 bg-accent-500/20 text-accent-300'
+                        : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
                     <div className="font-medium">{support.label}</div>
-                    <div className="text-sm text-neutral-500">{support.description}</div>
+                    <div className="text-sm text-neutral-400">{support.description}</div>
                     {support.price > 0 && (
                       <div className="text-sm font-medium text-accent-600">+${support.price.toLocaleString()}</div>
                     )}
@@ -324,21 +320,17 @@ export function InteractivePricingCalculator() {
           {/* Pricing Result */}
           <div className="lg:sticky lg:top-8">
             {pricingResult && (
-              <div className={`rounded-2xl shadow-xl p-8 ${
-                true ? 'bg-neutral-800 border border-neutral-600' : 'bg-white'
-              }`}>
-                <h3 className={`text-2xl font-bold mb-6 ${
-                  true ? 'text-white' : 'text-neutral-900'
-                }`}>Your Project Estimate</h3>
+              <div className="rounded-2xl shadow-xl p-8 bg-neutral-800 border border-neutral-600">
+                <h3 className="text-2xl font-bold mb-6 text-white">Your Project Estimate</h3>
                 
                 <div className="space-y-6">
                   {/* Total Price */}
-                <div className="text-center bg-neutral-50 rounded-lg p-6">
-                    <div className="text-sm text-gray-600 mb-2">Total Investment</div>
+                <div className="text-center bg-neutral-800 rounded-lg p-6">
+                    <div className="text-sm text-neutral-300 mb-2">Total Investment</div>
                     <div className="text-4xl font-bold text-accent-600 mb-2">
                       ${pricingResult.totalPrice.toLocaleString()}
                     </div>
-                    <div className="text-sm text-neutral-500">{pricingResult.timeline}</div>
+                    <div className="text-sm text-neutral-400">{pricingResult.timeline}</div>
                   </div>
 
                   {/* ROI Information */}
@@ -358,14 +350,14 @@ export function InteractivePricingCalculator() {
                     <button className="w-full btn-primary">
                       Get Your Free Consultation
                     </button>
-                    <button className="w-full px-6 py-3 border-2 border-accent-600 text-accent-600 font-medium rounded-lg hover:bg-accent-50 transition-all">
+                    <button className="w-full px-6 py-3 border-2 border-accent-600 text-accent-600 font-medium rounded-lg hover:bg-accent-500/10 transition-all">
                       Download Detailed Quote (PDF)
                     </button>
                   </div>
 
                   {/* Guarantee */}
-                  <div className="text-center text-sm text-gray-600 bg-neutral-100 rounded-lg p-4">
-                    <div className="font-medium text-accent-700 mb-1">30-Day Success Guarantee</div>
+                  <div className="text-center text-sm text-neutral-300 bg-neutral-800 rounded-lg p-4">
+                    <div className="font-medium text-accent-400 mb-1">30-Day Success Guarantee</div>
                     <div>Your satisfaction is guaranteed or your money back</div>
                   </div>
                 </div>

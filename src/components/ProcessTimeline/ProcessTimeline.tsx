@@ -156,19 +156,19 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 <div className={`mx-auto w-20 h-20 rounded-full flex items-center justify-center text-2xl font-bold mb-4 transition-all duration-300 ${
                   selectedStep === step.number
                     ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white shadow-lg'
-                    : 'bg-white border-4 border-gray-200 text-gray-400 group-hover:border-accent-300'
-                }`}>
+                    : 'bg-neutral-900 border-4 border-neutral-800 text-neutral-500 group-hover:border-accent-400'
+                }`}> 
                   {step.number}
                 </div>
                 
                 {/* Step Info */}
                 <div className="text-center">
                   <h3 className={`text-lg font-bold mb-2 transition-colors ${
-                    selectedStep === step.number ? 'text-accent-600' : 'text-gray-700'
+                    selectedStep === step.number ? 'text-accent-400' : 'text-neutral-200'
                   }`}>
                     {step.title}
                   </h3>
-                  <p className="text-sm text-neutral-500 font-medium">
+                  <p className="text-sm text-neutral-400 font-medium">
                     {step.duration}
                   </p>
                   <div className="text-2xl mt-2">{step.icon}</div>
@@ -181,14 +181,14 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         {/* Mobile Process Steps - Accordion Style */}
         <div className="md:hidden space-y-4 mb-16">
           {processSteps.map((step) => (
-            <div key={step.number} className="bg-white rounded-xl shadow-lg overflow-hidden">
+            <div key={step.number} className="bg-neutral-900 rounded-xl shadow-lg overflow-hidden">
               {/* Step Header - Always Visible */}
               <div 
                 onClick={() => handleStepClick(step.number)}
                 className={`cursor-pointer p-6 transition-all duration-300 ${
-                  selectedStep === step.number 
-                    ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white' 
-                    : 'bg-white hover:bg-gray-50'
+                  selectedStep === step.number
+                    ? 'bg-gradient-to-br from-primary-700 to-primary-500 text-white'
+                    : 'bg-neutral-900 hover:bg-neutral-800'
                 }`}
               >
                 <div className="flex items-center">
@@ -196,7 +196,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                   <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0 ${
                     selectedStep === step.number
                       ? 'bg-white/20 text-white'
-                      : 'bg-gray-100 text-gray-600'
+                      : 'bg-neutral-800 text-neutral-400'
                   }`}>
                     {step.number}
                   </div>
@@ -204,12 +204,12 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                   {/* Step Info */}
                   <div className="flex-1">
                     <h3 className={`text-lg font-bold mb-1 ${
-                      selectedStep === step.number ? 'text-white' : 'text-gray-900'
+                      selectedStep === step.number ? 'text-white' : 'text-neutral-200'
                     }`}>
                       {step.title}
                     </h3>
                     <p className={`text-sm font-medium ${
-                      selectedStep === step.number ? 'text-white/90' : 'text-gray-500'
+                      selectedStep === step.number ? 'text-white/90' : 'text-neutral-400'
                     }`}>
                       {step.duration}
                     </p>
@@ -228,10 +228,10 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
               <div className={`transition-all duration-300 overflow-hidden ${
                 selectedStep === step.number ? 'max-h-screen' : 'max-h-0'
               }`}>
-                <div className="p-6 bg-gradient-to-br from-neutral-50 to-neutral-100 space-y-6">
+                <div className="p-6 bg-gradient-to-br from-neutral-900 to-neutral-950 space-y-6">
                   {/* Activities */}
                   <div>
-                    <h4 className="text-lg font-bold text-neutral-900 mb-4">
+                    <h4 className="text-lg font-bold text-neutral-50 mb-4">
                       What Happens During {step.title}
                     </h4>
                     <div className="space-y-3">
@@ -242,7 +242,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                             </svg>
                           </div>
-                          <p className="text-neutral-700 text-sm leading-relaxed">{activity}</p>
+                          <p className="text-neutral-300 text-sm leading-relaxed">{activity}</p>
                         </div>
                       ))}
                     </div>
@@ -250,20 +250,20 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                   
                   {/* Deliverable */}
                   <div>
-                    <h4 className="text-lg font-bold text-neutral-900 mb-4">
+                    <h4 className="text-lg font-bold text-neutral-50 mb-4">
                       What You Get
                     </h4>
-                    <div className="bg-white rounded-lg p-4 shadow-sm">
+                    <div className="bg-neutral-900 rounded-lg p-4 shadow-sm">
                       <div className="flex items-start">
                         <div className="text-2xl mr-3 flex-shrink-0">{step.icon}</div>
                         <div className="flex-1">
-                          <div className="text-sm font-semibold text-accent-600 mb-2">
+                          <div className="text-sm font-semibold text-accent-400 mb-2">
                             Key Deliverable
                           </div>
-                          <p className="text-neutral-700 text-sm leading-relaxed mb-3">
+                          <p className="text-neutral-200 text-sm leading-relaxed mb-3">
                             {step.deliverable}
                           </p>
-                          <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-100 text-accent-800">
+                          <div className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-accent-500/20 text-accent-300">
                             <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-1.5"></span>
                             Duration: {step.duration}
                           </div>
@@ -278,11 +278,11 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         </div>
 
         {/* Desktop Selected Step Details */}
-        <div className="hidden md:block bg-gradient-to-br from-neutral-50 to-neutral-100 rounded-2xl p-8 mb-16">
+        <div className="hidden md:block bg-gradient-to-br from-neutral-900 to-neutral-950 rounded-2xl p-8 mb-16">
           <div className="grid md:grid-cols-2 gap-8">
             {/* Activities */}
             <div>
-              <h4 className="text-2xl font-bold text-neutral-900 mb-6">
+              <h4 className="text-2xl font-bold text-neutral-50 mb-6">
                 What Happens During {selectedStepData.title}
               </h4>
               <div className="space-y-4">
@@ -293,7 +293,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <p className="text-neutral-700 leading-relaxed">{activity}</p>
+                    <p className="text-neutral-300 leading-relaxed">{activity}</p>
                   </div>
                 ))}
               </div>
@@ -301,20 +301,20 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
             
             {/* Deliverable */}
             <div>
-              <h4 className="text-2xl font-bold text-neutral-900 mb-6">
+              <h4 className="text-2xl font-bold text-neutral-50 mb-6">
                 What You Get
               </h4>
-              <div className="bg-white rounded-xl p-6 shadow-lg">
+              <div className="bg-neutral-900 rounded-xl p-6 shadow-lg">
                 <div className="flex items-start">
                   <div className="text-4xl mr-4">{selectedStepData.icon}</div>
                   <div>
-                    <div className="text-lg font-semibold text-accent-600 mb-2">
+                    <div className="text-lg font-semibold text-accent-400 mb-2">
                       Key Deliverable
                     </div>
-                    <p className="text-neutral-700 text-lg leading-relaxed">
+                    <p className="text-neutral-200 text-lg leading-relaxed">
                       {selectedStepData.deliverable}
                     </p>
-                    <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent-100 text-accent-800">
+                    <div className="mt-4 inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-accent-500/20 text-accent-300">
                       <span className="w-2 h-2 bg-accent-400 rounded-full mr-2"></span>
                       Duration: {selectedStepData.duration}
                     </div>
@@ -328,10 +328,10 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
         {/* What's Included Section */}
         <div className="mt-16">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-neutral-900 mb-4">
+            <h3 className="text-3xl font-bold text-neutral-50 mb-4">
               What's Included in Every Project
             </h3>
-            <p className="text-lg text-neutral-600">
+            <p className="text-lg text-neutral-300">
               Everything you need for a successful software launch
             </p>
           </div>
@@ -379,14 +379,14 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 ]
               }
             ].map((category, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-neutral-900 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="text-3xl mb-4">{category.icon}</div>
-                <h4 className="text-lg font-bold text-neutral-900 mb-4">{category.title}</h4>
+                <h4 className="text-lg font-bold text-neutral-50 mb-4">{category.title}</h4>
                 <ul className="space-y-2">
                   {category.features.map((feature, featureIndex) => (
                     <li key={featureIndex} className="flex items-start text-sm">
                       <div className="w-1.5 h-1.5 bg-accent-500 rounded-full mr-2 mt-2 flex-shrink-0"></div>
-                      <span className="text-gray-600">{feature}</span>
+                      <span className="text-neutral-300">{feature}</span>
                     </li>
                   ))}
                 </ul>

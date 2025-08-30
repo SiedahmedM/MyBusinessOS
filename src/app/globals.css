@@ -42,6 +42,32 @@ body {
   overflow-x: hidden;
 }
 
+/* Dark theme overrides for legacy light classes */
+html[data-theme='full-dark'] .bg-white,
+html[data-theme='full-dark'] .bg-neutral-50,
+html[data-theme='full-dark'] .bg-neutral-100 {
+  background-color: var(--card-bg) !important;
+}
+
+html[data-theme='full-dark'] .text-neutral-900,
+html[data-theme='full-dark'] .text-neutral-700,
+html[data-theme='full-dark'] .text-gray-900,
+html[data-theme='full-dark'] .text-gray-700 {
+  color: var(--text-primary) !important;
+}
+
+html[data-theme='full-dark'] .text-neutral-500,
+html[data-theme='full-dark'] .text-gray-500 {
+  color: var(--text-secondary) !important;
+}
+
+html[data-theme='full-dark'] .border-neutral-200,
+html[data-theme='full-dark'] .border-gray-200,
+html[data-theme='full-dark'] .border-neutral-300,
+html[data-theme='full-dark'] .border-gray-300 {
+  border-color: var(--border-color) !important;
+}
+
 @keyframes float {
   0%, 100% { 
     transform: translateY(0px) rotate(0deg); 
@@ -133,9 +159,9 @@ body {
 
 /* Glassmorphism effects */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-hero-stats {
@@ -406,9 +432,9 @@ background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
 }
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -894,7 +920,7 @@ button, .btn {
 /* Software type grid - full width on mobile */
 .software-grid-mobile {
   padding: 3rem 1rem;
-  background: #ffffff;
+  background: #0a0a0a;
 }
 
 .software-grid-mobile .grid-container {
@@ -924,19 +950,19 @@ button, .btn {
 
 /* Full-width cards that touch edges on mobile */
 .card-full-mobile {
-  background: white;
+  background: #1a1a1a;
   border-radius: 0;
   border-left: none;
   border-right: none;
   margin: 0;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 640px) {
   .card-full-mobile {
     border-radius: 0.75rem;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #262626;
     margin: 0 1rem;
     padding: 2rem;
   }
@@ -998,18 +1024,40 @@ button, .btn {
 
 /* Contact form - edge to edge on mobile */
 .contact-form-mobile {
-  background: #ffffff;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 3rem 1.5rem;
   margin: 0;
   width: 100%;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .contact-form-mobile .form-container {
-  background: white;
+  background: var(--card-bg);
+  color: var(--text-primary);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
   margin: 0;
+  border: 1px solid var(--border-color);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+.contact-form-mobile label {
+  color: var(--text-secondary);
+}
+
+.contact-form-mobile input,
+.contact-form-mobile select,
+.contact-form-mobile textarea {
+  background: var(--bg-dark);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+.contact-form-mobile input::placeholder,
+.contact-form-mobile textarea::placeholder {
+  color: var(--text-secondary);
 }
 
 @media (min-width: 768px) {
@@ -1048,7 +1096,7 @@ button, .btn {
   border-radius: 0;
   border-left: none;
   border-right: none;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
 }
 
@@ -1109,7 +1157,7 @@ button, .btn {
 .section-header-mobile p {
   font-size: 1.125rem;
   line-height: 1.6;
-  color: rgba(115, 115, 115, 0.9);
+  color: rgba(229, 229, 229, 0.9);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -1132,10 +1180,12 @@ button, .btn {
 
 /* Process timeline - mobile immersive */
 .process-timeline-mobile {
-  background: white;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 3rem 0;
   margin: 0;
   width: 100%;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .process-timeline-mobile .timeline-container {
@@ -1143,11 +1193,13 @@ button, .btn {
 }
 
 .process-step-mobile {
-  background: #ffffff;
+  background: var(--card-bg);
+  color: var(--text-primary);
   border-radius: 1rem;
   padding: 2rem 1.5rem;
   margin-bottom: 1.5rem;
-  border: 1px solid #e5e5e5;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 @media (min-width: 768px) {
@@ -1160,10 +1212,12 @@ button, .btn {
 
 /* Pricing calculator - immersive mobile */
 .pricing-calculator-mobile {
-  background: #ffffff;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
   padding: 3rem 0;
   margin: 0;
   width: 100%;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .pricing-calculator-mobile .calculator-wrapper {
@@ -1171,17 +1225,18 @@ button, .btn {
 }
 
 .pricing-option-mobile {
-  background: white;
+  background: var(--card-bg);
+  color: var(--text-primary);
   border-radius: 0.75rem;
   padding: 1.5rem;
   margin-bottom: 1rem;
-  border: 2px solid #e5e5e5;
-  transition: all 0.2s ease;
+  border: 2px solid var(--border-color);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .pricing-option-mobile.selected {
   border-color: #facc15;
-  background: #fef9c3;
+  background: #3a3000;
 }
 
 @media (min-width: 768px) {
@@ -1295,6 +1350,23 @@ button, .btn {
 
 .mobile-section-spacing + .mobile-section-spacing {
   border-top: 1px solid rgba(229, 231, 235, 0.1);
+}
+
+/* Gradient fade between stacked sections */
+.section-transition {
+  position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.section-transition + .section-transition::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+  pointer-events: none;
 }
 
 /* Remove container max-widths on mobile */
@@ -1738,10 +1810,10 @@ html {
 /* Branded section backgrounds */
 .branded-section {
   position: relative;
-  background: 
+  background:
     radial-gradient(circle at 10% 20%, rgba(250, 204, 21, 0.05) 0%, transparent 50%),
     radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
-    linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+    linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
 }
 
 .branded-section::before {
@@ -1766,15 +1838,15 @@ html {
   gap: 1.5rem;
   align-items: center;
   padding: 2rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 204, 21, 0.05) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="rgba(0,0,0,0.02)"><path d="m0 0 32 32"/></svg>');
+  background:
+    linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(39, 39, 39, 0.6) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="rgba(255,255,255,0.02)"><path d="m0 0 32 32"/></svg>');
   border-radius: 1rem;
   border: 1px solid rgba(250, 204, 21, 0.1);
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -1px rgba(0, 0, 0, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.5),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 768px) {

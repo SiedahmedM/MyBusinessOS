@@ -82,7 +82,7 @@ export function AIPlayground() {
 
   if (error) {
     return (
-      <section id="ai-playground" className="ai-playground-mobile section-fade-top section-fade-top--white">
+      <section id="ai-playground" className="ai-playground-mobile section-fade-top section-fade-top--black">
         <div className="content-wrapper">
           <div className="mobile-content-padding">
             <div className="bg-red-50 border border-red-200 rounded-2xl p-8 text-center">
@@ -105,7 +105,7 @@ export function AIPlayground() {
   }
 
   return (
-    <section id="ai-playground" className="relative ai-playground-mobile section-fade-top section-fade-top--white">
+    <section id="ai-playground" className="relative ai-playground-mobile section-fade-top section-fade-top--black">
       {/* Stars for full-dark theme */}
       { (
         <StarsBackground starDensity={0.00005} className="opacity-30" />

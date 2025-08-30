@@ -20,15 +20,6 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
       logger.info('TabNavigation: Tab clicked', { tabId })
       setError(null)
       onTabChange(tabId)
-      
-      if (typeof window !== 'undefined') {
-        const element = document.getElementById(tabId)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
-        
-        window.history.pushState(null, '', `#${tabId}`)
-      }
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Failed to switch tab'
       logger.error('TabNavigation: Tab change failed', { error: errorMessage })
@@ -61,14 +52,14 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
 
   return (
     <nav className={`sticky top-0 z-50 backdrop-blur-xl transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 shadow-xl shadow-neutral-900/5' : 'bg-white/90 shadow-sm'
-    } border-b border-neutral-200/80 ${className}`}>
+      isScrolled ? 'bg-neutral-900 shadow-xl shadow-black/40' : 'bg-neutral-900 shadow-sm'
+    } border-b border-neutral-800/80 ${className}`}>
       {/* Mobile Navigation - Redesigned */}
       <div className="md:hidden mobile-container">
         {/* Mobile Logo Header */}
-        <div className="flex items-center justify-between py-3 px-4 border-b border-neutral-200/60">
+        <div className="flex items-center justify-between py-3 px-4 border-b border-neutral-800/60">
           <Logo variant="header" size="sm" />
-          <div className="text-xs text-neutral-500 font-medium">
+          <div className="text-xs text-neutral-400 font-medium">
             CustomSoftwarePro.com
           </div>
         </div>
@@ -83,7 +74,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
                 className={`mobile-touch flex-shrink-0 px-4 py-3 rounded-lg transition-all duration-200 min-w-[100px] ${
                   activeTab === tab.id
                     ? 'bg-accent-500 text-white shadow-lg scale-105'
-                    : 'bg-white/80 text-neutral-700 hover:bg-accent-50 hover:text-accent-600 border border-neutral-200'
+                    : 'bg-neutral-800/80 text-neutral-300 hover:bg-accent-500/20 hover:text-accent-300 border border-neutral-700'
                 }`}
                 style={{ minHeight: '48px' }}
                 aria-label={`Switch to ${tab.title} tab`}
@@ -101,8 +92,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
           </div>
           
           {/* Active tab indicator bar */}
-          <div className="mt-2 h-1 bg-neutral-100 rounded-full overflow-hidden">
-            <div 
+          <div className="mt-2 h-1 bg-neutral-800 rounded-full overflow-hidden">
+            <div
               className="h-full bg-accent-500 rounded-full transition-all duration-300"
               style={{
                 width: `${100 / primaryTabs.length}%`,
@@ -117,7 +108,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
       <div className="hidden md:block max-w-6xl mx-auto px-4">
         <div className="flex items-center">
           {/* Desktop Logo */}
-          <div className="flex items-center pr-8 border-r border-neutral-200/60 mr-6">
+          <div className="flex items-center pr-8 border-r border-neutral-800/60 mr-6">
             <Logo variant="header" size="md" className="logo-container" />
           </div>
           
@@ -129,8 +120,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
               onClick={() => handleTabClick(tab.id)}
               className={`flex-1 px-6 py-5 transition-all duration-300 relative group ${
                 activeTab === tab.id
-                  ? 'bg-accent-50/80'
-                  : 'hover:bg-neutral-50/80'
+                  ? 'bg-accent-500/10'
+                  : 'hover:bg-neutral-800/60'
               }`}
               aria-label={`Switch to ${tab.title} tab`}
             >
@@ -140,15 +131,15 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
                 </span>
                 <div className="text-center">
                   <div className={`font-semibold transition-colors ${
-                    activeTab === tab.id ? 'text-accent-600' : 'text-neutral-700 group-hover:text-accent-600'
+                    activeTab === tab.id ? 'text-accent-400' : 'text-neutral-300 group-hover:text-accent-400'
                   }`}>
                     {tab.title}
                   </div>
                   {/* Show description on active or hover */}
                   <div className={`text-xs mt-1 transition-all duration-300 ${
-                    activeTab === tab.id 
-                      ? 'text-accent-500 opacity-100' 
-                      : 'text-neutral-500 opacity-0 group-hover:opacity-100'
+                    activeTab === tab.id
+                      ? 'text-accent-300 opacity-100'
+                      : 'text-neutral-400 opacity-0 group-hover:opacity-100'
                   }`}>
                     {tab.description}
                   </div>
