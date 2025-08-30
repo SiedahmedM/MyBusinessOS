@@ -57,11 +57,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
       {/* Mobile Navigation - Redesigned */}
       <div className="md:hidden mobile-container">
         {/* Mobile Logo Header */}
-        <div className="flex items-center justify-between py-3 px-4 border-b border-neutral-800/60">
+        <div className="flex items-center py-3 px-4 border-b border-neutral-800/60">
           <Logo variant="header" size="sm" />
-          <div className="text-xs text-neutral-400 font-medium">
-            CustomSoftwarePro.com
-          </div>
         </div>
         
         <div className="py-2">

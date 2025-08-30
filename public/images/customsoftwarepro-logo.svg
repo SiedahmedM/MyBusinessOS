@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
+  <g stroke="#ffffff" stroke-width="8" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="10" y="20" width="80" height="50" rx="4"/>
+    <path d="M10 72h80"/>
+    <path d="M30 72v18h40V72"/>
+  </g>
+  <text x="110" y="44" fill="#ffffff" font-family="'Inter', sans-serif" font-size="28" font-weight="700">CUSTOM</text>
+  <text x="110" y="78" fill="#ffffff" font-family="'Inter', sans-serif" font-size="28" font-weight="700">SOFTWARE</text>
+  <text x="110" y="112" fill="#facc15" font-family="'Inter', sans-serif" font-size="28" font-weight="700">PRO</text>
+</svg>
