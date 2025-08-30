@@ -108,5 +108,13 @@ global.IntersectionObserver = jest.fn().mockImplementation((callback) => ({
   disconnect: jest.fn(),
 }))
 
+// Mock ResizeObserver
+class ResizeObserver {
+  observe() {}
+  unobserve() {}
+  disconnect() {}
+}
+global.ResizeObserver = ResizeObserver
+
 // Mock scrollIntoView
 Element.prototype.scrollIntoView = jest.fn()

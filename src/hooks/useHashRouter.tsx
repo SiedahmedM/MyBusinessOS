@@ -35,12 +35,8 @@ export function useHashRouter(defaultTab: TabId = 'solutions') {
       setActiveTab(tabId)
       window.history.pushState(null, '', `#${tabId}`)
       logger.info('HashRouter: Navigated to tab', { tabId })
-      
-      // Smooth scroll to section
-      const element = document.getElementById(tabId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     } catch (error) {
       logger.error('HashRouter: Navigation failed', { error, tabId })
     }

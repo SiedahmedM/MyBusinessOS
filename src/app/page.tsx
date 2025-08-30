@@ -1,5 +1,5 @@
 'use client'
-import { useState, memo } from 'react'
+import { useState, memo, useEffect } from 'react'
 import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import { TabNavigation } from '@/components/TabNavigation/TabNavigation'
 import { Hero } from '@/components/Hero/Hero'
@@ -100,6 +100,10 @@ export default function Home() {
   const { activeTab, navigateToTab } = useHashRouter('solutions')
 
   logger.info('Home: Rendering main page', { activeTab })
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   if (error) {
     return (

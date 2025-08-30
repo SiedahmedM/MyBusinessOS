@@ -112,14 +112,14 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
                 <Logo variant="hero" size="lg" />
               </div>
               <div className="text-left">
-                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold text-neutral-50 mb-2">
                   CustomSoftwarePro
                 </h3>
-                <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  Transforming businesses through custom software development. 
+                <p className="text-neutral-300 text-sm sm:text-base leading-relaxed">
+                  Transforming businesses through custom software development.
                   From concept to deployment in weeks, not months.
                 </p>
-                <div className="flex items-center mt-3 text-xs sm:text-sm text-accent-600 font-medium">
+                <div className="flex items-center mt-3 text-xs sm:text-sm text-accent-300 font-medium">
                   <div className="w-2 h-2 bg-accent-400 rounded-full mr-2"></div>
                   Enterprise-grade solutions at freelancer prices
                 </div>

@@ -159,9 +159,9 @@ html[data-theme='full-dark'] .border-gray-300 {
 
 /* Glassmorphism effects */
 .glass-effect {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glass-hero-stats {
@@ -432,9 +432,9 @@ background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
 }
 
 .glass-effect {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(10, 10, 10, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -920,7 +920,7 @@ button, .btn {
 /* Software type grid - full width on mobile */
 .software-grid-mobile {
   padding: 3rem 1rem;
-  background: #ffffff;
+  background: #0a0a0a;
 }
 
 .software-grid-mobile .grid-container {
@@ -950,19 +950,19 @@ button, .btn {
 
 /* Full-width cards that touch edges on mobile */
 .card-full-mobile {
-  background: white;
+  background: #1a1a1a;
   border-radius: 0;
   border-left: none;
   border-right: none;
   margin: 0;
   padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 @media (min-width: 640px) {
   .card-full-mobile {
     border-radius: 0.75rem;
-    border: 1px solid #e5e5e5;
+    border: 1px solid #262626;
     margin: 0 1rem;
     padding: 2rem;
   }
@@ -1838,15 +1838,15 @@ html {
   gap: 1.5rem;
   align-items: center;
   padding: 2rem;
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(250, 204, 21, 0.05) 100%),
-    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="rgba(0,0,0,0.02)"><path d="m0 0 32 32"/></svg>');
+  background:
+    linear-gradient(135deg, rgba(26, 26, 26, 0.9) 0%, rgba(39, 39, 39, 0.6) 100%),
+    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="rgba(255,255,255,0.02)"><path d="m0 0 32 32"/></svg>');
   border-radius: 1rem;
   border: 1px solid rgba(250, 204, 21, 0.1);
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.05),
-    0 2px 4px -1px rgba(0, 0, 0, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.5),
+    0 2px 4px -1px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 @media (max-width: 768px) {
