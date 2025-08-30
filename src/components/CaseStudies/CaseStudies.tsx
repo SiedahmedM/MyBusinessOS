@@ -204,7 +204,7 @@ export function CaseStudies() {
   logger.info('CaseStudies: Rendering component', { studiesCount: filteredStudies.length, selectedCategory })
 
   return (
-    <section id="case-studies" className="section-padding bg-neutral-900 section-fade-top section-fade-top--white section-fade-bottom section-fade-bottom--white">
+    <section id="case-studies" className="section-padding bg-neutral-900 section-fade-top section-fade-top--black section-fade-bottom section-fade-bottom--black">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

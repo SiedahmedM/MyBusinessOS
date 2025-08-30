@@ -28,29 +28,9 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [detectedBusinessType, setDetectedBusinessType] = useState<string | null>(null)
-  const [isAIEnabled, setIsAIEnabled] = useState(true)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const hasMounted = useRef(false)
   const hasUserInteracted = useRef(false)
-
-  // Check AI availability on component mount
-  useEffect(() => {
-    const checkAIAvailability = async () => {
-      try {
-        const response = await fetch('/api/ai-chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'healthCheck' })
-        })
-        const data = await response.json()
-        setIsAIEnabled(data.aiEnabled || false)
-      } catch {
-        setIsAIEnabled(false)
-      }
-    }
-    
-    checkAIAvailability()
-  }, [])
 
   // Only scroll to messages when user has actually interacted with the chat
   useEffect(() => {
@@ -224,15 +204,6 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
 
   return (
     <div className="flex flex-col h-full min-h-[500px] sm:min-h-[600px]">
-      {!isAIEnabled && (
-        <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-lg text-sm">
-          <div className="flex items-center text-amber-800">
-            <span className="mr-2">◆</span>
-            <span>AI features are currently in demo mode with enhanced responses.</span>
-          </div>
-        </div>
-      )}
-      
       {/* AI Avatar & Header */}
       <div className="flex items-center mb-6">
         <div className="w-20 h-20 bg-accent-gradient rounded-full flex items-center justify-center text-3xl mr-4">

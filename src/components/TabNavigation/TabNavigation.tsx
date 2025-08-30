@@ -52,7 +52,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
 
   return (
     <nav className={`sticky top-0 z-50 backdrop-blur-xl transition-all duration-300 ${
-      isScrolled ? 'bg-neutral-900/95 shadow-xl shadow-black/40' : 'bg-neutral-900/90 shadow-sm'
+      isScrolled ? 'bg-neutral-900 shadow-xl shadow-black/40' : 'bg-neutral-900 shadow-sm'
     } border-b border-neutral-800/80 ${className}`}>
       {/* Mobile Navigation - Redesigned */}
       <div className="md:hidden mobile-container">

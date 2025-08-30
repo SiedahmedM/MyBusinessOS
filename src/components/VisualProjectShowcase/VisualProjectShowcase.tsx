@@ -141,7 +141,7 @@ export function VisualProjectShowcase() {
   }
 
   return (
-    <section className="relative py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--white section-fade-bottom section-fade-bottom--white">
+    <section className="relative py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--black section-fade-bottom section-fade-bottom--black">
       {/* Stars for full-dark theme */}
       { (
         <StarsBackground starDensity={0.00005} className="opacity-30" />
