@@ -1,10 +1,8 @@
+'use client'
 import { Logo } from './Logo'
 
-interface FooterProps {
-  year?: number
-}
-
-export function Footer({ year = 2024 }: FooterProps) {
+export function Footer() {
+  const currentYear = new Date().getFullYear()
 
   return (
     <footer className="bg-neutral-900 text-neutral-300 pt-16 pb-8">
@@ -56,7 +54,7 @@ export function Footer({ year = 2024 }: FooterProps) {
         <div className="border-t border-neutral-800 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-6 text-sm">
-              <span>&copy; {year} CustomSoftwarePro. All rights reserved.</span>
+              <span>&copy; {currentYear} CustomSoftwarePro. All rights reserved.</span>
               <a href="mailto:hello@customsoftwarepro.com" className="hover:text-accent-400 transition-colors">
                 hello@customsoftwarepro.com
               </a>

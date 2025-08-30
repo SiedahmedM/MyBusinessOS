@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { Hero } from '@/components/Hero/Hero'
 
 describe('Hero Component', () => {
@@ -30,15 +30,12 @@ describe('Hero Component', () => {
     expect(document.querySelector('.text-xl.md\\:text-2xl')).toBeInTheDocument()
   })
 
-  test('counter stats are rendered', async () => {
+  test('company logos are rendered', () => {
     render(<Hero />)
-    
-    // Check for stat labels
-    await waitFor(() => {
-      expect(screen.getByText('Lower Cost')).toBeInTheDocument()
-      expect(screen.getByText('Faster Delivery')).toBeInTheDocument()
-      expect(screen.getByText('On-Time Rate')).toBeInTheDocument()
-      expect(screen.getByText('Average ROI')).toBeInTheDocument()
-    })
+
+    expect(screen.getByAltText('Microsoft')).toBeInTheDocument()
+    expect(screen.getByAltText('Zillow')).toBeInTheDocument()
+    expect(screen.getByAltText('Accenture')).toBeInTheDocument()
+    expect(screen.getByAltText('Realtor.com')).toBeInTheDocument()
   })
 })

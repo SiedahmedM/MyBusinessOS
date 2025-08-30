@@ -2,7 +2,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
-import { ClientTime } from '@/components/common/ClientTime'
 
 interface Message {
   id: string;
@@ -245,10 +244,9 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
                 : 'bg-white/10 text-white'
             }`}>
               <p className="text-sm leading-relaxed">{message.content}</p>
-              <ClientTime 
-                timestamp={message.timestamp}
-                className="text-xs opacity-70 mt-1 block"
-              />
+              <span className="text-xs opacity-70 mt-1 block">
+                {message.timestamp.toLocaleTimeString()}
+              </span>
             </div>
           </div>
         ))}
