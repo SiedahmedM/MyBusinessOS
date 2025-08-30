@@ -12,7 +12,8 @@ import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
 import { QuickROICalculator } from '@/components/QuickROICalculator/QuickROICalculator'
-import { VisualProjectShowcase } from '@/components/VisualProjectShowcase/VisualProjectShowcase'
+import { ProjectBentoGrid } from '@/components/ProjectBentoGrid/ProjectBentoGrid'
+import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/TestimonialsMarquee'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
 import { Footer } from '@/components/common/Footer'
@@ -32,8 +33,8 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
         
-        {/* Visual Project Showcase - Replaces Portfolio tab content */}
-        <VisualProjectShowcase />
+        {/* Project Showcase using Bento Grid */}
+        <ProjectBentoGrid />
 
         {/* ROI Calculator - Full width section */}
         <div className="roi-calculator-mobile section-transition">
@@ -53,6 +54,9 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         <div className="tech-showcase-mobile section-transition">
           <TechShowcase />
         </div>
+
+        {/* Client Testimonials */}
+        <TestimonialsMarquee />
       </div>
     </TabErrorBoundary>
   )
