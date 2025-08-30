@@ -11,8 +11,8 @@ describe('ContactForm Component', () => {
 
   test('renders form heading and description', () => {
     render(<ContactForm />)
-    expect(screen.getByText("Let's Build Something Amazing Together")).toBeInTheDocument()
-    expect(screen.getByText(/Ready to transform your business/)).toBeInTheDocument()
+    expect(screen.getByText('Ready to Transform Your Business?')).toBeInTheDocument()
+    expect(screen.getByText(/free 15-minute consultation/i)).toBeInTheDocument()
   })
 
   test('renders all form fields', () => {
@@ -29,8 +29,8 @@ describe('ContactForm Component', () => {
     
     const businessTypeSelect = screen.getByLabelText('Business Type')
     fireEvent.click(businessTypeSelect)
-    
-    expect(screen.getByText('Auto Shop / Repair')).toBeInTheDocument()
+
+    expect(screen.getByText('Auto Repair Shop')).toBeInTheDocument()
     expect(screen.getByText('Dental Practice')).toBeInTheDocument()
     expect(screen.getByText('Restaurant')).toBeInTheDocument()
     expect(screen.getByText('Construction')).toBeInTheDocument()
@@ -56,7 +56,7 @@ describe('ContactForm Component', () => {
   test('validates required fields on submission', async () => {
     render(<ContactForm />)
     
-    const submitButton = screen.getByText('Send Message')
+    const submitButton = screen.getByText('Send Message & Get Free 15-Minute Consultation')
     fireEvent.click(submitButton)
     
     // Should not submit with empty required fields
@@ -84,7 +84,7 @@ describe('ContactForm Component', () => {
       target: { value: 'I need a CRM system' } 
     })
     
-    const submitButton = screen.getByText('Send Message')
+    const submitButton = screen.getByText('Send Message & Get Free 15-Minute Consultation')
     fireEvent.click(submitButton)
     
     await waitFor(() => {
@@ -124,7 +124,7 @@ describe('ContactForm Component', () => {
       target: { value: 'Test message' } 
     })
     
-    fireEvent.click(screen.getByText('Send Message'))
+    fireEvent.click(screen.getByText('Send Message & Get Free 15-Minute Consultation'))
     
     await waitFor(() => {
       expect(screen.getByText('Thank you for your message!')).toBeInTheDocument()
@@ -152,7 +152,7 @@ describe('ContactForm Component', () => {
       target: { value: 'Test' } 
     })
     
-    fireEvent.click(screen.getByText('Send Message'))
+    fireEvent.click(screen.getByText('Send Message & Get Free 15-Minute Consultation'))
     
     await waitFor(() => {
       expect(screen.getByText(/There was an error sending your message/)).toBeInTheDocument()
@@ -179,7 +179,7 @@ describe('ContactForm Component', () => {
       target: { value: 'Test message' } 
     })
     
-    fireEvent.click(screen.getByText('Send Message'))
+    fireEvent.click(screen.getByText('Send Message & Get Free 15-Minute Consultation'))
     
     expect(screen.getByText('Sending...')).toBeInTheDocument()
     

@@ -6,7 +6,7 @@ import { StarsBackground } from '@/components/ui/stars-background'
 
 interface PricingCalculatorState {
   softwareType: string
-  complexity: 'simple' | 'standard' | 'complex'
+  complexity: 'standard' | 'medium' | 'high'
   features: string[]
   timeline: 'rush' | 'standard' | 'flexible'
   support: 'basic' | 'premium'
@@ -21,47 +21,59 @@ interface PricingResult {
 }
 
 const softwareTypes = [
-  { id: 'business-management', name: 'Business Management System', basePrice: 25000 },
-  { id: 'agency-to-saas', name: 'Agency to SaaS Platform', basePrice: 45000 },
-  { id: 'ecommerce', name: 'E-commerce Platform', basePrice: 30000 },
-  { id: 'mobile-app', name: 'Mobile Application', basePrice: 35000 },
-  { id: 'analytics-dashboard', name: 'Analytics Dashboard', basePrice: 20000 },
-  { id: 'ai-automation', name: 'AI/Automation Tool', basePrice: 40000 }
+  { id: 'ecommerce', name: 'E-Commerce Platform', minPrice: 2000, maxPrice: 8000 },
+  { id: 'agency-to-saas', name: 'Agency to SaaS', minPrice: 3000, maxPrice: 10000 },
+  { id: 'workflow-automation', name: 'Workflow Automation', minPrice: 3000, maxPrice: 20000 },
+  { id: 'mobile-app', name: 'Mobile App', minPrice: 4000, maxPrice: 20000 },
+  { id: 'ai-integration', name: 'AI Integration', minPrice: 4000, maxPrice: 20000 },
+  { id: 'business-management', name: 'Business Management System', minPrice: 5000, maxPrice: 20000 }
 ]
 
-const complexityMultipliers = {
-  simple: { multiplier: 0.6, label: 'Simple', description: 'Basic functionality, standard features' },
-  standard: { multiplier: 1.0, label: 'Standard', description: 'Full features, custom UI, integrations' },
-  complex: { multiplier: 1.8, label: 'Complex', description: 'Enterprise features, advanced architecture' }
+const complexityOptions = {
+  standard: { add: 0, label: 'Standard Complexity', description: 'Core features and ready-to-grow architecture' },
+  medium: { add: 2000, label: 'Medium Complexity', description: 'Custom workflows and integrations' },
+  high: {
+    add: 5000,
+    label: 'High Complexity/Enterprise Scale',
+    description: 'Advanced architecture and scalability'
+  }
 }
 
 const timelineMultipliers = {
   rush: { multiplier: 1.5, label: 'Rush (2-4 weeks)', description: 'Priority development' },
-  standard: { multiplier: 1.0, label: 'Standard (4-8 weeks)', description: 'Normal timeline' },
-  flexible: { multiplier: 0.9, label: 'Flexible (8-12 weeks)', description: 'Extended timeline discount' }
+  standard: { multiplier: 1.0, label: 'Standard (4-6 weeks)', description: 'Normal timeline' },
+  flexible: { multiplier: 0.9, label: 'Flexible (6-10 weeks)', description: 'Extended timeline discount' }
 }
 
 const supportOptions = {
-  basic: { price: 0, label: 'Basic Support', description: '30-day guarantee, 6 months updates' },
-  premium: { price: 5000, label: 'Premium Support', description: '1-year support, priority updates, training' }
+  basic: {
+    price: 0,
+    label: 'Basic Support',
+    description: '30-day guarantee, 2 months updates, training included (additional charges after)'
+  },
+  premium: {
+    price: 3000,
+    label: 'Premium Support',
+    description: '6 months support, priority updates, training'
+  }
 }
 
 const availableFeatures = [
-  { id: 'mobile-responsive', name: 'Mobile Responsive Design', price: 0 },
-  { id: 'user-authentication', name: 'User Authentication System', price: 2000 },
-  { id: 'payment-processing', name: 'Payment Processing', price: 3000 },
-  { id: 'api-integrations', name: 'Third-party API Integrations', price: 2500 },
-  { id: 'advanced-analytics', name: 'Advanced Analytics', price: 4000 },
-  { id: 'multi-tenant', name: 'Multi-tenant Architecture', price: 8000 },
-  { id: 'mobile-app', name: 'Companion Mobile App', price: 15000 },
-  { id: 'ai-features', name: 'AI-powered Features', price: 10000 }
+  { id: 'mobile-responsive', name: 'Mobile Responsive Design' },
+  { id: 'user-authentication', name: 'User Authentication System' },
+  { id: 'payment-processing', name: 'Payment Processing' },
+  { id: 'api-integrations', name: 'Third-party API Integrations' },
+  { id: 'advanced-analytics', name: 'Advanced Analytics' },
+  { id: 'multi-tenant', name: 'Multi-tenant Architecture' },
+  { id: 'mobile-app', name: 'Companion Mobile App' },
+  { id: 'ai-features', name: 'AI-powered Features' }
 ]
 
 export function InteractivePricingCalculator() {
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [calculatorState, setCalculatorState] = useState<PricingCalculatorState>({
-    softwareType: 'business-management',
+    softwareType: 'ecommerce',
     complexity: 'standard',
     features: ['mobile-responsive'],
     timeline: 'standard',
@@ -77,27 +89,22 @@ export function InteractivePricingCalculator() {
       const selectedSoftware = softwareTypes.find(s => s.id === calculatorState.softwareType)
       if (!selectedSoftware) throw new Error('Invalid software type')
 
-      const basePrice = selectedSoftware.basePrice
-      const complexityMultiplier = complexityMultipliers[calculatorState.complexity].multiplier
+      const basePrice = selectedSoftware.minPrice
+      const complexityAdd = complexityOptions[calculatorState.complexity].add
       const timelineMultiplier = timelineMultipliers[calculatorState.timeline].multiplier
       const supportPrice = supportOptions[calculatorState.support].price
-      
-      const featuresPrice = calculatorState.features.reduce((total, featureId) => {
-        const feature = availableFeatures.find(f => f.id === featureId)
-        return total + (feature?.price || 0)
-      }, 0)
 
-      const subtotal = (basePrice * complexityMultiplier) + featuresPrice
-      const totalPrice = Math.round((subtotal * timelineMultiplier) + supportPrice)
+      const subtotal = basePrice + complexityAdd
+      const totalPrice = Math.round(subtotal * timelineMultiplier + supportPrice)
       
       // Calculate ROI estimates
       const roiMultipliers: Record<string, number> = {
-        'business-management': 4.5,
-        'agency-to-saas': 12,
         'ecommerce': 3.8,
+        'agency-to-saas': 12,
+        'workflow-automation': 6.0,
         'mobile-app': 2.2,
-        'analytics-dashboard': 5.5,
-        'ai-automation': 8.0
+        'ai-integration': 8.0,
+        'business-management': 4.5
       }
       
       const annualROI = Math.round(totalPrice * roiMultipliers[calculatorState.softwareType])
@@ -105,7 +112,7 @@ export function InteractivePricingCalculator() {
       const paybackMonths = Math.round((totalPrice / (annualROI / 12)) * 10) / 10
 
       setPricingResult({
-        basePrice: Math.round(basePrice * complexityMultiplier),
+        basePrice: subtotal,
         totalPrice,
         timeline: timelineMultipliers[calculatorState.timeline].label,
         roi: `${roiPercentage}% ($${annualROI.toLocaleString()}/year)`,
@@ -180,9 +187,12 @@ export function InteractivePricingCalculator() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="font-sans font-semibold tracking-tighter2 text-4xl text-white mb-6">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-4xl text-white mb-4">
             Interactive Pricing Calculator
           </h2>
+          <p className="font-sans text-sm text-neutral-300 max-w-3xl mx-auto mb-4">
+            Prices are very project dependent; consider these rough estimates—final price can end up lower or higher than the ranges shown.
+          </p>
           <p className="font-sans text-lg text-neutral-200 tracking-tightish max-w-3xl mx-auto">
             Get an instant estimate for your custom software project.
             Adjust the options below to see how pricing changes.
@@ -211,7 +221,7 @@ export function InteractivePricingCalculator() {
                     <div className={`font-medium ${
                       calculatorState.softwareType === type.id ? 'text-accent-300' : 'text-white'
                     }`}>{type.name}</div>
-                    <div className="text-sm text-neutral-400">Starting at ${type.basePrice.toLocaleString()}</div>
+                    <div className="text-sm text-neutral-400">${type.minPrice.toLocaleString()} - ${type.maxPrice.toLocaleString()}</div>
                   </button>
                 ))}
               </div>
@@ -223,7 +233,7 @@ export function InteractivePricingCalculator() {
                 Complexity Level
               </label>
               <div className="grid gap-3">
-                {Object.entries(complexityMultipliers).map(([key, complexity]) => (
+                {Object.entries(complexityOptions).map(([key, complexity]) => (
                   <button
                     key={key}
                     onClick={() => updateCalculatorState({ complexity: key as any })}
@@ -235,6 +245,9 @@ export function InteractivePricingCalculator() {
                   >
                     <div className="font-medium">{complexity.label}</div>
                     <div className="text-sm text-neutral-400">{complexity.description}</div>
+                    {complexity.add > 0 && (
+                      <div className="text-sm font-medium text-accent-600">+${complexity.add.toLocaleString()}</div>
+                    )}
                   </button>
                 ))}
               </div>
@@ -263,10 +276,10 @@ export function InteractivePricingCalculator() {
               </div>
             </div>
 
-            {/* Additional Features */}
+            {/* Typical Features */}
             <div>
               <label className="block text-lg font-semibold text-white mb-4">
-                Additional Features
+                Typical Features
               </label>
               <div className="grid gap-2">
                 {availableFeatures.map((feature) => (
@@ -279,12 +292,7 @@ export function InteractivePricingCalculator() {
                         : 'border-neutral-700 bg-neutral-800 hover:border-accent-400 text-white'
                     }`}
                   >
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium">{feature.name}</span>
-                      <span className="text-sm text-neutral-400">
-                        {feature.price === 0 ? 'Included' : `+$${feature.price.toLocaleString()}`}
-                      </span>
-                    </div>
+                    <span className="font-medium">{feature.name}</span>
                   </button>
                 ))}
               </div>
@@ -348,7 +356,7 @@ export function InteractivePricingCalculator() {
                   {/* Call to Action */}
                   <div className="space-y-3">
                     <button className="w-full btn-primary">
-                      Get Your Free Consultation
+                      Get Your Free 15-Minute Consultation
                     </button>
                     <button className="w-full px-6 py-3 border-2 border-accent-600 text-accent-600 font-medium rounded-lg hover:bg-accent-500/10 transition-all">
                       Download Detailed Quote (PDF)

@@ -41,7 +41,7 @@ export function FloatingCTA() {
             <div className="mr-3 text-xl" aria-hidden="true">◆</div>
             <div className="text-left">
               <div className="font-semibold text-sm">Ready to start?</div>
-              <div className="text-xs opacity-90 hidden sm:block">Book free consultation</div>
+              <div className="text-xs opacity-90 hidden sm:block">Book free 15-min consultation</div>
             </div>
           </div>
           
