@@ -164,10 +164,10 @@ export function QuickROICalculator() {
       
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-neutral-900 mb-4">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl text-neutral-900 mb-4">
             Quick ROI Calculator
           </h2>
-          <p className="text-lg text-neutral-600">
+          <p className="font-sans text-base md:text-lg text-neutral-600 tracking-tightish">
             See your potential return on investment in 30 seconds
           </p>
         </div>

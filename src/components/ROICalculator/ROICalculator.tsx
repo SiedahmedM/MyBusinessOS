@@ -19,10 +19,10 @@ export function ROICalculator() {
                 <span className="text-2xl text-accent-400">◆</span>
               </div>
             </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+            <h2 className="font-sans font-semibold tracking-tighter2 text-3xl lg:text-4xl text-white mb-4">
               Calculate Your ROI
             </h2>
-            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+            <p className="font-sans text-base md:text-lg text-neutral-300 tracking-tightish max-w-2xl mx-auto">
               See exactly how much CustomSoftwarePro solutions will save your business.
               These calculations are based on real results from my clients.
             </p>

@@ -150,10 +150,10 @@ export function VisualProjectShowcase() {
       <div className="relative z-10 mobile-content-padding">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-6">
             Project Showcase
           </h2>
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-sans text-lg md:text-xl text-neutral-400 tracking-tightish max-w-3xl mx-auto leading-relaxed">
             Real projects that transformed businesses. Each solution custom-built to solve specific challenges.
           </p>
         </div>
