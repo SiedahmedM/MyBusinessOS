@@ -25,7 +25,7 @@ import { logger } from '@/lib/logger'
 const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?: (tabId: Tab['id']) => void }) {
   return (
     <TabErrorBoundary tabName="Solutions">
-      <div id="solutions" className="mobile-section-spacing">
+      <div id="solutions" className="mobile-section-spacing section-transition">
         {/* Hero Section - Only on Solutions tab */}
         <Hero onTabChange={onTabChange} />
         
@@ -36,21 +36,21 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         <VisualProjectShowcase />
 
         {/* ROI Calculator - Full width section */}
-        <div className="roi-calculator-mobile">
+        <div className="roi-calculator-mobile section-transition">
           <div className="calculator-content">
             <QuickROICalculator />
           </div>
         </div>
         
         {/* AI Playground - Immersive purple section */}
-        <div className="ai-playground-mobile">
+        <div className="ai-playground-mobile section-transition">
           <div className="content-wrapper">
             <AIPlayground />
           </div>
         </div>
         
         {/* Tech Showcase - Simplified, no code display */}
-        <div className="tech-showcase-mobile">
+        <div className="tech-showcase-mobile section-transition">
           <TechShowcase />
         </div>
       </div>
@@ -61,9 +61,9 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
 const ProcessTab = memo(function ProcessTab() {
   return (
     <TabErrorBoundary tabName="Process">
-      <div id="process" className="mobile-section-spacing">
+      <div id="process" className="mobile-section-spacing section-transition">
         {/* Process Timeline - Clean white section */}
-        <div className="process-timeline-mobile">
+        <div className="process-timeline-mobile section-transition">
           <div className="timeline-container">
             <ProcessTimeline />
           </div>
@@ -76,16 +76,16 @@ const ProcessTab = memo(function ProcessTab() {
 const PricingTab = memo(function PricingTab() {
   return (
     <TabErrorBoundary tabName="Pricing">
-      <div id="pricing" className="mobile-section-spacing">
+      <div id="pricing" className="mobile-section-spacing section-transition">
         {/* Interactive Pricing Calculator - Light section */}
-        <div className="pricing-calculator-mobile">
+        <div className="pricing-calculator-mobile section-transition">
           <div className="calculator-wrapper">
             <InteractivePricingCalculator />
           </div>
         </div>
         
         {/* ROI Calculator - Dark gradient section */}
-        <div className="roi-calculator-mobile">
+        <div className="roi-calculator-mobile section-transition">
           <div className="calculator-content">
             <ROICalculator />
           </div>
@@ -115,7 +115,7 @@ export default function Home() {
 
   return (
     <ErrorBoundary>
-      <div className="min-h-screen bg-white mobile-full-width">
+      <div className="min-h-screen bg-black text-white mobile-full-width transition-colors duration-500">
         {/* Mobile-optimized navigation - Full width */}
         <TabNavigation 
           activeTab={activeTab} 
@@ -131,7 +131,7 @@ export default function Home() {
           {activeTab === 'pricing' && <PricingTab />}
 
           {/* Contact section - Full width with background */}
-          <div className="contact-form-mobile">
+          <div className="contact-form-mobile section-transition">
             <div className="form-container">
               <ContactForm />
             </div>
