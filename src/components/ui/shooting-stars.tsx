@@ -25,6 +25,7 @@ interface ShootingStarsProps {
 }
 
 const getRandomStartPoint = () => {
+  // ESLint exception: Math.random and window access only used in useEffect
   const side = Math.floor(Math.random() * 4);
   const offset = Math.random() * window.innerWidth;
 
@@ -60,7 +61,7 @@ export const ShootingStars: React.FC<ShootingStarsProps> = ({
     const createStar = () => {
       const { x, y, angle } = getRandomStartPoint();
       const newStar: ShootingStar = {
-        id: Date.now(),
+        id: Date.now(), // ESLint exception: Only used in useEffect
         x,
         y,
         angle,
