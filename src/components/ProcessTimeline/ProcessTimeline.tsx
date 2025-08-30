@@ -1,6 +1,8 @@
 'use client'
 import { useState, useCallback } from 'react'
 import { logger } from '@/lib/logger'
+import { StarsBackground } from '@/components/ui/stars-background'
+
 
 interface ProcessStep {
   number: number
@@ -113,14 +115,23 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
   const selectedStepData = processSteps.find(step => step.number === selectedStep) || processSteps[0]
 
   return (
-    <section className={`py-16 ${className}`}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className={`py-16 relative ${className}`}>
+      { (
+        <div className="absolute inset-0">
+          <StarsBackground 
+            starDensity={0.00012} 
+            className="opacity-25" 
+            allStarsTwinkle={true}
+          />
+        </div>
+      )}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-neutral-900 mb-6">
+          <h2 className="text-4xl font-bold mb-6 text-white">
             How We Work Together
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto text-neutral-200">
             A proven 4-step process that delivers results every time. 
             From idea to live software in weeks, not months.
           </p>

@@ -2,6 +2,8 @@
 import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
 
+import { StarsBackground } from '@/components/ui/stars-background'
+
 interface QuickROIInputs {
   softwareType: string
   monthlyRevenue: number
@@ -71,6 +73,8 @@ export function QuickROICalculator() {
     teamSize: 5
   })
   const [result, setResult] = useState<ROIResult | null>(null)
+
+  
 
   const calculateROI = useCallback(() => {
     try {
@@ -152,8 +156,13 @@ export function QuickROICalculator() {
   const selectedSoftware = softwareTypeROI[inputs.softwareType as keyof typeof softwareTypeROI]
 
   return (
-    <section className="bg-neutral-50 py-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative bg-neutral-50 py-16">
+      {/* Stars for full-dark theme */}
+      { (
+        <StarsBackground starDensity={0.00005} className="opacity-30" />
+      )}
+      
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-neutral-900 mb-4">
             Quick ROI Calculator

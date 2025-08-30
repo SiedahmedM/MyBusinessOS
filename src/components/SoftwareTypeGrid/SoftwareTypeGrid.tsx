@@ -4,6 +4,7 @@ import { softwareTypes } from '@/types/tabs'
 import type { SoftwareType } from '@/types/tabs'
 import { LoadingSpinner } from '@/components/common/LoadingSpinner'
 import { logger } from '@/lib/logger'
+import { StarsBackground } from '@/components/ui/stars-background'
 
 interface SoftwareTypeGridProps {
   onTypeSelected?: (type: SoftwareType) => void
@@ -14,6 +15,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   const [selectedType, setSelectedType] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  
 
   const handleTypeClick = useCallback((type: SoftwareType) => {
     try {
@@ -53,16 +55,20 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
   }
 
   return (
-    <section className={`software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black branded-section ${className}`}>
-      {/* Header */}
-      <div className="section-header-mobile">
-        <h2 className="text-neutral-900">
-          What Can I Build For You?
-        </h2>
-        <p className="text-neutral-600">
-          Choose your software type below to see examples and ROI estimates
-        </p>
-      </div>
+    <section className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black branded-section ${className}`}>
+      {/* Stars for full-dark theme */}
+      <StarsBackground starDensity={0.00003} className="opacity-30" />
+      
+      <div className="relative z-10">
+        {/* Header */}
+        <div className="section-header-mobile">
+          <h2 className="text-white">
+            What Can I Build For You?
+          </h2>
+          <p className="text-neutral-200">
+            Choose your software type below to see examples and ROI estimates
+          </p>
+        </div>
 
       {/* Software Type Grid - Mobile Full Width */}
       <div className="mobile-native-grid">
@@ -122,22 +128,23 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
         ))}
       </div>
 
-      {/* Call to Action - Full width on mobile */}
-      <div className="mobile-cta-section mt-4">
-        <div className="mobile-content-padding">
-          <h3 className="text-xl font-bold text-accent-400 mb-3">
-            Don't See Your Exact Needs?
-          </h3>
-          <p className="text-neutral-100 mb-4 text-sm leading-relaxed">
-            I build custom solutions for unique requirements. If you can describe it, I can build it.
-          </p>
-          <div className="mobile-cta-buttons">
-            <button
-              className="w-full btn-primary"
-              aria-label="Schedule a consultation to discuss your custom project"
-            >
-              Discuss Your Custom Project
-            </button>
+        {/* Call to Action - Full width on mobile */}
+        <div className="mobile-cta-section mt-4">
+          <div className="mobile-content-padding">
+            <h3 className="text-xl font-bold text-accent-400 mb-3">
+              Don't See Your Exact Needs?
+            </h3>
+            <p className="text-neutral-100 mb-4 text-sm leading-relaxed">
+              I build custom solutions for unique requirements. If you can describe it, I can build it.
+            </p>
+            <div className="mobile-cta-buttons">
+              <button
+                className="w-full btn-primary"
+                aria-label="Schedule a consultation to discuss your custom project"
+              >
+                Discuss Your Custom Project
+              </button>
+            </div>
           </div>
         </div>
       </div>

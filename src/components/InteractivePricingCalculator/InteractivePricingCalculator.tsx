@@ -1,6 +1,8 @@
 'use client'
 import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
+import { StarsBackground } from '@/components/ui/stars-background'
+
 
 interface PricingCalculatorState {
   softwareType: string
@@ -165,14 +167,23 @@ export function InteractivePricingCalculator() {
   }
 
   return (
-    <section className="py-16 bg-neutral-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 relative bg-neutral-900">
+      { (
+        <div className="absolute inset-0">
+          <StarsBackground 
+            starDensity={0.00010} 
+            className="opacity-30" 
+            allStarsTwinkle={true}
+          />
+        </div>
+      )}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-neutral-900 mb-6">
+          <h2 className="text-4xl font-bold mb-6 text-white">
             Interactive Pricing Calculator
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <p className="text-xl max-w-3xl mx-auto text-neutral-200">
             Get an instant estimate for your custom software project. 
             Adjust the options below to see how pricing changes.
           </p>
@@ -183,7 +194,9 @@ export function InteractivePricingCalculator() {
           <div className="space-y-8">
             {/* Software Type */}
             <div>
-              <label className="block text-lg font-semibold text-neutral-900 mb-4">
+              <label className={`block text-lg font-semibold mb-4 ${
+                true ? 'text-white' : 'text-neutral-900'
+              }`}>
                 What type of software do you need?
               </label>
               <div className="grid gap-3">
@@ -194,11 +207,15 @@ export function InteractivePricingCalculator() {
                     className={`p-4 rounded-lg border-2 text-left transition-all ${
                       calculatorState.softwareType === type.id
                         ? 'border-accent-500 bg-accent-50'
-                        : 'border-gray-200 hover:border-accent-300'
+                        : 'border-neutral-600 bg-neutral-800 hover:border-accent-300 text-white'
                     }`}
                   >
-                    <div className="font-medium">{type.name}</div>
-                    <div className="text-sm text-neutral-500">Starting at ${type.basePrice.toLocaleString()}</div>
+                    <div className={`font-medium ${
+                       calculatorState.softwareType !== type.id ? 'text-white' : ''
+                    }`}>{type.name}</div>
+                    <div className={`text-sm ${
+                      true ? 'text-neutral-300' : 'text-neutral-500'
+                    }`}>Starting at ${type.basePrice.toLocaleString()}</div>
                   </button>
                 ))}
               </div>
@@ -307,8 +324,12 @@ export function InteractivePricingCalculator() {
           {/* Pricing Result */}
           <div className="lg:sticky lg:top-8">
             {pricingResult && (
-              <div className="bg-white rounded-2xl shadow-xl p-8">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">Your Project Estimate</h3>
+              <div className={`rounded-2xl shadow-xl p-8 ${
+                true ? 'bg-neutral-800 border border-neutral-600' : 'bg-white'
+              }`}>
+                <h3 className={`text-2xl font-bold mb-6 ${
+                  true ? 'text-white' : 'text-neutral-900'
+                }`}>Your Project Estimate</h3>
                 
                 <div className="space-y-6">
                   {/* Total Price */}

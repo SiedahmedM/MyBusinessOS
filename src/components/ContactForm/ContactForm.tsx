@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { logger } from '@/lib/logger'
 import { toast } from 'sonner'
 
+import { StarsBackground } from '@/components/ui/stars-background'
+
 export function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -12,6 +14,8 @@ export function ContactForm() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
+
+  
 
   console.log('ContactForm: Rendering component');
 
@@ -98,8 +102,13 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="section-padding bg-neutral-50">
-      <div className="max-w-4xl mx-auto">
+    <section id="contact" className="relative section-padding bg-neutral-50">
+      {/* Stars for full-dark theme */}
+      { (
+        <StarsBackground starDensity={0.00005} className="opacity-30" />
+      )}
+      
+      <div className="relative z-10 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="section-title text-neutral-900 mb-6">

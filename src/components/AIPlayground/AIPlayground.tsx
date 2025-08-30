@@ -4,6 +4,8 @@ import { IPhoneSimulator } from './IPhoneSimulator'
 import { AIChat } from './AIChat'
 import { logger } from '@/lib/logger'
 
+import { StarsBackground } from '@/components/ui/stars-background'
+
 type ViewState = 'chat' | 'building' | 'complete'
 
 export function AIPlayground() {
@@ -11,6 +13,8 @@ export function AIPlayground() {
   const [viewState, setViewState] = useState<ViewState>('chat')
   const [isBuilding, setIsBuilding] = useState(false)
   const [error, setError] = useState<string | null>(null)
+
+  
 
   console.log('AIPlayground: Rendering', { 
     currentSoftwareType, 
@@ -101,8 +105,13 @@ export function AIPlayground() {
   }
 
   return (
-    <section id="ai-playground" className="ai-playground-mobile section-fade-top section-fade-top--white">
-      <div className="content-wrapper">
+    <section id="ai-playground" className="relative ai-playground-mobile section-fade-top section-fade-top--white">
+      {/* Stars for full-dark theme */}
+      { (
+        <StarsBackground starDensity={0.00005} className="opacity-30" />
+      )}
+      
+      <div className="relative z-10 content-wrapper">
         {/* Header */}
         <div className="section-header-mobile">
           <h2 className="text-white">

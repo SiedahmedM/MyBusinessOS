@@ -1,13 +1,22 @@
 'use client'
 import { TechGrid } from './TechGrid'
 import { CodeDisplay } from './CodeDisplay'
+import { StarsBackground } from '@/components/ui/stars-background'
+
 
 export function TechShowcase() {
   console.log('TechShowcase: Rendering component');
 
   return (
-    <section className="tech-showcase-mobile">
-      <div className="section-header-mobile">
+    <section className="tech-showcase-mobile relative">
+      { (
+        <StarsBackground 
+          starDensity={0.00008} 
+          className="opacity-20" 
+          allStarsTwinkle={true}
+        />
+      )}
+      <div className="section-header-mobile relative z-10">
         <h2 className="text-white">
           Cutting-Edge Technology Stack
         </h2>
@@ -17,7 +26,7 @@ export function TechShowcase() {
       </div>
       
       {/* Simple credibility section - no code display */}
-      <div className="mobile-content-padding">
+      <div className="mobile-content-padding relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-6">
             <p className="text-lg text-neutral-300 leading-relaxed">

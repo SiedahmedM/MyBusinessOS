@@ -1,8 +1,14 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Toaster } from 'sonner'
 import './globals.css'
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://CustomSoftwarePro.com'
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#667eea',
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -15,8 +21,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'CustomSoftwarePro', url: siteUrl }],
   creator: 'CustomSoftwarePro',
   publisher: 'CustomSoftwarePro',
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#667eea',
   alternates: {
     canonical: siteUrl,
   },
@@ -63,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" data-theme="full-dark">
       <body className="antialiased">
         {children}
         <Toaster 

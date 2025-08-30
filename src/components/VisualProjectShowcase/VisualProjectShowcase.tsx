@@ -2,6 +2,8 @@
 import { useState, useCallback } from 'react'
 import { logger } from '@/lib/logger'
 
+import { StarsBackground } from '@/components/ui/stars-background'
+
 interface ProjectShowcase {
   id: string
   title: string
@@ -85,6 +87,8 @@ export function VisualProjectShowcase() {
   const [imageLoadErrors, setImageLoadErrors] = useState<Set<string>>(new Set())
   const [error, setError] = useState<string | null>(null)
 
+  
+
   const handleImageError = useCallback((projectId: string) => {
     try {
       logger.info('VisualProjectShowcase: Image load error', { projectId })
@@ -137,8 +141,13 @@ export function VisualProjectShowcase() {
   }
 
   return (
-    <section className="py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--white section-fade-bottom section-fade-bottom--white">
-      <div className="mobile-content-padding">
+    <section className="relative py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--white section-fade-bottom section-fade-bottom--white">
+      {/* Stars for full-dark theme */}
+      { (
+        <StarsBackground starDensity={0.00005} className="opacity-30" />
+      )}
+      
+      <div className="relative z-10 mobile-content-padding">
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">

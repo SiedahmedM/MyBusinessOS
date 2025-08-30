@@ -1,9 +1,11 @@
 'use client'
 import { TypingAnimation } from './TypingAnimation'
 import { CounterStats } from './CounterStats'
-import { FloatingParticles } from './FloatingParticles'
+import { StaggeredText } from './StaggeredText'
+import { HeroBackground } from './HeroBackground'
 import { LogoGrid, Logo } from '@/components/common/Logo'
 import { scrollToSection } from '@/lib/utils'
+import { motion } from 'framer-motion'
 
 interface HeroProps {
   onGetStartedClick?: () => void
@@ -42,12 +44,9 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-hero-gradient section-fade-bottom section-fade-bottom--white">
-      {/* Background Gradient */}
-      <div className="absolute inset-0 bg-hero-gradient" />
-      
-      {/* Floating Particles */}
-      <FloatingParticles />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-fade-bottom section-fade-bottom--white">
+      {/* Theme-aware background component */}
+      <HeroBackground />
       
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -59,11 +58,15 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
           </span>
         </div>
         
-        {/* Mobile-Optimized Main Heading */}
-        <h1 className="tech-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight">
-          <span className="block">Custom Software That</span>
-          <span className="block text-accent-300 mt-2">Transforms Business</span>
-        </h1>
+
+        {/* Animated Main Heading */}
+        <StaggeredText 
+          lines={[
+            { text: "Custom Software That", className: "" },
+            { text: "Transforms Business", className: "text-accent-300 mt-2" }
+          ]}
+          className="staggered-text tech-heading text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
+        />
         
         {/* Mobile-Simplified Description */}
         <div className="mb-8 sm:mb-12">
