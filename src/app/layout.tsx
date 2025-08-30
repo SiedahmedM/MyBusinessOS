@@ -7,7 +7,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://CustomSoftwarePro.c
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#667eea',
+  // Ensure mobile browsers use our dark palette for overscroll areas
+  themeColor: '#000000',
 }
 
 export const metadata: Metadata = {
