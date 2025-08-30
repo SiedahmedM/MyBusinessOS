@@ -11,7 +11,7 @@ import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
 import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
-import { QuickROICalculator } from '@/components/QuickROICalculator/QuickROICalculator'
+import { FAQSection } from '@/components/FAQ/FAQSection'
 import { ProjectBentoGrid } from '@/components/ProjectBentoGrid/ProjectBentoGrid'
 import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/TestimonialsMarquee'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
@@ -36,10 +36,10 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         {/* Project Showcase using Bento Grid */}
         <ProjectBentoGrid />
 
-        {/* ROI Calculator - Full width section */}
-        <div className="roi-calculator-mobile section-transition">
-          <div className="calculator-content">
-            <QuickROICalculator />
+        {/* FAQ Section - replaces ROI calculator */}
+        <div className="faq-mobile section-transition">
+          <div className="faq-content">
+            <FAQSection />
           </div>
         </div>
         

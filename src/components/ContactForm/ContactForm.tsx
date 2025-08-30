@@ -118,6 +118,9 @@ export function ContactForm() {
             Tell me about your business and I'll create a custom software solution
             that drives growth and saves you time.
           </p>
+          <p className="mt-4 text-sm text-neutral-600 max-w-2xl mx-auto">
+            Every message includes a free 15-minute consultation. Located in Orange County? I'm happy to meet in person for the consult.
+          </p>
         </div>
 
         {/* Contact Form */}
@@ -228,12 +231,12 @@ export function ContactForm() {
                     Sending Message...
                   </div>
                 ) : (
-                  'Send Message & Get Free Consultation'
+                  'Send Message & Get Free 15-Minute Consultation'
                 )}
               </button>
-              
+
               <p className="mt-4 text-sm text-neutral-500">
-                I typically respond within 2-4 hours during business hours.
+                I typically respond within 2-4 hours during business hours. If you're in Orange County, ask about a free in-person 15-minute consultation.
               </p>
             </div>
           </form>
