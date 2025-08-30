@@ -180,11 +180,11 @@ export function InteractivePricingCalculator() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-6 text-white">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-4xl text-white mb-6">
             Interactive Pricing Calculator
           </h2>
-          <p className="text-xl max-w-3xl mx-auto text-neutral-200">
-            Get an instant estimate for your custom software project. 
+          <p className="font-sans text-lg text-neutral-200 tracking-tightish max-w-3xl mx-auto">
+            Get an instant estimate for your custom software project.
             Adjust the options below to see how pricing changes.
           </p>
         </div>

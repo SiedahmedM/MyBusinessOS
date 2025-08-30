@@ -111,11 +111,11 @@ export function ContactForm() {
       <div className="relative z-10 max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="section-title text-neutral-900 mb-6">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-neutral-900 mb-6">
             Ready to Transform Your Business?
           </h2>
-          <p className="text-xl text-neutral-600 max-w-2xl mx-auto">
-            Tell me about your business and I'll create a custom software solution 
+          <p className="font-sans text-lg text-neutral-600 tracking-tightish max-w-2xl mx-auto">
+            Tell me about your business and I'll create a custom software solution
             that drives growth and saves you time.
           </p>
         </div>

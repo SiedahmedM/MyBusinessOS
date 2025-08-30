@@ -128,11 +128,11 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-6 text-white">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-4xl text-white mb-6">
             How We Work Together
           </h2>
-          <p className="text-xl max-w-3xl mx-auto text-neutral-200">
-            A proven 4-step process that delivers results every time. 
+          <p className="font-sans text-lg md:text-xl text-neutral-200 tracking-tightish max-w-3xl mx-auto">
+            A proven 4-step process that delivers results every time.
             From idea to live software in weeks, not months.
           </p>
         </div>

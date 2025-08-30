@@ -17,10 +17,10 @@ export function TechShowcase() {
         />
       )}
       <div className="section-header-mobile relative z-10">
-        <h2 className="text-white">
+        <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">
           Cutting-Edge Technology Stack
         </h2>
-        <p className="text-neutral-300">
+        <p className="font-sans text-base md:text-lg text-neutral-300 tracking-tightish">
           The same technologies used by Netflix, Uber, and Tesla
         </p>
       </div>
@@ -29,8 +29,8 @@ export function TechShowcase() {
       <div className="mobile-content-padding relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-6">
-            <p className="text-lg text-neutral-300 leading-relaxed">
-              I build with enterprise-grade technologies that power the world's most successful companies. 
+            <p className="font-sans text-lg text-neutral-300 tracking-tightish leading-relaxed">
+              I build with enterprise-grade technologies that power the world's most successful companies.
               Your solution gets the same reliability, performance, and scalability.
             </p>
             

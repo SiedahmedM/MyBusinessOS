@@ -208,11 +208,11 @@ export function CaseStudies() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="section-title text-white mb-6">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-6">
             Real Businesses, Real Results
           </h2>
-          <p className="text-xl text-neutral-400 max-w-3xl mx-auto mb-8">
-            See how I've helped businesses transform their operations 
+          <p className="font-sans text-lg md:text-xl text-neutral-400 tracking-tightish max-w-3xl mx-auto mb-8">
+            See how I've helped businesses transform their operations
             with custom software solutions. These are real clients with real results.
           </p>
           

@@ -62,10 +62,10 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
       <div className="relative z-10">
         {/* Header */}
         <div className="section-header-mobile">
-          <h2 className="text-white">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">
             What Can I Build For You?
           </h2>
-          <p className="text-neutral-200">
+          <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish">
             Choose your software type below to see examples and ROI estimates
           </p>
         </div>

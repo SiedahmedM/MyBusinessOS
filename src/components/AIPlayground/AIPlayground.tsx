@@ -114,15 +114,15 @@ export function AIPlayground() {
       <div className="relative z-10 content-wrapper">
         {/* Header */}
         <div className="section-header-mobile">
-          <h2 className="text-white">
-            {viewState === 'chat' 
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">
+            {viewState === 'chat'
               ? 'Tell Our AI About Your Business'
               : isBuilding
               ? 'Building Your Mobile App'
               : 'Your Mobile App is Ready!'
             }
           </h2>
-          <p className="text-neutral-200">
+          <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish">
             {viewState === 'chat'
               ? 'Chat with our AI to describe your business. It will understand your needs and build you a mobile app demo in real-time.'
               : isBuilding
