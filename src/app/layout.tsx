@@ -7,7 +7,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://CustomSoftwarePro.c
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#667eea',
+  themeColor: '#000000',
 }
 
 export const metadata: Metadata = {
@@ -67,7 +67,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth" data-theme="full-dark">
+    <html lang="en" className="scroll-smooth bg-black" data-theme="full-dark">
       <body className="antialiased">
         {children}
         <Toaster 

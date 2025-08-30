@@ -32,6 +32,7 @@
 
 html {
   scroll-behavior: smooth;
+  background: #000000;
 }
 
 body {
@@ -1823,7 +1824,7 @@ html {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/images/customsoftwarepro-logo.png') no-repeat;
+  background: url('/images/customsoftwarepro-logo.svg') no-repeat;
   background-size: 200px auto;
   background-position: 95% 95%;
   opacity: 0.02;

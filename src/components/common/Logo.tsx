@@ -62,14 +62,14 @@ export function Logo({
     <div className={cn(getContainerClasses(), className)}>
       <div className="relative">
         <Image
-          src="/images/customsoftwarepro-logo.png"
+          src="/images/customsoftwarepro-logo.svg"
           alt="CustomSoftwarePro - Custom Software Development"
           width={200}
           height={60}
           className={cn(
             getSizeClasses(),
             'transition-all duration-300',
-            variant === 'header' && 'hover:drop-shadow-lg'
+            variant === 'header' && 'mix-blend-screen hover:opacity-90'
           )}
           style={{ filter: getImageFilter() }}
           priority={variant === 'header' || variant === 'hero'}
