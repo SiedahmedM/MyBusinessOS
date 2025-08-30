@@ -150,7 +150,7 @@ export default function Home() {
         </main>
         
         {/* Footer */}
-        <Footer year={new Date().getFullYear()} />
+        <Footer />
       </div>
     </ErrorBoundary>
   )

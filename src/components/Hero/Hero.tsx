@@ -1,6 +1,6 @@
 'use client'
 import { TypingAnimation } from './TypingAnimation'
-import { CounterStats } from './CounterStats'
+import { ExperienceLogos } from './ExperienceLogos'
 import { StaggeredText } from './StaggeredText'
 import { HeroBackground } from './HeroBackground'
 import { scrollToSection } from '@/lib/utils'
@@ -98,9 +98,9 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
           </button>
         </div>
         
-        {/* Stats - Simplified on mobile */}
+        {/* Industry experience logos */}
         <div className="mt-8 sm:mt-12">
-          <CounterStats />
+          <ExperienceLogos />
         </div>
       </div>
     </section>

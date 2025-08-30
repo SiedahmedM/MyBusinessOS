@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import { customLogo } from '@/data/customLogo'
 
 interface LogoProps {
   variant?: 'header' | 'hero' | 'footer' | 'inline'
@@ -62,17 +63,18 @@ export function Logo({
     <div className={cn(getContainerClasses(), className)}>
       <div className="relative">
         <Image
-          src="/images/customsoftwarepro-logo.svg"
+          src={customLogo}
           alt="CustomSoftwarePro - Custom Software Development"
           width={200}
           height={60}
           className={cn(
             getSizeClasses(),
-            'transition-all duration-300',
+            'rounded-lg transition-all duration-300',
             variant === 'header' && 'mix-blend-screen hover:opacity-90'
           )}
           style={{ filter: getImageFilter() }}
           priority={variant === 'header' || variant === 'hero'}
+          unoptimized
         />
         
         {/* Subtle glow effect for hero variant */}
