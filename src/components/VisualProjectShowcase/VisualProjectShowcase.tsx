@@ -283,14 +283,14 @@ export function VisualProjectShowcase() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
               <button
                 onClick={() => handleScrollToSection('ai-playground')}
-                className="btn-secondary w-full sm:w-auto"
+                className="btn-primary w-full sm:w-auto"
                 aria-label="Start your project with AI chat"
               >
                 Start Your Project
               </button>
               <button
                 onClick={() => handleScrollToSection('contact')}
-                className="w-full sm:w-auto btn-primary"
+                className="btn-primary w-full sm:w-auto"
                 aria-label="Get a free quote for your project"
               >
                 Get Free Quote
