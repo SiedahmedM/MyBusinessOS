@@ -27,7 +27,7 @@ export function ProjectBentoGrid() {
           button: 'View Details',
           src: '/images/business-dashboard.webp',
           focalX: '50%',
-          focalY: '45%' // Focus slightly above center for dashboard UI
+          focalY: '45%'
         },
         {
           title: 'Workflow Automation System',
@@ -35,7 +35,7 @@ export function ProjectBentoGrid() {
           button: 'View Details',
           src: '/images/workflow-automation.webp',
           focalX: '50%',
-          focalY: '40%' // Focus on upper content area
+          focalY: '40%'
         },
         {
           title: 'Construction Portal',
@@ -58,6 +58,9 @@ export function ProjectBentoGrid() {
       setIsLoading(false)
     }
   }, [])
+
+  // Hide any projects that do not have a real image yet
+  const visibleProjects = projects.filter((p) => !p.src.startsWith('/api/placeholder'))
 
   if (error) {
     return (
@@ -88,7 +91,7 @@ export function ProjectBentoGrid() {
         </div>
         
         <div className="w-full max-w-screen-xl mx-auto overflow-hidden px-4">
-          <Carousel slides={projects} />
+          <Carousel slides={visibleProjects} />
         </div>
         
         {/* Bottom CTA */}

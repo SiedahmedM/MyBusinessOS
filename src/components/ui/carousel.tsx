@@ -36,6 +36,8 @@ export default function Carousel({ slides }: CarouselProps) {
     dragging: false,
     locked: false, // true when we decide horiz vs vert
   });
+  // Track last swipe time to prevent ghost clicks immediately after swiping
+  const lastSwipeTimeRef = useRef<number>(0);
 
   // Clone first and last slides for infinite loop
   const slidesWithClones = [
@@ -170,6 +172,8 @@ export default function Carousel({ slides }: CarouselProps) {
         // swiped left -> next
         setCurrentIndex((i) => i + 1);
       }
+      // mark swipe to suppress immediate click
+      lastSwipeTimeRef.current = Date.now();
     } else {
       // snap back
       setIsTransitioning(true);
@@ -232,17 +236,40 @@ export default function Carousel({ slides }: CarouselProps) {
 
     {/* Caption below the image */}
     {(slide.title || slide.description || slide.button) && (
-      <div className="px-2 sm:px-3 mt-3">
+      <div
+        className="px-2 sm:px-3 mt-3 cursor-pointer"
+        role="button"
+        tabIndex={0}
+        onClick={() => {
+          // Ignore clicks that occur right after a swipe
+          if (Date.now() - lastSwipeTimeRef.current < 200) return;
+          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+        }}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
+        aria-label={slide.title ? `View details for ${slide.title}` : 'View details'}
+      >
         {slide.title && (
           <h3 className="text-white text-sm sm:text-base font-semibold">{slide.title}</h3>
         )}
         {slide.description && (
-          <p className="text-white/70 text-xs sm:text-sm mt-1 line-clamp-2">
+          <p className="text-white/70 text-xs sm:text-sm mt-1 line-clamp-3 sm:line-clamp-2">
             {slide.description}
           </p>
         )}
         {slide.button && (
-          <button className="mt-2 px-3 py-1.5 bg-white text-black text-xs sm:text-sm rounded-lg hover:bg-gray-100">
+          <button
+            className="mt-2 px-3 py-1.5 bg-white text-black text-xs sm:text-sm rounded-lg hover:bg-gray-100"
+            onClick={(e) => {
+              // prevent this click from triggering drag or other handlers
+              e.stopPropagation();
+              if (Date.now() - lastSwipeTimeRef.current < 200) return;
+              document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             {slide.button}
           </button>
         )}
