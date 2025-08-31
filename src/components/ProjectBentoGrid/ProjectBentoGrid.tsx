@@ -11,6 +11,9 @@ interface Project {
   focalX?: string // e.g. "50%" (default center)
   focalY?: string // e.g. "30%"
   zoom?: number
+  offsetX?: string
+  offsetY?: string
+  aspectRatio?: string
 }
 
 export function ProjectBentoGrid() {
@@ -22,6 +25,15 @@ export function ProjectBentoGrid() {
     try {
       logger.info('ProjectBentoGrid: loading projects')
       setProjects([
+        {
+          title: 'AI Business Assistant',
+          description: 'An AI-powered business assistant featuring a 24/7 customer chatbot, automated document summarization with draft replies, and predictive analytics dashboards to forecast trends. Designed to streamline operations and boost customer satisfaction.',
+          button: 'View Details',
+          src: '/images/ai-business-assistant.webp',
+          focalX: '50%',
+          focalY: '50%',
+          aspectRatio: '4/3'
+        },
         {
           title: 'Business Management Dashboard',
           description: 'Complete business management dashboard with real-time analytics, sales tracking, and team management.',

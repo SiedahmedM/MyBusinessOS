@@ -43,12 +43,12 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden section-fade-bottom section-fade-bottom--black">
+    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden section-fade-bottom section-fade-bottom--black pb-16 md:pb-24">
       {/* Theme-aware background component */}
       <HeroBackground />
       
       {/* Content */}
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Professional Badge */}
         <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 sm:mb-8">
           <span className="font-sans text-neutral-100 font-medium text-sm sm:text-base">
@@ -99,7 +99,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         </div>
         
         {/* Industry experience logos */}
-        <div className="mt-8 sm:mt-12">
+        <div className="mt-8 sm:mt-12 relative z-30">
           <ExperienceLogos />
         </div>
       </div>

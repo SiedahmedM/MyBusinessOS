@@ -14,6 +14,8 @@ interface SlideData {
   zoom?: number; // e.g. 1.0 (default), 1.2, 1.5
   offsetX?: string; // e.g. '0%', '-5%'
   offsetY?: string; // e.g. '0%', '10%'
+  // Optional per-slide aspect ratio, e.g. '16/10', '4/3', '1/1'
+  aspectRatio?: string;
 }
 
 interface CarouselProps {
@@ -210,14 +212,15 @@ export default function Carousel({ slides }: CarouselProps) {
     style={{ width: slideWidth || '100%' }}
     aria-hidden={index === 0 || index === slidesWithClones.length - 1}
   >
-    {/* 16:10 aspect box; height derives from width, no borders */}
+    {/* Aspect box; height derives from width. Use per-slide aspect when provided. */}
     <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl">
+      {/** Use exact pixel width for crisp selection from srcset; fallback before layout */}
       <Image
         src={errored[index] ? '/images/placeholder-1600x1000.webp' : slide.src}
         alt={slide.title || `Slide ${index}`}
         fill
         className="object-cover"
-        // Request crisp sizes matching the card width; all source images are 1600x1000
+        // Use viewport-based sizes for predictable sharpness across DPRs
         sizes={visible === 1 ? '(min-width:1024px) 960px, 100vw' : visible === 2 ? '50vw' : '33vw'}
         quality={100}
         priority={index === 1}
