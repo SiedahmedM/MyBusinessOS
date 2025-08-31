@@ -8,7 +8,7 @@ import { ROICalculator } from '@/components/ROICalculator/ROICalculator'
 import { AIPlayground } from '@/components/AIPlayground/AIPlayground'
 import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
-import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
+import { SolutionsGrid } from '@/components/solutions-grid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
 import { FAQSection } from '@/components/FAQ/FAQSection'
@@ -30,8 +30,8 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         {/* Hero Section - Only on Solutions tab */}
         <Hero onTabChange={onTabChange} />
         
-        {/* Software Type Grid - Full width with background */}
-        <SoftwareTypeGrid />
+        {/* Solutions Grid */}
+        <SolutionsGrid />
         
         {/* Project Showcase using Bento Grid */}
         <ProjectBentoGrid />

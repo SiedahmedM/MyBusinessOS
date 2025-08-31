@@ -125,14 +125,6 @@ export const softwareTypes: SoftwareType[] = [
     roiExample: 'Reach 80% more customers on mobile'
   },
   {
-    id: 'analytics-dashboard',
-    title: 'Analytics Dashboard',
-    icon: '◆',
-    description: 'Turn data into actionable insights',
-    examples: ['Real-time Metrics', 'Custom Reports', 'Data Visualization', 'Automated Alerts'],
-    roiExample: 'Make decisions 10x faster with data'
-  },
-  {
     id: 'ai-automation',
     title: 'AI/Automation Tool',
     icon: '◆',

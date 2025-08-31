@@ -152,7 +152,6 @@ export const businessTypes: BusinessType[] = [
     title: 'BusinessPro',
     features: [
       { icon: '◆', title: 'Customer Management', description: 'Comprehensive CRM system' },
-      { icon: '◆', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
       { icon: '◆', title: 'Payment Processing', description: 'Secure transaction handling' },
       { icon: '◆', title: 'Mobile Solution', description: 'Custom mobile application' },
     ],

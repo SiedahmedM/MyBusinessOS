@@ -66,7 +66,6 @@ Available categories:
 - agency-to-saas: turning service businesses into SaaS platforms, client dashboards, automated reporting, subscription models
 - ecommerce: online stores, shopping carts, product catalogs, payment processing, e-commerce platforms
 - mobile-app: iOS/Android apps, native mobile applications, mobile-first solutions
-- analytics-dashboard: data visualization, reporting systems, business intelligence, metrics dashboards
 - ai-automation: AI tools, process automation, workflow automation, document processing, chatbots
 
 User description: "${message}"
@@ -78,7 +77,6 @@ Rules:
 - If someone mentions turning their business into a SaaS or creating client dashboards, use "agency-to-saas"
 - If they mention online stores, selling products, shopping carts, use "ecommerce"
 - If they specifically want mobile apps or mention iOS/Android, use "mobile-app"
-- If they want dashboards, reporting, analytics, use "analytics-dashboard"
 - If they want automation, AI tools, chatbots, use "ai-automation"
 - If unclear about software type, use "business-management" as default
 
@@ -103,7 +101,7 @@ Classification:`
       const softwareType = response.choices[0]?.message?.content?.trim().toLowerCase()
       
       // Validate the response
-      const validTypes = ['business-management', 'agency-to-saas', 'ecommerce', 'mobile-app', 'analytics-dashboard', 'ai-automation']
+      const validTypes = ['business-management', 'agency-to-saas', 'ecommerce', 'mobile-app', 'ai-automation']
       const detectedType = validTypes.includes(softwareType || '') ? softwareType : 'business-management'
       
       logger.info('AI Chat API: Software type detected', { requestId, detectedType })
@@ -215,10 +213,6 @@ function detectSoftwareTypeLocally(message: string): string {
     {
       keywords: ['mobile app', 'ios app', 'android app', 'smartphone app', 'native app', 'mobile application', 'fitness app'],
       type: 'mobile-app'
-    },
-    {
-      keywords: ['analytics dashboard', 'reporting dashboard', 'metrics dashboard', 'data visualization', 'business intelligence', 'charts', 'reports'],
-      type: 'analytics-dashboard'
     },
     {
       keywords: ['automation', 'ai tool', 'automate', 'workflow automation', 'process automation', 'chatbot', 'ai chatbot'],
@@ -460,7 +454,6 @@ function getBusinessInfo(businessType: string) {
       title: 'BusinessPro',
       features: [
         { icon: '◆', title: 'Customer Management', description: 'Comprehensive CRM system' },
-        { icon: '◆', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
         { icon: '◆', title: 'Payment Processing', description: 'Secure transaction handling' },
         { icon: '◆', title: 'Mobile Solution', description: 'Custom mobile application' },
       ]
@@ -516,17 +509,6 @@ function getSoftwareInfo(softwareType: string) {
         { icon: '◆', title: 'App Store Ready', description: 'Optimized for app stores' }
       ]
     },
-    'analytics-dashboard': {
-      name: 'Analytics Dashboard',
-      title: 'DataInsights Pro',
-      roiExample: 'Make decisions 10x faster with data',
-      features: [
-        { icon: '◆', title: 'Real-time Metrics', description: 'Live business data updates' },
-        { icon: '◆', title: 'Custom Reports', description: 'Build reports for your needs' },
-        { icon: '◆', title: 'Data Visualization', description: 'Beautiful charts and graphs' },
-        { icon: '◆', title: 'Automated Alerts', description: 'Get notified of important changes' }
-      ]
-    },
     'ai-automation': {
       name: 'AI/Automation Tool',
       title: 'AutomationMax AI',
@@ -544,7 +526,6 @@ function getSoftwareInfo(softwareType: string) {
       roiExample: 'Streamline operations and boost efficiency',
       features: [
         { icon: '◆', title: 'Customer Management', description: 'Comprehensive CRM system' },
-        { icon: '◆', title: 'Analytics Dashboard', description: 'Business intelligence tools' },
         { icon: '◆', title: 'Payment Processing', description: 'Secure transaction handling' },
         { icon: '◆', title: 'Mobile Solution', description: 'Custom mobile application' }
       ]

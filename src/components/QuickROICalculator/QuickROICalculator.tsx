@@ -48,13 +48,6 @@ const softwareTypeROI = {
     revenueMultiplier: 0.8,
     description: 'Reach mobile customers, boost engagement'
   },
-  'analytics-dashboard': {
-    name: 'Analytics Dashboard',
-    baseCost: 20000,
-    timeSavingsMultiplier: 0.5,
-    revenueMultiplier: 0.3,
-    description: 'Data-driven decisions, performance insights'
-  },
   'ai-automation': {
     name: 'AI/Automation Tool',
     baseCost: 40000,

@@ -36,7 +36,7 @@ export function AIPlayground() {
         'realestate': 'business-management',
         'fitness': 'mobile-app', // Fitness apps are often mobile-first
         'legal': 'business-management',
-        'accounting': 'analytics-dashboard', // Accounting firms often need dashboards
+        'accounting': 'business-management',
         'consulting': 'business-management',
         'retail': 'ecommerce',
         'agency': 'agency-to-saas',

@@ -42,12 +42,6 @@ function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
       { icon: '◆', title: 'Push Notifications', description: 'Re-engage users automatically' },
       { icon: '◆', title: 'Custom UI/UX', description: 'Branded mobile experience' }
     ],
-    'analytics-dashboard': [
-      { icon: '◆', title: 'Mobile Analytics', description: 'Data insights on-the-go' },
-      { icon: '◆', title: 'Real-time Charts', description: 'Live performance metrics' },
-      { icon: '◆', title: 'Alert System', description: 'Instant mobile notifications' },
-      { icon: '◆', title: 'Custom Reports', description: 'Generate reports anywhere' }
-    ],
     'ai-automation': [
       { icon: '◆', title: 'AI Assistant', description: 'Smart mobile automation' },
       { icon: '◆', title: 'Document Scanner', description: 'AI-powered document processing' },
