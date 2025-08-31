@@ -13,6 +13,7 @@ export interface SoftwareType {
   description: string
   examples: string[]
   roiExample: string
+  size?: 'standard' | 'large'
   caseStudy?: string
 }
 
@@ -91,53 +92,83 @@ export const primaryTabs: Tab[] = [
 
 export const softwareTypes: SoftwareType[] = [
   {
-    id: 'business-management',
-    title: 'Business Management System',
+    id: 'business-hub',
+    title: 'All-in-One Business Hub',
     icon: '◆',
-    description: 'Complete business operations platform',
-    examples: ['CRM', 'Inventory Management', 'Employee Scheduling', 'Customer Portal'],
-    roiExample: 'Save 20+ hours/week, increase revenue 40%',
+    description: 'Run your business from one place',
+    examples: [
+      'Keep track of customers & sales',
+      'Manage inventory without spreadsheets',
+      'Easily schedule & manage your team'
+    ],
+    roiExample: 'Save 20+ hours each week, boost revenue by 40%',
+    size: 'standard',
     caseStudy: 'adams-muffler'
   },
   {
-    id: 'agency-to-saas',
-    title: 'Turn My Agency Into SaaS',
+    id: 'agency-saas',
+    title: 'Turn Your Service Into Recurring Income',
     icon: '◆',
-    description: 'Convert your service into recurring revenue',
-    examples: ['Client Dashboards', 'Automated Reporting', 'White-label Platform', 'Subscription Billing'],
-    roiExample: 'Scale to $50K/month recurring revenue',
+    description: 'Stop trading time for money — build a platform',
+    examples: [
+      'Give clients self-serve dashboards',
+      'Automate reports so you don\'t have to',
+      'Sell under your own brand (white-label)'
+    ],
+    roiExample: 'Grow to $50K/month predictable revenue',
+    size: 'standard'
   },
   {
     id: 'ecommerce',
-    title: 'E-commerce Platform',
+    title: 'Online Store That Sells More',
     icon: '◆',
-    description: 'Custom online store that converts',
-    examples: ['Product Catalogs', 'Payment Processing', 'Inventory Sync', 'Customer Analytics'],
-    roiExample: 'Outperform Shopify by 60% conversion',
+    description: 'A smarter store built around conversions',
+    examples: [
+      'Showcase products beautifully',
+      'Accept payments securely',
+      'Sync inventory automatically'
+    ],
+    roiExample: 'Beat Shopify by 60% in conversions',
+    size: 'standard',
     caseStudy: 'bellas-restaurant'
   },
   {
     id: 'mobile-app',
-    title: 'Mobile App',
+    title: 'Mobile App for Your Business',
     icon: '◆',
-    description: 'iOS/Android apps your customers love',
-    examples: ['Native Performance', 'Offline Sync', 'Push Notifications', 'App Store Ready'],
-    roiExample: 'Reach 80% more customers on mobile'
+    description: 'Be on the phones your customers use every day',
+    examples: [
+      'Fast, reliable performance',
+      'Works even offline',
+      'Send instant push notifications'
+    ],
+    roiExample: 'Reach 80% more customers on mobile',
+    size: 'standard'
   },
   {
-    id: 'analytics-dashboard',
-    title: 'Analytics Dashboard',
+    id: 'automation',
+    title: 'Let Software Handle the Boring Work',
     icon: '◆',
-    description: 'Turn data into actionable insights',
-    examples: ['Real-time Metrics', 'Custom Reports', 'Data Visualization', 'Automated Alerts'],
-    roiExample: 'Make decisions 10x faster with data'
+    description: 'Free your team from repetitive tasks',
+    examples: [
+      'Process documents instantly',
+      'Automate customer emails',
+      'Enter data without manual typing'
+    ],
+    roiExample: 'Cut 80% of manual work',
+    size: 'large'
   },
   {
-    id: 'ai-automation',
-    title: 'AI/Automation Tool',
+    id: 'ai-services',
+    title: 'Bring AI Into Your Business',
     icon: '◆',
-    description: 'Eliminate repetitive tasks with AI',
-    examples: ['Document Processing', 'Email Automation', 'Data Entry', 'Customer Support'],
-    roiExample: 'Automate 80% of manual work'
+    description: 'Use AI to work smarter, not harder',
+    examples: [
+      'Chatbots that answer customer questions 24/7',
+      'Smart tools to summarize and draft documents',
+      'Predict trends from your business data'
+    ],
+    roiExample: 'Save 100+ hours/year, unlock new revenue',
+    size: 'large'
   }
 ]

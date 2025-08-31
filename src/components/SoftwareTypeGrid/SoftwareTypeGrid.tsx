@@ -2,9 +2,10 @@
 import { useState, useCallback } from 'react'
 import { softwareTypes } from '@/types/tabs'
 import type { SoftwareType } from '@/types/tabs'
-import { LoadingSpinner } from '@/components/common/LoadingSpinner'
+import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { logger } from '@/lib/logger'
 import { StarsBackground } from '@/components/ui/stars-background'
+import { scrollToSection } from '@/lib/utils'
 
 interface SoftwareTypeGridProps {
   onTypeSelected?: (type: SoftwareType) => void
@@ -13,139 +14,121 @@ interface SoftwareTypeGridProps {
 
 export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTypeGridProps) {
   const [selectedType, setSelectedType] = useState<string | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  
 
   const handleTypeClick = useCallback((type: SoftwareType) => {
-    try {
-      setError(null)
-      logger.info('SoftwareTypeGrid: Type selected', { typeId: type.id })
-      setSelectedType(type.id)
-      if (onTypeSelected) {
-        onTypeSelected(type)
-      }
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Failed to select software type'
-      logger.error('SoftwareTypeGrid: Type selection failed', { error: errorMessage })
-      setError(errorMessage)
+    logger.info('SoftwareTypeGrid: Type selected', { typeId: type.id })
+    setSelectedType(type.id)
+    if (onTypeSelected) {
+      onTypeSelected(type)
     }
+    // Navigate to AI playground to build this type
+    scrollToSection('ai-playground')
   }, [onTypeSelected])
 
-  if (error) {
-    return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 m-4">
-        <p className="text-red-600">Error: {error}</p>
-        <button 
-          onClick={() => setError(null)}
-          className="mt-2 text-sm text-red-700 underline"
-        >
-          Try again
-        </button>
-      </div>
-    )
+  const handleCTAClick = (e: React.MouseEvent, action: 'quote' | 'ai-builder') => {
+    e.stopPropagation()
+    if (action === 'quote') {
+      scrollToSection('contact')
+    } else {
+      scrollToSection('ai-playground')
+    }
   }
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center p-8">
-        <LoadingSpinner message="Loading software types..." size="lg" />
-      </div>
-    )
+  // Helper function to get grid column span classes for the 6-column grid
+  const getGridColSpan = (type: SoftwareType) => {
+    if (type.size === 'large') {
+      // Large tiles span 3 columns on desktop 6-column grid (1/2 width), full width on mobile
+      return 'col-span-1 md:col-span-3'
+    }
+    // Standard tiles span 2 columns on desktop 6-column grid (1/3 width), full width on mobile
+    return 'col-span-1 md:col-span-2'
   }
 
   return (
-    <section className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black branded-section ${className}`}>
-      {/* Stars for full-dark theme */}
+    <section className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black ${className}`}>
       <StarsBackground starDensity={0.00003} className="opacity-30" />
       
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="section-header-mobile">
-          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">
+        <div className="section-header-mobile text-center mb-12">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-4">
             What Can I Build For You?
           </h2>
-          <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish">
-            Choose your software type below to see examples and ROI estimates
+          <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish max-w-2xl mx-auto">
+            Choose your software type below to explore solutions and get instant ROI estimates
           </p>
         </div>
 
-      {/* Software Type Grid - Mobile Full Width */}
-      <div className="mobile-native-grid">
-        {softwareTypes.map((type) => (
-          <div
-            key={type.id}
-            onClick={() => handleTypeClick(type)}
-            className={`card-full-mobile group cursor-pointer transition-all duration-300 hover:shadow-lg ${
-              selectedType === type.id
-                ? 'border-accent-500 bg-accent-500/20 shadow-lg'
-                : 'hover:border-accent-400 hover:bg-accent-500/10'
-            }`}
-            role="button"
-            tabIndex={0}
-            aria-label={`Select ${type.title} software type`}
-          >
-            {/* Mobile-optimized card content */}
-            <div className="space-y-4">
-              {/* Icon and Title */}
-              <div className="flex items-start space-x-3">
-                <div className="text-3xl flex-shrink-0 mt-1">
-                  {type.icon}
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className={`text-lg font-semibold mb-2 transition-colors ${
-                    selectedType === type.id ? 'text-accent-400' : 'text-neutral-50 group-hover:text-accent-400'
-                  }`}>
-                    {type.title}
-                  </h3>
-                  <p className="text-neutral-300 text-sm leading-relaxed">
-                    {type.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Key Features - Mobile optimized list */}
-              <div className="space-y-2">
-                {type.examples.slice(0, 3).map((example, index) => (
-                  <div key={index} className="flex items-center text-sm text-neutral-300">
-                    <div className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 flex-shrink-0"></div>
-                    <span>{example}</span>
+        {/* Bento Grid */}
+        <BentoGrid className="mb-12">
+          {softwareTypes.map((type) => (
+              <BentoGridItem
+                key={type.id}
+                title={type.title}
+                description={type.description}
+                onClick={() => handleTypeClick(type)}
+                className={`cursor-pointer hover:scale-[1.02] transition-all ${getGridColSpan(type)} ${
+                  selectedType === type.id ? 'ring-2 ring-accent-500' : ''
+                }`}
+                icon={<span className="text-2xl text-accent-400">{type.icon}</span>}
+                header={
+                  <div className="space-y-4">
+                    {/* Features/Examples */}
+                    <div className="space-y-3">
+                      <h4 className="text-xs font-semibold text-accent-400 uppercase tracking-wider">
+                        What You Get
+                      </h4>
+                      <ul className="space-y-2">
+                        {type.examples.map((example, idx) => (
+                          <li key={idx} className="flex items-start text-sm text-neutral-300">
+                            <span className="w-1.5 h-1.5 bg-accent-400 rounded-full mr-3 mt-2 flex-shrink-0" />
+                            <span className="leading-relaxed">{example}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    
+                    {/* ROI Badge */}
+                    <div className="bg-gradient-to-r from-accent-500/20 to-accent-400/20 border border-accent-500/30 rounded-lg p-4">
+                      <div className="text-xs font-bold text-accent-300 mb-1 uppercase tracking-wider">ROI ESTIMATE</div>
+                      <div className="text-sm font-semibold text-accent-100">{type.roiExample}</div>
+                    </div>
+                    
+                    {/* CTAs */}
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <button
+                        onClick={(e) => handleCTAClick(e, 'quote')}
+                        className="flex-1 min-h-[44px] px-4 py-2 bg-white text-black rounded-lg text-sm font-medium hover:hover:bg-gray-100 active:bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+                      >
+                        Get a Quote
+                      </button>
+                      <button
+                        onClick={(e) => handleCTAClick(e, 'ai-builder')}
+                        className="flex-1 min-h-[44px] px-4 py-2 bg-accent-500 text-white rounded-lg text-sm font-medium hover:hover:bg-accent-600 active:bg-accent-700 transition-colors focus:outline-none focus:ring-2 focus:ring-accent-500/50"
+                      >
+                        Build With AI
+                      </button>
+                    </div>
                   </div>
-                ))}
-              </div>
+                }
+              />
+          ))}
+        </BentoGrid>
 
-              {/* ROI Summary */}
-              <div className="pt-3 border-t border-neutral-700">
-                <div className="text-xs font-semibold text-accent-400 mb-1">
-                  ROI ESTIMATE
-                </div>
-                <div className="text-sm font-medium text-neutral-200">
-                  {type.roiExample}
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-        {/* Call to Action - Full width on mobile */}
-        <div className="mobile-cta-section mt-4">
-          <div className="mobile-content-padding">
-            <h3 className="text-xl font-bold text-accent-400 mb-3">
-              Don't See Your Exact Needs?
-            </h3>
-            <p className="text-neutral-100 mb-4 text-sm leading-relaxed">
-              I build custom solutions for unique requirements. If you can describe it, I can build it.
-            </p>
-            <div className="mobile-cta-buttons">
-              <button
-                className="w-full btn-primary"
-                aria-label="Schedule a consultation to discuss your custom project"
-              >
-                Discuss Your Custom Project
-              </button>
-            </div>
-          </div>
+        {/* Bottom CTA */}
+        <div className="text-center py-8">
+          <h3 className="text-xl font-bold text-accent-400 mb-4">
+            Don't See Your Exact Needs?
+          </h3>
+          <p className="text-neutral-200 mb-6 text-sm leading-relaxed max-w-2xl mx-auto">
+            I build custom solutions for unique requirements. If you can describe it, I can build it.
+          </p>
+          <button
+            onClick={() => scrollToSection('contact')}
+            className="btn-primary min-h-[44px] px-8 py-3 hover:scale-105 active:scale-95 transition-transform"
+          >
+            Discuss Your Custom Project
+          </button>
         </div>
       </div>
     </section>

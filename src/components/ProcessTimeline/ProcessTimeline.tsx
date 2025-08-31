@@ -373,7 +373,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
                 icon: '◆',
                 features: [
                   '30-day success guarantee',
-                  '6 months of updates included',
+                  '2 months of updates included',
                   'Training documentation',
                   'Video tutorials for your team'
                 ]

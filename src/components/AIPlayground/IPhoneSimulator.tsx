@@ -18,13 +18,13 @@ interface IPhoneSimulatorProps {
 // Helper function to get mobile app features for each software type
 function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
   const featureMap: Record<string, AppFeature[]> = {
-    'business-management': [
+    'business-hub': [
       { icon: '◆', title: 'Customer Management', description: 'Complete CRM on mobile' },
       { icon: '◆', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
       { icon: '◆', title: 'Smart Scheduling', description: 'AI-powered appointment booking' },
       { icon: '◆', title: 'Sales Tracking', description: 'Revenue and performance data' }
     ],
-    'agency-to-saas': [
+    'agency-saas': [
       { icon: '◆', title: 'Client Dashboard', description: 'Self-service client portal' },
       { icon: '◆', title: 'Automated Reports', description: 'Generate reports automatically' },
       { icon: '◆', title: 'Subscription Billing', description: 'Recurring revenue management' },
@@ -42,13 +42,13 @@ function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
       { icon: '◆', title: 'Push Notifications', description: 'Re-engage users automatically' },
       { icon: '◆', title: 'Custom UI/UX', description: 'Branded mobile experience' }
     ],
-    'analytics-dashboard': [
+    'automation': [
       { icon: '◆', title: 'Mobile Analytics', description: 'Data insights on-the-go' },
       { icon: '◆', title: 'Real-time Charts', description: 'Live performance metrics' },
       { icon: '◆', title: 'Alert System', description: 'Instant mobile notifications' },
       { icon: '◆', title: 'Custom Reports', description: 'Generate reports anywhere' }
     ],
-    'ai-automation': [
+    'ai-services': [
       { icon: '◆', title: 'AI Assistant', description: 'Smart mobile automation' },
       { icon: '◆', title: 'Document Scanner', description: 'AI-powered document processing' },
       { icon: '◆', title: 'Voice Commands', description: 'Hands-free operation' },
@@ -56,7 +56,7 @@ function getMobileFeaturesForSoftwareType(type: string): AppFeature[] {
     ]
   }
 
-  return featureMap[type] || featureMap['business-management']
+  return featureMap[type] || featureMap['business-hub']
 }
 
 export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: IPhoneSimulatorProps) {

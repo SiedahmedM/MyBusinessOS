@@ -9,7 +9,7 @@ import { StarsBackground } from '@/components/ui/stars-background'
 type ViewState = 'chat' | 'building' | 'complete'
 
 export function AIPlayground() {
-  const [currentSoftwareType, setCurrentSoftwareType] = useState('business-management')
+  const [currentSoftwareType, setCurrentSoftwareType] = useState('business-hub')
   const [viewState, setViewState] = useState<ViewState>('chat')
   const [isBuilding, setIsBuilding] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -27,24 +27,24 @@ export function AIPlayground() {
       
       // Map business types to software types
       const businessToSoftwareMap: Record<string, string> = {
-        'dental': 'business-management',
-        'auto': 'business-management',
-        'restaurant': 'business-management', // Could also be 'ecommerce' if they want online ordering
-        'medical': 'business-management',
+        'dental': 'business-hub',
+        'auto': 'business-hub',
+        'restaurant': 'business-hub', // Could also be 'ecommerce' if they want online ordering
+        'medical': 'business-hub',
         'ecommerce': 'ecommerce',
-        'rental': 'business-management',
-        'realestate': 'business-management',
+        'rental': 'business-hub',
+        'realestate': 'business-hub',
         'fitness': 'mobile-app', // Fitness apps are often mobile-first
-        'legal': 'business-management',
-        'accounting': 'analytics-dashboard', // Accounting firms often need dashboards
-        'consulting': 'business-management',
+        'legal': 'business-hub',
+        'accounting': 'automation', // Accounting firms often need automation
+        'consulting': 'business-hub',
         'retail': 'ecommerce',
-        'agency': 'agency-to-saas',
-        'marketing': 'agency-to-saas',
-        'other': 'business-management'
+        'agency': 'agency-saas',
+        'marketing': 'agency-saas',
+        'other': 'business-hub'
       };
       
-      const softwareType = businessToSoftwareMap[businessType] || 'business-management';
+      const softwareType = businessToSoftwareMap[businessType] || 'business-hub';
       
       console.log('AIPlayground: Mapped to software type:', softwareType);
       logger.info('AIPlayground: Mapped to software type', { businessType, softwareType })
@@ -127,7 +127,7 @@ export function AIPlayground() {
               ? 'Chat with our AI to describe your business. It will understand your needs and build you a mobile app demo in real-time.'
               : isBuilding
               ? 'Your custom mobile app is being built with enterprise-grade features tailored to your business needs.'
-              : 'Your mobile app is ready! This demonstrates the quality and speed of our development process.'
+              : 'Your mobile app is ready! See examples of what we can build for you.'
             }
           </p>
         </div>

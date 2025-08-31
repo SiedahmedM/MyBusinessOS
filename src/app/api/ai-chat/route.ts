@@ -62,25 +62,25 @@ export async function POST(request: NextRequest) {
       const prompt = `You are a software classification expert. Based on the description below, classify it into ONE of these software categories:
 
 Available categories:
-- business-management: CRM systems, inventory management, employee scheduling, business operations platforms
-- agency-to-saas: turning service businesses into SaaS platforms, client dashboards, automated reporting, subscription models
+- business-hub: CRM systems, inventory management, employee scheduling, business operations platforms
+- agency-saas: turning service businesses into SaaS platforms, client dashboards, automated reporting, subscription models
 - ecommerce: online stores, shopping carts, product catalogs, payment processing, e-commerce platforms
 - mobile-app: iOS/Android apps, native mobile applications, mobile-first solutions
-- analytics-dashboard: data visualization, reporting systems, business intelligence, metrics dashboards
-- ai-automation: AI tools, process automation, workflow automation, document processing, chatbots
+- automation: data visualization, reporting systems, business intelligence, metrics dashboards
+- ai-services: AI tools, process automation, workflow automation, document processing, chatbots
 
 User description: "${message}"
 
 Rules:
 - Respond with ONLY the category name (hyphenated, lowercase)
 - Focus on the SOFTWARE TYPE being requested, not the industry
-- If someone mentions a dental practice, auto shop, restaurant, medical practice, legal firm, consulting business, etc., think about what TYPE of software they need (usually business-management)
-- If someone mentions turning their business into a SaaS or creating client dashboards, use "agency-to-saas"
+- If someone mentions a dental practice, auto shop, restaurant, medical practice, legal firm, consulting business, etc., think about what TYPE of software they need (usually business-hub)
+- If someone mentions turning their business into a SaaS or creating client dashboards, use "agency-saas"
 - If they mention online stores, selling products, shopping carts, use "ecommerce"
 - If they specifically want mobile apps or mention iOS/Android, use "mobile-app"
-- If they want dashboards, reporting, analytics, use "analytics-dashboard"
-- If they want automation, AI tools, chatbots, use "ai-automation"
-- If unclear about software type, use "business-management" as default
+- If they want dashboards, reporting, analytics, use "automation"
+- If they want automation, AI tools, chatbots, use "ai-services"
+- If unclear about software type, use "business-hub" as default
 
 Classification:`
 
@@ -103,8 +103,8 @@ Classification:`
       const softwareType = response.choices[0]?.message?.content?.trim().toLowerCase()
       
       // Validate the response
-      const validTypes = ['business-management', 'agency-to-saas', 'ecommerce', 'mobile-app', 'analytics-dashboard', 'ai-automation']
-      const detectedType = validTypes.includes(softwareType || '') ? softwareType : 'business-management'
+      const validTypes = ['business-hub', 'agency-saas', 'ecommerce', 'mobile-app', 'automation', 'ai-services']
+      const detectedType = validTypes.includes(softwareType || '') ? softwareType : 'business-hub'
       
       logger.info('AI Chat API: Software type detected', { requestId, detectedType })
       return NextResponse.json({ softwareType: detectedType, requestId })
@@ -206,7 +206,7 @@ function detectSoftwareTypeLocally(message: string): string {
   const typeMapping = [
     {
       keywords: ['saas', 'subscription', 'recurring', 'platform', 'client portal', 'tenant', 'agency', 'marketing agency', 'turning business into saas'],
-      type: 'agency-to-saas'
+      type: 'agency-saas'
     },
     {
       keywords: ['shop', 'store', 'ecommerce', 'e-commerce', 'sell', 'product', 'cart', 'checkout', 'online store', 'retail'],
@@ -218,15 +218,15 @@ function detectSoftwareTypeLocally(message: string): string {
     },
     {
       keywords: ['analytics dashboard', 'reporting dashboard', 'metrics dashboard', 'data visualization', 'business intelligence', 'charts', 'reports'],
-      type: 'analytics-dashboard'
+      type: 'automation'
     },
     {
       keywords: ['automation', 'ai tool', 'automate', 'workflow automation', 'process automation', 'chatbot', 'ai chatbot'],
-      type: 'ai-automation'
+      type: 'ai-services'
     },
     {
       keywords: ['crm', 'business management', 'operations', 'customer management', 'inventory', 'schedule', 'dental practice', 'auto shop', 'restaurant', 'medical practice', 'legal firm', 'consulting'],
-      type: 'business-management'
+      type: 'business-hub'
     }
   ]
 
@@ -236,7 +236,7 @@ function detectSoftwareTypeLocally(message: string): string {
     }
   }
 
-  return 'business-management' // Default
+  return 'business-hub' // Default
 }
 
 // Enhanced contextual fallback responses
@@ -472,10 +472,10 @@ function getBusinessInfo(businessType: string) {
 
 function getSoftwareInfo(softwareType: string) {
   const softwareTypes: Record<string, { name: string, title: string, roiExample: string, features: Array<{icon: string, title: string, description: string}> }> = {
-    'business-management': {
-      name: 'Business Management System',
+    'business-hub': {
+      name: 'All-in-One Business Hub',
       title: 'BusinessHub Pro',
-      roiExample: 'Save 20+ hours/week, increase revenue 40%',
+      roiExample: 'Save 20+ hours each week, boost revenue by 40%',
       features: [
         { icon: '◆', title: 'Customer Management', description: 'Complete CRM on mobile' },
         { icon: '◆', title: 'Real-time Dashboard', description: 'Business metrics at a glance' },
@@ -483,10 +483,10 @@ function getSoftwareInfo(softwareType: string) {
         { icon: '◆', title: 'Sales Tracking', description: 'Revenue and performance data' }
       ]
     },
-    'agency-to-saas': {
-      name: 'Agency to SaaS Platform',
+    'agency-saas': {
+      name: 'Turn Your Service Into Recurring Income',
       title: 'AgencyScale Platform',
-      roiExample: 'Scale to $50K/month recurring revenue',
+      roiExample: 'Grow to $50K/month predictable revenue',
       features: [
         { icon: '◆', title: 'Client Dashboard', description: 'Self-service client portal' },
         { icon: '◆', title: 'Automated Reports', description: 'Generate reports automatically' },
@@ -516,10 +516,10 @@ function getSoftwareInfo(softwareType: string) {
         { icon: '◆', title: 'App Store Ready', description: 'Optimized for app stores' }
       ]
     },
-    'analytics-dashboard': {
-      name: 'Analytics Dashboard',
-      title: 'DataInsights Pro',
-      roiExample: 'Make decisions 10x faster with data',
+    'automation': {
+      name: 'Let Software Handle the Boring Work',
+      title: 'AutomationPro',
+      roiExample: 'Cut 80% of manual work',
       features: [
         { icon: '◆', title: 'Real-time Metrics', description: 'Live business data updates' },
         { icon: '◆', title: 'Custom Reports', description: 'Build reports for your needs' },
@@ -527,10 +527,10 @@ function getSoftwareInfo(softwareType: string) {
         { icon: '◆', title: 'Automated Alerts', description: 'Get notified of important changes' }
       ]
     },
-    'ai-automation': {
-      name: 'AI/Automation Tool',
-      title: 'AutomationMax AI',
-      roiExample: 'Automate 80% of manual work',
+    'ai-services': {
+      name: 'Bring AI Into Your Business',
+      title: 'AIServices Pro',
+      roiExample: 'Save 100+ hours/year, unlock new revenue',
       features: [
         { icon: '◆', title: 'Document Processing', description: 'AI-powered document analysis' },
         { icon: '◆', title: 'Email Automation', description: 'Smart email workflows' },

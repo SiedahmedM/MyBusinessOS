@@ -71,7 +71,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         <div className="mb-8 sm:mb-12">
           <p className="font-sans text-base md:text-lg text-zinc-300/90 tracking-tightish max-w-3xl mx-auto px-2">
             <span className="hidden sm:inline">From simple websites to complex SaaS platforms—turn your idea into reality in weeks, not years.</span>
-            <span className="sm:hidden">Turn your idea into custom software in weeks, not years.</span>
+            <span className="sm:hidden">Turn your idea into custom software in weeks, not months.</span>
           </p>
         </div>
         
