@@ -126,6 +126,11 @@ export default function Carousel({ slides }: CarouselProps) {
   // Touch handlers for mobile swipe
   const onTouchStart = (e: React.TouchEvent) => {
     if (isTransitioning || !trackRef.current) return;
+    // Ignore multi-touch (pinch) so native zoom can occur and not break swipe state
+    if (e.touches.length > 1) {
+      dragRef.current.dragging = false;
+      return;
+    }
     const t = e.touches[0];
     dragRef.current = { startX: t.clientX, startY: t.clientY, dx: 0, dragging: true, locked: false };
     // kill transition during drag
@@ -133,6 +138,12 @@ export default function Carousel({ slides }: CarouselProps) {
   };
 
   const onTouchMove = (e: React.TouchEvent) => {
+    // If user is pinching (multi-touch), cancel dragging and let browser handle it
+    if (e.touches.length > 1) {
+      if (trackRef.current) trackRef.current.style.removeProperty('transition');
+      dragRef.current.dragging = false;
+      return;
+    }
     const t = e.touches[0];
     const d = dragRef.current;
     if (!d.dragging || !trackRef.current) return;
@@ -188,16 +199,30 @@ export default function Carousel({ slides }: CarouselProps) {
     d.dx = 0;
   };
 
+  // Handle unexpected touch cancellations (e.g., pinch-zoom, OS gesture)
+  const onTouchCancel = () => {
+    const d = dragRef.current;
+    if (trackRef.current) trackRef.current.style.removeProperty('transition');
+    d.dragging = false;
+    d.dx = 0;
+    setIsTransitioning(false);
+    // Reset transform to the correct slide position
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${getTranslateX()}px,0,0)`;
+    }
+  };
+
   return (
     <div className="relative w-full max-w-7xl mx-auto px-4">
       {/* Main carousel container with overflow hidden and touch handling */}
       <div 
         ref={containerRef}
         className="relative w-full overflow-hidden rounded-2xl"
-        style={{ touchAction: 'pan-y' }}
+        style={{ touchAction: 'pan-y pinch-zoom' }}
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
+        onTouchCancel={onTouchCancel}
       >
         {/* Track with slides */}
         <div
