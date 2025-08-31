@@ -1,13 +1,13 @@
 'use client'
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import { logger } from '@/lib/logger'
+import Carousel from '@/components/ui/carousel'
 
 interface Project {
-  id: string
-  title: string
-  description: string
-  image: string
+  title?: string
+  description?: string
+  button?: string
+  src: string
 }
 
 export function ProjectBentoGrid() {
@@ -20,28 +20,28 @@ export function ProjectBentoGrid() {
       logger.info('ProjectBentoGrid: loading projects')
       setProjects([
         {
-          id: 'crm',
-          title: "Auto Shop CRM",
-          description: 'Manage jobs, customers and invoices with ease.',
-          image: '/api/placeholder/600/400'
+          title: 'Business Management Dashboard',
+          description: 'Complete business management dashboard with real-time analytics, sales tracking, and team management.',
+          button: 'View Details',
+          src: '/images/business-dashboard.webp'
         },
         {
-          id: 'pos',
-          title: 'Restaurant POS',
-          description: 'Online ordering with kitchen display integration.',
-          image: '/api/placeholder/600/400'
+          title: 'Restaurant POS System',
+          description: 'Restaurant point-of-sale system with online ordering and kitchen display integration.',
+          button: 'View Details',
+          src: '/api/placeholder/600/400'
         },
         {
-          id: 'portal',
           title: 'Construction Portal',
-          description: 'Share project updates and progress photos.',
-          image: '/api/placeholder/600/400'
+          description: 'Construction project portal for sharing updates, progress photos, and client communication.',
+          button: 'View Details',
+          src: '/api/placeholder/600/400'
         },
         {
-          id: 'fitness',
-          title: 'Fitness App',
-          description: 'Book classes and track workouts on mobile.',
-          image: '/api/placeholder/300/600'
+          title: 'Fitness Mobile App',
+          description: 'Mobile fitness app for booking classes, tracking workouts, and progress monitoring.',
+          button: 'View Details',
+          src: '/api/placeholder/300/600'
         }
       ])
     } catch (err) {
@@ -66,7 +66,7 @@ export function ProjectBentoGrid() {
     return (
       <div className="flex items-center justify-center p-10">
         <div className="animate-spin h-6 w-6 border-2 border-blue-600 border-t-transparent rounded-full mr-2" />
-        <span>Loading projects...</span>
+        <span className="text-white">Loading projects...</span>
       </div>
     )
   }
@@ -74,29 +74,28 @@ export function ProjectBentoGrid() {
   return (
     <section className="py-16" id="projects">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-10 text-white">Project Showcase</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={`group relative overflow-hidden rounded-xl bg-neutral-900 flex items-center justify-center transition-all duration-300 hover:shadow-xl ${
-                index === 0 || index === 3 ? 'md:row-span-2' : ''
-              }`}
-            >
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center p-4 text-center">
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-                  <p className="text-sm text-neutral-200">{project.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Recent Projects</h2>
+          <p className="text-neutral-300 text-lg max-w-2xl mx-auto">
+            Real applications built for real businesses. See the quality and attention to detail in every project.
+          </p>
+        </div>
+        
+        <div className="flex justify-center">
+          <Carousel slides={projects} />
+        </div>
+        
+        {/* Bottom CTA */}
+        <div className="text-center mt-12">
+          <p className="text-neutral-300 mb-4">
+            Want to see your business with software like this?
+          </p>
+          <button 
+            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-primary px-8 py-3"
+          >
+            Start Your Project
+          </button>
         </div>
       </div>
     </section>
@@ -104,4 +103,3 @@ export function ProjectBentoGrid() {
 }
 
 export default ProjectBentoGrid
-
