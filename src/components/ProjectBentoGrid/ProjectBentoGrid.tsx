@@ -10,6 +10,7 @@ interface Project {
   src: string
   focalX?: string // e.g. "50%" (default center)
   focalY?: string // e.g. "30%"
+  zoom?: number
 }
 
 export function ProjectBentoGrid() {
@@ -36,6 +37,15 @@ export function ProjectBentoGrid() {
           src: '/images/workflow-automation.webp',
           focalX: '50%',
           focalY: '40%'
+        },
+        {
+          title: 'Zillow iOS Listing Redesign',
+          description: "Redesigned the home listing view for Zillow's iOS app to improve clarity and conversions.",
+          button: 'View Details',
+          src: '/images/mobile-app.webp',
+          focalX: '50%',
+          focalY: '50%',
+          zoom: 1.25
         },
         {
           title: 'Construction Portal',

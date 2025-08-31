@@ -10,6 +10,10 @@ interface SlideData {
   src: string;
   focalX?: string; // e.g. "50%" (default center)
   focalY?: string; // e.g. "30%"
+  // Optional per-slide adjustments to better fill the card when the source has padding
+  zoom?: number; // e.g. 1.0 (default), 1.2, 1.5
+  offsetX?: string; // e.g. '0%', '-5%'
+  offsetY?: string; // e.g. '0%', '10%'
 }
 
 interface CarouselProps {
@@ -23,6 +27,7 @@ export default function Carousel({ slides }: CarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(1); // Start at 1 due to clones
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideWidth, setSlideWidth] = useState(0);
+  const [visible, setVisible] = useState(1);
   const [errored, setErrored] = useState<Record<number, boolean>>({});
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -52,9 +57,10 @@ export default function Carousel({ slides }: CarouselProps) {
       if (!containerRef.current) return;
       
       const containerWidth = containerRef.current.clientWidth;
-      const visibleCount = window.innerWidth >= 1024 ? 3 : 
-                          window.innerWidth >= 640 ? 2 : 1;
-      const width = (containerWidth - (GAP_PX * (visibleCount - 1))) / visibleCount;
+      const v = window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1;
+      setVisible(v);
+      const gap = 16;
+      const width = (containerWidth - gap * (v - 1)) / v;
       setSlideWidth(width);
     };
 
@@ -62,11 +68,6 @@ export default function Carousel({ slides }: CarouselProps) {
     window.addEventListener('resize', updateSlideWidth);
     return () => window.removeEventListener('resize', updateSlideWidth);
   }, []);
-
-  // Compute visible cards for dynamic sizes
-  const visible = typeof window !== 'undefined'
-    ? (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1)
-    : 1;
 
   // Use real transitionend listener for infinite loop
   useEffect(() => {
@@ -209,21 +210,25 @@ export default function Carousel({ slides }: CarouselProps) {
     style={{ width: slideWidth || '100%' }}
     aria-hidden={index === 0 || index === slidesWithClones.length - 1}
   >
-    {/* Fixed 16:10 image container optimized for 1600×1000 sources */}
-    <div className="relative w-full h-[58vw] sm:h-[240px] lg:h-[340px] overflow-hidden rounded-xl border border-white/10">
+    {/* 16:10 aspect box; height derives from width, no borders */}
+    <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl">
       <Image
         src={errored[index] ? '/images/placeholder-1600x1000.webp' : slide.src}
         alt={slide.title || `Slide ${index}`}
         fill
-        className="object-cover"          // full-bleed; with 16:10 source no visible crop
-        // use dynamic sizes based on how many are visible
-        sizes={visible === 1 ? '100vw' : visible === 2 ? '50vw' : '33vw'}
-        quality={90}
+        className="object-cover"
+        // Request crisp sizes matching the card width; all source images are 1600x1000
+        sizes={visible === 1 ? '(min-width:1024px) 960px, 100vw' : visible === 2 ? '50vw' : '33vw'}
+        quality={100}
         priority={index === 1}
         loading={index === 1 ? 'eager' : 'lazy'}
-        placeholder="blur"
-        blurDataURL="/images/blur-20x12.webp"  // tiny 16:10 blur asset
+        // prefer native clarity; disable blur placeholder to avoid perceived softness
         onError={() => setErrored(prev => ({ ...prev, [index]: true }))}
+        style={{
+          objectPosition: `${slide.focalX || '50%'} ${slide.focalY || '50%'}`,
+          transform: `translate(${slide.offsetX || '0%'}, ${slide.offsetY || '0%'}) scale(${slide.zoom || 1})`,
+          transformOrigin: 'center center',
+        }}
       />
 
       {/* Optional featured badge on first real slide */}
