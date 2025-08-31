@@ -2,6 +2,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
 import { StarsBackground } from '@/components/ui/stars-background'
+import { Button } from '@/components/ui/button'
 
 
 interface PricingCalculatorState {
@@ -355,12 +356,12 @@ export function InteractivePricingCalculator() {
 
                   {/* Call to Action */}
                   <div className="space-y-3">
-                    <button className="w-full btn-primary">
+                    <Button className="w-full">
                       Get Your Free 15-Minute Consultation
-                    </button>
-                    <button className="w-full px-6 py-3 border-2 border-accent-600 text-accent-600 font-medium rounded-lg hover:bg-accent-500/10 transition-all">
+                    </Button>
+                    <Button variant="secondary" className="w-full">
                       Download Detailed Quote (PDF)
-                    </button>
+                    </Button>
                   </div>
 
                   {/* Guarantee */}

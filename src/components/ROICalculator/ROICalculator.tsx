@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { TabSystem } from './TabSystem'
 import { CalculatorForms } from './CalculatorForms'
+import { Button } from '@/components/ui/button'
 
 export function ROICalculator() {
   const [activeTab, setActiveTab] = useState('time')
@@ -42,12 +43,11 @@ export function ROICalculator() {
             <p className="text-neutral-300 mb-6">
               Ready to see these results in your business?
             </p>
-            <button
+            <Button
               onClick={() => document.getElementById('ai-playground')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-primary"
             >
               Get Your Custom Quote
-            </button>
+            </Button>
           </div>
         </div>
       </div>

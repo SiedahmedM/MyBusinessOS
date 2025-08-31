@@ -5,6 +5,7 @@ import { StaggeredText } from './StaggeredText'
 import { HeroBackground } from './HeroBackground'
 import { scrollToSection } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { Button } from '@/components/ui/button'
 
 interface HeroProps {
   onGetStartedClick?: () => void
@@ -82,20 +83,21 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         
         {/* Mobile-Optimized CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-12 sm:mb-16 max-w-md sm:max-w-none mx-auto">
-          <button
+          <Button
             onClick={handleGetStartedClick}
-            className="btn-primary font-sans font-medium tracking-tightish w-full sm:w-auto text-base sm:text-lg px-8 sm:px-10 py-4"
+            className="w-full sm:w-auto px-8 sm:px-10 py-4"
             aria-label="Book a free consultation to discuss your project"
           >
             Book Free Consultation
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="text"
             onClick={handleViewProjectsClick}
-            className="btn-text font-sans font-medium tracking-tightish w-full sm:w-auto text-base sm:text-lg"
+            className="w-full sm:w-auto"
             aria-label="View examples of completed projects"
           >
             View Examples
-          </button>
+          </Button>
         </div>
         
         {/* Industry experience logos */}

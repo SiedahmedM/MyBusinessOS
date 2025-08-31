@@ -287,40 +287,6 @@ html[data-theme='full-dark'] .border-gray-300 {
   }
 }
 
-/* Standardized button classes */
-.btn-primary {
-  padding: 1rem 2rem;
-  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
-  border: none;
-  border-radius: 0.5rem;
-  color: white;
-  font-weight: 600;
-  font-size: 1rem;
-  letter-spacing: 0.025em;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
-  transform: translateY(0);
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4);
-}
-
-.btn-primary:focus {
-  outline: none;
-  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.4), 0 0 0 3px rgba(250, 204, 21, 0.1);
-}
-
-/* Button hover effects */
-.btn-hover {
-  transition: all 0.3s ease;
-}
-
-.btn-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
 
 /* Refined hover effects */
 .card-hover {
@@ -438,7 +404,7 @@ background: linear-gradient(90deg, #1a1a1a 25%, #262626 50%, #1a1a1a 75%);
 }
 
 /* Improved touch targets */
-button, .btn {
+button {
   min-height: 44px;
   min-width: 44px;
 }
@@ -559,47 +525,6 @@ button, .btn {
   }
 }
 
-/* Mobile-First Buttons */
-.mobile-btn {
-  padding: 0.75rem 1.5rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border-radius: 0.5rem;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (min-width: 640px) {
-  .mobile-btn {
-    padding: 1rem 2rem;
-    font-size: 1rem;
-  }
-}
-
-.mobile-btn-primary {
-  background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
-  color: white;
-  border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-.mobile-btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
-}
-
-.mobile-btn-secondary {
-  background: transparent;
-  color: #facc15;
-  border: 1px solid #facc15;
-}
-
-.mobile-btn-secondary:hover {
-  background: rgba(250, 204, 21, 0.05);
-}
 
 /* Mobile-First Grid System */
 .mobile-grid {
@@ -742,13 +667,13 @@ button, .btn {
 /* Mobile Accessibility Improvements */
 @media (max-width: 768px) {
   /* Larger touch targets on mobile */
-  button, .btn, .mobile-btn {
+  button {
     min-height: 48px;
     min-width: 48px;
   }
-  
+
   /* Better focus indicators */
-  button:focus, .btn:focus {
+  button:focus {
     outline: 2px solid #facc15;
     outline-offset: 2px;
   }

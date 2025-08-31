@@ -2,6 +2,7 @@
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { detectBusinessType, businessTypes } from '@/lib/openai'
 import { logger } from '@/lib/logger'
+import { Button } from '@/components/ui/button'
 
 interface Message {
   id: string;
@@ -275,13 +276,13 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
           className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-neutral-300 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
           disabled={disabled || isLoading}
         />
-        <button
+        <Button
           type="submit"
           disabled={disabled || isLoading || !inputValue.trim()}
-          className="px-6 py-3 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-6 py-3 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? '...' : 'Send'}
-        </button>
+        </Button>
       </form>
       
       {/* Connection status */}

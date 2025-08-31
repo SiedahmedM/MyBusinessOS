@@ -1,5 +1,6 @@
 'use client'
 import React, { Component, ErrorInfo, ReactNode } from 'react'
+import { Button } from '@/components/ui/button'
 
 interface Props {
   children: ReactNode
@@ -43,12 +44,12 @@ export class ErrorBoundary extends Component<Props, State> {
           <div className="text-center">
             <h2 className="font-sans font-semibold tracking-tighter2 text-2xl text-neutral-900 mb-4">Something went wrong</h2>
             <p className="font-sans text-base md:text-lg text-neutral-600 tracking-tightish mb-4">We're sorry, but something unexpected happened.</p>
-            <button
+            <Button
               onClick={() => window.location.reload()}
-              className="btn-primary font-sans font-medium tracking-tightish"
+              className="font-sans font-medium tracking-tightish"
             >
               Reload Page
-            </button>
+            </Button>
           </div>
         </div>
       )

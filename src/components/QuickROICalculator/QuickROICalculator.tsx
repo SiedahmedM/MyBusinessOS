@@ -3,6 +3,7 @@ import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
 
 import { StarsBackground } from '@/components/ui/stars-background'
+import { Button } from '@/components/ui/button'
 
 interface QuickROIInputs {
   softwareType: string
@@ -281,9 +282,9 @@ export function QuickROICalculator() {
 
                   {/* CTA */}
                   <div className="pt-4 border-t border-white/20">
-                    <button className="w-full btn-primary">
+                    <Button className="w-full">
                       Get Your Custom Quote
-                    </button>
+                    </Button>
                     <p className="text-xs text-center mt-2 opacity-80">
                       Free consultation • No obligation • 24-hour response
                     </p>

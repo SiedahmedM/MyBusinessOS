@@ -3,6 +3,7 @@ import { useState, useCallback } from 'react'
 import { logger } from '@/lib/logger'
 
 import { StarsBackground } from '@/components/ui/stars-background'
+import { Button } from '@/components/ui/button'
 
 interface ProjectShowcase {
   id: string
@@ -281,20 +282,20 @@ export function VisualProjectShowcase() {
               Every project is custom-built to solve your specific challenges and deliver measurable results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
-              <button
+              <Button
                 onClick={() => handleScrollToSection('ai-playground')}
-                className="btn-primary w-full sm:w-auto"
+                className="w-full sm:w-auto"
                 aria-label="Start your project with AI chat"
               >
                 Start Your Project
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => handleScrollToSection('contact')}
-                className="btn-primary w-full sm:w-auto"
+                className="w-full sm:w-auto"
                 aria-label="Get a free quote for your project"
               >
                 Get Free Quote
-              </button>
+              </Button>
             </div>
           </div>
         </div>

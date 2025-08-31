@@ -4,6 +4,7 @@ import { logger } from '@/lib/logger'
 import { toast } from 'sonner'
 
 import { StarsBackground } from '@/components/ui/stars-background'
+import { Button } from '@/components/ui/button'
 
 export function ContactForm() {
   const [formData, setFormData] = useState({
@@ -220,10 +221,10 @@ export function ContactForm() {
 
             {/* Submit Button */}
             <div className="text-center">
-              <button
+              <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-4 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-8 py-4 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">
@@ -233,7 +234,7 @@ export function ContactForm() {
                 ) : (
                   'Send Message & Get Free 15-Minute Consultation'
                 )}
-              </button>
+              </Button>
 
               <p className="mt-4 text-sm text-neutral-500">
                 I typically respond within 2-4 hours during business hours. If you're in Orange County, ask about a free in-person 15-minute consultation.

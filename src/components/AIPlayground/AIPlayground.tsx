@@ -5,6 +5,7 @@ import { AIChat } from './AIChat'
 import { logger } from '@/lib/logger'
 
 import { StarsBackground } from '@/components/ui/stars-background'
+import { Button } from '@/components/ui/button'
 
 type ViewState = 'chat' | 'building' | 'complete'
 
@@ -193,12 +194,12 @@ export function AIPlayground() {
                 >
                   Try Another Demo
                 </button>
-                <button
+                <Button
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full btn-primary"
+                  className="w-full"
                 >
                   Get Started Today
-                </button>
+                </Button>
               </div>
             </div>
           </div>

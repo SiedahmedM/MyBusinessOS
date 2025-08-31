@@ -3,6 +3,7 @@ import { useState, useCallback } from 'react'
 import { TestimonialCard } from './TestimonialCard'
 import type { CaseStudy } from '@/types'
 import { logger } from '@/lib/logger'
+import { Button } from '@/components/ui/button'
 
 const caseStudies: CaseStudy[] = [
   {
@@ -303,18 +304,18 @@ export function CaseStudies() {
           <p className="text-xl text-neutral-300 mb-8">
             Ready to join these successful businesses?
           </p>
-          <button 
+          <Button
             onClick={() => document.getElementById('ai-playground')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 btn-primary mr-4"
+            className="mr-0 sm:mr-4"
           >
             Start Your Success Story
-          </button>
-          <button 
+          </Button>
+          <Button
+            variant="secondary"
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 border-2 border-white text-white font-bold rounded-lg btn-hover focus-outline"
           >
             Get Your Free Consultation
-          </button>
+          </Button>
         </div>
       </div>
     </section>
