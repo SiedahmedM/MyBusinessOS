@@ -2,16 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import { saveContactLead } from '@/lib/supabase'
 import { validateContactForm } from '@/lib/validation'
 import { logger, generateRequestId } from '@/lib/logger'
+import { sendContactEmail } from '@/lib/email'
 
 async function checkRateLimit(clientIP: string): Promise<{ allowed: boolean }> {
   // Implement rate limiting logic
   // For now, return allowed
   return { allowed: true }
-}
-
-async function sendNotificationEmail(data: any): Promise<void> {
-  // Mock email service - would integrate with SendGrid, etc.
-  logger.info('Email notification sent', { to: 'hello@mybusinessos.com', data })
 }
 
 export async function POST(request: NextRequest) {
@@ -43,27 +39,72 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Save to database
-    const result = await saveContactLead(validation.data)
-    
-    if (!result) {
-      logger.error('Database insertion failed', { data: validation.data, requestId })
-      throw new Error('Database error occurred')
-    }
-
-    logger.info('Contact form submission successful', { id: result.id, requestId })
-
-    // Send notification email (with error handling)
+    // Send email (critical path)
     try {
-      await sendNotificationEmail(validation.data)
+      await sendContactEmail(validation.data, { autoReply: true, requestId })
     } catch (emailError) {
-      logger.error('Email notification failed', { emailError, requestId })
-      // Don't fail the request if email fails
+      logger.error('Contact email failed', { emailError, requestId })
+      // Attempt DB save anyway (non-blocking semantics)
+      ;(async () => {
+        try {
+          const { name, email, businessType, message } = validation.data
+          await saveContactLead({
+            name,
+            email,
+            business_type: businessType,
+            message,
+          })
+        } catch (dbErr) {
+          logger.error('DB save failed after email failure', { dbErr, requestId })
+        }
+      })()
+
+      return NextResponse.json(
+        {
+          error: 'We could not send your message via email right now. Please email us directly at contact@customsoftwarepro.com.',
+          requestId,
+        },
+        { status: 503 }
+      )
     }
+
+    // Save to database (non-blocking — best effort)
+    ;(async () => {
+      try {
+        const { name, email, businessType, message } = validation.data
+        const result = await saveContactLead({
+          name,
+          email,
+          business_type: businessType,
+          message,
+        })
+        if (!result) throw new Error('No result from DB')
+        logger.info('Contact form saved to DB', { id: result.id, requestId })
+      } catch (err) {
+        logger.warn('Contact form DB save failed (anon). Will try admin fallback if configured.', { err, requestId })
+        try {
+          const { saveContactLeadAdmin } = await import('@/lib/supabase')
+          const { name, email, businessType, message } = validation.data
+          const adminResult = await saveContactLeadAdmin({
+            name,
+            email,
+            business_type: businessType,
+            message,
+          })
+          if (adminResult) {
+            logger.info('Contact form saved to DB via admin fallback', { id: adminResult.id, requestId })
+          }
+        } catch (adminErr) {
+          logger.error('Contact form DB admin fallback failed', { adminErr, requestId })
+        }
+      }
+    })()
+
+    logger.info('Contact form submission successful', { requestId })
 
     return NextResponse.json({ 
       success: true, 
-      message: "Thank you for your message. We'll be in touch soon!" 
+      message: "Thank you for your message! I'll get back to you shortly." 
     })
 
   } catch (error) {

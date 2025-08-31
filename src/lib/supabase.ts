@@ -5,6 +5,12 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholde
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Server-side service role client to bypass RLS for trusted inserts
+const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+export const supabaseAdmin = supabaseServiceRoleKey
+  ? createClient(supabaseUrl, supabaseServiceRoleKey, { auth: { persistSession: false } })
+  : null as any;
+
 export async function saveDemoRequest(data: {
   session_id: string;
   business_type: string;
@@ -46,6 +52,29 @@ export async function saveContactLead(data: {
     return result;
   } catch (error) {
     console.error('Error saving contact lead:', error);
+    return null;
+  }
+}
+
+export async function saveContactLeadAdmin(data: {
+  name: string;
+  email: string;
+  business_type?: string;
+  message?: string;
+}) {
+  try {
+    if (!supabaseAdmin) throw new Error('SUPABASE_SERVICE_ROLE_KEY not configured');
+    console.log('Saving contact lead (admin):', data);
+    const { data: result, error } = await supabaseAdmin
+      .from('contact_leads')
+      .insert(data)
+      .select()
+      .single();
+    if (error) throw error;
+    console.log('Contact lead (admin) saved:', result);
+    return result;
+  } catch (error) {
+    console.error('Error saving contact lead (admin):', error);
     return null;
   }
 }
