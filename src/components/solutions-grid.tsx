@@ -1,6 +1,7 @@
 "use client";
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import {
   IconBuildingStore,
   IconBuildingSkyscraper,
@@ -81,7 +82,7 @@ export function SolutionsGrid() {
               <div className="mt-2 flex flex-col gap-1">
                 <p className="text-xs text-neutral-500">{item.roi}</p>
                 <Button asChild size="sm" className="w-full md:w-fit">
-                  <a href={item.cta.href}>{item.cta.label}</a>
+                  <Link href={item.cta.href}>{item.cta.label}</Link>
                 </Button>
               </div>
             }
