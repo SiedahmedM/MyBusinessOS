@@ -64,7 +64,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
             { text: "Custom Software That", className: "" },
             { text: "Transforms Business", className: "text-yellow-400 mt-2" }
           ]}
-          className="font-sans font-semibold tracking-tighter2 text-5xl md:text-6xl lg:text-7xl text-white mb-6 sm:mb-8"
+          className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl lg:text-5xl text-white mb-6 sm:mb-8"
         />
         
         {/* Mobile-Simplified Description */}

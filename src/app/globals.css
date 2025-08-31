@@ -262,12 +262,12 @@ html[data-theme='full-dark'] .border-gray-300 {
 
 /* Section spacing */
 .section-padding {
-  padding: 5rem 1.5rem; /* More generous padding */
+  padding: 3rem 1.5rem; /* Reduced from 5rem */
 }
 
 @media (min-width: 768px) {
   .section-padding {
-    padding: 8rem 2rem;
+    padding: 4rem 2rem; /* Reduced from 8rem */
   }
 }
 
@@ -1537,6 +1537,14 @@ html {
   body {
     overflow-x: hidden;
   }
+}
+
+@media (min-width: 1024px) {
+  html { font-size: 14px; }
+}
+
+@media (min-width: 1440px) {
+  html { font-size: 15px; }
 }
 
 /* =====================================
