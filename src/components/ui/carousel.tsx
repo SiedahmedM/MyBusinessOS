@@ -31,6 +31,7 @@ export default function Carousel({ slides }: CarouselProps) {
   const [slideWidth, setSlideWidth] = useState(0);
   const [visible, setVisible] = useState(1);
   const [errored, setErrored] = useState<Record<number, boolean>>({});
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
@@ -188,15 +189,19 @@ export default function Carousel({ slides }: CarouselProps) {
       }
       // mark swipe to suppress immediate click
       lastSwipeTimeRef.current = Date.now();
-    } else {
-      // snap back
+    } else if (px > 0) {
+      // snap back with animation if there was movement
       setIsTransitioning(true);
-      // just re-set currentIndex to trigger transform with transition
-      setCurrentIndex((i) => i);
+      const base = getTranslateX();
+      trackRef.current.style.transform = `translate3d(${base}px,0,0)`;
+    } else {
+      // no movement, ensure state is reset
+      setIsTransitioning(false);
     }
 
     d.dragging = false;
     d.dx = 0;
+    d.locked = false;
   };
 
   // Handle unexpected touch cancellations (e.g., pinch-zoom, OS gesture)
@@ -269,27 +274,19 @@ export default function Carousel({ slides }: CarouselProps) {
 
     {/* Caption below the image */}
     {(slide.title || slide.description || slide.button) && (
-      <div
-        className="px-2 sm:px-3 mt-3 cursor-pointer"
-        role="button"
-        tabIndex={0}
-        onClick={() => {
-          // Ignore clicks that occur right after a swipe
-          if (Date.now() - lastSwipeTimeRef.current < 200) return;
-          document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-        }}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-          }
-        }}
-        aria-label={slide.title ? `View details for ${slide.title}` : 'View details'}
-      >
+      <div className="px-2 sm:px-3 mt-3">
         {slide.title && (
           <h3 className="text-white text-sm sm:text-base font-semibold">{slide.title}</h3>
         )}
         {slide.description && (
-          <p className="text-white/70 text-xs sm:text-sm mt-1 line-clamp-3 sm:line-clamp-2">
+          <p
+            className={`text-white/70 text-xs sm:text-sm mt-1 ${
+              expandedIndex === index ? '' : 'line-clamp-3 sm:line-clamp-2'
+            } cursor-pointer`}
+            onClick={() =>
+              setExpandedIndex(expandedIndex === index ? null : index)
+            }
+          >
             {slide.description}
           </p>
         )}
