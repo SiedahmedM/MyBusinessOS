@@ -8,6 +8,8 @@ interface Project {
   description?: string
   button?: string
   src: string
+  focalX?: string // e.g. "50%" (default center)
+  focalY?: string // e.g. "30%"
 }
 
 export function ProjectBentoGrid() {
@@ -23,13 +25,17 @@ export function ProjectBentoGrid() {
           title: 'Business Management Dashboard',
           description: 'Complete business management dashboard with real-time analytics, sales tracking, and team management.',
           button: 'View Details',
-          src: '/images/business-dashboard.webp'
+          src: '/images/business-dashboard.webp',
+          focalX: '50%',
+          focalY: '45%' // Focus slightly above center for dashboard UI
         },
         {
-          title: 'Restaurant POS System',
-          description: 'Restaurant point-of-sale system with online ordering and kitchen display integration.',
+          title: 'Workflow Automation System',
+          description: 'Automated workflow management with task routing, approvals, and real-time status tracking.',
           button: 'View Details',
-          src: '/api/placeholder/600/400'
+          src: '/images/workflow-automation.webp',
+          focalX: '50%',
+          focalY: '40%' // Focus on upper content area
         },
         {
           title: 'Construction Portal',
@@ -72,8 +78,8 @@ export function ProjectBentoGrid() {
   }
 
   return (
-    <section className="py-16" id="projects">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="py-16 overflow-hidden" id="projects">
+      <div className="max-w-7xl mx-auto px-4 overflow-hidden">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Recent Projects</h2>
           <p className="text-neutral-300 text-lg max-w-2xl mx-auto">
@@ -81,7 +87,7 @@ export function ProjectBentoGrid() {
           </p>
         </div>
         
-        <div className="flex justify-center">
+        <div className="w-full max-w-screen-xl mx-auto overflow-hidden px-4">
           <Carousel slides={projects} />
         </div>
         

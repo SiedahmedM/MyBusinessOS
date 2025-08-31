@@ -1,6 +1,6 @@
 "use client";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
-import { useState, useRef, useId, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 
 interface SlideData {
@@ -8,241 +8,284 @@ interface SlideData {
   description?: string;
   button?: string;
   src: string;
+  focalX?: string; // e.g. "50%" (default center)
+  focalY?: string; // e.g. "30%"
 }
-
-interface SlideProps {
-  slide: SlideData;
-  index: number;
-  current: number;
-  handleSlideClick: (index: number) => void;
-}
-
-const Slide = ({ slide, index, current, handleSlideClick }: SlideProps) => {
-  const slideRef = useRef<HTMLLIElement>(null);
-
-  const xRef = useRef(0);
-  const yRef = useRef(0);
-  const frameRef = useRef<number>();
-
-  useEffect(() => {
-    const animate = () => {
-      if (!slideRef.current) return;
-
-      const x = xRef.current;
-      const y = yRef.current;
-
-      slideRef.current.style.setProperty("--x", `${x}px`);
-      slideRef.current.style.setProperty("--y", `${y}px`);
-
-      frameRef.current = requestAnimationFrame(animate);
-    };
-
-    frameRef.current = requestAnimationFrame(animate);
-
-    return () => {
-      if (frameRef.current) {
-        cancelAnimationFrame(frameRef.current);
-      }
-    };
-  }, []);
-
-  const handleMouseMove = (event: React.MouseEvent) => {
-    const el = slideRef.current;
-    if (!el) return;
-
-    const r = el.getBoundingClientRect();
-    xRef.current = event.clientX - (r.left + Math.floor(r.width / 2));
-    yRef.current = event.clientY - (r.top + Math.floor(r.height / 2));
-  };
-
-  const handleMouseLeave = () => {
-    xRef.current = 0;
-    yRef.current = 0;
-  };
-
-  const { src, button, title, description } = slide;
-
-  return (
-    <div className="[perspective:1200px] [transform-style:preserve-3d]">
-      <li
-        ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white opacity-100 transition-all duration-300 ease-in-out w-[70vmin] h-[70vmin] max-w-[400px] max-h-[400px] mx-2 sm:mx-[4vmin] z-10 cursor-pointer"
-        onClick={() => handleSlideClick(index)}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{
-          transform:
-            current !== index
-              ? "scale(0.95) rotateX(8deg)"
-              : "scale(1) rotateX(0deg)",
-          transition: "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-          transformOrigin: "bottom",
-        }}
-      >
-        <div
-          className="absolute top-0 left-0 w-full h-full bg-neutral-900 rounded-2xl overflow-hidden transition-all duration-150 ease-out border border-white/10"
-          style={{
-            transform:
-              current === index
-                ? "translate3d(calc(var(--x) / 30), calc(var(--y) / 30), 0)"
-                : "none",
-          }}
-        >
-          <div className="relative w-full h-full">
-            <Image
-              className="object-cover w-full h-full"
-              style={{
-                opacity: current === index ? 1 : 0.7,
-                transition: "opacity 0.6s ease-in-out",
-              }}
-              alt={title || `Project ${index + 1}`}
-              src={src}
-              fill
-              sizes="(max-width: 768px) 90vw, (max-width: 1200px) 50vw, 400px"
-              onError={(e) => {
-                // Fallback to placeholder on error
-                const target = e.target as HTMLImageElement;
-                target.src = '/api/placeholder/600/400';
-              }}
-            />
-            {current === index && (
-              <div className="absolute inset-0 bg-black/40 transition-all duration-500" />
-            )}
-          </div>
-        </div>
-
-        {(title || description || button) && (
-          <article
-            className={`absolute inset-0 flex flex-col justify-end p-4 sm:p-6 transition-opacity duration-500 ease-in-out ${
-              current === index ? "opacity-100 visible" : "opacity-0 invisible"
-            }`}
-          >
-            {title && (
-              <h3 className="text-base sm:text-lg md:text-xl font-semibold mb-2 text-white drop-shadow-lg">
-                {title}
-              </h3>
-            )}
-            {description && (
-              <p className="text-xs sm:text-sm text-neutral-200 mb-4 drop-shadow-lg line-clamp-3">
-                {description}
-              </p>
-            )}
-            {button && (
-              <div className="flex justify-center">
-                <button className="px-3 py-2 sm:px-4 sm:py-2 bg-white text-black text-xs sm:text-sm font-medium rounded-xl hover:bg-gray-100 transition-colors duration-200 shadow-lg">
-                  {button}
-                </button>
-              </div>
-            )}
-          </article>
-        )}
-      </li>
-    </div>
-  );
-};
-
-interface CarouselControlProps {
-  type: string;
-  title: string;
-  handleClick: () => void;
-}
-
-const CarouselControl = ({
-  type,
-  title,
-  handleClick,
-}: CarouselControlProps) => {
-  return (
-    <button
-      className={`w-8 h-8 sm:w-10 sm:h-10 flex items-center mx-1 sm:mx-2 justify-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full focus:border-accent-500 focus:outline-none hover:bg-white/20 hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
-        type === "previous" ? "rotate-180" : ""
-      }`}
-      title={title}
-      onClick={handleClick}
-    >
-      <IconArrowNarrowRight className="text-white w-4 h-4 sm:w-5 sm:h-5" />
-    </button>
-  );
-};
 
 interface CarouselProps {
   slides: SlideData[];
 }
 
+// Single source of truth for gap
+const GAP_PX = 16; // Tailwind gap-4
+
 export default function Carousel({ slides }: CarouselProps) {
-  const [current, setCurrent] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1); // Start at 1 due to clones
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [slideWidth, setSlideWidth] = useState(0);
+  const [errored, setErrored] = useState<Record<number, boolean>>({});
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const handlePreviousClick = () => {
-    const previous = current - 1;
-    setCurrent(previous < 0 ? slides.length - 1 : previous);
-  };
+  // Swipe configuration and state
+  const SWIPE = { thresholdPx: 0.15, minPx: 40, maxPx: 120 }; // 15% of card or 40–120px
+  const dragRef = useRef({
+    startX: 0,
+    startY: 0,
+    dx: 0,
+    dragging: false,
+    locked: false, // true when we decide horiz vs vert
+  });
 
-  const handleNextClick = () => {
-    const next = current + 1;
-    setCurrent(next === slides.length ? 0 : next);
-  };
+  // Clone first and last slides for infinite loop
+  const slidesWithClones = [
+    slides[slides.length - 1], // Clone of last
+    ...slides,
+    slides[0], // Clone of first
+  ];
 
-  const handleSlideClick = (index: number) => {
-    if (current !== index) {
-      setCurrent(index);
+  // Calculate slide width based on container and visible count
+  useEffect(() => {
+    const updateSlideWidth = () => {
+      if (!containerRef.current) return;
+      
+      const containerWidth = containerRef.current.clientWidth;
+      const visibleCount = window.innerWidth >= 1024 ? 3 : 
+                          window.innerWidth >= 640 ? 2 : 1;
+      const width = (containerWidth - (GAP_PX * (visibleCount - 1))) / visibleCount;
+      setSlideWidth(width);
+    };
+
+    updateSlideWidth();
+    window.addEventListener('resize', updateSlideWidth);
+    return () => window.removeEventListener('resize', updateSlideWidth);
+  }, []);
+
+  // Compute visible cards for dynamic sizes
+  const visible = typeof window !== 'undefined'
+    ? (window.innerWidth >= 1024 ? 3 : window.innerWidth >= 640 ? 2 : 1)
+    : 1;
+
+  // Use real transitionend listener for infinite loop
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el) return;
+
+    const onTransitionEnd = () => {
+      setIsTransitioning(false);
+      
+      if (currentIndex === 0) {
+        // Jump to last real slide
+        el.style.transition = 'none';
+        setCurrentIndex(slides.length);
+        // Force reflow
+        void el.offsetHeight;
+        el.style.removeProperty('transition');
+      } else if (currentIndex === slides.length + 1) {
+        // Jump to first real slide
+        el.style.transition = 'none';
+        setCurrentIndex(1);
+        // Force reflow
+        void el.offsetHeight;
+        el.style.removeProperty('transition');
+      }
+    };
+
+    if (isTransitioning) {
+      el.addEventListener('transitionend', onTransitionEnd);
+      return () => el.removeEventListener('transitionend', onTransitionEnd);
     }
+  }, [currentIndex, isTransitioning, slides.length]);
+
+  const goToNext = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => prev + 1);
+  }, [isTransitioning]);
+
+  const goToPrevious = useCallback(() => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(prev => prev - 1);
+  }, [isTransitioning]);
+
+  const goToSlide = useCallback((index: number) => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    setCurrentIndex(index + 1); // Adjust for clone
+  }, [isTransitioning]);
+
+  // Helper to get numeric translate for both base position and drag
+  const getTranslateX = () => -(currentIndex * (slideWidth + GAP_PX));
+
+  // Touch handlers for mobile swipe
+  const onTouchStart = (e: React.TouchEvent) => {
+    if (isTransitioning || !trackRef.current) return;
+    const t = e.touches[0];
+    dragRef.current = { startX: t.clientX, startY: t.clientY, dx: 0, dragging: true, locked: false };
+    // kill transition during drag
+    trackRef.current.style.transition = 'none';
   };
 
-  const id = useId();
+  const onTouchMove = (e: React.TouchEvent) => {
+    const t = e.touches[0];
+    const d = dragRef.current;
+    if (!d.dragging || !trackRef.current) return;
+
+    const dx = t.clientX - d.startX;
+    const dy = t.clientY - d.startY;
+
+    if (!d.locked) {
+      // decide if this is horizontal; if mostly vertical, abort drag
+      if (Math.abs(dy) > Math.abs(dx)) return;
+      d.locked = true;
+    }
+
+    d.dx = dx;
+    // apply base translate + drag delta
+    const base = getTranslateX();
+    trackRef.current.style.transform = `translate3d(${base + dx}px,0,0)`;
+  };
+
+  const onTouchEnd = () => {
+    const d = dragRef.current;
+    if (!d.dragging || !trackRef.current) return;
+
+    // restore transition
+    trackRef.current.style.removeProperty('transition');
+
+    const px = Math.abs(d.dx);
+    const dynamicThreshold = Math.min(
+      SWIPE.maxPx,
+      Math.max(SWIPE.minPx, slideWidth * SWIPE.thresholdPx)
+    );
+
+    if (px > dynamicThreshold) {
+      // commit swipe
+      setIsTransitioning(true);
+      if (d.dx > 0) {
+        // swiped right -> previous
+        setCurrentIndex((i) => i - 1);
+      } else {
+        // swiped left -> next
+        setCurrentIndex((i) => i + 1);
+      }
+    } else {
+      // snap back
+      setIsTransitioning(true);
+      // just re-set currentIndex to trigger transform with transition
+      setCurrentIndex((i) => i);
+    }
+
+    d.dragging = false;
+    d.dx = 0;
+  };
 
   return (
-    <div
-      className="relative w-full max-w-[400px] h-[70vmin] max-h-[400px] mx-auto"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
-      <ul
-        className="absolute flex transition-transform duration-700 ease-in-out"
-        style={{
-          transform: `translateX(-${current * (100 / slides.length)}%)`,
-          width: `${slides.length * 100}%`,
-        }}
+    <div className="relative w-full max-w-7xl mx-auto px-4">
+      {/* Main carousel container with overflow hidden and touch handling */}
+      <div 
+        ref={containerRef}
+        className="relative w-full overflow-hidden rounded-2xl"
+        style={{ touchAction: 'pan-y' }}
+        onTouchStart={onTouchStart}
+        onTouchMove={onTouchMove}
+        onTouchEnd={onTouchEnd}
       >
-        {slides.map((slide, index) => (
-          <Slide
-            key={index}
-            slide={slide}
-            index={index}
-            current={current}
-            handleSlideClick={handleSlideClick}
-          />
-        ))}
-      </ul>
+        {/* Track with slides */}
+        <div
+          ref={trackRef}
+          className="flex gap-4 transition-transform duration-300 ease-out"
+          style={{ transform: `translate3d(${getTranslateX()}px,0,0)` }}
+        >
+{slidesWithClones.map((slide, index) => (
+  <div
+    key={`${index}-${slide.src}`}
+    className="shrink-0"
+    style={{ width: slideWidth || '100%' }}
+    aria-hidden={index === 0 || index === slidesWithClones.length - 1}
+  >
+    {/* Fixed 16:10 image container optimized for 1600×1000 sources */}
+    <div className="relative w-full h-[58vw] sm:h-[240px] lg:h-[340px] overflow-hidden rounded-xl border border-white/10">
+      <Image
+        src={errored[index] ? '/images/placeholder-1600x1000.webp' : slide.src}
+        alt={slide.title || `Slide ${index}`}
+        fill
+        className="object-cover"          // full-bleed; with 16:10 source no visible crop
+        // use dynamic sizes based on how many are visible
+        sizes={visible === 1 ? '100vw' : visible === 2 ? '50vw' : '33vw'}
+        quality={90}
+        priority={index === 1}
+        loading={index === 1 ? 'eager' : 'lazy'}
+        placeholder="blur"
+        blurDataURL="/images/blur-20x12.webp"  // tiny 16:10 blur asset
+        onError={() => setErrored(prev => ({ ...prev, [index]: true }))}
+      />
 
-      <div className="absolute flex justify-center w-full top-[calc(100%+0.5rem)] sm:top-[calc(100%+1rem)]">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
+      {/* Optional featured badge on first real slide */}
+      {index === 1 && (
+        <div className="absolute top-3 right-3 bg-accent-500 text-white px-2 py-1 rounded-full text-xs font-semibold">
+          Featured
+        </div>
+      )}
+    </div>
 
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
+    {/* Caption below the image */}
+    {(slide.title || slide.description || slide.button) && (
+      <div className="px-2 sm:px-3 mt-3">
+        {slide.title && (
+          <h3 className="text-white text-sm sm:text-base font-semibold">{slide.title}</h3>
+        )}
+        {slide.description && (
+          <p className="text-white/70 text-xs sm:text-sm mt-1 line-clamp-2">
+            {slide.description}
+          </p>
+        )}
+        {slide.button && (
+          <button className="mt-2 px-3 py-1.5 bg-white text-black text-xs sm:text-sm rounded-lg hover:bg-gray-100">
+            {slide.button}
+          </button>
+        )}
+      </div>
+    )}
+  </div>
+))}
+        </div>
+      </div>
+
+      {/* Navigation controls - desktop only */}
+      <div className="hidden sm:flex justify-center gap-2 mt-6">
+        <button
+          onClick={goToPrevious}
+          className="w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-colors"
+          aria-label="Previous slide"
+        >
+          <IconArrowNarrowRight className="text-white w-5 h-5 rotate-180" />
+        </button>
+        
+        <button
+          onClick={goToNext}
+          className="w-10 h-10 flex items-center justify-center bg-white/10 backdrop-blur-sm border border-white/20 rounded-full hover:bg-white/20 transition-colors"
+          aria-label="Next slide"
+        >
+          <IconArrowNarrowRight className="text-white w-5 h-5" />
+        </button>
       </div>
 
       {/* Slide indicators */}
-      <div className="absolute flex justify-center w-full top-[calc(100%+2.5rem)] sm:top-[calc(100%+3.5rem)]">
-        <div className="flex space-x-2">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                current === index 
-                  ? 'bg-accent-400 scale-125' 
-                  : 'bg-white/40 hover:bg-white/60'
-              }`}
-              onClick={() => setCurrent(index)}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+      <div className="flex justify-center gap-2 mt-4">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-200 ${
+              currentIndex === index + 1
+                ? 'bg-accent-400 scale-125' 
+                : 'bg-white/40 hover:bg-white/60'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </div>
   );
