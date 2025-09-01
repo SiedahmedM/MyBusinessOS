@@ -400,8 +400,8 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
           <div className="text-4xl mb-4">◆</div>
           <h3 className="text-2xl font-bold mb-4">30-Day Success Guarantee</h3>
           <p className="text-lg mb-6 max-w-3xl mx-auto">
-            I'm so confident in my process and results that I offer a 30-day success guarantee. 
-            If you're not completely satisfied with your software, I'll work with you until you are - at no additional cost.
+            We're so confident in our process and results that we offer a 30-day success guarantee. 
+            If you're not completely satisfied with your software, we'll work with you until you are - at no additional cost.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center">

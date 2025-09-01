@@ -30,7 +30,7 @@ export function TechShowcase() {
         <div className="max-w-4xl mx-auto text-center">
           <div className="space-y-6">
             <p className="font-sans text-lg text-neutral-300 tracking-tightish leading-relaxed">
-              I build with enterprise-grade technologies that power the world's most successful companies.
+              We build with enterprise-grade technologies that power the world's most successful companies.
               Your solution gets the same reliability, performance, and scalability.
             </p>
             

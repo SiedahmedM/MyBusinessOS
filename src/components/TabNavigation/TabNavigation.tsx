@@ -14,6 +14,7 @@ interface TabNavigationProps {
 export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNavigationProps) {
   const [error, setError] = useState<string | null>(null)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleTabClick = useCallback((tabId: Tab['id']) => {
     try {
@@ -50,114 +51,101 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
     )
   }
 
+  const dropdownClasses = (open: boolean) =>
+    `absolute right-0 mt-2 w-56 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl shadow-black/40 overflow-hidden transform origin-top-right transition-all duration-150 ${
+      open ? 'opacity-100 scale-100 pointer-events-auto' : 'opacity-0 scale-95 pointer-events-none'
+    }`
+
   return (
-    <nav className={`sticky top-0 z-50 backdrop-blur-xl transition-all duration-300 ${
-      isScrolled ? 'bg-neutral-900 shadow-xl shadow-black/40' : 'bg-neutral-900 shadow-sm'
-    } border-b border-neutral-800/80 ${className}`}>
-      {/* Mobile Navigation - Redesigned */}
-      <div className="md:hidden mobile-container">
-        {/* Mobile Logo Header */}
-        <div className="flex items-center py-3 px-4 border-b border-neutral-800/60">
-          <Logo variant="header" size="sm" />
-        </div>
-        
-        <div className="py-2">
-          {/* Horizontal scrollable tabs */}
-          <div className="flex overflow-x-auto scrollbar-hide gap-1 px-1">
-            {primaryTabs.map((tab) => (
+    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+      isScrolled ? 'backdrop-blur-sm bg-transparent' : 'bg-transparent'
+    } ${className}`}>
+      {/* Mobile Navigation - Top-right dropdown */}
+      <div className="md:hidden px-4">
+        <div className={`mx-auto transition-all ${isScrolled ? 'mt-0' : 'mt-10'}`}>
+          <div className="relative flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md px-3 py-2 shadow-lg">
+            <Logo variant="header" size="xl" />
+            <div className="relative">
               <button
-                key={tab.id}
-                onClick={() => handleTabClick(tab.id)}
-                className={`mobile-touch flex-shrink-0 px-4 py-3 rounded-lg transition-all duration-200 min-w-[100px] ${
-                  activeTab === tab.id
-                    ? 'bg-accent-500 text-white shadow-lg scale-105'
-                    : 'bg-neutral-800/80 text-neutral-300 hover:bg-accent-500/20 hover:text-accent-300 border border-neutral-700'
-                }`}
-                style={{ minHeight: '48px' }}
-                aria-label={`Switch to ${tab.title} tab`}
+                onClick={() => setMenuOpen((v) => !v)}
+                onBlur={() => setTimeout(() => setMenuOpen(false), 150)}
+                className="flex items-center justify-center h-10 w-10 rounded-lg border border-white/10 bg-white/10 hover:bg-white/20 text-white transition-colors"
+                aria-haspopup="menu"
+                aria-expanded={menuOpen}
+                aria-label="Open navigation menu"
               >
-                <div className="flex flex-col items-center justify-center gap-1">
-                  <span className="text-lg" role="img" aria-hidden="true">
-                    {tab.icon}
-                  </span>
-                  <span className="font-medium text-xs text-center leading-tight">
-                    {tab.title}
-                  </span>
-                </div>
+                <span className="sr-only">Toggle menu</span>
+                <span aria-hidden className="relative block h-4 w-5">
+                  <span className={`absolute left-0 top-0 h-0.5 w-5 bg-neutral-200 transition-transform duration-200 ${menuOpen ? 'translate-y-1.5 rotate-45' : ''}`}/>
+                  <span className={`absolute left-0 top-1/2 -mt-[1px] h-0.5 w-5 bg-neutral-200 transition-opacity duration-200 ${menuOpen ? 'opacity-0' : 'opacity-100'}`}/>
+                  <span className={`absolute left-0 bottom-0 h-0.5 w-5 bg-neutral-200 transition-transform duration-200 ${menuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}/>
+                </span>
               </button>
-            ))}
-          </div>
-          
-          {/* Active tab indicator bar */}
-          <div className="mt-2 h-1 bg-neutral-800 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-accent-500 rounded-full transition-all duration-300"
-              style={{
-                width: `${100 / primaryTabs.length}%`,
-                transform: `translateX(${primaryTabs.findIndex(tab => tab.id === activeTab) * 100}%)`
-              }}
-            />
+              <div role="menu" className={dropdownClasses(menuOpen)}>
+                {primaryTabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    role="menuitem"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
+                      setMenuOpen(false)
+                      handleTabClick(tab.id)
+                    }}
+                    className={`w-full text-left px-4 py-3 transition-colors ${
+                      activeTab === tab.id
+                        ? 'bg-accent-500/10 text-accent-300'
+                        : 'text-neutral-200 hover:bg-neutral-800/70'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-lg" aria-hidden>{tab.icon}</span>
+                      <div>
+                        <div className="font-medium">{tab.title}</div>
+                        <div className="text-xs text-neutral-400">{tab.description}</div>
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Desktop Navigation - Enhanced */}
-      <div className="hidden md:block max-w-6xl mx-auto px-4">
-        <div className="flex items-center">
-          {/* Desktop Logo */}
-          <div className="flex items-center pr-8 border-r border-neutral-800/60 mr-6">
-            <Logo variant="header" size="md" className="logo-container" />
-          </div>
-          
-          {/* Navigation Tabs */}
-          <div className="flex flex-1">
-          {primaryTabs.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => handleTabClick(tab.id)}
-              className={`flex-1 px-6 py-5 transition-all duration-300 relative group ${
-                activeTab === tab.id
-                  ? 'bg-accent-500/10'
-                  : 'hover:bg-neutral-800/60'
-              }`}
-              aria-label={`Switch to ${tab.title} tab`}
-            >
-              <div className="flex items-center justify-center space-x-3">
-                <span className="text-xl" role="img" aria-hidden="true">
-                  {tab.icon}
-                </span>
-                <div className="text-center">
-                  <div className={`font-semibold transition-colors ${
-                    activeTab === tab.id ? 'text-accent-400' : 'text-neutral-300 group-hover:text-accent-400'
-                  }`}>
-                    {tab.title}
-                  </div>
-                  {/* Show description on active or hover */}
-                  <div className={`text-xs mt-1 transition-all duration-300 ${
-                    activeTab === tab.id
-                      ? 'text-accent-300 opacity-100'
-                      : 'text-neutral-400 opacity-0 group-hover:opacity-100'
-                  }`}>
-                    {tab.description}
-                  </div>
-                </div>
-              </div>
-              
-              {/* Active indicator */}
-              {activeTab === tab.id && (
-                <div className="absolute inset-x-0 bottom-0 h-0.5">
-                  <div className="h-full bg-accent-500 mx-6 rounded-t-full" />
-                </div>
-              )}
-              
-              {/* Hover indicator */}
-              <div className={`absolute inset-x-0 bottom-0 h-0.5 transition-all duration-300 ${
-                activeTab === tab.id ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'
-              }`}>
-                <div className="h-full bg-accent-300 mx-6 rounded-t-full" />
-              </div>
-            </button>
-          ))}
+      {/* Desktop Navigation - Top-right dropdown */}
+      <div className="hidden md:block px-4">
+        <div className={`mx-auto max-w-5xl transition-all ${isScrolled ? 'mt-0' : 'mt-12'}`}>
+          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md px-4 py-2 shadow-lg">
+            {/* Desktop Logo */}
+            <div className="flex items-center">
+              <Logo variant="header" size="xl" className="logo-container" />
+            </div>
+
+            {/* Centered links */}
+            <div className="flex items-center gap-6 text-sm">
+              {primaryTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => handleTabClick(tab.id)}
+                  className={`px-2 py-1 transition-colors ${
+                    activeTab === tab.id ? 'text-accent-300' : 'text-neutral-200 hover:text-white'
+                  }`}
+                  aria-label={`Switch to ${tab.title} tab`}
+                >
+                  {tab.title}
+                </button>
+              ))}
+            </div>
+
+            {/* Right CTA */}
+            <div className="flex items-center">
+              <a
+                href="#contact"
+                className="px-4 py-2 rounded-lg bg-accent-500 text-black font-medium hover:bg-accent-400 transition-colors"
+              >
+                Get in touch
+              </a>
+            </div>
           </div>
         </div>
       </div>

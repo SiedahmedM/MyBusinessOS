@@ -43,19 +43,13 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden section-fade-bottom section-fade-bottom--black pb-16 md:pb-24">
+    <section className="relative min-h-[85vh] lg:min-h-[80vh] flex items-center justify-center overflow-x-hidden section-fade-bottom section-fade-bottom--black pb-20 md:pb-24">
       {/* Theme-aware background component */}
       <HeroBackground />
       
       {/* Content */}
       <div className="relative z-20 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Professional Badge */}
-        <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 sm:mb-8">
-          <span className="font-sans text-neutral-100 font-medium text-sm sm:text-base">
-            <span className="hidden sm:inline">Expert Developer • Orange County, CA</span>
-            <span className="sm:hidden">Expert Developer • OC, CA</span>
-          </span>
-        </div>
+        {/* Professional Badge removed by request */}
         
 
         {/* Animated Main Heading */}
@@ -64,7 +58,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
             { text: "Custom Software That", className: "" },
             { text: "Transforms Business", className: "text-accent-500 mt-2" }
           ]}
-          className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl lg:text-5xl text-white mb-6 sm:mb-8"
+          className="font-sans font-semibold tracking-tighter2 text-4xl md:text-5xl lg:text-6xl text-white mb-6 sm:mb-8"
         />
         
         {/* Mobile-Simplified Description */}

@@ -56,7 +56,7 @@ export function Footer() {
             <div className="flex items-center gap-6 text-sm">
               <span>&copy; {currentYear} CustomSoftwarePro. All rights reserved.</span>
               <a href="mailto:hello@customsoftwarepro.com" className="hover:text-accent-400 transition-colors">
-                hello@customsoftwarepro.com
+                contact@customsoftwarepro.com
               </a>
             </div>
             <div className="text-sm text-neutral-400">

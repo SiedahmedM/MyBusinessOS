@@ -52,7 +52,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
         {/* Header */}
         <div className="section-header-mobile text-center mb-12">
           <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-4">
-            What Can I Build For You?
+            What Can We Build For You?
           </h2>
           <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish max-w-2xl mx-auto">
             Choose your software type below to explore solutions and get instant ROI estimates
@@ -121,7 +121,7 @@ export function SoftwareTypeGrid({ onTypeSelected, className = '' }: SoftwareTyp
             Don't See Your Exact Needs?
           </h3>
           <p className="text-neutral-200 mb-6 text-sm leading-relaxed max-w-2xl mx-auto">
-            I build custom solutions for unique requirements. If you can describe it, I can build it.
+            We build custom solutions for unique requirements. If you can describe it, we can build it.
           </p>
           <button
             onClick={() => scrollToSection('contact')}

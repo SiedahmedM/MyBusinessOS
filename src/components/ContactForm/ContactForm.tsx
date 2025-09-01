@@ -115,7 +115,7 @@ export function ContactForm() {
             Ready to Transform Your Business?
           </h2>
           <p className="font-sans text-lg text-neutral-600 tracking-tightish max-w-2xl mx-auto">
-            Tell me about your business and I'll create a custom software solution
+            Tell us about your business and we'll create a custom software solution
             that drives growth and saves you time.
           </p>
           <p className="mt-4 text-sm text-neutral-600 max-w-2xl mx-auto">
@@ -198,7 +198,7 @@ export function ContactForm() {
             {/* Message */}
             <div>
               <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
-                Tell me about your business and what you need *
+                Tell us about your business and what you need *
               </label>
               <textarea
                 id="message"
@@ -236,7 +236,7 @@ export function ContactForm() {
               </button>
 
               <p className="mt-4 text-sm text-neutral-500">
-                I typically respond within 2-4 hours during business hours. If you're in Orange County, ask about a free in-person 15-minute consultation.
+                We typically respond within 2-4 hours during business hours. If you're in Orange County, ask about a free in-person 15-minute consultation.
               </p>
             </div>
           </form>
@@ -250,11 +250,10 @@ export function ContactForm() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center justify-center">
               <span className="text-accent-600 mr-2">◆</span>
-              <span className="font-semibold">(714) 555-0123</span>
             </div>
             <div className="flex items-center justify-center">
               <span className="text-accent-600 mr-2">◆</span>
-              <span className="font-semibold">hello@mybusinessos.com</span>
+              <span className="font-semibold">contact@customsoftwarepro.com</span>
             </div>
           </div>
         </div>

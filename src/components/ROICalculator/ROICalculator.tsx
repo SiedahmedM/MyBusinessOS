@@ -24,7 +24,7 @@ export function ROICalculator() {
             </h2>
             <p className="font-sans text-base md:text-lg text-neutral-300 tracking-tightish max-w-2xl mx-auto">
               See exactly how much CustomSoftwarePro solutions will save your business.
-              These calculations are based on real results from my clients.
+              These calculations are based on real results from our clients.
             </p>
           </div>
 
