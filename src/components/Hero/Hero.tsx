@@ -62,7 +62,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         <StaggeredText
           lines={[
             { text: "Custom Software That", className: "" },
-            { text: "Transforms Business", className: "text-yellow-400 mt-2" }
+            { text: "Transforms Business", className: "text-accent-500 mt-2" }
           ]}
           className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl lg:text-5xl text-white mb-6 sm:mb-8"
         />
