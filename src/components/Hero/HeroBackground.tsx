@@ -7,11 +7,11 @@ export function HeroBackground() {
     <>
       <div className="absolute inset-0 bg-gradient-to-b from-black to-neutral-950" />
       <StarsBackground starDensity={0.00015} />
-      <ShootingStars 
-        minDelay={2000} 
+      <ShootingStars
+        minDelay={2000}
         maxDelay={5000}
-        starColor="#facc15"
-        trailColor="#eab308"
+        starColor="#FFD52E"
+        trailColor="#FFD52E"
       />
     </>
   )

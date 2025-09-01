@@ -123,7 +123,7 @@ export function IPhoneSimulator({ softwareType, isBuilding, onBackToSelector }: 
     }
   }, [softwareType, isBuilding, buildAppSequence])
 
-  const getGradientColor = () => 'linear-gradient(135deg, #000000, #1a1a1a, #facc15)'
+  const getGradientColor = () => 'linear-gradient(135deg, #000000, #1a1a1a, #FFD52E)'
 
   if (error) {
     return (

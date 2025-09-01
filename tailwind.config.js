@@ -29,16 +29,16 @@ module.exports = {
           900: '#000000',
         },
         accent: {
-          50: '#fefce8',
-          100: '#fef9c3',
-          200: '#fef08a',
-          300: '#fde047',
-          400: '#facc15',
-          500: '#eab308', // Bold yellow
-          600: '#ca8a04',
-          700: '#a16207',
-          800: '#854d0e',
-          900: '#713f12',
+          50: '#FFD52E',
+          100: '#FFD52E',
+          200: '#FFD52E',
+          300: '#FFD52E',
+          400: '#FFD52E',
+          500: '#FFD52E', // Brand yellow
+          600: '#FFD52E',
+          700: '#FFD52E',
+          800: '#FFD52E',
+          900: '#FFD52E',
         },
         neutral: {
           50: '#ffffff',
@@ -70,8 +70,8 @@ module.exports = {
           to: { opacity: '1', transform: 'translateX(0)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 20px rgba(250, 204, 21, 0.3)' },
-          '100%': { boxShadow: '0 0 40px rgba(250, 204, 21, 0.6)' },
+          '0%': { boxShadow: '0 0 20px rgba(255, 213, 46, 0.3)' },
+          '100%': { boxShadow: '0 0 40px rgba(255, 213, 46, 0.6)' },
         },
         countUp: {
           from: { opacity: '0', transform: 'translateY(10px)' },
@@ -85,7 +85,7 @@ module.exports = {
       backgroundImage: {
         'hero-gradient': 'linear-gradient(135deg, #000000 0%, #111111 50%, #1a1a1a 100%)',
         'primary-gradient': 'linear-gradient(135deg, #000000 0%, #111111 100%)',
-        'accent-gradient': 'linear-gradient(135deg, #facc15 0%, #eab308 100%)',
+        'accent-gradient': 'linear-gradient(135deg, #FFD52E 0%, #FFD52E 100%)',
         'neutral-gradient': 'linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%)',
       },
       backdropBlur: {
