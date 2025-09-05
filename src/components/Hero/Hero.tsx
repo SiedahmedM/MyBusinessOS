@@ -85,7 +85,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
           </a>
           {/* Desktop/tablet: original CTAs */}
           <button
-            onClick={handleGetStartedClick}
+            onClick={() => scrollToSection('contact')}
             className="hidden sm:inline-flex btn-primary font-sans font-medium tracking-tightish text-base sm:text-lg px-8 sm:px-10 py-4"
             aria-label="Book a free consultation to discuss your project"
           >
