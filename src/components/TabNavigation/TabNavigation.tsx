@@ -62,14 +62,14 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
     } ${className}`}>
       {/* Mobile Navigation - Top-right dropdown */}
       <div className="md:hidden px-4">
-        <div className={`mx-auto transition-all ${isScrolled ? 'mt-0' : 'mt-10'}`}>
-          <div className="relative flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md px-3 py-2 shadow-lg">
+        <div className={`mx-auto transition-all ${isScrolled ? 'mt-0' : 'mt-6'}`}>
+          <div className="relative flex items-center justify-between">
             <Logo variant="header" size="xl" />
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((v) => !v)}
                 onBlur={() => setTimeout(() => setMenuOpen(false), 150)}
-                className="flex items-center justify-center h-10 w-10 rounded-lg border border-white/10 bg-white/10 hover:bg-white/20 text-white transition-colors"
+                className="flex items-center justify-center h-10 w-10 rounded-lg text-white/90 hover:text-white transition-colors"
                 aria-haspopup="menu"
                 aria-expanded={menuOpen}
                 aria-label="Open navigation menu"
