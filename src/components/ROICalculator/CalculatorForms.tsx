@@ -104,17 +104,17 @@ export function CalculatorForms({ activeTab }: CalculatorFormsProps) {
             {showResults && results && (
               <div className="results-animate-in bg-gradient-to-br from-primary-700 to-primary-500 text-white p-6 rounded-lg">
                 <h3 className="text-xl font-bold mb-4">Your Time Freedom</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-2xl font-bold">{formatCurrency(results.monthlySavings)}</div>
+                    <div className="text-xl sm:text-2xl font-bold">{formatCurrency(results.monthlySavings)}</div>
                     <div className="text-sm opacity-90">Monthly Savings</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold">{formatCurrency(results.yearlySavings)}</div>
+                    <div className="text-xl sm:text-2xl font-bold">{formatCurrency(results.yearlySavings)}</div>
                     <div className="text-sm opacity-90">Annual Savings</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold">{results.roi}%</div>
+                    <div className="text-xl sm:text-2xl font-bold">{results.roi}%</div>
                     <div className="text-sm opacity-90">5-Year ROI</div>
                   </div>
                 </div>

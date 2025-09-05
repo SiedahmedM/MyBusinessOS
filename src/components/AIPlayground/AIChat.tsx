@@ -268,19 +268,19 @@ export function AIChat({ onBusinessTypeDetected, disabled = false }: AIChatProps
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="flex space-x-2">
+      <form onSubmit={handleSubmit} className="flex items-stretch gap-2 w-full">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           placeholder="Tell me about your business needs..."
-          className="flex-1 px-4 py-3 bg-white/10 text-white placeholder-neutral-300 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
+          className="flex-1 min-w-0 px-4 py-3 bg-white/10 text-white placeholder-neutral-300 rounded-lg border border-white/20 focus:outline-none focus:border-white/40 focus:bg-white/15"
           disabled={disabled || isLoading}
         />
         <button
           type="submit"
           disabled={disabled || isLoading || !inputValue.trim()}
-          className="px-6 py-3 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-5 py-3 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? '...' : 'Send'}
         </button>

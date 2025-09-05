@@ -1,7 +1,6 @@
 'use client'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import { customLogo } from '@/data/customLogo'
 
 interface LogoProps {
   variant?: 'header' | 'hero' | 'footer' | 'inline'
@@ -47,23 +46,13 @@ export function Logo({
     }
   }
 
-  const getImageFilter = () => {
-    if (color === 'white') {
-      // Invert colors for white backgrounds
-      return 'brightness(0) invert(1)'
-    }
-    if (color === 'dark') {
-      // Ensure dark colors for light backgrounds
-      return 'brightness(0)'
-    }
-    return 'none' // Default colors
-  }
+  const getImageFilter = () => 'none'
 
   return (
     <div className={cn(getContainerClasses(), className)}>
       <div className="relative">
         <Image
-          src={customLogo}
+          src={'/images/customsoftwarepro-logo.svg'}
           alt="CustomSoftwarePro - Custom Software Development"
           width={200}
           height={60}

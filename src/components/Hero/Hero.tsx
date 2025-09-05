@@ -64,7 +64,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         {/* Mobile-Simplified Description */}
         <div className="mb-8 sm:mb-12">
           <p className="font-sans text-base md:text-lg text-zinc-300/90 tracking-tightish max-w-3xl sm:mx-auto sm:text-center text-left px-1">
-            From simple websites to complex SaaS platforms—turn your idea into reality in weeks, not years.
+            From simple websites to complex SaaS platforms—turn your idea into reality in weeks, not months.
           </p>
         </div>
         

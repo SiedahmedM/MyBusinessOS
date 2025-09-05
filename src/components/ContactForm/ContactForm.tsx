@@ -214,7 +214,7 @@ export function ContactForm() {
                 <p className="mt-1 text-sm text-red-600">{errors.message}</p>
               )}
               <p className="mt-2 text-sm text-neutral-500">
-                The more details you provide, the better I can help you.
+                The more details you provide, the better we can help you.
               </p>
             </div>
 
@@ -245,7 +245,7 @@ export function ContactForm() {
         {/* Contact Info */}
         <div className="text-center mt-12">
           <p className="text-neutral-600 mb-4">
-            Prefer to call? I'm always happy to chat about your project.
+            Prefer to call? We are always happy to chat about your project.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <div className="flex items-center justify-center">
