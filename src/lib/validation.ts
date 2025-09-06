@@ -3,6 +3,13 @@ import { z } from 'zod'
 const contactFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(100),
   email: z.string().email('Invalid email address'),
+  phone: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || /^(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/.test(val.trim()),
+      'Please enter a valid phone number'
+    ),
   businessType: z.string().min(1, 'Business type is required'),
   message: z.string().min(10, 'Message must be at least 10 characters').max(1000)
 })

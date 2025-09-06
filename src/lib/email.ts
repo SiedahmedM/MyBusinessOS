@@ -4,6 +4,7 @@ import { logger } from '@/lib/logger'
 export interface ContactEmailInput {
   name: string
   email: string
+  phone?: string
   businessType: string
   message: string
 }
@@ -34,6 +35,7 @@ export async function sendContactEmail(data: ContactEmailInput, opts?: { autoRep
         <h2 style="margin: 0 0 12px;">New Contact Lead</h2>
         <p style="margin: 0 0 4px;"><strong>Name:</strong> ${escapeHtml(data.name)}</p>
         <p style="margin: 0 0 4px;"><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+        ${data.phone ? `<p style="margin: 0 0 4px;"><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>` : ''}
         <p style="margin: 0 0 12px;"><strong>Business Type:</strong> ${escapeHtml(data.businessType)}</p>
         <div style="padding: 12px; border-radius: 8px; background: #f8fafc;">
           <div style="font-weight: 600; margin-bottom: 6px;">Message:</div>
@@ -42,7 +44,7 @@ export async function sendContactEmail(data: ContactEmailInput, opts?: { autoRep
       </div>
     `
 
-    const text = `New Contact Lead\n\nName: ${data.name}\nEmail: ${data.email}\nBusiness Type: ${data.businessType}\n\nMessage:\n${data.message}`
+    const text = `New Contact Lead\n\nName: ${data.name}\nEmail: ${data.email}${data.phone ? `\nPhone: ${data.phone}` : ''}\nBusiness Type: ${data.businessType}\n\nMessage:\n${data.message}`
 
     // Primary attempt with configured sender
     let sendResult = await resend.emails.send({

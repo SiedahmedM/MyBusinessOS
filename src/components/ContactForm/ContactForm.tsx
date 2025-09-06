@@ -9,6 +9,7 @@ export function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     businessType: '',
     message: ''
   })
@@ -40,6 +41,15 @@ export function ContactForm() {
       newErrors.email = 'Email is required'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Please enter a valid email address'
+    }
+
+    // Optional phone validation if provided
+    if (formData.phone && formData.phone.trim()) {
+      const phone = formData.phone.trim()
+      const phoneRegex = /^(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/
+      if (!phoneRegex.test(phone)) {
+        newErrors.phone = 'Please enter a valid phone number'
+      }
     }
     
     if (!formData.businessType) {
@@ -88,6 +98,7 @@ export function ContactForm() {
       setFormData({
         name: '',
         email: '',
+        phone: '',
         businessType: '',
         message: ''
       })
@@ -119,7 +130,7 @@ export function ContactForm() {
             that drives growth and saves you time.
           </p>
           <p className="mt-4 text-sm text-neutral-600 max-w-2xl mx-auto">
-            Every message includes a free 15-minute consultation. Located in Orange County? I'm happy to meet in person for the consult.
+            Every message includes a free 15-minute consultation. Located in Orange County? We're happy to meet in person for the consultation.
           </p>
         </div>
 
@@ -165,6 +176,31 @@ export function ContactForm() {
                   <p className="mt-1 text-sm text-red-600">{errors.email}</p>
                 )}
               </div>
+            </div>
+
+            {/* Phone (Optional) */}
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
+                Prefer to receive a call? <span className="text-neutral-400">(Optional)</span>
+              </label>
+              <input
+                id="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => handleInputChange('phone', e.target.value)}
+                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
+                  errors.phone ? 'border-red-500' : 'border-gray-300'
+                }`}
+                placeholder="(555) 123-4567"
+                inputMode="tel"
+                autoComplete="tel"
+              />
+              {errors.phone && (
+                <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+              )}
+              <p className="mt-2 text-sm text-neutral-500">
+                Add your number and we’ll give you a quick call.
+              </p>
             </div>
 
             {/* Business Type */}
