@@ -93,13 +93,13 @@ export async function sendContactEmail(data: ContactEmailInput, opts?: { autoRep
         const autoHtml = `
           <div style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #0f172a;">
             <p>Hi ${escapeHtml(firstName(data.name))},</p>
-            <p>Thanks for reaching out! I received your message and will get back to you shortly (usually within a few hours).</p>
-            <p>If you need to follow up, you can reply directly to this email or contact me at <a href="mailto:contact@customsoftwarepro.com">contact@customsoftwarepro.com</a>.</p>
-            <p style="margin-top: 16px;">Best,<br/>Mohamed – CustomSoftwarePro</p>
+            <p>Thanks for reaching out! We received your message and will get back to you shortly (usually within a few hours).</p>
+            <p>If you need to follow up, you can contact us at <a href="mailto:contact@customsoftwarepro.com">contact@customsoftwarepro.com</a>.</p>
+            <p style="margin-top: 16px;">Best,<br/>– CustomSoftwarePro Team</p>
           </div>
         `
 
-        const autoText = `Hi ${firstName(data.name)},\n\nThanks for reaching out! I received your message and will get back to you shortly.\n\nBest,\nMohamed – CustomSoftwarePro\ncontact@customsoftwarepro.com`
+        const autoText = `Hi ${firstName(data.name)},\n\nThanks for reaching out! We received your message and will get back to you shortly.\n\nBest,\n– CustomSoftwarePro Team\ncontact@customsoftwarepro.com`
 
         const auto = await resend.emails.send({
           from: FROM_EMAIL,
