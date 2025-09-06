@@ -28,6 +28,17 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap"
           rel="stylesheet"
         />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=AW-17535615667"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'AW-17535615667');`}
+        </Script>
         <Script id="meta-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
