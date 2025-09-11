@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Analytics } from '@vercel/analytics/next'
 import Script from 'next/script'
 import { Toaster } from 'sonner'
 import './globals.css'
@@ -60,6 +61,7 @@ fbq('track', 'PageView');`}
           }}
         />
         {children}
+        <Analytics />
         <Toaster
           position="top-center"
           richColors
