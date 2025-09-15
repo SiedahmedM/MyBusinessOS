@@ -399,6 +399,11 @@ html[data-theme='full-dark'] .border-gray-300 {
 }
 .solutions-light .industries-container .marquee-track { filter: saturate(1.05); }
 
+/* Ensure top service titles are readable on white */
+.solutions-light .service-bento-simple .group\/bento h3 {
+  color: #0f172a !important; /* slate-900 */
+}
+
 /* Service cards layout (desktop):
    Row 1: 1 (left), 2 (right)
    Row 2: 3 (left), 4 (right) — same size

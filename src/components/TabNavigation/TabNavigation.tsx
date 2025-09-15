@@ -113,16 +113,16 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
       </div>
 
       {/* Desktop Navigation - Top-right dropdown */}
-      <div className="hidden md:block px-4">
-        <div className={`mx-auto max-w-5xl transition-all ${isScrolled ? 'mt-0' : 'mt-12'}`}>
-          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md px-4 py-2 shadow-lg">
+      <div className="hidden md:block px-6">
+        <div className={`mx-auto max-w-6xl transition-all ${isScrolled ? 'mt-0' : 'mt-6'}`}>
+          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md px-5 py-2.5 shadow-lg">
             {/* Desktop Logo */}
             <div className="flex items-center">
               <Logo variant="header" size="xl" className="logo-container" />
             </div>
 
             {/* Centered links */}
-            <div className="flex items-center gap-6 text-sm">
+            <div className="flex items-center gap-7 text-[15px]">
               {primaryTabs.map((tab) => (
                 <button
                   key={tab.id}

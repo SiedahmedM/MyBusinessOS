@@ -33,7 +33,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[85vh] lg:min-h-[80vh] flex items-center justify-center overflow-x-hidden section-fade-bottom section-fade-bottom--black pb-20 md:pb-24">
+    <section className="relative min-h-[74vh] lg:min-h-[70vh] flex items-center justify-center overflow-x-hidden section-fade-bottom section-fade-bottom--black pb-16 md:pb-20">
       {/* Theme-aware background component */}
       <HeroBackground />
       
@@ -48,7 +48,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
             { text: "Custom Software That", className: "" },
             { text: "Transforms Business", className: "text-accent-500 mt-2" }
           ]}
-          className="font-sans font-semibold tracking-tighter2 text-left sm:text-center text-5xl md:text-6xl text-white mb-6 sm:mb-8"
+          className="font-sans font-semibold tracking-tighter2 text-left sm:text-center text-5xl md:text-6xl text-white mb-4 sm:mb-6"
         />
         
         {/* Mobile-Simplified Description */}
@@ -64,7 +64,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         </div>
         
         {/* Mobile-Optimized CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:justify-center items-start sm:items-center mb-12 sm:mb-16 max-w-md sm:max-w-none sm:mx-auto">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 sm:justify-center items-start sm:items-center mb-8 sm:mb-12 max-w-md sm:max-w-none sm:mx-auto">
           {/* Mobile: single Get in touch button */}
           <a
             href="#contact"

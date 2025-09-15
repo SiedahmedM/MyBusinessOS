@@ -113,34 +113,33 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative section-padding bg-neutral-50">
+    <section id="contact" className="relative section-padding bg-black">
       {/* Stars for full-dark theme */}
       { (
         <StarsBackground starDensity={0.00005} className="opacity-30" />
       )}
       
-      <div className="relative z-10 max-w-4xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-neutral-900 mb-6">
+        <div className="text-center mb-10">
+          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-3">
             Ready to Transform Your Business?
           </h2>
-          <p className="font-sans text-lg text-neutral-600 tracking-tightish max-w-2xl mx-auto">
-            Tell us about your business and we'll create a custom software solution
-            that drives growth and saves you time.
+          <p className="font-sans text-base md:text-lg text-white/70 tracking-tightish max-w-2xl mx-auto">
+            Tell us about your business and we'll create a custom software solution that drives growth and saves you time.
           </p>
-          <p className="mt-4 text-sm text-neutral-600 max-w-2xl mx-auto">
+          <p className="mt-3 text-xs text-white/60 max-w-2xl mx-auto">
             Every message includes a free 15-minute consultation. Located in Orange County? We're happy to meet in person for the consultation.
           </p>
         </div>
 
         {/* Contact Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 lg:p-12">
+        <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl p-6 md:p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name & Email Row */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
                   Your Name *
                 </label>
                 <input
@@ -148,18 +147,18 @@ export function ContactForm() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => handleInputChange('name', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                    errors.name ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-3 rounded-lg border bg-white/5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-500 ${
+                    errors.name ? 'border-red-500' : 'border-white/10'
                   }`}
                   placeholder="John Smith"
                 />
                 {errors.name && (
-                  <p className="mt-1 text-sm text-red-600">{errors.name}</p>
+                  <p className="mt-1 text-sm text-red-400">{errors.name}</p>
                 )}
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
                   Email Address *
                 </label>
                 <input
@@ -167,73 +166,71 @@ export function ContactForm() {
                   type="email"
                   value={formData.email}
                   onChange={(e) => handleInputChange('email', e.target.value)}
-                  className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                    errors.email ? 'border-red-500' : 'border-gray-300'
+                  className={`w-full px-4 py-3 rounded-lg border bg-white/5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-500 ${
+                    errors.email ? 'border-red-500' : 'border-white/10'
                   }`}
                   placeholder="john@yourbusiness.com"
                 />
                 {errors.email && (
-                  <p className="mt-1 text-sm text-red-600">{errors.email}</p>
+                  <p className="mt-1 text-sm text-red-400">{errors.email}</p>
                 )}
               </div>
             </div>
 
             {/* Phone (Optional) */}
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-2">
-                Prefer to receive a call? <span className="text-neutral-400">(Optional)</span>
+              <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
+                Prefer to receive a call? <span className="text-white/40">(Optional)</span>
               </label>
               <input
                 id="phone"
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => handleInputChange('phone', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                  errors.phone ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 rounded-lg border bg-white/5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-500 ${
+                  errors.phone ? 'border-red-500' : 'border-white/10'
                 }`}
                 placeholder="(555) 123-4567"
                 inputMode="tel"
                 autoComplete="tel"
               />
               {errors.phone && (
-                <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.phone}</p>
               )}
-              <p className="mt-2 text-sm text-neutral-500">
-                Add your number and we’ll give you a quick call.
-              </p>
+              <p className="mt-2 text-xs text-white/50">Add your number and we’ll give you a quick call.</p>
             </div>
 
             {/* Business Type */}
             <div>
-              <label htmlFor="businessType" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="businessType" className="block text-sm font-medium text-white/80 mb-2">
                 Business Type *
               </label>
               <select
                 id="businessType"
                 value={formData.businessType}
                 onChange={(e) => handleInputChange('businessType', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors ${
-                  errors.businessType ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 rounded-lg border bg-white/5 text-white focus:outline-none focus:ring-2 focus:ring-accent-500 ${
+                  errors.businessType ? 'border-red-500' : 'border-white/10'
                 }`}
               >
-                <option value="">Select your business type</option>
-                <option value="auto">Auto Repair Shop</option>
-                <option value="dental">Dental Practice</option>
-                <option value="medical">Medical Practice</option>
-                <option value="restaurant">Restaurant</option>
-                <option value="construction">Construction</option>
-                <option value="retail">Retail Store</option>
-                <option value="professional">Professional Services</option>
-                <option value="other">Other</option>
+                <option value="" className="bg-black">Select your business type</option>
+                <option value="auto" className="bg-black">Auto Repair Shop</option>
+                <option value="dental" className="bg-black">Dental Practice</option>
+                <option value="medical" className="bg-black">Medical Practice</option>
+                <option value="restaurant" className="bg-black">Restaurant</option>
+                <option value="construction" className="bg-black">Construction</option>
+                <option value="retail" className="bg-black">Retail Store</option>
+                <option value="professional" className="bg-black">Professional Services</option>
+                <option value="other" className="bg-black">Other</option>
               </select>
               {errors.businessType && (
-                <p className="mt-1 text-sm text-red-600">{errors.businessType}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.businessType}</p>
               )}
             </div>
 
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+              <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
                 Tell us about your business and what you need *
               </label>
               <textarea
@@ -241,17 +238,15 @@ export function ContactForm() {
                 rows={5}
                 value={formData.message}
                 onChange={(e) => handleInputChange('message', e.target.value)}
-                className={`w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-transparent transition-colors resize-none ${
-                  errors.message ? 'border-red-500' : 'border-gray-300'
+                className={`w-full px-4 py-3 rounded-lg border bg-white/5 text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-accent-500 resize-none ${
+                  errors.message ? 'border-red-500' : 'border-white/10'
                 }`}
-                placeholder="I run a [type] business and need help with [specific challenge]. We currently handle [process] manually and it's taking [time/causing issues]..."
+                placeholder="I run a [type] business and need help with [specific challenge]..."
               />
               {errors.message && (
-                <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                <p className="mt-1 text-sm text-red-400">{errors.message}</p>
               )}
-              <p className="mt-2 text-sm text-neutral-500">
-                The more details you provide, the better we can help you.
-              </p>
+              <p className="mt-2 text-xs text-white/50">The more details you provide, the better we can help you.</p>
             </div>
 
             {/* Submit Button */}
@@ -259,11 +254,11 @@ export function ContactForm() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-4 btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-accent-500 text-black font-semibold shadow-lg shadow-black/30 hover:bg-accent-400 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <div className="flex items-center">
-                    <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full mr-2"></div>
+                    <div className="animate-spin w-5 h-5 border-2 border-black border-t-transparent rounded-full mr-2"></div>
                     Sending Message...
                   </div>
                 ) : (
@@ -271,27 +266,15 @@ export function ContactForm() {
                 )}
               </button>
 
-              <p className="mt-4 text-sm text-neutral-500">
-                We typically respond within 2-4 hours during business hours. If you're in Orange County, ask about a free in-person 15-minute consultation.
-              </p>
+              <p className="mt-3 text-xs text-white/60">We typically respond within 2–4 hours during business hours.</p>
             </div>
           </form>
         </div>
 
         {/* Contact Info */}
-        <div className="text-center mt-12">
-          <p className="text-neutral-600 mb-4">
-            Prefer to call? We are always happy to chat about your project.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <div className="flex items-center justify-center">
-              <span className="text-accent-600 mr-2">◆</span>
-            </div>
-            <div className="flex items-center justify-center">
-              <span className="text-accent-600 mr-2">◆</span>
-              <span className="font-semibold">contact@customsoftwarepro.com</span>
-            </div>
-          </div>
+        <div className="text-center mt-10">
+          <p className="text-white/70 mb-2">Prefer to call? We are always happy to chat about your project.</p>
+          <a href="mailto:contact@customsoftwarepro.com" className="font-semibold text-accent-300 hover:text-accent-200">contact@customsoftwarepro.com</a>
         </div>
       </div>
     </section>

@@ -20,6 +20,7 @@ import { useHashRouter } from '@/hooks/useHashRouter'
 import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
 import { logger } from '@/lib/logger'
+import { Code2, MessageSquare, Rocket } from 'lucide-react'
 
 // Memoized tab content components with full-bleed mobile-first layouts
 const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?: (tabId: Tab['id']) => void }) {
@@ -65,6 +66,39 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
       <div id="solutions" className={`mobile-section-spacing section-transition ${lightBg ? 'solutions-light bg-white' : ''}`}>
         {/* Hero Section */}
         <Hero onTabChange={onTabChange} />
+
+        {/* Seam-centered value props */}
+        <div className="relative -mt-10 md:-mt-14 z-30">
+          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Code2 size={20} className="text-accent-400" />
+                <h3 className="font-sans font-semibold text-white">Expert Software Engineers</h3>
+              </div>
+              <p className="text-sm text-white/80">
+                Our engineers all have years of experience at top tech companies. You get Fortune 500-level expertise for your business.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <MessageSquare size={20} className="text-accent-400" />
+                <h3 className="font-sans font-semibold text-white">No Account Managers, No Middlemen</h3>
+              </div>
+              <p className="text-sm text-white/80">
+                Work directly with the actual engineer building your software. Unlike agencies, you get immediate answers and real technical expertise.
+              </p>
+            </div>
+            <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
+              <div className="flex items-center gap-2 mb-2">
+                <Rocket size={20} className="text-accent-400" />
+                <h3 className="font-sans font-semibold text-white">Enterprise-Grade Architecture</h3>
+              </div>
+              <p className="text-sm text-white/80">
+                We build software the same way Big Tech does—scalable, secure, and maintainable. No agency shortcuts or technical debt.
+              </p>
+            </div>
+          </div>
+        </div>
         
         {/* Software Type Grid - Full width with background */}
         {/* start sentinel for light background */}

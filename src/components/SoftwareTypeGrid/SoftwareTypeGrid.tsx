@@ -213,9 +213,9 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
     <section id="services" className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black solutions-surface ${className}`}>
       <StarsBackground starDensity={0.00003} className="opacity-30 solutions-stars" />
       
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-[1400px] mx-auto px-3 sm:px-4 lg:px-6">
         {/* Header */}
-        <div className="section-header-mobile text-center mb-12 solutions-header">
+        <div className="section-header-mobile text-center mb-8 solutions-header">
           <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-4">
             Complete Software Solutions for Every Business Need
           </h2>
@@ -225,13 +225,13 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
         </div>
 
         {/* Top row: 3 cards */}
-        <BentoGrid className="mb-12 service-bento-simple">
+        <BentoGrid className="mb-8 service-bento-simple">
           {topServices.map((svc) => (
             <BentoGridItem
               key={svc.id}
               title={svc.title}
               description={svc.description}
-              showTitle={false}
+              showTitle
               className="col-span-1 md:col-span-2"
               icon={
                 <span className="text-2xl text-accent-400" aria-hidden>
@@ -245,7 +245,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                   {/* ERP: 4-image slideshow with grid overlay and badges */}
                   {svc.id === 'custom-erp-solutions' && svc.images?.length ? (
                     <div className="relative w-full rounded-xl overflow-hidden border border-accent-500/30 bg-black/30 shadow-xl">
-                      <div className="pt-[70%]" />
+                      <div className="pt-[82%]" />
                       <div className="absolute inset-0">
                         <div className="pointer-events-none absolute inset-0 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)] bg-[size:20px_20px]" />
                         {svc.images.slice(0,4).map((img, i) => (
@@ -277,7 +277,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                   {/* BPA: single slideshow (BPA1-3) aligned to same height as others */}
                   {svc.id === 'business-process-automation' && svc.images?.length ? (
                     <div className="relative w-full rounded-xl overflow-hidden border border-accent-500/20 bg-black/30 shadow-lg">
-                      <div className="pt-[70%]" />
+                      <div className="pt-[82%]" />
                       <div className="absolute inset-0">
                         {svc.images.slice(0,3).map((img, i) => (
                           <img key={img.src} src={img.src} alt={img.alt} className={`bpa-slide bpa-slide-${i+1} object-cover w-full h-full`} loading="lazy" />
@@ -290,7 +290,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                   {/* CRM: top static (CRM1) + bottom static (CRM3) */}
                   {svc.id === 'custom-crm-systems' && svc.images?.length ? (
                     <div className="relative w-full rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-lg">
-                      <div className="pt-[70%]" />
+                      <div className="pt-[82%]" />
                       <div className="absolute inset-0">
                         <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" loading="lazy" />
                         <RotatingBadge items={svc.features} />
@@ -314,10 +314,12 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                     </div>
                   ) : null}
 
-                  {/* Small uppercase label under the image */}
-                  <h4 className="text-xs font-semibold text-accent-400 uppercase tracking-wider">
-                    {svc.title}
-                  </h4>
+                  {/* Small uppercase label under the image (hide for top services since title is shown below) */}
+                  {false && (
+                    <h4 className="text-xs font-semibold text-accent-400 uppercase tracking-wider">
+                      {svc.title}
+                    </h4>
+                  )}
 
                   {/* Default crossfade for other cards with images */}
                   {svc.id !== 'custom-erp-solutions' && svc.id !== 'industry-specific-software' && svc.id !== 'business-process-automation' && svc.id !== 'custom-crm-systems' && svc.id !== 'ai-integration' && svc.images?.length ? (
@@ -352,7 +354,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
         </BentoGrid>
 
         {/* AI Integration & Smart Automation: full-width background feature */}
-        <div className="relative mb-12 overflow-hidden rounded-xl border border-white/10 bg-white shadow-lg">
+        <div className="relative mb-10 overflow-hidden rounded-xl border border-white/10 bg-white shadow-lg">
           <div className="grid md:grid-cols-2">
             <div className="p-6 md:p-10 flex flex-col justify-center bg-black text-white font-sans">
               <h3 className="text-2xl md:text-3xl font-bold mb-3">AI Integration & Smart Automation</h3>
@@ -379,7 +381,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
         </div>
 
         {/* Bottom row: 2 cards (Mobile, Web) */}
-        <BentoGrid className="mb-12 service-bento-simple">
+        <BentoGrid className="mb-10 service-bento-simple">
           {bottomServices.map((svc) => (
             <BentoGridItem
               key={svc.id}
