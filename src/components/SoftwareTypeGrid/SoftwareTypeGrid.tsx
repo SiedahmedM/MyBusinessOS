@@ -125,7 +125,7 @@ const services: ServiceCard[] = [
     iconClass: 'fas fa-mobile-alt',
     title: 'Mobile App Development',
     description:
-      'Reach your customers where they are. Get a mobile app that makes it easy for customers to do business with you, anytime, anywhere. ',
+      'Reach your customers where they are. Get a mobile app that makes it easy for customers to do business with you, anytime, anywhere. lk',
     features: [
       'iOS & Android native apps',
       'Cross-platform mobile solutions',
@@ -467,9 +467,9 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
         {/* Industries Carousel */}
         <div className="py-8">
           <h3 className="text-center text-xl font-bold text-accent-400 mb-6">Industries We Serve</h3>
-          <div className="space-y-4">
+          <div className="relative rounded-xl border border-white/10 overflow-hidden bg-black/30 full-bleed industries-container">
             {/* Row 1 */}
-            <div className="marquee-row">
+            <div className="marquee-row py-4">
               <div className="marquee-track">
                 {[...firstRow, ...firstRow].map((label, idx) => (
                   <div key={`r1-${idx}-${label}`} className="industry-card">
@@ -479,7 +479,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
               </div>
             </div>
             {/* Row 2 (reverse) */}
-            <div className="marquee-row">
+            <div className="marquee-row py-4">
               <div className="marquee-track reverse">
                 {[...secondRow, ...secondRow].map((label, idx) => (
                   <div key={`r2-${idx}-${label}`} className="industry-card">
