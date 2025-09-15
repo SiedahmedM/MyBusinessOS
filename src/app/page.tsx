@@ -116,27 +116,7 @@ const ProcessTab = memo(function ProcessTab() {
   )
 })
 
-const PricingTab = memo(function PricingTab() {
-  return (
-    <TabErrorBoundary tabName="Pricing">
-      <div id="pricing" className="mobile-section-spacing section-transition">
-        {/* Interactive Pricing Calculator - Light section */}
-        <div className="pricing-calculator-mobile section-transition">
-          <div className="calculator-wrapper">
-            <InteractivePricingCalculator />
-          </div>
-        </div>
-        
-        {/* ROI Calculator - Dark gradient section */}
-        <div className="roi-calculator-mobile section-transition">
-          <div className="calculator-content">
-            <ROICalculator />
-          </div>
-        </div>
-      </div>
-    </TabErrorBoundary>
-  )
-})
+// Pricing tab removed per request
 
 export default function Home() {
   const [error, setError] = useState<string | null>(null)
@@ -175,7 +155,7 @@ export default function Home() {
           {/* Tab content sections - 3-tab system */}
           {activeTab === 'solutions' && <SolutionsTab onTabChange={navigateToTab} />}
           {activeTab === 'process' && <ProcessTab />}
-          {activeTab === 'pricing' && <PricingTab />}
+          {/* Pricing tab removed */}
 
           {/* Contact section - Full width with background */}
           <div className="contact-form-mobile section-transition">

@@ -210,7 +210,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
   const bottomServices = services.filter(s => bottomIds.has(s.id))
 
   return (
-    <section className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black solutions-surface ${className}`}>
+    <section id="services" className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black solutions-surface ${className}`}>
       <StarsBackground starDensity={0.00003} className="opacity-30 solutions-stars" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -289,15 +289,12 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
 
                   {/* CRM: top static (CRM1) + bottom static (CRM3) */}
                   {svc.id === 'custom-crm-systems' && svc.images?.length ? (
-                    <div className="space-y-2">
-                      <div className="relative w-full rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-lg">
-                        <div className="pt-[70%]" />
-                        <div className="absolute inset-0">
-                          <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" loading="lazy" />
-                          <RotatingBadge items={svc.features} />
-                        </div>
+                    <div className="relative w-full rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-lg">
+                      <div className="pt-[70%]" />
+                      <div className="absolute inset-0">
+                        <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" loading="lazy" />
+                        <RotatingBadge items={svc.features} />
                       </div>
-                      {/* Bottom image removed to keep single image card */}
                     </div>
                   ) : null}
 

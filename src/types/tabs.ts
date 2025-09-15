@@ -1,5 +1,5 @@
 export interface Tab {
-  id: 'solutions' | 'process' | 'pricing'
+  id: 'solutions' | 'process'
   title: string
   description: string
   icon: string
@@ -85,9 +85,8 @@ export interface ROIExample {
 }
 
 export const primaryTabs: Tab[] = [
-  { id: 'solutions', title: 'Solutions', description: 'What I build & examples', icon: '◆', href: '#solutions' },
-  { id: 'process', title: 'Process', description: 'How we work together', icon: '◆', href: '#process' },
-  { id: 'pricing', title: 'Pricing', description: 'Investment & ROI', icon: '◆', href: '#pricing' }
+  { id: 'solutions', title: 'Solutions', description: 'What I build', icon: '◆', href: '#solutions' },
+  { id: 'process', title: 'Process', description: 'How we work together', icon: '◆', href: '#process' }
 ]
 
 export const softwareTypes: SoftwareType[] = [

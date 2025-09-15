@@ -24,20 +24,11 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
     }
   };
 
-  const handleViewProjectsClick = () => {
-    console.log('Hero: View projects clicked');
-    // Scroll to the project showcase section within solutions
-    const element = document.getElementById('solutions')
+  const handleOurServicesClick = () => {
+    console.log('Hero: Our Services clicked');
+    const element = document.getElementById('services') || document.getElementById('solutions')
     if (element) {
-      // Scroll to the project showcase section
-      setTimeout(() => {
-        const showcase = document.querySelector('.project-showcase')
-        if (showcase) {
-          showcase.scrollIntoView({ behavior: 'smooth' })
-        } else {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 100)
+      element.scrollIntoView({ behavior: 'smooth' })
     }
   };
 
@@ -91,11 +82,11 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
             Book Free Consultation
           </button>
           <button
-            onClick={handleViewProjectsClick}
+            onClick={handleOurServicesClick}
             className="hidden sm:inline-flex btn-text font-sans font-medium tracking-tightish text-base sm:text-lg"
-            aria-label="View examples of completed projects"
+            aria-label="Jump to our services section"
           >
-            View Examples
+            Our Services
           </button>
         </div>
         
