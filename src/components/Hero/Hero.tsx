@@ -1,6 +1,5 @@
 'use client'
 import { TypingAnimation } from './TypingAnimation'
-import { ExperienceLogos } from './ExperienceLogos'
 import { StaggeredText } from './StaggeredText'
 import { HeroBackground } from './HeroBackground'
 import { scrollToSection } from '@/lib/utils'
@@ -100,10 +99,7 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
           </button>
         </div>
         
-        {/* Industry experience logos */}
-        <div className="mt-8 sm:mt-12 relative z-30">
-          <ExperienceLogos />
-        </div>
+        {/* Experience logos section removed by request */}
       </div>
     </section>
   )

@@ -26,6 +26,7 @@ export const BentoGridItem = ({
   header,
   icon,
   onClick,
+  showTitle = true,
 }: {
   className?: string;
   title?: string | React.ReactNode;
@@ -33,6 +34,7 @@ export const BentoGridItem = ({
   header?: React.ReactNode;
   icon?: React.ReactNode;
   onClick?: () => void;
+  showTitle?: boolean;
 }) => {
   return (
     <div
@@ -64,9 +66,11 @@ export const BentoGridItem = ({
         <div className="flex items-center space-x-3">
           {icon && <div className="flex-shrink-0">{icon}</div>}
           <div className="min-w-0 flex-1">
-            <h3 className="font-sans font-bold text-lg text-white leading-tight group-hover/bento:text-accent-100 transition-colors">
-              {title}
-            </h3>
+            {showTitle && (
+              <h3 className="font-sans font-bold text-lg text-white leading-tight group-hover/bento:text-accent-100 transition-colors">
+                {title}
+              </h3>
+            )}
           </div>
         </div>
         

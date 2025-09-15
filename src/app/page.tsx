@@ -1,5 +1,5 @@
 'use client'
-import { useState, memo, useEffect } from 'react'
+import { useState, memo, useEffect, useRef } from 'react'
 import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import { TabNavigation } from '@/components/TabNavigation/TabNavigation'
 import { Hero } from '@/components/Hero/Hero'
@@ -12,7 +12,6 @@ import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
 import { FAQSection } from '@/components/FAQ/FAQSection'
-import { ProjectBentoGrid } from '@/components/ProjectBentoGrid/ProjectBentoGrid'
 import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/TestimonialsMarquee'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
@@ -24,20 +23,60 @@ import { logger } from '@/lib/logger'
 
 // Memoized tab content components with full-bleed mobile-first layouts
 const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?: (tabId: Tab['id']) => void }) {
+  // Light background toggle while in Solutions > SoftwareTypeGrid through FAQ
+  const [lightBg, setLightBg] = useState(false)
+  const startRef = useRef<HTMLDivElement | null>(null)
+  const endRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const startEl = startRef.current
+    const endEl = endRef.current
+    if (!startEl || !endEl) return
+
+    // Activate white background only when start is well within view.
+    const startObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setLightBg(true)
+        }
+        // If user scrolls back above the start, disable
+        if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+          setLightBg(false)
+        }
+      })
+    }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
+
+    const endObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setLightBg(false)
+      })
+    }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
+
+    startObserver.observe(startEl)
+    endObserver.observe(endEl)
+    return () => {
+      startObserver.disconnect()
+      endObserver.disconnect()
+    }
+  }, [])
+
   return (
     <TabErrorBoundary tabName="Solutions">
-      <div id="solutions" className="mobile-section-spacing section-transition">
-        {/* Hero Section - Only on Solutions tab */}
+      <div id="solutions" className={`mobile-section-spacing section-transition ${lightBg ? 'solutions-light bg-white' : ''}`}>
+        {/* Hero Section */}
         <Hero onTabChange={onTabChange} />
         
         {/* Software Type Grid - Full width with background */}
+        {/* start sentinel for light background */}
+        <div ref={startRef} aria-hidden className="h-px w-px opacity-0" />
         <SoftwareTypeGrid />
         
-        {/* Project Showcase using Bento Grid */}
-        <ProjectBentoGrid />
+        {/* Removed Recent Projects section as requested */}
 
         {/* FAQ Section - replaces ROI calculator */}
         <div className="faq-mobile section-transition">
+          {/* end sentinel for light background */}
+          <div ref={endRef} aria-hidden className="h-px w-px opacity-0" />
           <div className="faq-content">
             <FAQSection />
           </div>

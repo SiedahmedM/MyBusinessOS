@@ -314,6 +314,69 @@ html[data-theme='full-dark'] .border-gray-300 {
   animation: iss-pan 14s ease-in-out infinite;
 }
 
+/* Light background mode while in Solutions grid range */
+.solutions-light {
+  background: #ffffff !important;
+}
+.solutions-light .solutions-header h2,
+.solutions-light .solutions-header p {
+  color: #111111 !important;
+}
+.solutions-light .solutions-stars { display: none !important; }
+.solutions-light .solutions-surface { background: #ffffff !important; }
+
+/* Remove gray chrome from solution cards when on white */
+.solutions-light .service-bento > * {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.solutions-light .service-bento > *:hover {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.solutions-light .service-bento-simple > * {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.solutions-light .service-bento-simple > *:hover { background: transparent !important; }
+
+/* AI marquee styles */
+.ai-marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  padding: 8px 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+}
+.ai-track {
+  display: flex;
+  gap: 0.75rem;
+  width: max-content;
+  animation: marquee-left 18s linear infinite;
+  padding: 4px 8px;
+}
+.ai-chip {
+  white-space: nowrap;
+  font-size: 12px;
+  color: #FFD52E;
+  background: rgba(0,0,0,0.7);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  padding: 6px 10px;
+}
+.solutions-light .group\/bento p { color: #111111 !important; }
+.solutions-light .group\/bento .space-y-3 > :not([hidden]) ~ :not([hidden]) { margin-top: 0.375rem; }
+
+/* Optional: subtle badge animation to avoid layout shift */
+.solutions-light .service-bento .text-[10px] {
+  white-space: nowrap;
+}
+
 /* Service cards layout (desktop):
    Row 1: 1 (left), 2 (right)
    Row 2: 3 (left), 4 (right) — same size
