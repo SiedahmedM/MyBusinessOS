@@ -124,6 +124,46 @@ html[data-theme='full-dark'] .border-gray-300 {
   }
 }
 
+/* Horizontal marquee for industries */
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Simple 2-image crossfade for CRM card */
+@keyframes crm-fade-1 {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+
+@keyframes crm-fade-2 {
+  0%, 45% { opacity: 0; }
+  55%, 95% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ERP 4-image fade, 3s per image (total 12s) */
+@keyframes erp-fade {
+  0% { opacity: 0; }
+  6% { opacity: 1; }
+  21% { opacity: 1; }
+  27% { opacity: 0; }
+  100% { opacity: 0; }
+}
+
 @keyframes pulse {
   0%, 100% {
     opacity: 1;
@@ -191,6 +231,105 @@ html[data-theme='full-dark'] .border-gray-300 {
   background: rgba(0, 0, 0, 0.2);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Industries marquee styles */
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: marquee-left 30s linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-name: marquee-right;
+}
+
+.industry-card {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem; /* rounded-xl */
+  padding: 1rem 1.25rem; /* p-4 with slight horizontal comfort */
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 15px -3px rgba(255, 213, 46, 0.08);
+  transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.industry-card:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+  box-shadow: 0 20px 25px -5px rgba(255, 213, 46, 0.12);
+}
+
+.crm-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: transform 400ms ease, opacity 400ms ease;
+}
+
+.crm-slide-1 { animation: crm-fade-1 9s ease-in-out infinite; }
+.crm-slide-2 { animation: crm-fade-2 9s ease-in-out infinite; }
+
+.erp-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: erp-fade 12s ease-in-out infinite;
+}
+.erp-slide-1 { animation-delay: 0s; }
+.erp-slide-2 { animation-delay: 3s; }
+.erp-slide-3 { animation-delay: 6s; }
+.erp-slide-4 { animation-delay: 9s; }
+
+/* Industry-specific pan-and-zoom across the white app area */
+@keyframes iss-pan {
+  0%   { transform: scale(1.04) translate(0%, 0%); }
+  20%  { transform: scale(1.1) translate(-6%, -2%); }
+  40%  { transform: scale(1.12) translate(7%, -4%); }
+  60%  { transform: scale(1.1) translate(6%, 5%); }
+  80%  { transform: scale(1.08) translate(-5%, 4%); }
+  100% { transform: scale(1.04) translate(0%, 0%); }
+}
+
+.iss-image {
+  will-change: transform;
+  transform-origin: 50% 35%;
+  animation: iss-pan 14s ease-in-out infinite;
+}
+
+/* Service cards layout (desktop):
+   Row 1: 1 (left), 2 (right)
+   Row 2: 3 (left), 4 (right) — same size
+   Row 3: 6 (left), 5 (right)
+*/
+@media (min-width: 768px) {
+  .service-bento > * { grid-row: auto; }
+  /* Row 1 */
+  .service-bento > *:nth-child(1) { grid-column: 4 / span 3; }
+  .service-bento > *:nth-child(2) { grid-column: 1 / span 3; }
+  /* Row 2 */
+  .service-bento > *:nth-child(3) { grid-column: 1 / span 3; }
+  .service-bento > *:nth-child(4) { grid-column: 4 / span 3; }
+  /* Row 3 */
+  .service-bento > *:nth-child(6) { grid-column: 1 / span 3; }
+  .service-bento > *:nth-child(5) { grid-column: 4 / span 3; }
 }
 
 /* iPhone simulator specific styles */
@@ -1893,3 +2032,39 @@ html {
 .animate-marquee {
   animation: marquee 25s linear infinite;
 }
+
+/* Service cards layout (desktop): explicit rows to avoid gaps */
+@media (min-width: 768px) {
+  .service-bento { grid-auto-flow: row dense; }
+  /* Row 1 */
+  .service-bento > *:nth-child(1) { grid-column: 1 / span 3; grid-row: 1; }
+  .service-bento > *:nth-child(2) { grid-column: 4 / span 3; grid-row: 1; }
+  /* Row 2 */
+  .service-bento > *:nth-child(3) { grid-column: 1 / span 3; grid-row: 2; }
+  .service-bento > *:nth-child(4) { grid-column: 4 / span 3; grid-row: 2; }
+  /* Row 3 */
+  .service-bento > *:nth-child(6) { grid-column: 1 / span 3; grid-row: 3; }
+  .service-bento > *:nth-child(5) { grid-column: 4 / span 3; grid-row: 3; }
+}
+
+
+/* BPA 3-image fade, 3s per image (total 9s) */
+@keyframes bpa-fade {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  30% { opacity: 1; }
+  34% { opacity: 0; }
+  100% { opacity: 0; }
+}
+.bpa-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: bpa-fade 9s ease-in-out infinite;
+}
+.bpa-slide-1 { animation-delay: 0s; }
+.bpa-slide-2 { animation-delay: 3s; }
+.bpa-slide-3 { animation-delay: 6s; }
