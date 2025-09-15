@@ -10,7 +10,6 @@ import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
 import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
-import { ProcessOverview } from '@/components/ProcessOverview/ProcessOverview'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
 import { FAQSection } from '@/components/FAQ/FAQSection'
 import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/TestimonialsMarquee'
@@ -141,7 +140,12 @@ const ProcessTab = memo(function ProcessTab() {
   return (
     <TabErrorBoundary tabName="Process">
       <div id="process" className="mobile-section-spacing section-transition">
-        <ProcessOverview />
+        {/* Process Timeline - Clean white section */}
+        <div className="process-timeline-mobile section-transition">
+          <div className="timeline-container">
+            <ProcessTimeline />
+          </div>
+        </div>
       </div>
     </TabErrorBoundary>
   )
