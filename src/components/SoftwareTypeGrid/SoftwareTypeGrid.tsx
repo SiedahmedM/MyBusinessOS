@@ -213,7 +213,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
     <section id="services" className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black solutions-surface ${className}`}>
       <StarsBackground starDensity={0.00003} className="opacity-30 solutions-stars" />
       
-      <div className="relative z-10 max-w-[1400px] mx-auto px-3 sm:px-4 lg:px-6">
+      <div className="relative z-10 max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6">
         {/* Header */}
         <div className="section-header-mobile text-center mb-8 solutions-header">
           <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-4">
@@ -249,7 +249,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                       <div className="absolute inset-0">
                         <div className="pointer-events-none absolute inset-0 opacity-10 bg-[linear-gradient(to_right,rgba(255,255,255,.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.2)_1px,transparent_1px)] bg-[size:20px_20px]" />
                         {svc.images.slice(0,4).map((img, i) => (
-                          <img key={img.src} src={img.src} alt={img.alt} className={`erp-slide erp-slide-${i+1} object-cover w-full h-full`} loading="lazy" />
+                          <img key={img.src} src={img.src} alt={img.alt} className={`erp-slide erp-slide-${i+1} object-cover w-full h-full`} loading={i === 0 ? 'eager' : 'lazy'} />
                         ))}
                         <RotatingBadge items={svc.features} />
                         <div className="absolute bottom-2 left-2 flex gap-1">
@@ -280,7 +280,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                       <div className="pt-[82%]" />
                       <div className="absolute inset-0">
                         {svc.images.slice(0,3).map((img, i) => (
-                          <img key={img.src} src={img.src} alt={img.alt} className={`bpa-slide bpa-slide-${i+1} object-cover w-full h-full`} loading="lazy" />
+                          <img key={img.src} src={img.src} alt={img.alt} className={`bpa-slide bpa-slide-${i+1} object-cover w-full h-full`} loading={i === 0 ? 'eager' : 'lazy'} />
                         ))}
                         <RotatingBadge items={svc.features} />
                       </div>
@@ -292,7 +292,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                     <div className="relative w-full rounded-xl overflow-hidden border border-white/10 bg-black/20 shadow-lg">
                       <div className="pt-[82%]" />
                       <div className="absolute inset-0">
-                        <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" loading="lazy" />
+                        <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" loading="eager" />
                         <RotatingBadge items={svc.features} />
                       </div>
                     </div>

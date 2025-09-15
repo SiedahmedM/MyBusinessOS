@@ -68,7 +68,7 @@ const SolutionsTab = memo(function SolutionsTab({ onTabChange }: { onTabChange?:
         <Hero onTabChange={onTabChange} />
 
         {/* Seam-centered value props */}
-        <div className="relative -mt-10 md:-mt-14 z-30">
+        <div className="relative -mt-8 md:-mt-10 z-30">
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
               <div className="flex items-center gap-2 mb-2">
