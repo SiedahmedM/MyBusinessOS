@@ -1,5 +1,5 @@
 export interface Tab {
-  id: 'solutions' | 'process'
+  id: 'home' | 'process' | 'crm' | 'erp' | 'automation'
   title: string
   description: string
   icon: string
@@ -85,7 +85,7 @@ export interface ROIExample {
 }
 
 export const primaryTabs: Tab[] = [
-  { id: 'solutions', title: 'Solutions', description: 'What I build', icon: '◆', href: '#solutions' },
+  { id: 'home', title: 'Home', description: 'Overview & highlights', icon: '◆', href: '#home' },
   { id: 'process', title: 'Process', description: 'How we work together', icon: '◆', href: '#process' }
 ]
 

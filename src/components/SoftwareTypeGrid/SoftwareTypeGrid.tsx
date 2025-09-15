@@ -240,6 +240,12 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
                   <span className="sr-only">{svc.title} icon</span>
                 </span>
               }
+              onClick={() => {
+                const target = svc.id === 'custom-crm-systems' ? 'crm' : svc.id === 'custom-erp-solutions' ? 'erp' : 'automation'
+                const el = document.querySelector('nav')
+                window.location.hash = `#${target}`
+                if (el) window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
               header={
                 <div className="space-y-4">
                   {/* ERP: 4-image slideshow with grid overlay and badges */}
