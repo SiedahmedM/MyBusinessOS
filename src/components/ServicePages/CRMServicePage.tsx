@@ -235,7 +235,7 @@ function VideoPanel() {
 
   return (
     <div className="md:col-span-8">
-      <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/90">
+      <div className="relative overflow-hidden bg-black">
         {/* Slightly bigger card */}
         <div className="pt-[62%] md:pt-[58%] lg:pt-[54%]" />
         <div className="absolute inset-0">
