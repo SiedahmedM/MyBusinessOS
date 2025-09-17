@@ -3,19 +3,18 @@ import { useState, memo, useEffect, useRef } from 'react'
 import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import { TabNavigation } from '@/components/TabNavigation/TabNavigation'
 import { Hero } from '@/components/Hero/Hero'
-import { TechShowcase } from '@/components/TechShowcase/TechShowcase'
 import { ROICalculator } from '@/components/ROICalculator/ROICalculator'
-import { AIPlayground } from '@/components/AIPlayground/AIPlayground'
+import { TransformSection } from '@/components/Transform/TransformSection'
 import { ContactForm } from '@/components/ContactForm/ContactForm'
 import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
 import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
 import { InteractivePricingCalculator } from '@/components/InteractivePricingCalculator/InteractivePricingCalculator'
-import { FAQSection } from '@/components/FAQ/FAQSection'
 import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/TestimonialsMarquee'
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
 import { Footer } from '@/components/common/Footer'
+import { StarsBackground } from '@/components/ui/stars-background'
 import { useHashRouter } from '@/hooks/useHashRouter'
 import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
@@ -29,37 +28,44 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
   const [lightBg, setLightBg] = useState(false)
   const startRef = useRef<HTMLDivElement | null>(null)
   const endRef = useRef<HTMLDivElement | null>(null)
+  const afterStart = useRef(false)
 
   useEffect(() => {
     const startEl = startRef.current
-    const endEl = endRef.current
-    if (!startEl || !endEl) return
+    if (!startEl) return
 
-    // Activate white background only when start is well within view.
+    // Turn on white when we pass the start sentinel
     const startObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
+          afterStart.current = true
           setLightBg(true)
         }
-        // If user scrolls back above the start, disable
+        // If we scroll back above the start, disable white
         if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
+          afterStart.current = false
           setLightBg(false)
         }
       })
     }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
 
+    // Use the Transform section as the end trigger (turn back to dark)
+    const transformEl = document.getElementById('ai-playground')
     const endObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) setLightBg(false)
+        if (entry.isIntersecting) {
+          setLightBg(false)
+        }
+        // If we scroll away from transform (upwards), restore white if we've passed start
+        if (!entry.isIntersecting && afterStart.current) {
+          setLightBg(true)
+        }
       })
     }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
 
     startObserver.observe(startEl)
-    endObserver.observe(endEl)
-    return () => {
-      startObserver.disconnect()
-      endObserver.disconnect()
-    }
+    if (transformEl) endObserver.observe(transformEl)
+    return () => { startObserver.disconnect(); endObserver.disconnect() }
   }, [])
 
   return (
@@ -70,6 +76,10 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
 
         {/* Seam-centered value props */}
         <div className="relative -mt-8 md:-mt-10 z-30">
+          {/* Full-bleed stars behind value props */}
+          <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw]">
+            <StarsBackground starDensity={0.0002} className="opacity-35" />
+          </div>
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
               <div className="flex items-center gap-2 mb-2">
@@ -101,36 +111,22 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
           </div>
         </div>
         
-        {/* Software Type Grid - Full width with background */}
-        {/* start sentinel for light background */}
+        {/* Start sentinel: switch to white background around solutions + FAQ */}
         <div ref={startRef} aria-hidden className="h-px w-px opacity-0" />
-        <SoftwareTypeGrid />
-        
-        {/* Removed Recent Projects section as requested */}
 
-        {/* FAQ Section - replaces ROI calculator */}
-        <div className="faq-mobile section-transition">
-          {/* end sentinel for light background */}
-          <div ref={endRef} aria-hidden className="h-px w-px opacity-0" />
-          <div className="faq-content">
-            <FAQSection />
-          </div>
-        </div>
+        {/* Software Type Grid - Full width with background */}
+        <SoftwareTypeGrid />
+
+        {/* End trigger is the Transform section itself; no extra sentinel needed here */}
         
-        {/* AI Playground - Immersive purple section */}
+        {/* Transformation Section (replaces AI Builder) */}
         <div className="ai-playground-mobile section-transition">
           <div className="content-wrapper">
-            <AIPlayground />
+            <TransformSection />
           </div>
         </div>
         
-        {/* Tech Showcase - Simplified, no code display */}
-        <div className="tech-showcase-mobile section-transition">
-          <TechShowcase />
-        </div>
-
-        {/* Client Testimonials */}
-        <TestimonialsMarquee />
+        {/* Client Testimonials embedded above in TransformSection */}
       </div>
     </TabErrorBoundary>
   )
