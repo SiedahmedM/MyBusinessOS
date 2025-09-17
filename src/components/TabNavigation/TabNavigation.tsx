@@ -140,23 +140,21 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
               >
                 Home
               </button>
-              {process.env.NODE_ENV !== 'production' ? (
-                <div className="relative group">
-                  <button
-                    className={`px-2 py-1 transition-colors ${['crm','erp','automation'].includes(activeTab as any) ? 'text-accent-300' : 'text-neutral-200 hover:text-white'}`}
-                    aria-haspopup="menu"
-                    aria-expanded={false}
-                  >
-                    Services
-                  </button>
-                  <div role="menu" className="absolute left-0 mt-2 w-64 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all">
-                    <button role="menuitem" onClick={() => handleTabClick('crm')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom CRM Systems</button>
-                    <button role="menuitem" onClick={() => handleTabClick('erp')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom ERP Solutions</button>
-                    <button role="menuitem" onClick={() => handleTabClick('automation')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Business Process Automation</button>
-                    <button role="menuitem" onClick={() => handleTabClick('ai')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">AI Integration</button>
-                  </div>
+              <div className="relative group">
+                <button
+                  className={`px-2 py-1 transition-colors ${['crm','erp','automation','ai'].includes(activeTab as any) ? 'text-accent-300' : 'text-neutral-200 hover:text-white'}`}
+                  aria-haspopup="menu"
+                  aria-expanded={false}
+                >
+                  Services
+                </button>
+                <div role="menu" className="absolute left-0 mt-2 w-64 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all">
+                  <button role="menuitem" onClick={() => handleTabClick('crm')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom CRM Systems</button>
+                  <button role="menuitem" onClick={() => handleTabClick('erp')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom ERP Solutions</button>
+                  <button role="menuitem" onClick={() => handleTabClick('automation')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Business Process Automation</button>
+                  <button role="menuitem" onClick={() => handleTabClick('ai')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">AI Integration</button>
                 </div>
-              ) : null}
+              </div>
               <button
                 onClick={() => handleTabClick('process')}
                 className={`px-2 py-1 transition-colors ${activeTab === 'process' ? 'text-accent-300' : 'text-neutral-200 hover:text-white'}`}
