@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { logger } from '@/lib/logger'
 
-export type TabId = 'solutions' | 'process'
+export type TabId = 'home' | 'process' | 'crm' | 'erp' | 'automation'
 
 export function useHashRouter(defaultTab: TabId = 'solutions') {
   const [activeTab, setActiveTab] = useState<TabId>(defaultTab)
@@ -11,7 +11,7 @@ export function useHashRouter(defaultTab: TabId = 'solutions') {
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '') as TabId
-      const validTabs: TabId[] = ['solutions', 'process']
+      const validTabs: TabId[] = ['home', 'process', 'crm', 'erp', 'automation']
       
       if (validTabs.includes(hash)) {
         setActiveTab(hash)

@@ -325,6 +325,17 @@ html[data-theme='full-dark'] .border-gray-300 {
 .solutions-light .solutions-stars { display: none !important; }
 .solutions-light .solutions-surface { background: #ffffff !important; }
 
+/* FAQ overrides for light background */
+.solutions-light #faq .faq-title { color: #0f172a !important; }
+.solutions-light #faq .faq-box {
+  background: #ffffff !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+.solutions-light #faq .faq-q { color: #0f172a !important; }
+.solutions-light #faq .faq-a { color: #334155 !important; }
+.solutions-light #faq .faq-icon { border-color: rgba(0,0,0,0.15) !important; }
+.solutions-light #faq .faq-icon span { background: rgba(15,23,42,0.8) !important; }
+
 /* Remove gray chrome from solution cards when on white */
 .solutions-light .service-bento > * {
   background: transparent !important;
@@ -1266,7 +1277,7 @@ button, .btn {
 /* AI Playground - immersive mobile layout */
 .ai-playground-mobile {
   background: linear-gradient(135deg, #000000 0%, #111111 100%);
-  padding: 3rem 0;
+  padding: 4rem 0;
   margin: 0;
   min-height: 100vh;
 }
@@ -1284,6 +1295,79 @@ button, .btn {
   }
 }
 
+/* Make Transform host blend seamlessly (no banding) */
+.transform-host{ background: transparent !important; }
+
+/* Before & After Transform styles */
+.star-shoot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff4bf 40%, rgba(255,213,46,.75) 70%, transparent 72%);
+  box-shadow: 0 0 16px rgba(255,213,46,.9), 0 0 28px rgba(255,255,255,.6);
+  transform: translate(-9999px, -9999px);
+  opacity: 0;
+  will-change: transform;
+}
+.star-shoot::after{
+  content: "";
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  width: 36px;
+  height: 2px;
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, rgba(255,213,46,0), rgba(255,213,46,.8));
+  filter: blur(0.5px);
+}
+.star-burst { animation: star-burst .35s ease-out forwards; }
+@keyframes star-burst { 0%{ box-shadow:0 0 0 rgba(56,212,196,0); transform:scale(1)} 50%{ box-shadow:0 0 36px rgba(122,162,255,.9)} 100%{opacity:0; transform:scale(1.6)} }
+
+.after-card { transform: scale(.96); opacity: .35; transition: transform .35s ease, opacity .35s ease; }
+.after-visible { transform: scale(1) !important; opacity: 1 !important; }
+.before-pop { animation: before-pop .35s ease; }
+@keyframes before-pop { 0%{transform:translateY(0)} 50%{transform:translateY(-2px)} 100%{transform:translateY(0)} }
+
+/* Before card enter */
+.before-card { opacity: 0; transform: translateY(10px); transition: transform .4s ease, opacity .4s ease; }
+.before-visible { opacity: 1; transform: none; }
+
+/* Text-only transform lines */
+.transform-text-stage .line{opacity:0; transform: translateY(6px); transition: opacity .5s ease, transform .5s ease}
+.transform-text-stage .line.revealed{opacity:1; transform:none}
+/* After title words */
+.after-title .tw-word{opacity:0; transform: translateY(6px);} 
+.after-title .tw-word.revealed{opacity:1; transform:none}
+
+/* Big column badges */
+.big-badge{display:inline-flex; align-items:center; gap:8px; font-weight:700; letter-spacing:.2px; padding:6px 12px; border-radius:9999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:#e5e7eb}
+.big-badge.before{background:rgba(255,255,255,.06); color:#e5e7eb}
+.big-badge.after{background:rgba(255,213,46,.12); color:#ffe08a; border-color:rgba(255,213,46,.35)}
+
+/* Framed area around transformation pairs */
+.transform-frame{position:relative; border-radius:18px; padding:12px; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)}
+.transform-frame::after{
+  content:""; position:absolute; inset:0; border-radius:18px; padding:1px; pointer-events:none;
+  background: linear-gradient(90deg, rgba(255,232,148,0) 0%, rgba(255,213,46,1) 50%, rgba(255,232,148,0) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: frame-sweep 6s linear infinite;
+  filter: drop-shadow(0 0 8px rgba(255,213,46,.45));
+}
+@keyframes frame-sweep{from{background-position: 0% 0%}to{background-position: 200% 0%}}
+
+/* CTA inside transform frame */
+.transform-frame .cta-wrap{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; margin-top:4px; padding-bottom:6px}
+.transform-frame .cta-btn{position:relative; display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:9999px; border:1px solid rgba(255,213,46,.45); color:#0b0b0b; font-weight:700; background:linear-gradient(135deg,#FFD52E 0%, #FFE894 100%); box-shadow:0 6px 22px rgba(255,213,46,.25), inset 0 -2px 0 rgba(0,0,0,.15)}
+.transform-frame .cta-btn:hover{filter:brightness(1.03)}
+.transform-frame .cta-glyph{width:14px; height:14px; display:inline-grid; place-items:center; background:radial-gradient(circle at 50% 50%, #fff 0%, #fff4bf 40%, rgba(255,213,46,.9) 70%, transparent 72%); border-radius:50%; box-shadow:0 0 14px rgba(255,213,46,.85)}
+.transform-frame .cta-note{font-size:12px; color:#cbd5e1}
+
+/* After explosion cue */
+.after-explode{animation: after-explode .45s ease-out}
+@keyframes after-explode{0%{box-shadow:0 0 0 rgba(255,213,46,0)}50%{box-shadow:0 0 36px rgba(255,213,46,.7), 0 0 24px rgba(255,255,255,.5) inset}100%{box-shadow:none}}
+
 /* Better mobile navigation - full width */
 .nav-mobile-full {
   width: 100%;
@@ -1293,6 +1377,12 @@ button, .btn {
   border-right: none;
   background: rgba(0, 0, 0, 0.95);
   backdrop-filter: blur(20px);
+}
+
+/* Larger cards for Transform section */
+.ai-playground-mobile .after-card { min-height: 320px; }
+@media (min-width: 768px){
+  .ai-playground-mobile .after-card { min-height: 380px; }
 }
 
 .nav-tabs-mobile {
@@ -1450,6 +1540,8 @@ button, .btn {
   margin: 0;
   width: 100%;
 }
+/* Embedded variant inside Transform: no banding, seamless */
+.tech-embedded { background: transparent !important; padding-top: 0 !important; padding-bottom: 0 !important; }
 
 .tech-showcase-mobile .tech-grid {
   display: grid;

@@ -45,11 +45,11 @@ export const FAQSection = memo(function FAQSection() {
   return (
     <section id="faq" className="py-16 md:py-20 bg-transparent">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-sans font-semibold tracking-tighter2 text-white text-center mb-10">
+        <h2 className="faq-title text-3xl md:text-4xl font-sans font-semibold tracking-tighter2 text-white text-center mb-10">
           Frequently Asked Questions
         </h2>
 
-        <div className="divide-y divide-white/10 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm shadow-xl">
+        <div className="faq-box divide-y divide-white/10 rounded-2xl border border-white/10 bg-black/40 backdrop-blur-sm shadow-xl">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -60,9 +60,9 @@ export const FAQSection = memo(function FAQSection() {
                   onClick={() => setOpenIndex(isOpen ? null : idx)}
                 >
                   <div>
-                    <h3 className="text-sm md:text-base font-medium text-white/95">{faq.question}</h3>
+                    <h3 className="faq-q text-sm md:text-base font-medium text-white/95">{faq.question}</h3>
                     <div
-                      className={`mt-2 text-sm leading-relaxed pr-2 ${
+                      className={`faq-a mt-2 text-sm leading-relaxed pr-2 ${
                         isOpen ? 'text-white/80' : 'hidden'
                       }`}
                     >
@@ -71,7 +71,7 @@ export const FAQSection = memo(function FAQSection() {
                   </div>
                   <span
                     aria-hidden
-                    className={`relative grid place-items-center h-8 w-8 rounded-md border border-white/15 text-white/80 transition-transform ${
+                    className={`faq-icon relative grid place-items-center h-8 w-8 rounded-md border border-white/15 text-white/80 transition-transform ${
                       isOpen ? 'rotate-45' : ''
                     }`}
                   >

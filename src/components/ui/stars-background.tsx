@@ -22,6 +22,8 @@ interface StarBackgroundProps {
   twinkleProbability?: number;
   minTwinkleSpeed?: number;
   maxTwinkleSpeed?: number;
+  minRadius?: number;
+  maxRadius?: number;
   className?: string;
 }
 
@@ -31,6 +33,8 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   twinkleProbability = 0.7,
   minTwinkleSpeed = 0.5,
   maxTwinkleSpeed = 1,
+  minRadius = 0.6,
+  maxRadius = 1.2,
   className,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
@@ -47,7 +51,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
         return {
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: Math.random() * 0.05 + 0.5,
+          radius: minRadius + Math.random() * (maxRadius - minRadius),
           opacity: Math.random() * 0.5 + 0.5,
           twinkleSpeed: shouldTwinkle
             ? minTwinkleSpeed +
@@ -62,6 +66,8 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       twinkleProbability,
       minTwinkleSpeed,
       maxTwinkleSpeed,
+      minRadius,
+      maxRadius,
     ]
   );
 
@@ -72,7 +78,9 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        const { width, height } = canvas.getBoundingClientRect();
+        // Prefer measuring the parent so absolute canvases get the full section size
+        const host = canvas.parentElement || canvas;
+        const { width, height } = host.getBoundingClientRect();
         canvas.width = width;
         canvas.height = height;
         setStars(generateStars(width, height));
@@ -83,12 +91,14 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
     const resizeObserver = new ResizeObserver(updateStars);
     if (canvasRef.current) {
-      resizeObserver.observe(canvasRef.current);
+      const host = canvasRef.current.parentElement || canvasRef.current;
+      resizeObserver.observe(host);
     }
 
     return () => {
       if (canvasRef.current) {
-        resizeObserver.unobserve(canvasRef.current);
+        const host = canvasRef.current.parentElement || canvasRef.current;
+        resizeObserver.unobserve(host);
       }
     };
   }, [

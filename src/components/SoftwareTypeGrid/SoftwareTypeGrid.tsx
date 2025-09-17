@@ -2,6 +2,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
 import { StarsBackground } from '@/components/ui/stars-background'
+import { FAQSection } from '@/components/FAQ/FAQSection'
 
 interface SoftwareTypeGridProps {
   className?: string
@@ -492,6 +493,11 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* FAQ inside white Solutions section */}
+      <div className="mt-4">
+        <FAQSection />
       </div>
 
     </section>
