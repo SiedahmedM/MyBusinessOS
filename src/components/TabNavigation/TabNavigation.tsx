@@ -88,6 +88,7 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
                 </span>
               </button>
               <div role="menu" className={dropdownClasses(menuOpen)}>
+                {/* Primary tabs */}
                 {primaryTabs.map((tab) => (
                   <button
                     key={tab.id}
@@ -110,6 +111,32 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
                         <div className="text-xs text-neutral-400">{tab.description}</div>
                       </div>
                     </div>
+                  </button>
+                ))}
+                {/* Divider */}
+                <div className="h-px bg-neutral-800 my-1" />
+                <div className="px-4 py-2 text-xs uppercase tracking-wide text-neutral-400">Services</div>
+                {[
+                  { id: 'crm', label: 'Custom CRM Systems' },
+                  { id: 'erp', label: 'Custom ERP Solutions' },
+                  { id: 'automation', label: 'Business Process Automation' },
+                  { id: 'ai', label: 'AI Integration' },
+                ].map((s) => (
+                  <button
+                    key={s.id}
+                    role="menuitem"
+                    onMouseDown={(e) => e.preventDefault()}
+                    onClick={() => {
+                      setMenuOpen(false)
+                      // @ts-ignore
+                      handleTabClick(s.id)
+                    }}
+                    className={`w-full text-left px-4 py-3 transition-colors ${
+                      // @ts-ignore
+                      activeTab === s.id ? 'bg-accent-500/10 text-accent-300' : 'text-neutral-200 hover:bg-neutral-800/70'
+                    }`}
+                  >
+                    {s.label}
                   </button>
                 ))}
               </div>
