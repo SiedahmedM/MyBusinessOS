@@ -1357,6 +1357,29 @@ button, .btn {
 }
 @keyframes frame-sweep{from{background-position: 0% 0%}to{background-position: 200% 0%}}
 
+/* Mobile optimizations for Transform */
+@media (max-width: 640px){
+  .transform-frame{padding:0; border-radius:0; margin:0; box-shadow:none}
+  .transform-frame::after{display:none} /* remove glow and outline on mobile */
+}
+
+.stage-mobile{display:block; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.1); border-radius:14px; padding:12px}
+@media (min-width: 640px){ .stage-mobile{background:transparent; border-color:transparent; padding:0} }
+.stage-section{display:block}
+
+.chip{display:inline-flex; align-items:center; gap:6px; font-size:12px; padding:4px 8px; border-radius:9999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.06); color:#e5e7eb}
+.chip.after{background:rgba(255,213,46,.12); color:#ffe08a; border-color:rgba(255,213,46,.35)}
+
+.divider{flex:1; height:1px; background:linear-gradient(90deg, rgba(255,232,148,0), rgba(255,213,46,.6), rgba(255,232,148,0)); border-radius:1px}
+
+/* Mobile Before->After connector */
+.mobile-connector{display:flex; flex-direction:column; align-items:center; gap:6px; margin:8px 0}
+.mobile-connector .conn-dot{width:10px; height:10px; border-radius:9999px; background:radial-gradient(circle at 50% 50%, #fff 0%, #fff4bf 40%, rgba(255,213,46,.9) 70%, transparent 72%); box-shadow:0 0 12px rgba(255,213,46,.85)}
+.mobile-connector .conn-line{width:2px; height:24px; border-radius:2px; background:linear-gradient(180deg, rgba(255,232,148,0), rgba(255,213,46,.8), rgba(255,232,148,0)); position:relative; overflow:hidden}
+.mobile-connector .conn-line::after{content:""; position:absolute; left:0; top:-30%; height:30%; right:0; background:linear-gradient(180deg, rgba(255,213,46,0), rgba(255,255,255,.9), rgba(255,213,46,0)); filter:blur(1px); animation: conn-sheen 2.6s linear infinite}
+.mobile-connector .conn-arrow{width:0; height:0; border-top:10px solid #FFD52E; border-left:6px solid transparent; border-right:6px solid transparent; filter: drop-shadow(0 0 6px rgba(255,213,46,.6));}
+@keyframes conn-sheen{from{top:-30%}to{top:100%}}
+
 /* CTA inside transform frame */
 .transform-frame .cta-wrap{display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; margin-top:4px; padding-bottom:6px}
 .transform-frame .cta-btn{position:relative; display:inline-flex; align-items:center; gap:10px; padding:10px 18px; border-radius:9999px; border:1px solid rgba(255,213,46,.45); color:#0b0b0b; font-weight:700; background:linear-gradient(135deg,#FFD52E 0%, #FFE894 100%); box-shadow:0 6px 22px rgba(255,213,46,.25), inset 0 -2px 0 rgba(0,0,0,.15)}

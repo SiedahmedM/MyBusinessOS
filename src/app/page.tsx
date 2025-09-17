@@ -27,45 +27,37 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
   // Light background toggle while in Solutions > SoftwareTypeGrid through FAQ
   const [lightBg, setLightBg] = useState(false)
   const startRef = useRef<HTMLDivElement | null>(null)
-  const endRef = useRef<HTMLDivElement | null>(null)
   const afterStart = useRef(false)
 
   useEffect(() => {
-    const startEl = startRef.current
-    if (!startEl) return
-
-    // Turn on white when we pass the start sentinel
-    const startObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          afterStart.current = true
-          setLightBg(true)
-        }
-        // If we scroll back above the start, disable white
-        if (!entry.isIntersecting && entry.boundingClientRect.top > 0) {
-          afterStart.current = false
-          setLightBg(false)
-        }
-      })
-    }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
-
-    // Use the Transform section as the end trigger (turn back to dark)
+    // Smooth, hysteresis-based background switch using viewport center
+    const regionEl = document.getElementById('services') // SoftwareTypeGrid section id
     const transformEl = document.getElementById('ai-playground')
-    const endObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setLightBg(false)
-        }
-        // If we scroll away from transform (upwards), restore white if we've passed start
-        if (!entry.isIntersecting && afterStart.current) {
-          setLightBg(true)
-        }
-      })
-    }, { threshold: 0, rootMargin: '0px 0px -60% 0px' })
+    if (!regionEl || !transformEl) return
 
-    startObserver.observe(startEl)
-    if (transformEl) endObserver.observe(transformEl)
-    return () => { startObserver.disconnect(); endObserver.disconnect() }
+    const getDocTop = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY
+    const calc = () => {
+      const center = window.scrollY + window.innerHeight * 0.5
+      const startTop = getDocTop(regionEl)
+      const endTop = getDocTop(transformEl)
+      const margin = window.innerHeight * 0.1 // hysteresis margin
+      const inWhite = center > startTop + margin && center < endTop - margin
+      setLightBg(inWhite)
+      afterStart.current = inWhite || center >= startTop
+    }
+    let raf = 0
+    const onScroll = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(calc)
+    }
+    calc()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('resize', onScroll)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
 
   return (
@@ -117,7 +109,7 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
 
-        {/* End trigger is the Transform section itself; no extra sentinel needed here */}
+        {/* End trigger handled via scroll-based calc */}
         
         {/* Transformation Section (replaces AI Builder) */}
         <div className="ai-playground-mobile section-transition">

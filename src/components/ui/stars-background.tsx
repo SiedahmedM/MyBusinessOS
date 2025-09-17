@@ -25,6 +25,7 @@ interface StarBackgroundProps {
   minRadius?: number;
   maxRadius?: number;
   className?: string;
+  mobileTuning?: boolean; // dim + reduce star count on small screens
 }
 
 export const StarsBackground: React.FC<StarBackgroundProps> = ({
@@ -36,6 +37,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
   minRadius = 0.6,
   maxRadius = 1.2,
   className,
+  mobileTuning = true,
 }) => {
   const [stars, setStars] = useState<StarProps[]>([]);
   const canvasRef: RefObject<HTMLCanvasElement> =
@@ -43,16 +45,20 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
   const generateStars = useCallback(
     (width: number, height: number): StarProps[] => {
+      const isMobile = mobileTuning && typeof window !== 'undefined' && window.innerWidth <= 640
+      const densityScale = isMobile ? 0.6 : 1
+      const minR = isMobile ? Math.max(0.45, minRadius * 0.8) : minRadius
+      const maxR = isMobile ? Math.max(minR + 0.2, maxRadius * 0.85) : maxRadius
       const area = width * height;
-      const numStars = Math.floor(area * starDensity);
+      const numStars = Math.floor(area * starDensity * densityScale);
       return Array.from({ length: numStars }, () => {
         const shouldTwinkle =
           allStarsTwinkle || Math.random() < twinkleProbability;
         return {
           x: Math.random() * width,
           y: Math.random() * height,
-          radius: minRadius + Math.random() * (maxRadius - minRadius),
-          opacity: Math.random() * 0.5 + 0.5,
+          radius: minR + Math.random() * (maxR - minR),
+          opacity: (isMobile ? 0.25 : 0.5) + Math.random() * (isMobile ? 0.3 : 0.5),
           twinkleSpeed: shouldTwinkle
             ? minTwinkleSpeed +
               Math.random() * (maxTwinkleSpeed - minTwinkleSpeed)
@@ -68,6 +74,7 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
       maxTwinkleSpeed,
       minRadius,
       maxRadius,
+      mobileTuning,
     ]
   );
 
@@ -80,9 +87,17 @@ export const StarsBackground: React.FC<StarBackgroundProps> = ({
 
         // Prefer measuring the parent so absolute canvases get the full section size
         const host = canvas.parentElement || canvas;
-        const { width, height } = host.getBoundingClientRect();
-        canvas.width = width;
-        canvas.height = height;
+        const rect = host.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+        const dpr = (typeof window !== 'undefined' ? window.devicePixelRatio : 1) || 1;
+        // Set internal resolution for crisp stars on high-DPR screens
+        canvas.width = Math.max(1, Math.floor(width * dpr));
+        canvas.height = Math.max(1, Math.floor(height * dpr));
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.scale(dpr, dpr);
         setStars(generateStars(width, height));
       }
     };
