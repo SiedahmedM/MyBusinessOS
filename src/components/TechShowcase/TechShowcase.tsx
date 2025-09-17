@@ -1,7 +1,7 @@
 'use client'
 import { TechGrid } from './TechGrid'
 import { CodeDisplay } from './CodeDisplay'
-import { StarsBackground } from '@/components/ui/stars-background'
+// Starry background removed per request
 
 
 export function TechShowcase({ embedded = false }: { embedded?: boolean }) {
@@ -9,13 +9,7 @@ export function TechShowcase({ embedded = false }: { embedded?: boolean }) {
 
   return (
     <section className={`tech-showcase-mobile relative ${embedded ? 'tech-embedded' : ''}`}>
-      { (!embedded && (
-        <StarsBackground 
-          starDensity={0.00008} 
-          className="opacity-20" 
-          allStarsTwinkle={true}
-        />
-      ))}
+      {/* Starry background removed */}
       <div className="section-header-mobile relative z-10">
         <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">
           Cutting-Edge Technology Stack

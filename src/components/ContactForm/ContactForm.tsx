@@ -3,9 +3,8 @@ import { useState } from 'react'
 import { logger } from '@/lib/logger'
 import { toast } from 'sonner'
 
-import { StarsBackground } from '@/components/ui/stars-background'
 
-export function ContactForm() {
+export function ContactForm({ compact = false }: { compact?: boolean }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -113,28 +112,26 @@ export function ContactForm() {
   }
 
   return (
-    <section id="contact" className="relative section-padding bg-black">
-      {/* Stars for full-dark theme */}
-      { (
-        <StarsBackground starDensity={0.00005} className="opacity-30" />
-      )}
-      
-      <div className="relative z-10 max-w-5xl mx-auto">
+    <section id={compact ? undefined : 'contact'} className={compact ? '' : 'relative section-padding bg-black'}>
+
+      <div className={compact ? '' : 'relative z-10 max-w-5xl mx-auto'}>
         {/* Header */}
-        <div className="text-center mb-10">
-          <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-3">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="font-sans text-base md:text-lg text-white/70 tracking-tightish max-w-2xl mx-auto">
-            Tell us about your business and we'll create a custom software solution that drives growth and saves you time.
-          </p>
-          <p className="mt-3 text-xs text-white/60 max-w-2xl mx-auto">
-            Every message includes a free 15-minute consultation. Located in Orange County? We're happy to meet in person for the consultation.
-          </p>
-        </div>
+        {!compact && (
+          <div className="text-center mb-10">
+            <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white mb-3">
+              Ready to Transform Your Business?
+            </h2>
+            <p className="font-sans text-base md:text-lg text-white/70 tracking-tightish max-w-2xl mx-auto">
+              Tell us about your business and we'll create a custom software solution that drives growth and saves you time.
+            </p>
+            <p className="mt-3 text-xs text-white/60 max-w-2xl mx-auto">
+              Every message includes a free 15-minute consultation. Located in Orange County? We're happy to meet in person for the consultation.
+            </p>
+          </div>
+        )}
 
         {/* Contact Form */}
-        <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl p-6 md:p-8">
+        <div className={compact ? '' : 'rounded-2xl border-0 bg-transparent shadow-none p-6 md:p-8'}>
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Name & Email Row */}
             <div className="grid md:grid-cols-2 gap-6">

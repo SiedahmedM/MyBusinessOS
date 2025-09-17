@@ -2,7 +2,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
 
-import { StarsBackground } from '@/components/ui/stars-background'
+// Starry background removed per request
 
 interface QuickROIInputs {
   softwareType: string
@@ -157,10 +157,7 @@ export function QuickROICalculator() {
 
   return (
     <section className="relative bg-neutral-50 py-16">
-      {/* Stars for full-dark theme */}
-      { (
-        <StarsBackground starDensity={0.00005} className="opacity-30" />
-      )}
+      {/* Starry background removed */}
       
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">

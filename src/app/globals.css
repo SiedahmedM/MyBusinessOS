@@ -352,6 +352,17 @@ html[data-theme='full-dark'] .border-gray-300 {
   border: 0 !important;
   box-shadow: none !important;
 }
+.service-bento-simple{ display:none !important; }
+
+/* Ensure new services-alt block is readable on white */
+.solutions-light .services-alt h3 { color: #0f172a !important; }
+.solutions-light .services-alt p,
+.solutions-light .services-alt li span { color: #334155 !important; }
+.solutions-light .services-alt a { color: #0f172a !important; }
+.solutions-light .services-alt .services-media {
+  background: #f8fafc !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
 .solutions-light .service-bento-simple > *:hover { background: transparent !important; }
 
 /* AI marquee styles */
@@ -978,6 +989,19 @@ button, .btn {
 }
 
 /* Mobile Touch Improvements */
+/* GlowCard gradient border */
+.glow-border::before{
+  content:""; position:absolute; inset:-1000px; background:
+    conic-gradient(from 180deg at 50% 50%, rgba(255,213,46,.0), rgba(255,213,46,.45), rgba(255,213,46,.0));
+  animation: border-rotate 8s linear infinite;
+  transform: translateZ(0);
+}
+.glow-border > *{ position: relative; }
+@keyframes border-rotate{ to{ transform: rotate(360deg); } }
+
+/* Simple marquee utility (namespaced to avoid collision) */
+.u-marquee { overflow:hidden; white-space:nowrap; }
+.u-marquee-track { display:inline-block; animation: marquee-left 18s linear infinite; }
 .mobile-touch {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -1230,7 +1254,7 @@ button, .btn {
 
 /* Contact form - edge to edge on mobile */
 .contact-form-mobile {
-  background: var(--bg-secondary);
+  background: transparent; /* remove gray band behind the form */
   color: var(--text-primary);
   padding: 3rem 1.5rem;
   margin: 0;
@@ -1238,15 +1262,16 @@ button, .btn {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+/* Remove gray frame around the contact form */
 .contact-form-mobile .form-container {
-  background: var(--card-bg);
+  background: transparent;
   color: var(--text-primary);
-  border-radius: 1rem;
+  border-radius: 0; /* let inner card control radius if needed */
   padding: 2rem 1.5rem;
   margin: 0;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
-  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+  border: 0;
+  box-shadow: none;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .contact-form-mobile label {
@@ -1398,8 +1423,8 @@ button, .btn {
   border-radius: 0;
   border-left: none;
   border-right: none;
-  background: rgba(0, 0, 0, 0.95);
-  backdrop-filter: blur(20px);
+  background: transparent !important;
+  backdrop-filter: none !important;
 }
 
 /* Larger cards for Transform section */

@@ -57,9 +57,15 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
     }`
 
   return (
-    <nav className={`sticky top-0 z-50 transition-all duration-300 ${
+    <nav className={`sticky top-0 z-50 transition-all duration-300 relative ${
       isScrolled ? 'backdrop-blur-sm bg-transparent' : 'bg-transparent'
     } ${className}`}>
+      {/* subtle gradient fade into hero when at top */}
+      {!isScrolled && (
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -bottom-2 left-0 right-0 h-8 bg-gradient-to-b from-black/20 to-transparent"/>
+        </div>
+      )}
       {/* Mobile Navigation - Top-right dropdown */}
       <div className="md:hidden px-4">
         <div className={`mx-auto transition-all ${isScrolled ? 'mt-0' : 'mt-6'}`}>
@@ -113,15 +119,19 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
       </div>
 
       {/* Desktop Navigation - Top-right dropdown */}
-      <div className="hidden md:block px-6">
+      <div className="hidden md:block px-6 relative z-10">
         <div className={`mx-auto max-w-6xl transition-all ${isScrolled ? 'mt-0' : 'mt-6'}`}>
-          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md px-5 py-2.5 shadow-lg">
+          <div className={`flex items-center justify-between px-5 py-2.5 transition-colors ${
+            isScrolled
+              ? 'rounded-2xl border border-white/10 bg-black/50 backdrop-blur-md shadow-lg'
+              : 'bg-transparent border-transparent shadow-none'
+          }`}>
             {/* Desktop Logo */}
             <div className="flex items-center">
               <Logo variant="header" size="xl" className="logo-container" />
             </div>
 
-            {/* Centered links - Home & Process only */}
+            {/* Centered links - Temporarily re-enable Services in dev */}
             <div className="flex items-center gap-7 text-[15px]">
               <button
                 onClick={() => handleTabClick('home')}
@@ -130,6 +140,23 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
               >
                 Home
               </button>
+              {process.env.NODE_ENV !== 'production' ? (
+                <div className="relative group">
+                  <button
+                    className={`px-2 py-1 transition-colors ${['crm','erp','automation'].includes(activeTab as any) ? 'text-accent-300' : 'text-neutral-200 hover:text-white'}`}
+                    aria-haspopup="menu"
+                    aria-expanded={false}
+                  >
+                    Services
+                  </button>
+                  <div role="menu" className="absolute left-0 mt-2 w-64 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all">
+                    <button role="menuitem" onClick={() => handleTabClick('crm')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom CRM Systems</button>
+                    <button role="menuitem" onClick={() => handleTabClick('erp')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom ERP Solutions</button>
+                    <button role="menuitem" onClick={() => handleTabClick('automation')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Business Process Automation</button>
+                    <button role="menuitem" onClick={() => handleTabClick('ai')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">AI Integration</button>
+                  </div>
+                </div>
+              ) : null}
               <button
                 onClick={() => handleTabClick('process')}
                 className={`px-2 py-1 transition-colors ${activeTab === 'process' ? 'text-accent-300' : 'text-neutral-200 hover:text-white'}`}

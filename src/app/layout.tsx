@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react'
 import Script from 'next/script'
 import { Toaster } from 'sonner'
 import './globals.css'
+// Global star overlay removed per revert; sections manage their own visuals
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://CustomSoftwarePro.com'
 

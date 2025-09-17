@@ -1,7 +1,8 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import { BentoGrid, BentoGridItem } from '@/components/ui/bento-grid'
-import { StarsBackground } from '@/components/ui/stars-background'
+import { GlowCard } from '@/components/ui/GlowCard'
+// Removed local star background; global overlay handles page backdrop
 import { FAQSection } from '@/components/FAQ/FAQSection'
 
 interface SoftwareTypeGridProps {
@@ -212,7 +213,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
 
   return (
     <section id="services" className={`relative software-grid-mobile section-overlap section-fade-bottom section-fade-bottom--black solutions-surface ${className}`}>
-      <StarsBackground starDensity={0.00003} className="opacity-30 solutions-stars" />
+      {/* Starry background removed per request */}
       
       <div className="relative z-10 max-w-[1600px] mx-auto px-3 sm:px-4 lg:px-6">
         {/* Header */}
@@ -223,6 +224,60 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
           <p className="font-sans text-base md:text-lg text-neutral-200 tracking-tightish max-w-2xl mx-auto">
             From custom business software to mobile apps and websites, we build technology solutions tailored to your specific requirements and goals.
           </p>
+        </div>
+
+        {/* Featured services (alternating layout with larger visuals) */}
+        <div className="mb-12 space-y-10 services-alt">
+          {(['custom-crm-systems','custom-erp-solutions','business-process-automation','ai-integration'] as const).map((id, idx) => {
+            const svc = services.find(s=>s.id===id)!;
+            const reverse = idx % 2 === 1;
+            const target = id === 'custom-crm-systems' ? 'crm' : id === 'custom-erp-solutions' ? 'erp' : id === 'business-process-automation' ? 'automation' : 'ai';
+            return (
+              <div
+                key={svc.id}
+                className={`grid md:grid-cols-12 gap-4 items-center ${reverse?'':'md:[&>*:first-child]:order-1 md:[&>*:last-child]:order-2'} cursor-pointer`}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${svc.title}`}
+                onClick={() => { window.location.hash = `#${target}`; window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.hash = `#${target}`; window.scrollTo({ top: 0, behavior: 'smooth' }); } }}
+              >
+                {/* Visual */}
+                <div className={`md:col-span-7 ${reverse?'md:order-2':''}`}>
+                  <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/30 services-media">
+                    <div className="pt-[56%]" />
+                    <div className="absolute inset-0">
+                      {svc.id==='custom-erp-solutions' && svc.images?.length ? (
+                        <>
+                          {svc.images.slice(0,4).map((img,i)=> (
+                            <img key={img.src} src={img.src} alt={img.alt} className={`erp-slide erp-slide-${i+1} object-cover w-full h-full`} />
+                          ))}
+                        </>
+                      ) : svc.id==='business-process-automation' && svc.images?.length ? (
+                        <>
+                          {svc.images.slice(0,3).map((img,i)=> (
+                            <img key={img.src} src={img.src} alt={img.alt} className={`bpa-slide bpa-slide-${i+1} object-cover w-full h-full`} />
+                          ))}
+                        </>
+                      ) : svc.images?.[0]?.src ? (
+                        <img src={svc.images[0].src} alt={svc.images[0].alt} className="object-cover w-full h-full" />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+                {/* Copy */}
+                <div className={`md:col-span-5 ${reverse?'md:order-1':''}`}>
+                  <h3 className="text-xl md:text-2xl font-semibold mb-2">{svc.title}</h3>
+                  <p className="text-white/80 mb-3">{svc.description}</p>
+                  <ul className="text-sm text-white/85 space-y-1 mb-3">
+                    {svc.features.slice(0,3).map(f => (
+                      <li key={f} className="flex items-start gap-2"><svg className="text-accent-300 mt-0.5" width="16" height="16" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.17l-3.88-3.88L4 13.41l5 5 11-11-1.41-1.41z"/></svg><span>{f}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         {/* Top row: 3 cards */}
@@ -354,32 +409,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
           ))}
         </BentoGrid>
 
-        {/* AI Integration & Smart Automation: full-width background feature */}
-        <div className="relative mb-10 overflow-hidden rounded-xl border border-white/10 bg-white shadow-lg">
-          <div className="grid md:grid-cols-2">
-            <div className="p-6 md:p-10 flex flex-col justify-center bg-black text-white font-sans">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3">AI Integration & Smart Automation</h3>
-              <p className="text-white/90 leading-relaxed mb-4">
-                Add intelligence to your business. Get AI-powered chatbots, smart data analysis, and automated decision-making that works 24/7 to serve customers and optimize operations.
-              </p>
-              {/* Removed inline highlights; marquee shown on image side */}
-            </div>
-            <div className="relative min-h-[260px] md:min-h-[380px]">
-              <img src="/images/ai-business-dashboard6.png" alt="AI assistant and automation demo" className="absolute inset-0 w-full h-full object-cover" />
-              {/* Bottom marquee with AI highlights */}
-              <div className="ai-marquee">
-                <div className="ai-track">
-                  <span className="ai-chip">AI chatbots for customer service</span>
-                  <span className="ai-chip">Intelligent data analysis & insights</span>
-                  <span className="ai-chip">Automated decision-making workflows</span>
-                  <span className="ai-chip">AI chatbots for customer service</span>
-                  <span className="ai-chip">Intelligent data analysis & insights</span>
-                  <span className="ai-chip">Automated decision-making workflows</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Removed: AI Integration big horizontal card */}
 
         {/* Bottom row: 2 cards (Mobile, Web) */}
         <BentoGrid className="mb-10 service-bento-simple">
@@ -469,7 +499,7 @@ export function SoftwareTypeGrid({ className = '' }: SoftwareTypeGridProps) {
 
         {/* Industries Carousel */}
         <div className="py-8">
-          <h3 className="text-center text-xl font-bold text-accent-400 mb-6">Industries We Serve</h3>
+          <h3 className="text-center text-xl font-bold text-black mb-6">Industries We Serve</h3>
           <div className="relative rounded-xl border border-white/10 overflow-hidden bg-black/30 full-bleed industries-container">
             {/* Row 1 */}
             <div className="marquee-row py-4">

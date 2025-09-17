@@ -1,7 +1,7 @@
 'use client'
 import { useState, useCallback, useEffect } from 'react'
 import { logger } from '@/lib/logger'
-import { StarsBackground } from '@/components/ui/stars-background'
+// Starry background removed per request
 
 
 interface PricingCalculatorState {
@@ -175,15 +175,7 @@ export function InteractivePricingCalculator() {
 
   return (
     <section className="py-16 relative bg-neutral-900">
-      { (
-        <div className="absolute inset-0">
-          <StarsBackground 
-            starDensity={0.00010} 
-            className="opacity-30" 
-            allStarsTwinkle={true}
-          />
-        </div>
-      )}
+      {/* Starry background removed */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
