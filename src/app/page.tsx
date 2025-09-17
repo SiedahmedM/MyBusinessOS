@@ -6,6 +6,7 @@ import { Hero } from '@/components/Hero/Hero'
 import { ROICalculator } from '@/components/ROICalculator/ROICalculator'
 import { TransformSection } from '@/components/Transform/TransformSection'
 import { ContactForm } from '@/components/ContactForm/ContactForm'
+import ContactOptionsSection from '@/components/ContactOptions/ContactOptionsSection'
 import { FloatingCTA } from '@/components/FloatingCTA/FloatingCTA'
 import { SoftwareTypeGrid } from '@/components/SoftwareTypeGrid/SoftwareTypeGrid'
 import { ProcessTimeline } from '@/components/ProcessTimeline/ProcessTimeline'
@@ -14,7 +15,6 @@ import { TestimonialsMarquee } from '@/components/TestimonialsMarquee/Testimonia
 import { ErrorDisplay } from '@/components/common/ErrorDisplay'
 import { TabErrorBoundary } from '@/components/common/TabErrorBoundary'
 import { Footer } from '@/components/common/Footer'
-import { StarsBackground } from '@/components/ui/stars-background'
 import { useHashRouter } from '@/hooks/useHashRouter'
 import { primaryTabs } from '@/types/tabs'
 import type { Tab } from '@/types/tabs'
@@ -24,40 +24,31 @@ import React from 'react'
 
 // Memoized tab content components with full-bleed mobile-first layouts
 const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: Tab['id']) => void }) {
-  // Light background toggle while in Solutions > SoftwareTypeGrid through FAQ
+  // Light background toggle while in Services through Transform (white region)
   const [lightBg, setLightBg] = useState(false)
-  const startRef = useRef<HTMLDivElement | null>(null)
   const afterStart = useRef(false)
-
   useEffect(() => {
     // Smooth, hysteresis-based background switch using viewport center
-    const regionEl = document.getElementById('services') // SoftwareTypeGrid section id
+    const servicesEl = document.getElementById('services')
     const transformEl = document.getElementById('ai-playground')
-    if (!regionEl || !transformEl) return
+    if (!servicesEl || !transformEl) return
 
     const getDocTop = (el: HTMLElement) => el.getBoundingClientRect().top + window.scrollY
     const calc = () => {
       const center = window.scrollY + window.innerHeight * 0.5
-      const startTop = getDocTop(regionEl)
+      const startTop = getDocTop(servicesEl)
       const endTop = getDocTop(transformEl)
-      const margin = window.innerHeight * 0.1 // hysteresis margin
+      const margin = window.innerHeight * 0.1
       const inWhite = center > startTop + margin && center < endTop - margin
       setLightBg(inWhite)
       afterStart.current = inWhite || center >= startTop
     }
     let raf = 0
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(calc)
-    }
+    const onScroll = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(calc) }
     calc()
     window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onScroll)
-    return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-    }
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('scroll', onScroll); window.removeEventListener('resize', onScroll) }
   }, [])
 
   return (
@@ -68,10 +59,6 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
 
         {/* Seam-centered value props */}
         <div className="relative -mt-8 md:-mt-10 z-30">
-          {/* Full-bleed stars behind value props */}
-          <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw]">
-            <StarsBackground starDensity={0.0002} className="opacity-35" />
-          </div>
           <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             <div className="rounded-xl border border-white/10 bg-black/70 backdrop-blur-sm shadow-xl p-5">
               <div className="flex items-center gap-2 mb-2">
@@ -103,15 +90,12 @@ const HomeTab = memo(function HomeTab({ onTabChange }: { onTabChange?: (tabId: T
           </div>
         </div>
         
-        {/* Start sentinel: switch to white background around solutions + FAQ */}
-        <div ref={startRef} aria-hidden className="h-px w-px opacity-0" />
-
         {/* Software Type Grid - Full width with background */}
         <SoftwareTypeGrid />
 
         {/* End trigger handled via scroll-based calc */}
         
-        {/* Transformation Section (replaces AI Builder) */}
+        {/* Transformation Section (reverts to original wrappers) */}
         <div className="ai-playground-mobile section-transition">
           <div className="content-wrapper">
             <TransformSection />
@@ -199,15 +183,18 @@ export default function Home() {
               </TabErrorBoundary>
             </div>
           )}
+          {activeTab === 'ai' && (
+            <div id="ai" className="mobile-section-spacing section-transition">
+              <TabErrorBoundary tabName="AI Integration">
+                <ServicePage type="ai" />
+              </TabErrorBoundary>
+            </div>
+          )}
           {/* Service tabs will render below (placeholders for now) */}
           {/* Pricing tab removed */}
 
-          {/* Contact section - Full width with background */}
-          <div className="contact-form-mobile section-transition">
-            <div className="form-container">
-              <ContactForm />
-            </div>
-          </div>
+          {/* Contact section: direct email, form, scheduler */}
+          <ContactOptionsSection />
           
           {/* Mobile-optimized floating CTA */}
           <FloatingCTA className="mobile-touch" />
@@ -221,7 +208,23 @@ export default function Home() {
 }
 
 // Lightweight service page renderer (placeholder content)
-function ServicePage({ type }: { type: 'crm' | 'erp' | 'automation' }) {
+function ServicePage({ type }: { type: 'crm' | 'erp' | 'automation' | 'ai' }) {
+  if (type === 'crm') {
+    const CRMServicePage = require('@/components/ServicePages/CRMServicePage').default
+    return <CRMServicePage />
+  }
+  if (type === 'erp') {
+    const ERPServicePage = require('@/components/ServicePages/ERPServicePage').default
+    return <ERPServicePage />
+  }
+  if (type === 'automation') {
+    const AutomationServicePage = require('@/components/ServicePages/AutomationServicePage').default
+    return <AutomationServicePage />
+  }
+  if (type === 'ai') {
+    const AIIntegrationServicePage = require('@/components/ServicePages/AIIntegrationServicePage').default
+    return <AIIntegrationServicePage />
+  }
   const content = {
     crm: {
       hero: 'Stop Losing Leads. Start Closing More Deals.',

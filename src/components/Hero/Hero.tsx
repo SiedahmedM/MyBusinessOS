@@ -4,6 +4,7 @@ import { StaggeredText } from './StaggeredText'
 import { HeroBackground } from './HeroBackground'
 import { scrollToSection } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 
 interface HeroProps {
   onGetStartedClick?: () => void
@@ -43,18 +44,35 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         
 
         {/* Animated Main Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: 'easeOut' }}
+        >
         <StaggeredText
           lines={[
-            { text: "Custom Software That", className: "" },
-            { text: "Transforms Business", className: "text-accent-500 mt-2" }
+            { text: "We build custom software that", className: "" },
+            { text: "actually fits how your business operates.", className: "text-accent-500 mt-2" }
           ]}
-          className="font-sans font-semibold tracking-tighter2 text-left sm:text-center text-5xl md:text-6xl text-white mb-4 sm:mb-6"
+          className="font-sans font-semibold tracking-tighter2 text-left sm:text-center text-4xl md:text-6xl text-white mb-3 sm:mb-5"
         />
+        </motion.div>
+        {/* Supporting promise */}
+        <motion.div
+          className="flex justify-start sm:justify-center mb-4 sm:mb-6"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.25, duration: 0.5, ease: 'easeOut' }}
+        >
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-accent-500/30 bg-accent-500/10 text-accent-200 text-sm">
+            No more forcing your processes into generic tools.
+          </span>
+        </motion.div>
         
         {/* Mobile-Simplified Description */}
         <div className="mb-8 sm:mb-12">
           <p className="font-sans text-base md:text-lg text-zinc-300/90 tracking-tightish max-w-3xl sm:mx-auto sm:text-center text-left px-1">
-            From simple websites to complex SaaS platforms—turn your idea into reality in weeks, not months.
+            Tell us how your business operates, and we'll build software that eliminates your biggest operational headaches.
           </p>
         </div>
         
@@ -91,6 +109,17 @@ export function Hero({ onGetStartedClick, onTabChange }: HeroProps) {
         </div>
         
         {/* Experience logos section removed by request */}
+        {/* Scroll cue */}
+        <motion.button
+          onClick={handleOurServicesClick}
+          aria-label="Scroll to services"
+          className="hidden sm:flex absolute bottom-4 left-1/2 -translate-x-1/2 items-center justify-center w-9 h-9 rounded-full border border-white/20 bg-black/40 text-white/80 hover:text-white hover:border-white/40"
+          initial={{ opacity: 0, y: 4 }}
+          animate={{ opacity: 1, y: [0, -4, 0] }}
+          transition={{ delay: 0.8, duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <ChevronDown size={18} />
+        </motion.button>
       </div>
     </section>
   )

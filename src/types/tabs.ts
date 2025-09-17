@@ -1,5 +1,5 @@
 export interface Tab {
-  id: 'home' | 'process' | 'crm' | 'erp' | 'automation'
+  id: 'home' | 'process' | 'crm' | 'erp' | 'automation' | 'ai'
   title: string
   description: string
   icon: string

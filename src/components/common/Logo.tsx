@@ -52,14 +52,15 @@ export function Logo({
     <div className={cn(getContainerClasses(), className)}>
       <div className="relative">
         <Image
-          src={'/images/customsoftwarepro-logo.svg'}
+          src={'/images/logo.webp'}
           alt="CustomSoftwarePro - Custom Software Development"
           width={200}
           height={60}
           className={cn(
             getSizeClasses(),
             'rounded-lg transition-all duration-300',
-            variant === 'header' && 'mix-blend-screen hover:opacity-90'
+            // Make header logo a bit bigger on desktop
+            variant === 'header' && 'mix-blend-screen hover:opacity-90 md:h-20 md:w-auto'
           )}
           style={{ filter: getImageFilter() }}
           priority={variant === 'header' || variant === 'hero'}

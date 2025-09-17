@@ -1,7 +1,6 @@
 "use client"
 import React, { useEffect, useMemo, useRef } from "react"
 // Typewriter removed here in favor of precise line-by-line reveal
-import { StarsBackground } from "@/components/ui/stars-background"
 import { TechShowcase } from "@/components/TechShowcase/TechShowcase"
 import { TestimonialsMarquee } from "@/components/TestimonialsMarquee/TestimonialsMarquee"
 
@@ -302,10 +301,6 @@ export const TransformSection: React.FC = () => {
 
   return (
     <section ref={sectionRef as any} id="ai-playground" className="relative ai-playground-mobile transform-host">
-      {/* Starry background across the entire section, forced full-bleed */}
-      <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw]">
-        <StarsBackground starDensity={0.00045} minRadius={0.8} maxRadius={1.4} mobileTuning className="opacity-30 sm:opacity-40 md:opacity-45" />
-      </div>
       <div className="relative z-10 content-wrapper">
         <div className="section-header-mobile">
           <h2 className="font-sans font-semibold tracking-tighter2 text-3xl md:text-4xl text-white">See the Transformation</h2>

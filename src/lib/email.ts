@@ -9,6 +9,15 @@ export interface ContactEmailInput {
   message: string
 }
 
+export interface ConsultationEmailInput {
+  name: string
+  email: string
+  phone?: string
+  message?: string
+  isoStart: string
+  timezone?: string
+}
+
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 const TO_EMAIL = 'contact@customsoftwarepro.com'
@@ -122,6 +131,44 @@ export async function sendContactEmail(data: ContactEmailInput, opts?: { autoRep
     return { ok: true, id: sendResult.data?.id }
   } catch (err) {
     logger.error('Email: sendContactEmail failed', { requestId, error: serializeErr(err) })
+    throw err
+  }
+}
+
+export async function sendConsultationEmail(data: ConsultationEmailInput, opts?: { requestId?: string }) {
+  const requestId = opts?.requestId
+  try {
+    logger.info('Email: sending consultation booking', { requestId })
+    const start = new Date(data.isoStart)
+    const when = isNaN(start.getTime()) ? data.isoStart : start.toLocaleString(undefined, { dateStyle: 'full', timeStyle: 'short' })
+
+    const subject = `New 15‑min Consultation – ${data.name}`
+    const html = `
+      <div style="font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #0f172a;">
+        <h2 style="margin: 0 0 12px;">New Consultation Booking</h2>
+        <p style="margin: 0 0 4px;"><strong>Name:</strong> ${escapeHtml(data.name)}</p>
+        <p style="margin: 0 0 4px;"><strong>Email:</strong> ${escapeHtml(data.email)}</p>
+        ${data.phone ? `<p style=\"margin: 0 0 4px;\"><strong>Phone:</strong> ${escapeHtml(data.phone)}</p>` : ''}
+        <p style="margin: 0 0 8px;"><strong>Requested Time:</strong> ${escapeHtml(when)}${data.timezone ? ` (${escapeHtml(data.timezone)})` : ''}</p>
+        ${data.message ? `<div style=\"padding: 12px; border-radius: 8px; background: #f8fafc;\"><div style=\"font-weight: 600; margin-bottom: 6px;\">Notes:</div><div>${escapeHtml(data.message).replace(/\n/g,'<br/>')}</div></div>` : ''}
+      </div>
+    `
+    const text = `New Consultation Booking\n\nName: ${data.name}\nEmail: ${data.email}${data.phone ? `\nPhone: ${data.phone}` : ''}\nTime: ${when}${data.timezone ? ` (${data.timezone})` : ''}\n\nNotes:\n${data.message || ''}`
+
+    const sendResult = await resend.emails.send({
+      from: FROM_EMAIL,
+      to: TO_EMAIL,
+      subject,
+      html,
+      text,
+      reply_to: data.email,
+    })
+
+    if (sendResult.error) throw new Error('Email send failed')
+    logger.info('Email: consultation sent', { requestId, id: sendResult.data?.id })
+    return { ok: true }
+  } catch (err) {
+    logger.error('Email: sendConsultationEmail failed', { requestId, error: serializeErr(err) })
     throw err
   }
 }

@@ -2,7 +2,7 @@
 import { useState, useCallback } from 'react'
 import { logger } from '@/lib/logger'
 
-import { StarsBackground } from '@/components/ui/stars-background'
+// Starry background removed per request
 
 interface ProjectShowcase {
   id: string
@@ -142,10 +142,7 @@ export function VisualProjectShowcase() {
 
   return (
     <section className="relative py-16 bg-neutral-900 project-showcase section-fade-top section-fade-top--black section-fade-bottom section-fade-bottom--black">
-      {/* Stars for full-dark theme */}
-      { (
-        <StarsBackground starDensity={0.00005} className="opacity-30" />
-      )}
+      {/* Starry background removed */}
       
       <div className="relative z-10 mobile-content-padding">
         {/* Header */}

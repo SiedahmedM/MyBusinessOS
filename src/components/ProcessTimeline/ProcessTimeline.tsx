@@ -1,7 +1,6 @@
 'use client'
 import { useState, useCallback } from 'react'
 import { logger } from '@/lib/logger'
-import { StarsBackground } from '@/components/ui/stars-background'
 
 
 interface ProcessStep {
@@ -116,15 +115,7 @@ export function ProcessTimeline({ className = '' }: ProcessTimelineProps) {
 
   return (
     <section className={`py-16 relative ${className}`}>
-      { (
-        <div className="absolute inset-0">
-          <StarsBackground 
-            starDensity={0.00012} 
-            className="opacity-25" 
-            allStarsTwinkle={true}
-          />
-        </div>
-      )}
+      {/* Starry background removed */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
