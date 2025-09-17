@@ -235,13 +235,13 @@ function VideoPanel() {
 
   return (
     <div className="md:col-span-8">
-      <div className="relative overflow-hidden bg-black">
+      <div className="relative overflow-hidden bg-transparent shadow-none">
         {/* Slightly bigger card */}
         <div className="pt-[62%] md:pt-[58%] lg:pt-[54%]" />
         <div className="absolute inset-0">
           <video
             ref={videoRef}
-            className="w-full h-full object-contain bg-black"
+            className="block w-full h-full object-contain bg-transparent border-0 outline-none focus:outline-none ring-0 focus:ring-0 shadow-none"
             playsInline
             muted
             autoPlay
