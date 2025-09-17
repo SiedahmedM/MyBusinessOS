@@ -64,6 +64,17 @@ const Stage = React.forwardRef<StageHandle, { content: { beforeTitle: string; be
     const svgRef = useRef<SVGSVGElement | null>(null)
     const starRef = useRef<HTMLDivElement | null>(null)
     const hasRun = useRef(false)
+    const isMobileRef = useRef<boolean>(false)
+
+    useEffect(() => {
+      const mq = window.matchMedia('(max-width: 640px)')
+      const set = () => { isMobileRef.current = mq.matches }
+      set()
+      mq.addEventListener ? mq.addEventListener('change', set) : mq.addListener(set as any)
+      return () => {
+        mq.removeEventListener ? mq.removeEventListener('change', set) : mq.removeListener?.(set as any)
+      }
+    }, [])
 
     // Reveal title words grouped by visual line wraps
     function revealTitleByLines(container: HTMLElement, done?: () => void){
@@ -112,6 +123,17 @@ const Stage = React.forwardRef<StageHandle, { content: { beforeTitle: string; be
     function fireStarThenRevealAfter(){
       const stage = stageRef.current, beforeCol = beforeColRef.current, afterCol = afterColRef.current, svg = svgRef.current, star = starRef.current
       if (!stage || !beforeCol || !afterCol || !svg || !star) return
+      // On small screens, skip star to avoid layout jitter; reveal title/bullets directly
+      if (isMobileRef.current) {
+        const titleWrap = afterCol.querySelector('.after-title') as HTMLElement | null
+        if (titleWrap) {
+          revealTitleByLines(titleWrap, () => {
+            const root = stageRef.current
+            if (root) revealLinesSequentially(root, '.after-col .line')
+          })
+        }
+        return
+      }
       const sb = beforeCol.getBoundingClientRect()
       const sa = afterCol.getBoundingClientRect()
       const stg = stage.getBoundingClientRect()
@@ -201,29 +223,41 @@ const Stage = React.forwardRef<StageHandle, { content: { beforeTitle: string; be
     React.useImperativeHandle(ref, () => ({ play, reset }))
 
     return (
-      <div ref={stageRef} className="relative grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start min-h-[300px] mb-20 transform-text-stage">
-        {/* Before text */}
-        <div ref={beforeColRef} className="before-col">
-          <h3 className="line mt-2 font-semibold text-white text-xl">{content.beforeTitle}</h3>
-          <ul className="mt-2 pl-5 text-white/85 text-base space-y-1.5 list-disc">
-            {content.before.map((b) => (
-              <li key={b} className="line">{b}</li>
-            ))}
-          </ul>
-        </div>
-        {/* After text */}
-        <div ref={afterColRef} className="after-col">
-          {/* After title built from words to allow line-by-line groups */}
-          <h3 className="mt-2 font-semibold text-white text-2xl md:text-3xl lg:text-4xl after-title flex flex-wrap gap-x-2 leading-tight">
-            {content.afterTitle.split(' ').map((w, i) => (
-              <span key={i} className="tw-word opacity-0 translate-y-[4px] transition-all duration-200">{w}</span>
-            ))}
-          </h3>
-          <ul className="mt-2 pl-5 text-white/85 text-base space-y-1.5 list-disc">
-            {content.after.map((a) => (
-              <li key={a} className="line">{a}</li>
-            ))}
-          </ul>
+      <div ref={stageRef} className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-12 md:gap-24 items-start min-h-[260px] sm:min-h-[300px] mb-8 sm:mb-20 transform-text-stage stage-wrap">
+        {/* Mobile merged card wrapper (desktop uses contents layout) */}
+        <div className="stage-mobile sm:contents">
+          {/* Before text */}
+          <div ref={beforeColRef} className="before-col stage-section">
+            <div className="sm:hidden mb-2"><span className="chip before">Before</span></div>
+            <h3 className="line mt-2 font-semibold text-white text-lg sm:text-xl">{content.beforeTitle}</h3>
+            <ul className="mt-2 pl-5 text-white/85 text-sm sm:text-base space-y-1.5 list-disc">
+              {content.before.map((b) => (
+                <li key={b} className="line">{b}</li>
+              ))}
+            </ul>
+          </div>
+          {/* Mobile connector between Before and After */}
+          <div className="mobile-connector sm:hidden">
+            <span className="conn-dot" aria-hidden></span>
+            <span className="conn-line" aria-hidden></span>
+            <span className="conn-arrow" aria-hidden></span>
+            <span className="chip after">After</span>
+          </div>
+
+          {/* After text */}
+          <div ref={afterColRef} className="after-col stage-section">
+            {/* After title built from words to allow line-by-line groups */}
+            <h3 className="mt-2 font-semibold text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl after-title flex flex-wrap gap-x-2 leading-tight">
+              {content.afterTitle.split(' ').map((w, i) => (
+                <span key={i} className="tw-word opacity-0 translate-y-[4px] transition-all duration-200">{w}</span>
+              ))}
+            </h3>
+            <ul className="mt-2 pl-5 text-white/85 text-sm sm:text-base space-y-1.5 list-disc">
+              {content.after.map((a) => (
+                <li key={a} className="line">{a}</li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Shooting star layer */}
@@ -270,7 +304,7 @@ export const TransformSection: React.FC = () => {
     <section ref={sectionRef as any} id="ai-playground" className="relative ai-playground-mobile transform-host">
       {/* Starry background across the entire section, forced full-bleed */}
       <div className="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-[100vw]">
-        <StarsBackground starDensity={0.00045} minRadius={0.8} maxRadius={1.4} className="opacity-45" />
+        <StarsBackground starDensity={0.00045} minRadius={0.8} maxRadius={1.4} mobileTuning className="opacity-30 sm:opacity-40 md:opacity-45" />
       </div>
       <div className="relative z-10 content-wrapper">
         <div className="section-header-mobile">
@@ -279,8 +313,8 @@ export const TransformSection: React.FC = () => {
         </div>
 
         <div className="mobile-content-padding">
-          {/* Column badges */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start mb-6">
+          {/* Column badges (desktop only) */}
+          <div className="hidden sm:grid grid-cols-2 gap-12 md:gap-24 items-start mb-6">
             <div><span className="big-badge before">Before</span></div>
             <div><span className="big-badge after">After</span></div>
           </div>
