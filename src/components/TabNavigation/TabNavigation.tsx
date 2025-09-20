@@ -175,7 +175,8 @@ export function TabNavigation({ activeTab, onTabChange, className = '' }: TabNav
                 >
                   Services
                 </button>
-                <div role="menu" className="absolute left-0 mt-2 w-64 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all">
+                {/* Remove vertical gap between trigger and menu to prevent hover flicker */}
+                <div role="menu" className="absolute left-0 top-full w-64 rounded-lg border border-neutral-800 bg-neutral-900/95 backdrop-blur-xl shadow-xl opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all">
                   <button role="menuitem" onClick={() => handleTabClick('crm')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom CRM Systems</button>
                   <button role="menuitem" onClick={() => handleTabClick('erp')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Custom ERP Solutions</button>
                   <button role="menuitem" onClick={() => handleTabClick('automation')} className="w-full text-left px-4 py-3 text-neutral-200 hover:bg-neutral-800/70">Business Process Automation</button>
