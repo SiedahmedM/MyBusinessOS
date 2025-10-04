@@ -268,11 +268,13 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
           </form>
         </div>
 
-        {/* Contact Info */}
-        <div className="text-center mt-10">
-          <p className="text-white/70 mb-2">Prefer to call? We are always happy to chat about your project.</p>
-          <a href="mailto:contact@customsoftwarepro.com" className="font-semibold text-accent-300 hover:text-accent-200">contact@customsoftwarepro.com</a>
-        </div>
+        {/* Contact Info (only for full page version) */}
+        {!compact && (
+          <div className="text-center mt-10">
+            <p className="text-white/70 mb-2">Prefer to call? We are always happy to chat about your project.</p>
+            <a href="mailto:hello@customsoftwarepro.com" className="font-semibold text-accent-300 hover:text-accent-200">hello@customsoftwarepro.com</a>
+          </div>
+        )}
       </div>
     </section>
   )
